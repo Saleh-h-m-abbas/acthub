@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/svg.dart';
 
-class PrivicyPolicy extends StatefulWidget {
-  const PrivicyPolicy({Key key}) : super(key: key);
-
+class TermsAndConditions extends StatelessWidget {
+  String Gettext='this is conditons text'; //to get condition text from firebase
   @override
-  _PrivicyPolicyState createState() => _PrivicyPolicyState();
-}
-
-final Widget svg = SvgPicture.asset('assets/Group 4766.svg');
-
-class _PrivicyPolicyState extends State<PrivicyPolicy> {
-  String Gettext='this is privacy text'; //to get privacy text from firebase
-  @override
-
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -27,17 +15,17 @@ class _PrivicyPolicyState extends State<PrivicyPolicy> {
                 'assets/logo.png',
                 fit: BoxFit.cover,
               ),
-            ),//contain privacy picture
+            ),//contain Terms and condition picture
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: Text(
-                'Our Privacy policy ',
+                'Terms and Conditions ',
                 style: TextStyle(
                     color: Color(0xffF9A559),
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
-            ),//contain our privacy policy text
+            ), //contain Terms and Condition text
             Column(
               children: [
                 Padding(
@@ -46,9 +34,9 @@ class _PrivicyPolicyState extends State<PrivicyPolicy> {
                       style: TextStyle(
                         fontSize: 13,
                       )),
-                ),
+                ),// contain text widget to get terms and condition text from firebase
               ],
-            ),// contain text widget to get privacy policy text from firebase
+            ),
             Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Container(
