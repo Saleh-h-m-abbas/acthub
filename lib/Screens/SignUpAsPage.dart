@@ -72,32 +72,35 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
           ),
            elevation: 3,
 
-           child: Stack(
-           children:[
-           Center(
-           child: Image.asset(
-                     'Images/Admin.png',
-                    width:318 ,
-                       height:60,
-            ),
-           ),
-                     Padding(
-                       padding: const EdgeInsets.only(top:70),
-                       child: Center(
-                         child: Text(
-                          'Server provide text \n Server\n Server',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily:'Segoe UI'
-                          ),
+           child: GestureDetector(
+             onDoubleTap: (){},
+             child: Stack(
+             children:[
+             Center(
+             child: Image.asset(
+                       'Images/Admin.png',
+                      width:318 ,
+                         height:60,
+              ),
+             ),
+                       Padding(
+                         padding: const EdgeInsets.only(top:70),
+                         child: Center(
+                           child: Text(
+                            'Server provide text \n Server\n Server',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily:'Segoe UI'
+                            ),
+
+                      ),
+                         ),
+                       ),
+                     ]
 
                     ),
-                       ),
-                     ),
-                   ]
-
-                  ),
+           ),
 
               ),
                 )
@@ -116,31 +119,34 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
                 ),
                 elevation: 3,
 
-                child: Stack(
-                    children:[
-                      Center(
-                        child: Image.asset(
-                          'Images/Advertiser.png',
-                          width:318 ,
-                          height:60,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top:70),
-                        child: Center(
-                          child: Text(
-                            'Advertiser text \n Advertiser text \n Advertiser text \n ',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily:'Segoe UI'
-                            ),
-
+                child: GestureDetector(
+                onTap: (){},
+                  child: Stack(
+                      children:[
+                        Center(
+                          child: Image.asset(
+                            'Images/Advertiser.png',
+                            width:318 ,
+                            height:60,
                           ),
                         ),
-                      ),
-                    ]
+                        Padding(
+                          padding: const EdgeInsets.only(top:70),
+                          child: Center(
+                            child: Text(
+                              'Advertiser text \n Advertiser text \n Advertiser text \n ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily:'Segoe UI'
+                              ),
 
+                            ),
+                          ),
+                        ),
+                      ]
+
+                  ),
                 ),
 
               ),
@@ -162,31 +168,36 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
                 ),
                 elevation: 3,
 
-                child: Stack(
-                    children:[
-                      Center(
-                        child: Image.asset(
-                          'Images/User.png',
-                          width:318 ,
-                          height:60,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top:70),
-                        child: Center(
-                          child: Text(
-                            'user text \n user text \n user text',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily:'Segoe UI'
-                            ),
-
+                child: GestureDetector(
+                  onTap: (){
+                    print('hello');
+                  },
+                  child: Stack(
+                      children:[
+                        Center(
+                          child: Image.asset(
+                            'Images/User.png',
+                            width:318 ,
+                            height:60,
                           ),
                         ),
-                      ),
-                    ]
+                        Padding(
+                          padding: const EdgeInsets.only(top:70),
+                          child: Center(
+                            child: Text(
+                              'user text \n user text \n user text',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily:'Segoe UI'
+                              ),
 
+                            ),
+                          ),
+                        ),
+                      ]
+
+                  ),
                 ),
 
               ),
