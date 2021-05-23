@@ -8,6 +8,9 @@ import 'package:acthub/Screens/SignUpAsPage.dart';
 import 'package:acthub/Screens/SignUpFormPage.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/HomePage.dart';
+import 'Screens/NavigationPage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LogInPage.id,
+      initialRoute: NavigationPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -26,7 +29,9 @@ class MyApp extends StatelessWidget {
         YourData.id: (context) => YourData(),
         LogInPage.id:(context)=>LogInPage(),
         SignUpAsPage.id:(context)=>SignUpAsPage(),
-        SignUpFormPage.id:(context)=>SignUpFormPage()
+        SignUpFormPage.id:(context)=>SignUpFormPage(),
+        HomePage.id:(context)=>HomePage(),
+        NavigationPage.id:(context)=>NavigationPage()
 
       },
     );
