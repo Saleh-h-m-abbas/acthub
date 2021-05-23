@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:acthub/Classes/Palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:acthub/Classes/ShimmerAnimation.dart';
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
 
@@ -11,9 +13,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var dataAvailable=false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dataAvailable=false;
+
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Timer(
+        Duration(seconds: 3),
+
+            () => {
+            setState(() {
+              dataAvailable=true;
+            })
+        });
+
+    return dataAvailable?
+    Scaffold(
       backgroundColor: Palette.scaffold,
 
       appBar: AppBar(
@@ -500,6 +520,8 @@ children: [
        )
 
       ),
-    ) ;
+    ):
+    ShimmerAanimation().HomePageShimmerAnimation(context)
+    ;
   }
 }
