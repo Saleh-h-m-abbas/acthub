@@ -1,5 +1,6 @@
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class EnableLocation extends StatefulWidget {
   static const String id = 'EnableLocation';
@@ -50,10 +51,7 @@ class _EnableLocationState extends State<EnableLocation> {
                             )),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => YourData()));
+                        getLocation();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white, // background
@@ -74,5 +72,15 @@ class _EnableLocationState extends State<EnableLocation> {
         ),
       ),
     );
+  }
+
+  getLocation() async {
+    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    LocationPermission permission = await Geolocator.requestPermission();
+    if (isLocationServiceEnabled == true) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => YourData()));
+    }
   }
 }

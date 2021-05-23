@@ -1,5 +1,5 @@
+import 'package:acthub/Screens/LogInPage.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
-import 'package:acthub/Screens/SignUpAsPage.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -95,10 +95,8 @@ class _YourDataState extends State<YourData> {
                           )),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignUpAsPage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LogInPage()));
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white, // background

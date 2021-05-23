@@ -1,6 +1,7 @@
+import 'package:acthub/Classes/Palette.dart';
+import 'package:acthub/Screens/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:acthub/Classes/Palette.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class _LogInPageState extends State<LogInPage> {
     return Scaffold(
       backgroundColor: Palette.scaffold,
       body: Container(
-        height:MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Stack(
@@ -36,14 +37,18 @@ class _LogInPageState extends State<LogInPage> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 100, bottom: 20),
-                  child: textFiled('Username', TextInputType.emailAddress, false),
+                  child:
+                      textFiled('Username', TextInputType.emailAddress, false),
                 ),
                 //contain textfiled for user name
                 textFiled('Password', TextInputType.visiblePassword, true),
                 //text filed for password
                 Padding(
                   padding: EdgeInsets.only(top: 60, bottom: 20),
-                  child: buttons('Login', Palette.actHubGreen, () {}),
+                  child: buttons('Login', Palette.actHubGreen, () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignIn()));
+                  }),
                 ),
                 //contain the button of log in
                 buttons("Don't have an account?", Palette.orange, () {}),
@@ -51,13 +56,14 @@ class _LogInPageState extends State<LogInPage> {
               ],
             ), //column of text fileds and buttons
             Padding(
-                padding: EdgeInsets.only(top: 80),
-             child: Container(
+              padding: EdgeInsets.only(top: 80),
+              child: Container(
                 height: MediaQuery.of(context).size.height * 0.07,
                 child: Image.asset(
                   'Images/ActHubG.png',
                 ),
-              ),) //contain acthubpic
+              ),
+            ) //contain acthubpic
           ],
         ),
       ),

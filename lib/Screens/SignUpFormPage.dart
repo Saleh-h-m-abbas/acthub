@@ -22,7 +22,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
             Stack(
               children: [
                 Container(
-
                   width: MediaQuery.of(context).size.width,
                   child: FittedBox(
                     child: Image.asset(
@@ -35,9 +34,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                   child: Column(
                     children: [
                       CompanyInformation(context),
-
                       GestureDetector(
-
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
@@ -47,7 +44,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                               width: 310,
                               height: 40,
                               decoration: const BoxDecoration(
-                                color:  Palette.actHubGreen,
+                                color: Palette.actHubGreen,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(15),
                                 ),
@@ -57,11 +54,8 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
-                                        color: Palette.white
-                                    )),
-                              )
-
-                          ),
+                                        color: Palette.white)),
+                              )),
                         ),
                       ),
                       SizedBox(
@@ -72,12 +66,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                 ),
               ],
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Image.asset(
-                'Images/ActHubG.png',
-              ),
-            ),
+            SafeArea(
+              child: Container(
+                  height: 50,
+                  width: 130,
+                  child: Image.asset('Images/ActHubG.png')),
+            )
           ],
         ),
       ),
@@ -85,162 +79,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
   }
 
   Column UserForm(BuildContext context) {
-    return Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.arrow_back),
-                              //onPressed:() => Navigator.pop(context, false),
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 150,
-                        ),
-                        Stack(
-                          children: [
-
-                            Center(
-
-                              child: Padding(
-                                padding: const EdgeInsets.only(top:8.0),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  elevation: 10,
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                        color: Palette.white,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(15),
-                                        ),
-                                      ),
-                                      height: 380,
-                                      width: 351,
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'FULL NAME ',
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'EMAIL ',
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'PASSWORD ',
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'BIRTHDAY ',
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'COUNTRY ',
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                                            child: TextFormField(
-                                              cursorColor: Colors.black,
-
-                                              decoration: const InputDecoration(
-
-                                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                                hintText: 'What do people call you?',
-                                                labelText: 'STATE ',
-                                              ),
-                                            ),
-                                          ),
-
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left:45,bottom: 20),
-                              child: Container(
-                                height:100,
-                                  width:100,
-                                  child: Text('User',style: TextStyle(color: Palette.actHubGreen,fontWeight: FontWeight.bold,fontSize: 25),)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top:360.0),
-                              child: Center(
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  elevation :10,
-                                  child: Image.asset(
-                                    'Images/user.png',
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top:380.0),
-                              child: Center(child: Text('User',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),)),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    );
-  }
-  Column CompanyInformation(BuildContext context) {
     return Column(
       children: [
         Row(
@@ -258,11 +96,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
         ),
         Stack(
           children: [
-
             Center(
-
               child: Padding(
-                padding: const EdgeInsets.only(top:8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -283,12 +119,11 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
-                                labelText: 'COMPANY NAME ',
+                                labelText: 'FULL NAME ',
                               ),
                             ),
                           ),
@@ -296,10 +131,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'EMAIL ',
                               ),
@@ -309,10 +143,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'PASSWORD ',
                               ),
@@ -322,10 +155,21 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'BIRTHDAY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'COUNTRY ',
                               ),
@@ -335,58 +179,56 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
-                                labelText: 'CITY ',
+                                labelText: 'STATE ',
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: TextFormField(
-                              cursorColor: Colors.black,
-
-                              decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
-                                hintText: 'What do people call you?',
-                                labelText: 'PHONE ',
-                              ),
-                            ),
-                          ),
-
                         ],
                       )),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left:45,bottom: 20),
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
               child: Container(
-                  height:100,
-
-                  child: Text('Company Information',style: TextStyle(color: Palette.actHubGreen,fontWeight: FontWeight.bold,fontSize: 20),)),
+                  height: 100,
+                  width: 100,
+                  child: Text(
+                    'User',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:360.0),
+              padding: const EdgeInsets.only(top: 360.0),
               child: Center(
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  elevation :10,
+                  elevation: 10,
                   child: Image.asset(
-                    'Images/serviceProvider.png',
+                    'Images/user.png',
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:380.0),
-              child: Center(child: Text('Service Provider',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),)),
+              padding: const EdgeInsets.only(top: 380.0),
+              child: Center(
+                  child: Text(
+                'User',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              )),
             )
           ],
         ),
@@ -396,6 +238,167 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
       ],
     );
   }
+
+  Column CompanyInformation(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              //onPressed:() => Navigator.pop(context, false),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 150,
+        ),
+        Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Container(
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      height: 380,
+                      width: 351,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'COMPANY NAME ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'EMAIL ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'PASSWORD ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'COUNTRY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'CITY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'PHONE ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
+              child: Container(
+                  height: 100,
+                  child: Text(
+                    'Company Information',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 360.0),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Image.asset(
+                    'Images/serviceProvider.png',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 380.0),
+              child: Center(
+                  child: Text(
+                'Service Provider',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              )),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+      ],
+    );
+  }
+
   Column PaymentInformation(BuildContext context) {
     return Column(
       children: [
@@ -414,10 +417,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
         ),
         Stack(
           children: [
-
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top:8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -438,10 +440,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'CREDIT NUMBER',
                               ),
@@ -451,10 +452,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'NAME ',
                               ),
@@ -464,10 +464,9 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'CVV ',
                               ),
@@ -477,37 +476,39 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: TextFormField(
                               cursorColor: Colors.black,
-
                               decoration: const InputDecoration(
-
-                                labelStyle: TextStyle(color: Colors.black ,fontSize: 12),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
                                 hintText: 'What do people call you?',
                                 labelText: 'DATE ',
                               ),
                             ),
                           ),
-
-
                         ],
                       )),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left:45,bottom: 20),
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
               child: Container(
-                  height:100,
-
-                  child: Text('Payment Information',style: TextStyle(color: Palette.actHubGreen,fontWeight: FontWeight.bold,fontSize: 20),)),
+                  height: 100,
+                  child: Text(
+                    'Payment Information',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:280.0),
+              padding: const EdgeInsets.only(top: 280.0),
               child: Center(
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  elevation :10,
+                  elevation: 10,
                   child: Image.asset(
                     'Images/advertiser.png',
                   ),
@@ -515,8 +516,15 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:300.0),
-              child: Center(child: Text('Advertiser',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),)),
+              padding: const EdgeInsets.only(top: 300.0),
+              child: Center(
+                  child: Text(
+                'Advertiser',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              )),
             )
           ],
         ),
