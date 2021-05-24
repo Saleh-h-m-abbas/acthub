@@ -30,42 +30,25 @@ class _LandingPageState extends State<LandingPage> {
         },
         child: Scaffold(
           backgroundColor: Color(0xFF566357),
-          body: SafeArea(
-              child: Column(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Flexible(
-                child: Hero(
-                  tag: 'logo',
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .7,
-                    child: Image.asset('Images/Logo.png'),
+              Stack(
+                children: [
+                  Center(
+                    child: Container(
+                        width: 250, child: Image.asset('Images/Logo.png')),
                   ),
-                ),
+                  Stack(
+                    children: [
+                      Image.asset('Images/LandingPage2.png'),
+                      Image.asset('Images/LandingPage1.png'),
+                    ],
+                  )
+                ],
               ),
-              Center(
-                child: Stack(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                            width: 200,
-                            height: 200,
-                            child: Image.asset('Images/LandingPage1.png')),
-                        Container(
-                            width: 200,
-                            height: 200,
-                            child: Image.asset('Images/LandingPage2.png')),
-                      ],
-                    ),
-                    Container(
-                        width: 200,
-                        height: 200,
-                        child: Image.asset('Images/LandingPage3.png')),
-                  ],
-                ),
-              )
             ],
-          )),
+          ),
         ));
   }
 }
