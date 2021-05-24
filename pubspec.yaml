@@ -19,20 +19,23 @@ dependencies:
 
 #  shared_preferences: ^2.0.5
 #  feature_discovery: ^0.14.0
-  flutter_signin_button: ^2.0.0
 #  google_sign_in: ^5.0.3
 #  flutter_facebook_auth: ^1.0.0
 #  sign_in_with_apple: ^2.5.2
 #  crypto: ^2.1.5
 #  flutter_facebook_login: ^3.0.0
-#
-#
+
 #  firebase_auth: ^1.2.0
 #  firebase_storage : ^8.1.0
 #  firebase_core : ^1.2.0
 #  cloud_firestore : ^2.2.0
 #  cloud_functions : ^1.1.0
 
+
+
+  flutter_signin_button: ^2.0.0
+  font_awesome_flutter: ^9.0.0
+  flutter_svg: ^0.22.0
 cupertino_icons: ^1.0.2
 
 dev_dependencies:

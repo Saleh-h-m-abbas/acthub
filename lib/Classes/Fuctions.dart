@@ -1,7 +1,9 @@
+/*
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'dart:convert';
@@ -72,4 +74,4 @@ Future<UserCredential> signInWithApple() async {
   // Sign in the user with Firebase. If the nonce we generated earlier does
   // not match the nonce in `appleCredential.identityToken`, sign in will fail.
   return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-}
+}*/
