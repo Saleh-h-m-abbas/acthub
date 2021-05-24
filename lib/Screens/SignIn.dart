@@ -1,6 +1,7 @@
 import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   static const String id = 'SignIn';
@@ -10,6 +11,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   void _showButtonPressDialog(BuildContext context, String provider) {
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text('$provider Button Pressed!'),
@@ -102,7 +105,9 @@ class _SignInState extends State<SignIn> {
           SignInButtonBuilder(
             text: 'Join Us As A Guest',
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 70),
-            onPressed: () {
+            onPressed: () async {
+              final SharedPreferences prefs = await _prefs;
+              prefs.setBool("Guest", true);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => NavigationPage()));
             },
