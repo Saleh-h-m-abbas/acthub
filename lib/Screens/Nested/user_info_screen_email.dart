@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
+import 'package:acthub/Screens/Signin_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -249,8 +250,10 @@ class _UserInfoScreenEmailState extends State<UserInfoScreenEmail> {
                         setState(() {
                           _isSigningOut = false;
                         });
-                        Navigator.of(context)
-                            .pushReplacement(_routeToSignInScreen());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInPage()));
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 8.0),

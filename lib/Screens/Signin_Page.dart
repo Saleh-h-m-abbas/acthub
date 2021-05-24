@@ -169,42 +169,18 @@ class _SignInPageState extends State<SignInPage> {
           SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            onTap: () async {},
-            child: SizedBox(
-              width: 351.0,
-              height: 45.0,
-              child: Stack(
-                alignment: Alignment.centerLeft,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    width: 351.0,
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.grey,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          offset: Offset(0, 3.0),
-                          blurRadius: 6.0,
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      'Join us as a Guest ',
-                      style: TextStyle(
-                        fontFamily: 'Segoe UI',
-                        fontSize: 16.0,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          FutureBuilder(
+            future: Authentication.initializeFirebase(context: context),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Error initializing Firebase');
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return  anonymousSignInButton();
+              }
+              return CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+              );
+            },
           ),
         ],
       ),

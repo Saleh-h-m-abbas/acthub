@@ -23,24 +23,6 @@ class _UserInfoScreenGoogleState extends State<UserInfoScreenGoogle> {
   bool _isEmailVerified;
   bool _verificationEmailBeingSent = false;
 
-  Route _routeToSignInScreen() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => SignInPage(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = Offset(-1.0, 0.0);
-        var end = Offset.zero;
-        var curve = Curves.ease;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
 
   @override
   void initState() {
@@ -148,8 +130,10 @@ class _UserInfoScreenGoogleState extends State<UserInfoScreenGoogle> {
                         setState(() {
                           _isSigningOut = false;
                         });
-                        Navigator.of(context)
-                            .pushReplacement(_routeToSignInScreen());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInPage()));
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 8.0),

@@ -1,4 +1,5 @@
 import 'package:acthub/Classes/authentication.dart';
+import 'package:acthub/Screens/Nested/user_info_screen_Anonymously.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -250,6 +251,77 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+class anonymousSignInButton extends StatefulWidget {
+  @override
+  _anonymousSignInButtonState createState() => _anonymousSignInButtonState();
+}
+class _anonymousSignInButtonState extends State<anonymousSignInButton> {
+  bool _isSigningIn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 0.0),
+      child: _isSigningIn
+          ? CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      )
+          : GestureDetector(
+        onTap: () async {
+          setState(() {
+            _isSigningIn = true;
+          });
+          await FirebaseAuth.instance.signInAnonymously();
+          setState(() {
+            _isSigningIn = false;
+          });
+            Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => UserInfoScreenAnonymously(
+              ), // in this button we send a user name with this page and we must stour it in database
+            ),
+          );
+        },
+      child: SizedBox(
+        width: 351.0,
+        height: 45.0,
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              width: 351.0,
+              height: 45.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Colors.grey,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.16),
+                    offset: Offset(0, 3.0),
+                    blurRadius: 6.0,
+                  ),
+                ],
+              ),
+              child: Text(
+                'Join us as a Guest ',
+                style: TextStyle(
+                  fontFamily: 'Segoe UI',
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      ),
       ),
     );
   }
