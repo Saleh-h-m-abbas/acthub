@@ -1,74 +1,69 @@
-import 'package:acthub/Classes/Palette.dart';
-import 'package:flutter/material.dart';
 import 'package:acthub/Screens/HomePage.dart';
+import 'package:acthub/Screens/ManagementPage.dart';
+import 'package:acthub/Screens/MapPage.dart';
+import 'package:acthub/Screens/ProfilePage.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:flutter/material.dart';
 
-HomePage getHome = HomePage();
+//create instance from all Screens
+HomePage getHome = new HomePage();
+MapPage getMap = new MapPage();
+ManagementPage getManagement = new ManagementPage();
+ProfilePage getProfile = new ProfilePage();
+
 class NavigationPage extends StatefulWidget {
-  static  String id = 'NavigationPage';
-  static  int _selectedItemsIndex = 0;
+  static const String id = 'NavBarScreen';
+
   @override
   _NavigationPageState createState() => _NavigationPageState();
 }
-class _NavigationPageState extends State<NavigationPage> {
-  static List <Widget> screenList =[
-    getHome,
 
+class _NavigationPageState extends State<NavigationPage> {
+  //NavBarScreen variable
+  int _currentIndex = 0;
+  static List<Widget> screenList = <Widget>[
+    getHome,
+    getMap,
+    getManagement,
+    getProfile
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.scaffold,
-      bottomNavigationBar:
-      Padding(
-        padding: const EdgeInsets.only(bottom:8.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-elevation: 20,
-          child: Container(
-            height: MediaQuery.of(context).size.height*0.075,
-            width: MediaQuery.of(context).size.width*0.5,
-            decoration: const BoxDecoration(
-
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
-
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                buildNaBarItems(Icons.home, 0),
-                buildNaBarItems(Icons.search, 1),
-                buildNaBarItems(Icons.local_grocery_store_outlined, 2),
-                buildNaBarItems(Icons.person, 3),
-              ],
-            ),
-          ),
-        ),
-      ),
       body: Center(
-          child:  screenList.elementAt(NavigationPage._selectedItemsIndex)),
-    );
-  }
-
-  Widget buildNaBarItems(IconData icon, int index) {
-    return GestureDetector(
-      child: Container(
-
-        color: Palette.white,
-        height: MediaQuery.of(context).size.height*0.075,
-        width: MediaQuery.of(context).size.width/4.7,
-        child: Icon(icon,color: index == NavigationPage._selectedItemsIndex? Palette.orange : Palette.actHubGreen.withOpacity(0.3) ,),
+        child: screenList.elementAt(_currentIndex),
       ),
-      onTap: (){
-        setState(() {
-          NavigationPage._selectedItemsIndex = index;
-        });
-      },
+      bottomNavigationBar: CustomNavigationBar(
+        iconSize: 30.0,
+        selectedColor: Color(0xff040307),
+        strokeColor: Color(0x30040307),
+        unSelectedColor: Color(0xffacacac),
+        backgroundColor: Colors.white,
+        items: [
+          CustomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text("Home"),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(Icons.navigation),
+            title: Text("Map"),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            title: Text("Likes"),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            title: Text("Profile"),
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
     );
-
   }
 }

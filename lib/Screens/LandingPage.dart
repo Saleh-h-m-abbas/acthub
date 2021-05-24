@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/EnableLocation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,33 +29,19 @@ class _LandingPageState extends State<LandingPage> {
           return new Future.value(false);
         },
         child: Scaffold(
-          backgroundColor: Palette.white,
+          backgroundColor: Color(0xFF566357),
           body: SafeArea(
-              child: Stack(
+              child: Column(
             children: [
-              Image.asset('Images/LandingPage3.png'),
-              Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:90.0),
-                    child: Image.asset('Images/LandingPage2.png'),
-                  ),
-                  Image.asset('Images/LandingPage1.png'),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom:300.0),
+              Flexible(
                 child: Hero(
                   tag: 'logo',
-                  child: Center(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * .25,
-                      child: Image.asset('Images/Logo.png'),
-                    ),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * .7,
+                    child: Image.asset('Images/Logo.png'),
                   ),
                 ),
               ),
-
             ],
           )),
         ));

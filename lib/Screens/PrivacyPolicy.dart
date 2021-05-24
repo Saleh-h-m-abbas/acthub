@@ -20,8 +20,8 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           Stack(
             children: [
               Image.asset(
-                'Images/HeaderLogoB.png',
-                fit: BoxFit.scaleDown,
+                'Images/HeaderLogoA.png',
+                fit: BoxFit.fitWidth,
               ),
               SafeArea(
                 child: IconButton(
@@ -32,15 +32,38 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               ),
             ],
           ),
-          Container(
-            height: MediaQuery.of(context).size.height*0.1,
-            child: Image.asset(
-              'Images/ActHubG.png',
+          //contain privacy picture
 
+          //contain our privacy policy text
+          Expanded(
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'Our Privacy policy ',
+                    style: TextStyle(
+                        color: Color(0xffF9A559),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(Gettext,
+                      style: TextStyle(
+                        fontSize: 13,
+                      )),
+                ),
+              ],
             ),
           ),
-
-
+          // contain text widget to get privacy policy text from firebase
+          SafeArea(
+            child: Container(
+                height: 50,
+                width: 130,
+                child: Image.asset('Images/ActHubOLogo.png')),
+          )
         ],
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:acthub/Screens/PrivacyPolicy.dart';
+import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:acthub/Classes/Source.dart';
 
 class YourData extends StatefulWidget {
   static const String id = 'YourData';
@@ -38,7 +38,7 @@ class _YourDataState extends State<YourData> {
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: Text(
-              Source.Gettext_YourData,
+              'Your Data, Your Choice ',
               style: TextStyle(
                   color: Color(0xffF9A559),
                   fontSize: 25,
@@ -96,7 +96,7 @@ class _YourDataState extends State<YourData> {
                     ),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => YourData()));
+                          MaterialPageRoute(builder: (context) => SignIn()));
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white, // background

@@ -1,71 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'Palette.dart';
-class ShimmerAanimation{
-
-  Widget HomePageShimmerAnimation(BuildContext context){
+class ShimmerAnimation{
+  Widget homePageShimmerAnimation(BuildContext context){
     return Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
         backgroundColor: Palette.scaffold,
-        title: Shimmer.fromColors(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: Palette.actHubGreen.withOpacity(0.35),
-                height: 32,
-                width: 113,
-              ),
-              Padding(
-                  padding: const EdgeInsets.only(left:32.0,top: 5),
-                  child: Container(
-                    color: Palette.actHubGreen.withOpacity(0.35),
-                    height: 13,
-                    width: 110,
-
-                  )
-              )
-            ],
-          ),
-
-          baseColor:  Palette.actHubGreen,
-          highlightColor: Colors.white,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Home',
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Palette.orange,
+                  ),),
+                Padding(
+                  padding: const EdgeInsets.only(left: 65.0),
+                  child: Text('Have a nice day',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.actHubGreen.withOpacity(0.72),
+                      )),
+                )
+              ],),
+          ],
         ),
         actions: [
           Shimmer.fromColors(
+            baseColor: Palette.actHubGreen.withOpacity(0.35),
+            highlightColor: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.only(right:52.0,top: 10.5),
+              padding: const EdgeInsets.only(top: 10.5,right: 10),
               child: Stack(
                 children: [
                   CircleAvatar(
                     radius: 25,
                     backgroundColor: Palette.actHubGreen.withOpacity(0.35),
                   ),
-                  Positioned(
-                      top: 35,
-                      left: 0,
 
-                      child: Container(
-                        height:15,
-                        width:15,
-                        decoration: BoxDecoration(
-                            color: Palette.actHubGreen.withOpacity(0.35),
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                width: 2.0,
-                                color: Palette.white
-                            )
-                        ),
-                      ))
 
                 ],
               ),
             ),
-            baseColor:  Palette.actHubGreen,
-            highlightColor: Colors.white,
           )
         ],
       ),
@@ -204,17 +188,9 @@ class ShimmerAanimation{
             ),
             // //the search bar
             Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              elevation :10,
+              color: Palette.actHubGreen.withOpacity(0.35),
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Palette.actHubGreen,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-                ),
+
                 height:MediaQuery.of(context).size.height*0.06,
                 width: MediaQuery.of(context).size.width*0.87,
 
@@ -227,18 +203,14 @@ class ShimmerAanimation{
               height:MediaQuery.of(context).size.width*0.65,
               width: MediaQuery.of(context).size.width,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10,),
                     child: Column(
                       children: [
                         Container(
-                          decoration: const BoxDecoration(
-                            color: Palette.actHubGreen,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
+                          color: Palette.actHubGreen.withOpacity(0.35),
 
                           width:MediaQuery.of(context).size.width*0.42,
                           height:MediaQuery.of(context).size.width*0.3,
@@ -249,13 +221,7 @@ class ShimmerAanimation{
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Container(
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-
-                            ),
+                            color: Palette.actHubGreen.withOpacity(0.35),
 
                             width:MediaQuery.of(context).size.width*0.42,
                             height:MediaQuery.of(context).size.width*0.3,
@@ -272,12 +238,7 @@ class ShimmerAanimation{
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
-                      decoration: const BoxDecoration(
-                        color: Palette.actHubGreen,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
+                      color: Palette.actHubGreen.withOpacity(0.35),
 
                       width:MediaQuery.of(context).size.width*0.43,
                       height:MediaQuery.of(context).size.width*0.65,
@@ -285,85 +246,8 @@ class ShimmerAanimation{
 
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: Palette.actHubGreen,
-                            borderRadius: BorderRadius.all(
 
-                              Radius.circular(15),
-                            ),
-
-                          ),
-
-                          width:MediaQuery.of(context).size.width*0.42,
-                          height:MediaQuery.of(context).size.width*0.3,
-
-
-                        ),
-                        SizedBox(height:8,),
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: Palette.actHubGreen,
-                            image: DecorationImage(  fit: BoxFit.cover,image:NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-
-                            ) ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-
-                          ),
-
-                          width:MediaQuery.of(context).size.width*0.42,
-                          height:MediaQuery.of(context).size.width*0.3,
-
-
-                        ),
-
-
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-
-                    child:
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Palette.actHubGreen,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-
-                      width:MediaQuery.of(context).size.width*0.43,
-                      height:MediaQuery.of(context).size.width*0.65,
-
-
-                    ),
-
-                  ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top:45
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height*0.075,
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  color: Palette.actHubGreen,
-
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-
-                ),
-
               ),
             ),
           ],
@@ -371,5 +255,72 @@ class ShimmerAanimation{
       ),
 
     );
+  }
+  Widget MapPageShimmerAnimation(BuildContext context){
+    return Scaffold(
+      backgroundColor: Palette.scaffold,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height*0.15,
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 17.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Discover',
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.orange,
+                          ),),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 65.0),
+                          child: Text('Near You',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Palette.orange,
+                              )),
+                        )
+                      ],),
+                  ),
+                  Shimmer.fromColors(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 40.0),
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Palette.actHubGreen.withOpacity(0.35),
+                      ),
+                    ),
+                    baseColor: Palette.actHubGreen.withOpacity(0.35),
+                    highlightColor: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+            Shimmer.fromColors(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height ,
+                color: Palette.actHubGreen.withOpacity(0.35),
+              ),
+              baseColor: Palette.actHubGreen.withOpacity(0.35),
+              highlightColor: Colors.white,
+            ),
+
+
+          ],
+        ),
+      ),
+
+
+    );
+
   }
 }
