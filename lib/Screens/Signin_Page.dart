@@ -1,6 +1,7 @@
 import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Design/Button.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,8 +17,9 @@ class _SignInPageState extends State<SignInPage> {
         child: Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(padding: EdgeInsets.all(5)),
           SizedBox(
             height: 5,
           ),
@@ -32,6 +34,10 @@ class _SignInPageState extends State<SignInPage> {
             height: 5,
           ),
           Text("Login for full enjoyable experience"),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
           SizedBox(
             height: 10,
           ),
@@ -91,15 +97,12 @@ class _SignInPageState extends State<SignInPage> {
                     builder: (context) => Email_Password_Signin_Page()),
               );
             },
-            child: SizedBox(
-              width: 351.0,
-              height: 45.0,
-              child: Stack(
-                alignment: Alignment.centerLeft,
+            child: Stack(
+                alignment: Alignment.center,
                 children: <Widget>[
                   Container(
                     alignment: Alignment.center,
-                    width: 351.0,
+                    width: 380.0,
                     height: 45.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
@@ -123,7 +126,6 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ],
-              ),
             ),
           ),
           SizedBox(
@@ -182,6 +184,8 @@ class _SignInPageState extends State<SignInPage> {
               );
             },
           ),
+          ]),
+
         ],
       ),
     ));

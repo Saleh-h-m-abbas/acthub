@@ -44,16 +44,12 @@ class _AppleSignInButtonState extends State<AppleSignInButton> {
             print(user.photoURL);
           }
         },
-        child:
-        SizedBox(
-          width: 351.0,
-          height: 45.0,
-          child: Stack(
-            alignment: Alignment.centerLeft,
+        child: Stack(
+            alignment: Alignment.center,
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                width: 351.0,
+                width: 370.0,
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
@@ -82,7 +78,7 @@ class _AppleSignInButtonState extends State<AppleSignInButton> {
                     width: 18, height: 18),
               ),
             ],
-          ),
+
         ),
       ),
     );
@@ -126,15 +122,12 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
             print(userfacebook.photoURL);
           }
         },
-        child: SizedBox(
-          width: 351.0,
-          height: 45.0,
-          child: Stack(
-            alignment: Alignment.centerLeft,
+        child:  Stack(
+            alignment: Alignment.center,
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                width: 351.0,
+                width: 370.0,
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
@@ -163,7 +156,6 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
                     width: 20, height: 20),
               ),
             ],
-          ),
         ),
       ),
 
@@ -212,15 +204,12 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             print(user.photoURL);
           }
         },
-        child: SizedBox(
-          width: 351.0,
-          height: 45.0,
-          child: Stack(
-            alignment: Alignment.centerLeft,
+        child:  Stack(
+            alignment: Alignment.center,
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                width: 351.0,
+                width: 370.0,
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
@@ -250,7 +239,6 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               ),
             ],
           ),
-        ),
       ),
     );
   }
@@ -288,15 +276,12 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
             ),
           );
         },
-      child: SizedBox(
-        width: 351.0,
-        height: 45.0,
-        child: Stack(
-          alignment: Alignment.centerLeft,
+      child:  Stack(
+          alignment: Alignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.center,
-              width: 351.0,
+              width: 370.0,
               height: 45.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -321,7 +306,7 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
             ),
           ],
         ),
-      ),
+
       ),
     );
   }
