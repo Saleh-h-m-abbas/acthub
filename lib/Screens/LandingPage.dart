@@ -42,6 +42,28 @@ class _LandingPageState extends State<LandingPage> {
                   ),
                 ),
               ),
+              Center(
+                child: Stack(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                            width: 200,
+                            height: 200,
+                            child: Image.asset('Images/LandingPage1.png')),
+                        Container(
+                            width: 200,
+                            height: 200,
+                            child: Image.asset('Images/LandingPage2.png')),
+                      ],
+                    ),
+                    Container(
+                        width: 200,
+                        height: 200,
+                        child: Image.asset('Images/LandingPage3.png')),
+                  ],
+                ),
+              )
             ],
           )),
         ));
