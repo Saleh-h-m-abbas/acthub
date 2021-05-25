@@ -12,6 +12,7 @@ import 'package:acthub/Screens/SignUpFormPage.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
+import 'package:acthub/Screens/SearchPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         NavigationPage.id: (context) => NavigationPage(),
         MapPage.id: (context) => MapPage(),
         ManagementPage.id: (context) => ManagementPage(),
+        SearchPage.id: (context) => SearchPage(),
       },
     );
   }
