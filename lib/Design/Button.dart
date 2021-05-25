@@ -1,4 +1,5 @@
 import 'package:acthub/Classes/authentication.dart';
+import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_Anonymously.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -307,6 +308,59 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
           ],
         ),
 
+      ),
+    );
+  }
+}
+
+
+class SignInButton extends StatelessWidget {
+  const SignInButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5,0,5,0),
+      child: GestureDetector(
+        onTap: () async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Email_Password_Signin_Page()),
+          );
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              width: 368.0,
+              height: 45.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Colors.blue,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.16),
+                    offset: Offset(0, 3.0),
+                    blurRadius: 6.0,
+                  ),
+                ],
+              ),
+              child: Text(
+                'Sign in ',
+                style: TextStyle(
+                  fontFamily: 'Segoe UI',
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

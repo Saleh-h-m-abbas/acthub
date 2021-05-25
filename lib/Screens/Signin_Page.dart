@@ -86,48 +86,8 @@ class _SignInPageState extends State<SignInPage> {
           SizedBox(
             height: 10,
           ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10,0,5,0),
-            child: GestureDetector(
-              onTap: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Email_Password_Signin_Page()),
-                );
-              },
-              child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      width: 370.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.blue,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.16),
-                            offset: Offset(0, 3.0),
-                            blurRadius: 6.0,
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        'Sign in ',
-                        style: TextStyle(
-                          fontFamily: 'Segoe UI',
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-              ),
-            ),
-          ),
+          SignInButton(),
+
           SizedBox(
             height: 10,
           ),
@@ -191,3 +151,5 @@ class _SignInPageState extends State<SignInPage> {
     ));
   }
 }
+
+
