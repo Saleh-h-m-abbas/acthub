@@ -16,137 +16,114 @@ class _SignInPageState extends State<SignInPage> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 5,
-          ),
-          Text("Welcome To"),
-          Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Container(
-                  height: 50,
-                  width: 130,
-                  child: Image.asset('assets/acthublogo.png'))),
-          SizedBox(
-            height: 5,
-          ),
-          Text("Login for full enjoyable experience"),
-
-
-          SizedBox(
-            height: 10,
-          ),
-          FutureBuilder(
-            future: Authentication.initializeFirebase(context: context),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return GoogleSignInButton();
-              }
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-              );
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FutureBuilder(
-            future: Authentication.initializeFirebase(context: context),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return AppleSignInButton();
-              }
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-              );
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FutureBuilder(
-            future: Authentication.initializeFirebase(context: context),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return FacebookSignInButton();
-              }
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-              );
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SignInButton(),
-
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: 351.0,
-            height: 21.0,
-            child: Row(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment(0.0, 0.3),
-                  child: SvgPicture.string(
-                    // Path 2972
-                    '<svg viewBox="31.5 730.56 156.55 1.0" ><path transform="translate(-679.5, 16724.85)" d="M 711 -15994.29296875 L 792.9439086914063 -15994.29296875 L 867.5496215820313 -15994.29296875" fill="none" stroke="#707070" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>',
-                    width: 156.55,
-                    height: 1.0,
-                  ),
-                ),
-                Spacer(flex: 8),
-                Text(
-                  'Or',
-                  style: TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: const Color(0xFF566357),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Spacer(flex: 8),
-                Align(
-                  alignment: Alignment(0.0, 0.3),
-                  child: SvgPicture.string(
-                    // Path 2973
-                    '<svg viewBox="221.86 730.56 160.64 1.0" ><path transform="translate(-489.14, 16724.85)" d="M 711 -15994.29296875 L 795.0847778320313 -15994.29296875 L 871.6395874023438 -15994.29296875" fill="none" stroke="#707070" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>',
-                    width: 160.64,
-                    height: 1.0,
-                  ),
-                ),
-              ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 5,
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FutureBuilder(
-            future: Authentication.initializeFirebase(context: context),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return  anonymousSignInButton();
-              }
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-              );
-            },
-          ),
+            Text("Welcome To"),
+            Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Container(
+                    height: 50,
+                    width: 130,
+                    child: Image.asset('assets/acthublogo.png'))),
+            SizedBox(
+              height: 5,
+            ),
+            Text("Login for full enjoyable experience"),
 
 
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            FutureBuilder(
+              future: Authentication.initializeFirebase(context: context),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return GoogleSignInButton();
+                }
+                return CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                );
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FutureBuilder(
+              future: Authentication.initializeFirebase(context: context),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return AppleSignInButton();
+                }
+                return CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                );
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FutureBuilder(
+              future: Authentication.initializeFirebase(context: context),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return FacebookSignInButton();
+                }
+                return CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                );
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SignInButton(),
+
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 351.0,
+              height: 21.0,
+              child: Row(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment(0.0, 0.3),
+                    child: SvgPicture.asset("assets/Component 34 – 1.svg")
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FutureBuilder(
+              future: Authentication.initializeFirebase(context: context),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return  anonymousSignInButton();
+                }
+                return CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                );
+              },
+            ),
+
+
+          ],
+        ),
       ),
     ));
   }

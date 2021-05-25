@@ -132,7 +132,7 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.blue,
+                  color: Color(0xff3C79E6),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.16),
@@ -286,7 +286,7 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
               height: 45.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.grey,
+                color: Color(0xff566357).withOpacity(0.42),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.16),
@@ -340,7 +340,7 @@ class SignInButton extends StatelessWidget {
               height: 45.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.blue,
+                color: Color(0xff475EEE),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.16),
