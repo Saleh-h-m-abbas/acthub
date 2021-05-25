@@ -18,10 +18,7 @@ class _AppleSignInButtonState extends State<AppleSignInButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 0.0),
       child: _isSigningIn
-          ? CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      )
-          : GestureDetector(
+          ? GestureDetector(
         onTap: () async {
           setState(() {
             _isSigningIn = true;
@@ -81,6 +78,41 @@ class _AppleSignInButtonState extends State<AppleSignInButton> {
             ],
 
         ),
+      ):Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: 370.0,
+            height: 45.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.16),
+                  offset: Offset(0, 3.0),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Text(
+              'Sign in with Apple',
+              style: TextStyle(
+                fontFamily: 'Segoe UI',
+                fontSize: 16.0,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Positioned(
+            left: 16.0,
+            child: Image.asset("assets/apple.png",
+                width: 18, height: 18),
+          ),
+        ],
+
       ),
     );
   }
@@ -97,11 +129,7 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 0.0),
-      child: _isSigningIn
-          ? CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      )
-          :
+      child: _isSigningIn ?
       GestureDetector(
         onTap: () async {
           setState(() {
@@ -158,9 +186,41 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
               ),
             ],
         ),
-      ),
-
-
+      ): Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: 370.0,
+            height: 45.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Color(0xff3C79E6),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.16),
+                  offset: Offset(0, 3.0),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Text(
+              'Sign in with Facebook',
+              style: TextStyle(
+                fontFamily: 'Segoe UI',
+                fontSize: 16.0,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Positioned(
+            left: 16.0,
+            child: Image.asset("assets/facebook.png",
+                width: 20, height: 20),
+          ),
+        ],
+      )
     );
   }
 }
@@ -178,10 +238,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 0.0),
       child: _isSigningIn
-          ? CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      )
-          : GestureDetector(
+          ? GestureDetector(
         onTap: () async {
           setState(() {
             _isSigningIn = true;
@@ -240,7 +297,41 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               ),
             ],
           ),
-      ),
+      ):Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: 370.0,
+            height: 45.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.16),
+                  offset: Offset(0, 3.0),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Text(
+              'Sign in with Google',
+              style: TextStyle(
+                fontFamily: 'Segoe UI',
+                fontSize: 16.0,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Positioned(
+            left: 16.0,
+            child: Image.asset("assets/google.png",
+                width: 20, height: 20),
+          ),
+        ],
+      )
     );
   }
 }
@@ -258,10 +349,7 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 0.0),
       child: _isSigningIn
-          ? CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      )
-          : GestureDetector(
+          ?  GestureDetector(
         onTap: () async {
           setState(() {
             _isSigningIn = true;
@@ -308,7 +396,36 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
           ],
         ),
 
-      ),
+      ):Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: 370.0,
+            height: 45.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Color(0xff566357).withOpacity(0.42),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.16),
+                  offset: Offset(0, 3.0),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Text(
+              'Join us as a Guest ',
+              style: TextStyle(
+                fontFamily: 'Segoe UI',
+                fontSize: 16.0,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      )
     );
   }
 }

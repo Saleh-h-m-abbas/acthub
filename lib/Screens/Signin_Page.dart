@@ -34,61 +34,22 @@ class _SignInPageState extends State<SignInPage> {
               height: 5,
             ),
             Text("Login for full enjoyable experience"),
-
-
             SizedBox(
               height: 10,
             ),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return GoogleSignInButton();
-                }
-                return CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-                );
-              },
-            ),
+            GoogleSignInButton(),
             SizedBox(
               height: 10,
             ),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return AppleSignInButton();
-                }
-                return CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-                );
-              },
-            ),
+            AppleSignInButton(),
             SizedBox(
               height: 10,
             ),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return FacebookSignInButton();
-                }
-                return CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-                );
-              },
-            ),
+            FacebookSignInButton(),
             SizedBox(
               height: 10,
             ),
             SignInButton(),
-
             SizedBox(
               height: 10,
             ),
@@ -98,8 +59,8 @@ class _SignInPageState extends State<SignInPage> {
               child: Row(
                 children: <Widget>[
                   Align(
-                    alignment: Alignment(0.0, 0.3),
-                    child: SvgPicture.asset("assets/Component 34 – 1.svg")
+                      alignment: Alignment(0.0, 0.3),
+                      child: SvgPicture.asset("assets/Component 34 – 1.svg")
                   ),
                 ],
               ),
@@ -107,21 +68,7 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 10,
             ),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return  anonymousSignInButton();
-                }
-                return CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
-                );
-              },
-            ),
-
-
+            anonymousSignInButton(),
           ],
         ),
       ),
