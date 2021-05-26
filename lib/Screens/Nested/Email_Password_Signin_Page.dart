@@ -1,3 +1,4 @@
+import 'package:acthub/Classes/reset.dart';
 import 'package:acthub/Classes/sign_in_form.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,11 +70,23 @@ class _Email_Password_Signin_PageState extends State<Email_Password_Signin_Page>
                       ),
                     );
                   },
-                )
+                ),
                 // SignInForm(
                 //   emailFocusNode: _emailFocusNode,
                 //   passwordFocusNode: _passwordFocusNode,
                 // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      child: Text('Forgot Password?'),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ResetScreen()),
+                      ),
+                    )
+                  ],
+                )
+
               ],
             ),
           ),
