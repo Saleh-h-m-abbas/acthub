@@ -9,6 +9,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:flutter/scheduler.dart';
 
+import 'ActivityPage.dart';
+
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
 
@@ -267,31 +269,37 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 270,
-                                width: double.infinity,
-                                child: StaggeredGridView.countBuilder(
-                                  scrollDirection: Axis.horizontal,
-                                  crossAxisCount: 4,
-                                  itemCount: 13,
-                                  itemBuilder:
-                                      (BuildContext context, int index) => Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0)),
-                                    elevation: 5,
-                                    child: Image.asset(
-                                      'Images/ActHubOLogo.png',
-                                      fit: BoxFit.fill,
+                              child: GestureDetector(
+                                child: Container(
+                                  height: 270,
+                                  width: double.infinity,
+                                  child: StaggeredGridView.countBuilder(
+                                    scrollDirection: Axis.horizontal,
+                                    crossAxisCount: 4,
+                                    itemCount: 13,
+                                    itemBuilder:
+                                        (BuildContext context, int index) => Card(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                      elevation: 5,
+                                      child: Image.asset(
+                                        'Images/ActHubOLogo.png',
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
+                                    staggeredTileBuilder: (int index) =>
+                                    index % 3 == 0
+                                        ? StaggeredTile.count(4, 2.5)
+                                        : StaggeredTile.count(2, 3),
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 12,
                                   ),
-                                  staggeredTileBuilder: (int index) =>
-                                      index % 3 == 0
-                                          ? StaggeredTile.count(4, 2.5)
-                                          : StaggeredTile.count(2, 3),
-                                  mainAxisSpacing: 8,
-                                  crossAxisSpacing: 12,
                                 ),
+                                onTap: (){
+                                  Navigator.pushNamed(
+                                      context, ActivityPage.id);
+                                },
                               ),
                             ),
                           ],

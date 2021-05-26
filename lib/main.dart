@@ -15,6 +15,8 @@ import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 import 'package:acthub/Screens/SubCategoryPage.dart';
 
+import 'Screens/ActivityPage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -40,7 +42,8 @@ class MyApp extends StatelessWidget {
         MapPage.id: (context) => MapPage(),
         ManagementPage.id: (context) => ManagementPage(),
         SearchPage.id: (context) => SearchPage(),
-        SubCategoryPage.id:(context)=>SubCategoryPage()
+        SubCategoryPage.id:(context)=>SubCategoryPage(),
+        ActivityPage.id:(context)=>ActivityPage()
       },
     );
   }

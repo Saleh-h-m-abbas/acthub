@@ -6,4 +6,6 @@ class Palette {
   static const Color actHubGreen = Color(0xff566357);
   static const Color orange = Color(0xffff8211);
   static const Color online = Color(0xff5cd673);
+  static const Color actHubYellow = Color(0xffFFD98E);
+
 }
