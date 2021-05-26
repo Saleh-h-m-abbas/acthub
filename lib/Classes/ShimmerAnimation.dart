@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:getwidget/components/image/gf_image_overlay.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'Palette.dart';
@@ -11,15 +13,21 @@ class ShimmerAnimation {
       },
       child: SafeArea(
         child: Shimmer.fromColors(
-          baseColor: Palette.actHubGreen.withOpacity(0.35),
-          highlightColor: Colors.white,
+          baseColor: Colors.white,
+          highlightColor: Color(0xffE0E0E0),
           child: Column(
             children: [
               // the first list view
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,
-                child: Row(
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: 10, right: 5),
@@ -38,135 +46,49 @@ class ShimmerAnimation {
                 ),
               ),
               //the second list view
+              SizedBox(
+                height: 10,
+              ),
               Column(
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width,
-                    child: Row(
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       children: [
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.22,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(1.5),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.22,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.22,
-                                  color: Palette.actHubGreen.withOpacity(0.35),
-                                )),
-                          ],
+                        CetegoryWidget1(context),
+                        SizedBox(
+                          width: 5,
                         ),
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.22,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(1.5),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.22,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.22,
-                                  color: Palette.actHubGreen.withOpacity(0.35),
-                                )),
-                          ],
+                        CetegoryWidget1(context),
+                        SizedBox(
+                          width: 5,
                         ),
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.22,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(1.5),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.22,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.22,
-                                  color: Palette.actHubGreen.withOpacity(0.35),
-                                )),
-                          ],
+                        CetegoryWidget1(context),
+                        SizedBox(
+                          width: 5,
                         ),
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.22,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(1.5),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.22,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.22,
-                                  color: Palette.actHubGreen.withOpacity(0.35),
-                                )),
-                          ],
+                        CetegoryWidget1(context),
+                        SizedBox(
+                          width: 5,
                         ),
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.08,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(1.5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.08,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            )
-                          ],
+                        CetegoryWidget1(context),
+                        SizedBox(
+                          width: 5,
                         ),
+                        CetegoryWidget1(context),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                 ],
               ),
               // //the search bar
+              SizedBox(
+                height: 10,
+              ),
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
@@ -187,111 +109,60 @@ class ShimmerAnimation {
                 height: 10,
               ),
               // the 3rd list view
-              Container(
-                height: MediaQuery.of(context).size.width * 0.65,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.42,
-                            height: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Palette.actHubGreen,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
-                              ),
-                              width: MediaQuery.of(context).size.width * 0.42,
-                              height: MediaQuery.of(context).size.width * 0.3,
-                            ),
-                          ),
-                        ],
-                      ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 270,
+                  width: double.infinity,
+                  child: StaggeredGridView.countBuilder(
+                    scrollDirection: Axis.horizontal,
+                    crossAxisCount: 4,
+                    itemCount: 13,
+                    itemBuilder: (BuildContext context, int index) => Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      elevation: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Palette.actHubGreen,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        width: MediaQuery.of(context).size.width * 0.43,
-                        height: MediaQuery.of(context).size.width * 0.65,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.42,
-                            height: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-                                  )),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                            ),
-                            width: MediaQuery.of(context).size.width * 0.42,
-                            height: MediaQuery.of(context).size.width * 0.3,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Palette.actHubGreen,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        width: MediaQuery.of(context).size.width * 0.43,
-                        height: MediaQuery.of(context).size.width * 0.65,
-                      ),
-                    ),
-                  ],
+                    staggeredTileBuilder: (int index) => index % 3 == 0
+                        ? StaggeredTile.count(4, 2.5)
+                        : StaggeredTile.count(2, 3),
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 12,
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Padding Adv_example_card1(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(1.5),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 5,
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: MediaQuery.of(context).size.height * 0.22,
+        ),
+      ),
+    );
+  }
+
+  GFImageOverlay CetegoryWidget1(BuildContext context) {
+    return GFImageOverlay(
+      width: MediaQuery.of(context).size.width * 0.22,
+      height: MediaQuery.of(context).size.height * 0.5,
+      padding: EdgeInsets.all(20.0),
+      borderRadius: BorderRadius.circular(10),
+      image: null,
+      colorFilter:
+          new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
     );
   }
 }
