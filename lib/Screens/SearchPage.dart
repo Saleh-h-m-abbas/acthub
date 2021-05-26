@@ -1,16 +1,18 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class SearchPage extends StatefulWidget {
-
   static const String id = 'SearchPage';
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+
   @override
   Widget build(BuildContext context) {
+    timeDilation=2;
     return WillPopScope(
         onWillPop: () {
           return new Future.value(false);
@@ -20,9 +22,12 @@ class _SearchPageState extends State<SearchPage> {
             resizeToAvoidBottomInset: false,
             backgroundColor: Palette.scaffold,
             appBar: AppBar(
-              leading: IconButton(icon:
-              Icon(Icons.arrow_back,color:
-              Palette.actHubGreen,),  onPressed: () => Navigator.pop(context) ),
+              leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Palette.actHubGreen,
+                  ),
+                  onPressed: () => Navigator.pop(context)),
               centerTitle: false,
               toolbarHeight: 60,
               elevation: 0,
@@ -81,57 +86,55 @@ class _SearchPageState extends State<SearchPage> {
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(top:25),
+                      padding: const EdgeInsets.only(top: 25),
                       child: Hero(
-                        tag:'search',
+                        tag: 'search',
                         child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          elevation: 10,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Palette.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
                             ),
-                            elevation: 10,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Palette.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(30),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.87,
+                            child: TextField(
+                              cursorWidth: 2,
+                              cursorHeight:
+                                  MediaQuery.of(context).size.height * 0.03,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  color: Palette.orange,
                                 ),
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.06,
-                              width: MediaQuery.of(context).size.width * 0.87,
-                              child: TextField(
-                                cursorWidth: 2,
-                                cursorHeight:
-                                MediaQuery.of(context).size.height * 0.03,
-                                cursorColor: Colors.black,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                  EdgeInsets.symmetric(vertical: 0.6),
-                                  prefixIcon: Icon(
-                                    Icons.search_rounded,
-                                    color: Palette.orange,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
+                                ),
+                                //to put border color white when the textfiled not clicked
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
                                   ),
-                                  //to put border color white when the textfiled not clicked
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                  //to set border color grey when the textfiled clicked
-                                  labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 19,
-                                  ), //to set the color of hint black
-                                ), //decorat input text
-                              ),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                //to set border color grey when the textfiled clicked
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 19,
+                                ), //to set the color of hint black
+                              ), //decorat input text
                             ),
                           ),
+                        ),
                       ),
                     ),
                   ),

@@ -6,13 +6,14 @@ import 'package:acthub/Screens/ManagementPage.dart';
 import 'package:acthub/Screens/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
+import 'package:acthub/Screens/SearchPage.dart';
 import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/SignUpAsPage.dart';
 import 'package:acthub/Screens/SignUpFormPage.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
-import 'package:acthub/Screens/SearchPage.dart';
+import 'package:acthub/Screens/SubCategoryPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         MapPage.id: (context) => MapPage(),
         ManagementPage.id: (context) => ManagementPage(),
         SearchPage.id: (context) => SearchPage(),
+        SubCategoryPage.id:(context)=>SubCategoryPage()
       },
     );
   }

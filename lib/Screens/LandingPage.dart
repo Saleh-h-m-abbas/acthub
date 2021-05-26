@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:acthub/Screens/EnableLocation.dart';
-import 'package:acthub/Screens/NavigationPage.dart';
-import 'package:acthub/Screens/SignIn.dart';
-import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,18 +17,18 @@ class _LandingPageState extends State<LandingPage> {
   String routePage = EnableLocation.id;
   landingPageMethod() async {
     final SharedPreferences prefs = await _prefs;
-    if (prefs.getBool('NotFirstTime') != null &&
-        prefs.getBool('NotFirstTime') &&
-        prefs.getBool('EnableLocation') != null &&
-        prefs.getBool('EnableLocation')) {
-      routePage = YourData.id;
-    }
-    if (prefs.getBool('AcceptData') != null && prefs.getBool('AcceptData')) {
-      routePage = SignIn.id;
-    }
-    if (prefs.getBool('Guest') != null && prefs.getBool('Guest')) {
-      routePage = NavigationPage.id;
-    }
+    // if (prefs.getBool('NotFirstTime') != null &&
+    //     prefs.getBool('NotFirstTime') &&
+    //     prefs.getBool('EnableLocation') != null &&
+    //     prefs.getBool('EnableLocation')) {
+    //   routePage = YourData.id;
+    // }
+    // if (prefs.getBool('AcceptData') != null && prefs.getBool('AcceptData')) {
+    //   routePage = SignIn.id;
+    // }
+    // if (prefs.getBool('Guest') != null && prefs.getBool('Guest')) {
+    //   routePage = NavigationPage.id;
+    // }
     Timer(Duration(seconds: 1), () => Navigator.pushNamed(context, routePage));
   }
 

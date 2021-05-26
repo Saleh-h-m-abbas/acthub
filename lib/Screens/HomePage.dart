@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Classes/ShimmerAnimation.dart';
 import 'package:acthub/Screens/SearchPage.dart';
+import 'package:acthub/Screens/SubCategoryPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:flutter/scheduler.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -25,25 +28,21 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 2.0;
 
     Timer(
         Duration(seconds: 3),
-            () => {
-          setState(() {
-            dataAvailable = true;
-          })
-        });
-
-    return dataAvailable
-        ? WillPopScope(
+        () => {
+              setState(() {
+                dataAvailable = true;
+              })
+            });
+    return WillPopScope(
         onWillPop: () {
           return new Future.value(false);
         },
         child: MaterialApp(
           home: Scaffold(
-            resizeToAvoidBottomInset: false,
-            backgroundColor: Palette.scaffold,
+            backgroundColor: Palette.white,
             appBar: AppBar(
               centerTitle: false,
               toolbarHeight: 60,
@@ -99,684 +98,264 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             body: SafeArea(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // the first list view
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: dataAvailable
+                    ? SingleChildScrollView(
+                        child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Container(
-                                  width:
-                                  MediaQuery.of(context).size.width * 0.94,
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.3,
-                                  child: Image.asset(
-                                    'Images/Adv.png',
-                                    fit: BoxFit.contain,
-                                  )),
+                            /*      GFShimmer(
+                                showShimmerEffect: true,
+                                mainColor: Colors.white,
+                                secondaryColor: GFColors.LIGHT,
+                                child: Shimmer(context)),*/
+                            // the first list view
+                            SizedBox(
+                              height: 20,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Container(
-                                  width:
-                                  MediaQuery.of(context).size.width * 0.94,
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.3,
-                                  child: Image.asset(
-                                    'Images/Adv.png',
-                                    fit: BoxFit.contain,
-                                  )),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                children: [
+                                  Adv_example_card(context),
+                                  Adv_example_card(context),
+                                  Adv_example_card(context),
+                                  Adv_example_card(context),
+                                ],
+                              ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Container(
-                                  width:
-                                  MediaQuery.of(context).size.width * 0.94,
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.3,
-                                  child: Image.asset(
-                                    'Images/Adv.png',
-                                    fit: BoxFit.contain,
-                                  )),
+                            //the second list view
+                            SizedBox(
+                              height: 10,
                             ),
-
-
-                          ],
-                        ),
-                      ),
-                      //the second list view
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.1,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 5.0),
+                            Column(
                               children: [
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/outdoor.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Outdoor',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.07,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0),
+                                    children: [
+                                      CetegoryWidget(context, "Outdoor",
+                                          "Images/outdoor.png",
+                                        onTap:(){
+                                          Navigator.pushNamed(
+                                              context, SubCategoryPage.id);}
+),
+
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CetegoryWidget(context, "Culturetrr",
+                                          "Images/culture.png",     onTap:(){
+                                            Navigator.pushNamed(
+                                                context, SubCategoryPage.id);
+
+                                          }),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CetegoryWidget(context, "Outdoor",
+                                          "Images/education.png",     onTap:(){
+                                            Navigator.pushNamed(
+                                                context, SubCategoryPage.id);
+
+                                          }),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CetegoryWidget(context, "Culture",
+                                          "Images/well.png",     onTap:(){
+                                            Navigator.pushNamed(
+                                                context, SubCategoryPage.id);
+
+                                          }),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CetegoryWidget(context, "Outdoor",
+                                          "Images/outdoor.png",     onTap:(){
+                                            Navigator.pushNamed(
+                                                context, SubCategoryPage.id);
+
+                                          }),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CetegoryWidget(context, "Culture",
+                                          "Images/culture.png",     onTap:(){
+                                            Navigator.pushNamed(
+                                                context, SubCategoryPage.id);
+
+                                          }),
+                                    ],
+                                  ),
                                 ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/culture.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Culture',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/education.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Education',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/well.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Wellness',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    ),
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/outdoor.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Outdoor',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/culture.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Culture',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/education.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Education',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    )
-                                  ],
-                                ),
-                                Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Image.asset(
-                                            'Images/well.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.2,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height *
-                                              0.2,
-                                          child: Center(
-                                              child: Text(
-                                                'Wellness',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Palette.white),
-                                              ))),
-                                    ),
-                                  ],
-                                )
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                      //the search bar
-                      Hero(
-
-                        tag:'search',
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          elevation: 10,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Palette.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30),
-                              ),
+                            SizedBox(
+                              height: 10,
                             ),
-                            height: MediaQuery.of(context).size.height * 0.06,
-                            width: MediaQuery.of(context).size.width * 0.87,
-                            child: TextField(
-                              cursorWidth: 2,
-                              cursorHeight:
-                              MediaQuery.of(context).size.height * 0.03,
-                              cursorColor: Colors.black,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                EdgeInsets.symmetric(vertical: 0.6),
-                                prefixIcon: Icon(
-                                  Icons.search_rounded,
-                                  color: Palette.orange,
+                            // the search bar
+                            Hero(
+                              tag: 'search',
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
                                 ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30),
-                                  ),
-                                ),
-                                //to put border color white when the textfiled not clicked
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30),
-                                  ),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                //to set border color grey when the textfiled clicked
-                                labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 19,
-                                ), //to set the color of hint black
-                              ),
-                              onTap:(){
-                                Navigator.pushNamed(context, SearchPage.id);
-                              },//decorat input text
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // the 3rd list view
-                      Container(
-                        height: MediaQuery.of(context).size.width * 0.65,
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Column(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: NetworkImage(
-                                                  'https://www.studentuniverse.com/blog/wp-content/uploads/2019/02/3-day-nola.jpg',
-                                                ))),
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.42,
-                                        height:
-                                        MediaQuery.of(context).size.width *
-                                            0.3,
-                                      ),
-                                      Positioned(
-                                          left: 5,
-                                          top: 85,
-                                          child: Text(
-                                            'weekend Trip',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-                                              )),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(15),
-                                          ),
-                                        ),
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.42,
-                                        height:
-                                        MediaQuery.of(context).size.width *
-                                            0.3,
-                                      ),
-                                      Positioned(
-                                          left: 5,
-                                          top: 85,
-                                          child: Text(
-                                            'To Nature',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/arms-abs-workout-betina-gozo-1570037480.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*',
-                                          )),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
-                                      ),
+                                elevation: 10,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Palette.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30),
                                     ),
-                                    width: MediaQuery.of(context).size.width *
-                                        0.43,
-                                    height: MediaQuery.of(context).size.width *
-                                        0.65,
                                   ),
-                                  Positioned(
-                                      left: 5,
-                                      top: 216,
-                                      child: Text(
-                                        "Let's Workout",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ))
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Column(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: NetworkImage(
-                                                  'https://www.studentuniverse.com/blog/wp-content/uploads/2019/02/3-day-nola.jpg',
-                                                ))),
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.42,
-                                        height:
-                                        MediaQuery.of(context).size.width *
-                                            0.3,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.87,
+                                  child: TextField(
+                                    cursorWidth: 2,
+                                    cursorHeight:
+                                        MediaQuery.of(context).size.height *
+                                            0.03,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(
+                                        Icons.search_rounded,
+                                        color: Palette.orange,
                                       ),
-                                      Positioned(
-                                          left: 5,
-                                          top: 85,
-                                          child: Text(
-                                            'weekend Trip',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-                                              )),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(15),
-                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
                                         ),
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.42,
-                                        height:
-                                        MediaQuery.of(context).size.width *
-                                            0.3,
                                       ),
-                                      Positioned(
-                                          left: 5,
-                                          top: 85,
-                                          child: Text(
-                                            'To Nature',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-                                    ],
+                                      //to put border color white when the textfiled not clicked
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                      ),
+                                      //to set border color grey when the textfiled clicked
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 19,
+                                      ), //to set the color of hint black
+                                    ),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, SearchPage.id);
+                                    }, //decorat input text
                                   ),
-                                ],
+                                ),
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/arms-abs-workout-betina-gozo-1570037480.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*',
-                                          )),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
-                                      ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 270,
+                                width: double.infinity,
+                                child: StaggeredGridView.countBuilder(
+                                  scrollDirection: Axis.horizontal,
+                                  crossAxisCount: 4,
+                                  itemCount: 13,
+                                  itemBuilder:
+                                      (BuildContext context, int index) => Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                    elevation: 5,
+                                    child: Image.asset(
+                                      'Images/ActHubOLogo.png',
+                                      fit: BoxFit.fill,
                                     ),
-                                    width: MediaQuery.of(context).size.width *
-                                        0.43,
-                                    height: MediaQuery.of(context).size.width *
-                                        0.65,
                                   ),
-                                  Positioned(
-                                      left: 5,
-                                      top: 216,
-                                      child: Text(
-                                        "Let's Workout",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ))
-                                ],
+                                  staggeredTileBuilder: (int index) =>
+                                      index % 3 == 0
+                                          ? StaggeredTile.count(4, 2.5)
+                                          : StaggeredTile.count(2, 3),
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 12,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                )),
+                      )
+                    //:ShimmerAll(context),
+                    : ShimmerAnimation().homePageShimmerAnimation(context)),
+
           ),
-        ))
-        : ShimmerAnimation().homePageShimmerAnimation(context);
+        ));
+    // return dataAvailable
+  }
+
+  Widget CetegoryWidget(
+      BuildContext context, String Category, String Url, {void Function() onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: GFImageOverlay(
+
+        width: MediaQuery.of(context).size.width * 0.22,
+        height: MediaQuery.of(context).size.height * 0.5,
+        padding: EdgeInsets.all(15.0),
+        borderRadius: BorderRadius.circular(10),
+        child: Center(
+          child: Text(
+            Category,
+            style: TextStyle(
+                fontSize: 13, fontWeight: FontWeight.bold, color: Palette.white),
+          ),
+        ),
+        image: AssetImage(Url),
+        colorFilter:
+            new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+      ),
+    );
+  }
+
+  GFImageOverlay CetegoryWidget1(BuildContext context) {
+    return GFImageOverlay(
+      width: MediaQuery.of(context).size.width * 0.22,
+      height: MediaQuery.of(context).size.height * 0.5,
+      padding: EdgeInsets.all(20.0),
+      borderRadius: BorderRadius.circular(10),
+      colorFilter:
+          new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+    );
+  }
+
+  Padding Adv_example_card(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(1.5),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 5,
+        child: Container(
+            width: MediaQuery.of(context).size.width * 0.85,
+            height: MediaQuery.of(context).size.height * 0.22,
+            child: Image.asset(
+              'Images/ActHubOLogo.png',
+              fit: BoxFit.fill,
+            )),
+      ),
+    );
   }
 }
