@@ -37,6 +37,7 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 10,
             ),
+           
             GoogleSignInButton(),
             SizedBox(
               height: 10,

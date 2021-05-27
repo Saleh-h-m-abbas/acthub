@@ -1,3 +1,4 @@
+import 'package:acthub/Api/translation_widget.dart';
 import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Screens/Signin_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -105,6 +106,15 @@ class _UserInfoScreenGoogleState extends State<UserInfoScreenGoogle> {
                     color: Color(0xFFECEFF1),
                     fontSize: 14,
                     letterSpacing: 0.2),
+              ),
+              TranslationWidget(message: "You are now signed in using your Google account. To sign out of your account click the Sign Out button below.", fromLanguage: "English", toLanguage: "Arabic", builder: (translatedMessage) =>
+                    Text(
+                      translatedMessage,
+                      style: TextStyle(
+                          color: Color(0xFFECEFF1),
+                          fontSize: 14,
+                          letterSpacing: 0.2),
+                    ),
               ),
               SizedBox(height: 16.0),
               _isSigningOut

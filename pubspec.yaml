@@ -36,7 +36,12 @@ dependencies:
   flutter_signin_button: ^2.0.0
   font_awesome_flutter: ^9.0.0
   flutter_svg: ^0.22.0
-cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.2
+    # Allows Google Translate without billing
+  translator: ^0.1.5
+    # Unescape html characters
+  html_unescape: ^1.0.2
+
 
 dev_dependencies:
   flutter_test:
