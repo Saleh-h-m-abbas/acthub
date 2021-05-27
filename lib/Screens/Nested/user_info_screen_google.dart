@@ -1,6 +1,7 @@
 import 'package:acthub/Api/translation_widget.dart';
 import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Screens/Signin_Page.dart';
+import 'package:country_codes/country_codes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,7 @@ class _UserInfoScreenGoogleState extends State<UserInfoScreenGoogle> {
     _isEmailVerified = _user.emailVerified;
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

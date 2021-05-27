@@ -41,7 +41,8 @@ dependencies:
   translator: ^0.1.5
     # Unescape html characters
   html_unescape: ^1.0.2
-
+  country_codes: ^2.0.0
+  devicelocale: ^0.4.1
 
 dev_dependencies:
   flutter_test:
