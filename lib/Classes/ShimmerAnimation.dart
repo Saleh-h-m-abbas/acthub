@@ -59,27 +59,27 @@ class ShimmerAnimation {
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       children: [
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                         SizedBox(
                           width: 5,
                         ),
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                         SizedBox(
                           width: 5,
                         ),
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                         SizedBox(
                           width: 5,
                         ),
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                         SizedBox(
                           width: 5,
                         ),
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                         SizedBox(
                           width: 5,
                         ),
-                        CetegoryWidget1(context),
+                        categoryWidget1(context),
                       ],
                     ),
                   ),
@@ -112,7 +112,7 @@ class ShimmerAnimation {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 270,
+                  height: 320,
                   width: double.infinity,
                   child: StaggeredGridView.countBuilder(
                     scrollDirection: Axis.horizontal,
@@ -138,29 +138,12 @@ class ShimmerAnimation {
     );
   }
 
-  Padding Adv_example_card1(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(1.5),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        elevation: 5,
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: MediaQuery.of(context).size.height * 0.22,
-        ),
-      ),
-    );
-  }
-
-  GFImageOverlay CetegoryWidget1(BuildContext context) {
+  GFImageOverlay categoryWidget1(BuildContext context) {
     return GFImageOverlay(
       width: MediaQuery.of(context).size.width * 0.22,
       height: MediaQuery.of(context).size.height * 0.5,
       padding: EdgeInsets.all(20.0),
       borderRadius: BorderRadius.circular(10),
-      image: null,
       colorFilter:
           new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
     );

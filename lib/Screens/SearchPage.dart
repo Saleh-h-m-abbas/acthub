@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class SearchPage extends StatefulWidget {
   static const String id = 'SearchPage';
@@ -10,6 +11,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2;
     return WillPopScope(
         onWillPop: () {
           return new Future.value(false);
