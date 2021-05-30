@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Classes/ShimmerAnimation.dart';
 import 'package:acthub/Screens/SearchPage.dart';
@@ -7,9 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:flutter/scheduler.dart';
-
-import 'ActivityPage.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -30,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     Timer(
         Duration(seconds: 3),
         () => {
@@ -44,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         },
         child: MaterialApp(
           home: Scaffold(
-            backgroundColor: Palette.white,
+            backgroundColor: Palette.scaffold,
             appBar: AppBar(
               centerTitle: false,
               toolbarHeight: 60,
@@ -99,226 +96,204 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            body: SafeArea(
-                child: dataAvailable
-                    ? SingleChildScrollView(
-                        child: Column(
+            body: dataAvailable
+                ? Column(
+                    children: [
+                      /*      GFShimmer(
+                        showShimmerEffect: true,
+                        mainColor: Colors.white,
+                        secondaryColor: GFColors.LIGHT,
+                        child: Shimmer(context)),*/
+                      // the first list view
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           children: [
-                            /*      GFShimmer(
-                                showShimmerEffect: true,
-                                mainColor: Colors.white,
-                                secondaryColor: GFColors.LIGHT,
-                                child: Shimmer(context)),*/
-                            // the first list view
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              width: MediaQuery.of(context).size.width,
-                              child: ListView(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                children: [
-                                  Adv_example_card(context),
-                                  Adv_example_card(context),
-                                  Adv_example_card(context),
-                                  Adv_example_card(context),
-                                ],
-                              ),
-                            ),
-                            //the second list view
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.07,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: ListView(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    children: [
-                                      CetegoryWidget(context, "Outdoor",
-                                          "Images/outdoor.png",
-                                        onTap:(){
-                                          Navigator.pushNamed(
-                                              context, SubCategoryPage.id);}
-),
-
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CetegoryWidget(context, "Culturetrr",
-                                          "Images/culture.png",     onTap:(){
-                                            Navigator.pushNamed(
-                                                context, SubCategoryPage.id);
-
-                                          }),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CetegoryWidget(context, "Outdoor",
-                                          "Images/education.png",     onTap:(){
-                                            Navigator.pushNamed(
-                                                context, SubCategoryPage.id);
-
-                                          }),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CetegoryWidget(context, "Culture",
-                                          "Images/well.png",     onTap:(){
-                                            Navigator.pushNamed(
-                                                context, SubCategoryPage.id);
-
-                                          }),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CetegoryWidget(context, "Outdoor",
-                                          "Images/outdoor.png",     onTap:(){
-                                            Navigator.pushNamed(
-                                                context, SubCategoryPage.id);
-
-                                          }),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CetegoryWidget(context, "Culture",
-                                          "Images/culture.png",     onTap:(){
-                                            Navigator.pushNamed(
-                                                context, SubCategoryPage.id);
-
-                                          }),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            // the search bar
-                            Hero(
-                              tag: 'search',
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                elevation: 10,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: Palette.white,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.87,
-                                  child: TextField(
-                                    cursorWidth: 2,
-                                    cursorHeight:
-                                        MediaQuery.of(context).size.height *
-                                            0.03,
-                                    cursorColor: Colors.black,
-                                    decoration: InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.search_rounded,
-                                        color: Palette.orange,
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(30),
-                                        ),
-                                      ),
-                                      //to put border color white when the textfiled not clicked
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(30),
-                                        ),
-                                        borderSide:
-                                            BorderSide(color: Colors.white),
-                                      ),
-                                      //to set border color grey when the textfiled clicked
-                                      labelStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 19,
-                                      ), //to set the color of hint black
-                                    ),
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, SearchPage.id);
-                                    }, //decorat input text
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                child: Container(
-                                  height: 270,
-                                  width: double.infinity,
-                                  child: StaggeredGridView.countBuilder(
-                                    scrollDirection: Axis.horizontal,
-                                    crossAxisCount: 4,
-                                    itemCount: 13,
-                                    itemBuilder:
-                                        (BuildContext context, int index) => Card(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                      elevation: 5,
-                                      child: Image.asset(
-                                        'Images/ActHubOLogo.png',
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                    staggeredTileBuilder: (int index) =>
-                                    index % 3 == 0
-                                        ? StaggeredTile.count(4, 2.5)
-                                        : StaggeredTile.count(2, 3),
-                                    mainAxisSpacing: 10,
-                                    crossAxisSpacing: 12,
-                                  ),
-                                ),
-                                onTap: (){
-                                  Navigator.pushNamed(
-                                      context, ActivityPage.id);
-                                },
-                              ),
-                            ),
+                            Adv_example_card(context),
+                            Adv_example_card(context),
+                            Adv_example_card(context),
+                            Adv_example_card(context),
                           ],
                         ),
-                      )
-                    //:ShimmerAll(context),
-                    : ShimmerAnimation().homePageShimmerAnimation(context)),
-
+                      ),
+                      //the second list view
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              children: [
+                                CetegoryWidget(
+                                    context, "Outdoor", "Images/outdoor.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CetegoryWidget(
+                                    context, "Culturetrr", "Images/culture.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CetegoryWidget(
+                                    context, "Outdoor", "Images/education.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CetegoryWidget(
+                                    context, "Culture", "Images/well.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CetegoryWidget(
+                                    context, "Outdoor", "Images/outdoor.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CetegoryWidget(
+                                    context, "Culture", "Images/culture.png",
+                                    onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SubCategoryPage.id);
+                                }),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // the search bar
+                      Hero(
+                        tag: 'search',
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          elevation: 10,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Palette.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.87,
+                            child: TextField(
+                              cursorWidth: 2,
+                              cursorHeight:
+                                  MediaQuery.of(context).size.height * 0.03,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  color: Palette.orange,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
+                                  ),
+                                ),
+                                //to put border color white when the textfiled not clicked
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
+                                  ),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                //to set border color grey when the textfiled clicked
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 19,
+                                ), //to set the color of hint black
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(context, SearchPage.id);
+                              }, //decorat input text
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * .37,
+                          width: MediaQuery.of(context).size.width,
+                          child: StaggeredGridView.countBuilder(
+                            scrollDirection: Axis.horizontal,
+                            crossAxisCount: 4,
+                            itemCount: 13,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              elevation: 5,
+                              child: Image.asset(
+                                'Images/ActHubOLogo.png',
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            staggeredTileBuilder: (int index) => index % 3 == 0
+                                ? StaggeredTile.count(4, 2.5)
+                                : StaggeredTile.count(2, 3),
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                //:ShimmerAll(context),
+                : ShimmerAnimation().homePageShimmerAnimation(context),
           ),
         ));
     // return dataAvailable
   }
 
-  Widget CetegoryWidget(
-      BuildContext context, String Category, String Url, {void Function() onTap}) {
+  Widget CetegoryWidget(BuildContext context, String Category, String Url,
+      {void Function() onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: GFImageOverlay(
-
         width: MediaQuery.of(context).size.width * 0.22,
         height: MediaQuery.of(context).size.height * 0.5,
         padding: EdgeInsets.all(15.0),
@@ -327,12 +302,14 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             Category,
             style: TextStyle(
-                fontSize: 13, fontWeight: FontWeight.bold, color: Palette.white),
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Palette.white),
           ),
         ),
         image: AssetImage(Url),
-        colorFilter:
-            new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+        colorFilter: new ColorFilter.mode(
+            Colors.black.withOpacity(0.3), BlendMode.darken),
       ),
     );
   }

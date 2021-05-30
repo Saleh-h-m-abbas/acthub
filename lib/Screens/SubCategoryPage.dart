@@ -1,11 +1,9 @@
 import 'package:acthub/Classes/Palette.dart';
-import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SubCategoryPage extends StatefulWidget {
-  const SubCategoryPage({Key key}) : super(key: key);
   static const String id = 'SubCategoryPage';
 
   @override
@@ -69,8 +67,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                       decoration: BoxDecoration(
                           color: Palette.online,
                           shape: BoxShape.circle,
-                          border:
-                          Border.all(width: 2.0, color: Palette.white)),
+                          border: Border.all(width: 2.0, color: Palette.white)),
                     ))
               ],
             ),
@@ -79,59 +76,68 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
       ),
       body: SafeArea(
           child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.37,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
-                  children: [
-                    Main_Category_Card(context,"Hiking Tour","Unlock your full potential with our hiking tour."+
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.37,
+            width: MediaQuery.of(context).size.width,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              children: [
+                Main_Category_Card(
+                    context,
+                    "Hiking Tour",
+                    "Unlock your full potential with our hiking tour." +
                         "Explore the best hiking sights with us!!"),
-                    Main_Category_Card(context,"Hiking Tour","Unlock your full potential with our hiking tour."+
+                Main_Category_Card(
+                    context,
+                    "Hiking Tour",
+                    "Unlock your full potential with our hiking tour." +
                         "Explore the best hiking sights with us!!"),
-                    Main_Category_Card(context,"Hiking Tour","Unlock your full potential with our hiking tour."+
+                Main_Category_Card(
+                    context,
+                    "Hiking Tour",
+                    "Unlock your full potential with our hiking tour." +
                         "Explore the best hiking sights with us!!"),
-
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Sub_Category_Card(context,"Hiking"),
-                        Sub_Category_Card(context,"Camping"),
-
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Sub_Category_Card(context,"Climbing"),
-                        Sub_Category_Card(context,"Biking"),
-                      ],
-                    )
+                    Sub_Category_Card(context, "Hiking"),
+                    Sub_Category_Card(context, "Camping"),
                   ],
                 ),
-              ),
-            ],
-          )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Sub_Category_Card(context, "Climbing"),
+                    Sub_Category_Card(context, "Biking"),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
-  Padding Main_Category_Card(BuildContext context,String category,String description ) {
+
+  Padding Main_Category_Card(
+      BuildContext context, String category, String description) {
     return Padding(
       padding: const EdgeInsets.all(0.5),
       child: Card(
@@ -140,7 +146,6 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
         ),
         elevation: 5,
         child: Stack(
-
           children: [
             Container(
               decoration: const BoxDecoration(
@@ -157,38 +162,49 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
               height: MediaQuery.of(context).size.height * 0.37,
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height*0.22,
-              left:MediaQuery.of(context).size.width*0.04,
+              top: MediaQuery.of(context).size.height * 0.22,
+              left: MediaQuery.of(context).size.width * 0.04,
               child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-
                     children: [
-                      Text('$category',style:
-                      TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
-                      SizedBox(width:MediaQuery.of(context).size.width*0.45,),
+                      Text(
+                        '$category',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                      ),
                       SvgPicture.asset(
                         'Images/Like.svg',
-                        height:22,
-                        color:
-                       Color(0xFFFFD98E) ,
+                        height: 22,
+                        color: Color(0xFFFFD98E),
                       ),
-                      Text(' 4',style:
-                      TextStyle(color: Colors.white,fontSize: 20),)
+                      Text(
+                        ' 4',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      )
                     ],
                   ),
-                  SizedBox(height:10),
+                  SizedBox(height: 10),
                   Container(
-                  width:  MediaQuery.of(context).size.width*0.8,
-                    child: AutoSizeText('$description',style:
-                    TextStyle(color: Colors.white,fontSize: 15,),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: AutoSizeText(
+                      '$description',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
                       minFontSize: 12,
-                      maxLines: 3,),
+                      maxLines: 3,
+                    ),
                   ),
                 ],
               ),
-
             ),
           ],
         ),
@@ -196,7 +212,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
     );
   }
 
-  Padding Sub_Category_Card(BuildContext context,String subCategory) {
+  Padding Sub_Category_Card(BuildContext context, String subCategory) {
     return Padding(
       padding: const EdgeInsets.all(0.5),
       child: Stack(
@@ -221,10 +237,16 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
               height: MediaQuery.of(context).size.height * 0.18,
             ),
           ),
-        Container(
-       child: Center(
-         child: Text('$subCategory',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
-       ),
+          Container(
+            child: Center(
+              child: Text(
+                '$subCategory',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 20),
+              ),
+            ),
             width: MediaQuery.of(context).size.width * 0.45,
             height: MediaQuery.of(context).size.height * 0.18,
           ),

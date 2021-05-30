@@ -5,15 +5,16 @@ import 'package:acthub/Screens/LogInPage.dart';
 import 'package:acthub/Screens/ManagementPage.dart';
 import 'package:acthub/Screens/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
+import 'package:acthub/Screens/PackagesScreen.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
 import 'package:acthub/Screens/SearchPage.dart';
 import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/SignUpAsPage.dart';
 import 'package:acthub/Screens/SignUpFormPage.dart';
+import 'package:acthub/Screens/SubCategoryPage.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
-import 'package:acthub/Screens/SubCategoryPage.dart';
 
 import 'Screens/ActivityPage.dart';
 import 'Screens/ProfilePage.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LandingPage.id,
+      initialRoute: PackagesScreen.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -43,9 +44,10 @@ class MyApp extends StatelessWidget {
         MapPage.id: (context) => MapPage(),
         ManagementPage.id: (context) => ManagementPage(),
         SearchPage.id: (context) => SearchPage(),
-        SubCategoryPage.id:(context)=>SubCategoryPage(),
-        ActivityPage.id:(context)=>ActivityPage(),
-       ProfilePage.id:(context)=>ProfilePage()
+        SubCategoryPage.id: (context) => SubCategoryPage(),
+        ActivityPage.id: (context) => ActivityPage(),
+        ProfilePage.id: (context) => ProfilePage(),
+        PackagesScreen.id:(context)=>PackagesScreen(),
       },
     );
   }

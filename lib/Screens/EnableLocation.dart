@@ -1,6 +1,7 @@
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -131,18 +132,19 @@ class _EnableLocationState extends State<EnableLocation> {
     LocationPermission permission = await Geolocator.requestPermission();
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     LocationPermission permission1 = await Geolocator.checkPermission();
-    // print(permission);
-    // print(permission1);
-    // Position position = await Geolocator.getCurrentPosition(
-    //     desiredAccuracy: LocationAccuracy.best);
-    // print(position.longitude);
-    // final coordinates = new Coordinates(position.latitude, position.longitude);
-    // var addresses =
-    //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    // var first = addresses.first;
-    // print("${first.featureName} : ${first.addressLine}");
+    print(permission);
+    print(permission1);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+    print(position.longitude);
+    final coordinates = new Coordinates(position.latitude, position.longitude);
+    print(coordinates);
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+    print("${first.featureName} : ${first.addressLine}");
     if (isLocationServiceEnabled == true) {
-      // currency();
+      currency();
       print('Accepted');
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => YourData()));

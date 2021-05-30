@@ -27,6 +27,13 @@ class _MapPageState extends State<MapPage> {
     showCard = false;
   }
 
+  Future onMapCreated(GoogleMapController controller) async {
+    _controller = controller;
+    String value = await DefaultAssetBundle.of(context)
+        .loadString('assets/map_style.json');
+    _controller.setMapStyle(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     Marker blueMarker = Marker(
@@ -56,19 +63,10 @@ class _MapPageState extends State<MapPage> {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: GoogleMap(
-                    mapType: MapType.terrain,
                     initialCameraPosition: CameraPosition(
                         target: LatLng(40.712776, -74.005974), zoom: 12),
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller = controller;
-                    },
+                    onMapCreated: onMapCreated,
                     markers: {blueMarker},
-                    onTap: (val) {
-                      setState(() {
-                        showSearchBar = true;
-                        showCard = false;
-                      });
-                    },
                   ),
                 ),
                 Column(
@@ -148,59 +146,62 @@ class _MapPageState extends State<MapPage> {
                         ],
                       ),
                     ),
-                    showSearchBar
-                        ? Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            elevation: 10,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Palette.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(30),
-                                ),
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.06,
-                              width: MediaQuery.of(context).size.width * 0.87,
-                              child: TextField(
-                                cursorWidth: 2,
-                                cursorHeight:
-                                    MediaQuery.of(context).size.height * 0.03,
-                                cursorColor: Colors.black,
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(vertical: 0.6),
-                                  prefixIcon: IconButton(
-                                    icon: Icon(
-                                      Icons.search_rounded,
-                                      color: Palette.orange,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                  ),
-                                  //to put border color white when the textfiled not clicked
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                  //to set border color grey when the textfiled clicked
-                                  labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 19,
-                                  ),
-                                  //to set the color of hint black
-                                ), //decorat input text
-                              ),
-                            ),
-                          )
-                        : Container(),
+                    // showSearchBar
+                    //     ? PlacePicker(
+                    //         apiKey: 'AIzaSyCr7e5y2ZzJdTJDkovlkJIeLu3g_4Z5K9M',
+                    //         // initialPosition: MapPage.kInitialPosition,
+                    //         useCurrentLocation: true,
+                    //         selectInitialPosition: true,
+                    //
+                    //         //usePlaceDetailSearch: true,
+                    //         onPlacePicked: (result) {
+                    //           var selectedPlace = result;
+                    //           Navigator.of(context).pop();
+                    //           setState(() {});
+                    //         },
+                    //         forceSearchOnZoomChanged: true,
+                    //         automaticallyImplyAppBarLeading: false,
+                    //         autocompleteLanguage: "ko",
+                    //         region: 'au',
+                    //
+                    //         selectedPlaceWidgetBuilder:
+                    //             (_, selectedPlace, state, isSearchBarFocused) {
+                    //           print(
+                    //               "state: $state, isSearchBarFocused: $isSearchBarFocused");
+                    //           return isSearchBarFocused
+                    //               ? Container()
+                    //               : FloatingCard(
+                    //                   bottomPosition:
+                    //                       0.0, // MediaQuery.of(context) will cause rebuild. See MediaQuery document for the information.
+                    //                   leftPosition: 0.0,
+                    //                   rightPosition: 0.0,
+                    //                   width: 500,
+                    //                   borderRadius: BorderRadius.circular(12.0),
+                    //                   child: state == SearchingState.Searching
+                    //                       ? Center(
+                    //                           child:
+                    //                               CircularProgressIndicator())
+                    //                       : RaisedButton(
+                    //                           child: Text("Pick Here"),
+                    //                           onPressed: () {
+                    //                             // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as
+                    //                             //            this will override default 'Select here' Button.
+                    //                             print(
+                    //                                 "do something with [selectedPlace] data");
+                    //                             Navigator.of(context).pop();
+                    //                           },
+                    //                         ),
+                    //                 );
+                    //         },
+                    //         pinBuilder: (context, state) {
+                    //           if (state == PinState.Idle) {
+                    //             return Icon(Icons.favorite_border);
+                    //           } else {
+                    //             return Icon(Icons.favorite);
+                    //           }
+                    //         },
+                    //       ):
+                    Container(),
                   ],
                 ),
                 showCard ? _buildContainer() : Container()
@@ -211,7 +212,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   // functions
-
   Widget _buildContainer() {
     return Align(
       alignment: Alignment.bottomLeft,
