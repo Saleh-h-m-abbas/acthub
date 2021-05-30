@@ -5,6 +5,7 @@ import 'package:acthub/Screens/LogInPage.dart';
 import 'package:acthub/Screens/ManagementPage.dart';
 import 'package:acthub/Screens/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
+import 'package:acthub/Screens/PackagesScreen.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
 import 'package:acthub/Screens/SearchPage.dart';
 import 'package:acthub/Screens/SignIn.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         SearchPage.id: (context) => SearchPage(),
         SubCategoryPage.id: (context) => SubCategoryPage(),
         ActivityPage.id: (context) => ActivityPage(),
-        ProfilePage.id: (context) => ProfilePage()
+        ProfilePage.id: (context) => ProfilePage(),
+        PackagesScreen.id: (context) => PackagesScreen(),
       },
     );
   }

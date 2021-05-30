@@ -13,7 +13,7 @@ class ManagementPage extends StatefulWidget {
 }
 
 class _ManagementPageState extends State<ManagementPage> {
-  bool guestOrUser = false;
+  bool guestOrUser = true;
 
   @override
   Widget build(BuildContext context) {
@@ -242,7 +242,7 @@ class _ManagementPageState extends State<ManagementPage> {
                   borderRadius: BorderRadius.all(Radius.circular(17.0)),
                   child: Image.network(
                     imgURL,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   )),
             ),
             Positioned(
