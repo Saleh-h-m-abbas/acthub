@@ -3,16 +3,16 @@ class Translations
 {
   static final languages = <String>
   [
-    'Afrikaans',
-    'Albanian',
-    'Amharic',
+   'Afrikaans',
+   'Albanian',
+  'Amharic',
     'Arabic',
-    'Armenian',
+   'Armenian',
     'Azerbaijani',
-    'Basque',
-    'Belarusian',
-    'Bengali',
-    'Bosnian',
+   'Basque',
+     'Belarusian',
+     'Bengali',
+   'Bosnian',
     'Bulgarian'
     'Catalan',
     'Cebuano',
@@ -115,7 +115,7 @@ class Translations
   ];
   static final code = <String>
   [
-    'af'
+    'af',
     'sq',
     'am',
     'ar',
