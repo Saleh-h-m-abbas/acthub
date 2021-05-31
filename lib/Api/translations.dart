@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-class Translations
-{
-  static final languages = <String>
-  [
-   'Afrikaans',
-   'Albanian',
-  'Amharic',
+
+class Translations {
+  static final languages = <String>[
+    'Afrikaans',
+    'Albanian',
+    'Amharic',
     'Arabic',
-   'Armenian',
+    'Armenian',
     'Azerbaijani',
-   'Basque',
-     'Belarusian',
-     'Bengali',
-   'Bosnian',
-    'Bulgarian'
+    'Basque',
+    'Belarusian',
+    'Bengali',
+    'Bosnian',
+    'Bulgarian',
     'Catalan',
     'Cebuano',
     'Chinese (Simplified)',
@@ -113,8 +112,7 @@ class Translations
     'Yoruba',
     'Zulu',
   ];
-  static final code = <String>
-  [
+  static final code = <String>[
     'af',
     'sq',
     'am',
@@ -449,6 +447,7 @@ class Translations
         return 'en';
     }
   }
+
   static String getLanguageFromCode(String language) {
     switch (language) {
       case 'af':
