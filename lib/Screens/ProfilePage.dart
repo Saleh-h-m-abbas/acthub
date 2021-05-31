@@ -1,10 +1,16 @@
 import 'package:acthub/Classes/Palette.dart';
+import 'package:acthub/Screens/EditProfileScreen.dart';
+import 'package:acthub/Screens/LanguageScreen.dart';
+import 'package:acthub/Screens/ManagementPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'AboutUsScreen.dart';
+import 'ContactUsPage.dart';
+import 'PrivacyPolicy.dart';
 import 'SignIn.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -15,7 +21,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isGuest= false;
+  bool isGuest= true;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -38,153 +44,160 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Palette.orange),
                 ),
               ),
-                isGuest?guestUI(context):
+                isGuest?
+                guestUI(context):
+                loggedInUI(context),],
+            )),
+      ),
+    );
+  }
 
-
-                Column(
-                 crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+  Column loggedInUI(BuildContext context) {
+    return Column(
+               crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.06),
+                          buttonCard(context, "Likes", 'Images/Like.svg',ManagementPage.id),
+                          buttonCard(context, "Language", 'Images/language.svg',LanguageScreen.id),
+                          buttonCard(context, "Contact Us", 'Images/contact.svg',ContactUsPage.id),
+                        ],
+                      ),
+                      Column(
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.06),
-                            buttonCard(context, "Likes", 'Images/Like.svg'),
-                            buttonCard(context, "Language", 'Images/language.svg'),
-                            buttonCard(context, "Contact Us", 'Images/contact.svg'),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 0.40,
-                                  width: MediaQuery.of(context).size.width * 0.45,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          height: MediaQuery.of(context).size.height * 0.06),
-                                      Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20.0),
+                          Stack(
+                            children: [
+                              Container(
+                                height: MediaQuery.of(context).size.height * 0.40,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                        height: MediaQuery.of(context).size.height * 0.06),
+                                    Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                      ),
+                                      elevation: 5,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Palette.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
                                         ),
-                                        elevation: 5,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            color: Palette.white,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(30),
+                                        height: MediaQuery.of(context).size.height * 0.33,
+                                        width: MediaQuery.of(context).size.width * 0.45,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                left:35,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(55.0),
+                                  ),
+                                  elevation: 10,
+                                  child: CircleAvatar(
+                                    radius: 55,
+                                    backgroundImage: NetworkImage(
+                                        'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                                  ),
+                                ),
+
+                              ),
+                              Positioned(
+
+
+                                  top: 90,
+                                  left:43,
+                                  child: Container(
+                                    height: 17,
+                                    width: 17,
+                                    decoration: BoxDecoration(
+                                        color: Palette.online,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            width: 2.0, color: Palette.white)),
+                                  )),
+                              Positioned(
+                                left: MediaQuery.of(context).size.width * 0.05,
+                                top: MediaQuery.of(context).size.height * 0.12,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Lara ',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                        ),
+                                        Column(
+                                          children: [
+                                            SizedBox(height:15),
+                                            Text('Giovani',style:
+                                            TextStyle(color: Palette.orange,
+                                                fontSize:16)),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 0, top: 15),
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.35,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            AutoSizeText(
+                                                  'Country :      Palestine \n\n'
+                                                  'City :             Ramallah\n\n'
+                                                  'Age :             25 years old \n\n',
+                                              style: TextStyle(
+                                                  color: Palette.orange,
+                                                  fontSize: 20,
+                                                  ),
+                                              minFontSize: 12,
+                                              maxLines: 6,
                                             ),
-                                          ),
-                                          height: MediaQuery.of(context).size.height * 0.33,
-                                          width: MediaQuery.of(context).size.width * 0.45,
+
+                                          ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                  left:35,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(55.0),
                                     ),
-                                    elevation: 10,
-                                    child: CircleAvatar(
-                                      radius: 55,
-                                      backgroundImage: NetworkImage(
-                                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                                    ),
-                                  ),
-
+                                  ],
                                 ),
-                                Positioned(
+                              ),
 
+                            ],
+                          ),
+                          buttonCard(context, "About Us", 'Images/act.png',AboutUsScreen.id),
 
-                                    top: 90,
-                                    left:43,
-                                    child: Container(
-                                      height: 17,
-                                      width: 17,
-                                      decoration: BoxDecoration(
-                                          color: Palette.online,
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              width: 2.0, color: Palette.white)),
-                                    )),
-                                Positioned(
-                                  left: MediaQuery.of(context).size.width * 0.05,
-                                  top: MediaQuery.of(context).size.height * 0.12,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Lara ',
-                                            style: TextStyle(
-                                                fontSize: 36,
-                                                fontWeight: FontWeight.bold,
-                                                color: Palette.orange),
-                                          ),
-                                          Column(
-                                            children: [
-                                              SizedBox(height:15),
-                                              Text('Giovani',style:
-                                              TextStyle(color: Palette.orange,
-                                                  fontSize:16)),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 0, top: 15),
-                                        child: Container(
-                                          width: MediaQuery.of(context).size.width * 0.35,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              AutoSizeText(
-                                                    'Country :      Palestine \n\n'
-                                                    'City :             Ramallah\n\n'
-                                                    'Age :             25 years old \n\n',
-                                                style: TextStyle(
-                                                    color: Palette.orange,
-                                                    fontSize: 20,
-                                                    ),
-                                                minFontSize: 12,
-                                                maxLines: 6,
-                                              ),
-
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                            buttonCard(context, "About Us", 'Images/act.png'),
-
-                          ],
-                        ),
+                        ],
+                      ),
 
 
 
 
 
-                      ],
-                    ),
-                    Padding(
+                    ],
+                  ),
+                  GestureDetector(
+                    child: Padding(
                       padding: const EdgeInsets.all(0.5),
                       child: Card(
                         shape: RoundedRectangleBorder(
@@ -223,10 +236,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                    Row(
+                    onTap: () {
+                      Navigator.pushNamed(context, PrivacyPolicy.id);
+                    },
+                  ),
+                  Row(
 mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
+                    children: [
+                      GestureDetector(
+                        child: Padding(
                           padding: const EdgeInsets.all(0.5),
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -264,67 +282,58 @@ mainAxisAlignment: MainAxisAlignment.center,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(0.5),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                        onTap: () {
+                          Navigator.pushNamed(context, EditProfileScreen.id);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(0.5),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          elevation: 5,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Palette.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(17),
+                              ),
                             ),
-                            elevation: 5,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Palette.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(17),
+                            width: MediaQuery.of(context).size.width * .46,
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SvgPicture.asset(
+                                  'Images/logout.svg',
+                                  height: 35,
+                                  color: Palette.actHubYellow,
                                 ),
-                              ),
-                              width: MediaQuery.of(context).size.width * .46,
-                              height: MediaQuery.of(context).size.height * 0.1,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SvgPicture.asset(
-                                    'Images/logout.svg',
-                                    height: 35,
-                                    color: Palette.actHubYellow,
-                                  ),
-                                  SizedBox(height: 15),
-                                  Text(
-                                    'Logout',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.actHubGrey,
-                                        fontSize: 20),
-                                  ),
-                                ],
-                              ),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Logout',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGrey,
+                                      fontSize: 20),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
 
-                  ],
-                ),],
-            )),
-      ),
-    );
+                ],
+              );
   }
-
   Column guestUI(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 20),
-          child: Text(
-            'Profile',
-            style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Palette.orange),
-          ),
-        ),
+
         Center(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.44,
@@ -366,8 +375,8 @@ mainAxisAlignment: MainAxisAlignment.center,
                     elevation: 10,
                     child: CircleAvatar(
                       radius: 55,
-                      backgroundImage: NetworkImage(
-                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                      backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+                      backgroundColor: Colors.white,
                     ),
                   ),
                 ),
@@ -455,16 +464,16 @@ mainAxisAlignment: MainAxisAlignment.center,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buttonCard(context, "Contact Us", 'Images/contact.svg'),
-                  buttonCard(context, "About Us", 'Images/act.png'),
+                  buttonCard(context, "Contact Us", 'Images/contact.svg',ContactUsPage.id),
+                  buttonCard(context, "About Us", 'Images/act.png',AboutUsScreen.id),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buttonCard(
-                      context, "Privacy Policy", 'Images/privacy_policy.svg'),
-                  buttonCard(context, "Language", 'Images/language.svg'),
+                      context, "Privacy Policy", 'Images/privacy_policy.svg',PrivacyPolicy.id),
+                  buttonCard(context, "Language", 'Images/language.svg',LanguageScreen.id),
                 ],
               )
             ],
@@ -474,56 +483,61 @@ mainAxisAlignment: MainAxisAlignment.center,
     );
   }
 
-  Padding buttonCard(
-      BuildContext context, String text, String image_Path) {
-    return Padding(
-      padding: const EdgeInsets.all(0.5),
-      child: Stack(
-        children: [
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+  buttonCard(
+      BuildContext context, String text, String image_Path,String route) {
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.all(0.5),
+        child: Stack(
+          children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              elevation: 5,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Palette.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(17),
+                  ),
+                ),
+                width: MediaQuery.of(context).size.width * 0.45,
+                height: MediaQuery.of(context).size.height * 0.16,
+              ),
             ),
-            elevation: 5,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Palette.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(17),
+            Container(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    text == 'About Us'
+                        ? Image.asset('Images/act.png')
+                        : SvgPicture.asset(
+                            image_Path,
+                            height: 35,
+                            color: Palette.actHubYellow,
+                          ),
+                    SizedBox(height: 15),
+                    Text(
+                      '$text',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Palette.actHubGrey,
+                          fontSize: 20),
+                    ),
+                  ],
                 ),
               ),
               width: MediaQuery.of(context).size.width * 0.45,
               height: MediaQuery.of(context).size.height * 0.16,
             ),
-          ),
-          Container(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  text == 'About Us'
-                      ? Image.asset('Images/act.png')
-                      : SvgPicture.asset(
-                          image_Path,
-                          height: 35,
-                          color: Palette.actHubYellow,
-                        ),
-                  SizedBox(height: 15),
-                  Text(
-                    '$text',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Palette.actHubGrey,
-                        fontSize: 20),
-                  ),
-                ],
-              ),
-            ),
-            width: MediaQuery.of(context).size.width * 0.45,
-            height: MediaQuery.of(context).size.height * 0.16,
-          ),
-        ],
+          ],
+        ),
       ),
+      onTap: () {
+      Navigator.pushNamed(context, route);
+    },
     );
   }
 }

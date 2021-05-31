@@ -16,7 +16,11 @@ import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/AboutUsScreen.dart';
 import 'Screens/ActivityPage.dart';
+import 'Screens/ContactUsPage.dart';
+import 'Screens/EditProfileScreen.dart';
+import 'Screens/LanguageScreen.dart';
 import 'Screens/ProfilePage.dart';
 
 void main() {
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: PackagesScreen.id,
+      initialRoute: NavigationPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -48,7 +52,16 @@ class MyApp extends StatelessWidget {
         ActivityPage.id: (context) => ActivityPage(),
         ProfilePage.id: (context) => ProfilePage(),
         PackagesScreen.id:(context)=>PackagesScreen(),
+        ContactUsPage.id:(context)=>ContactUsPage(),
+        AboutUsScreen.id: (context) => AboutUsScreen(),
+        EditProfileScreen.id: (context) => EditProfileScreen(),
+        LanguageScreen.id: (context) => LanguageScreen(),
       },
     );
+
   }
+
+
+
 }
+
