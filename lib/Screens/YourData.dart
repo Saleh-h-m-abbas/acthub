@@ -1,8 +1,9 @@
 import 'package:acthub/Screens/PrivacyPolicy.dart';
+import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:acthub/Classes/Source.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class YourData extends StatefulWidget {
   static const String id = 'YourData';
@@ -13,6 +14,8 @@ class YourData extends StatefulWidget {
 
 class _YourDataState extends State<YourData> {
   String Gettext = 'Data Text '; //to get Data Text from firebase
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _YourDataState extends State<YourData> {
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: Text(
-              Source.Gettext_YourData,
+              'Your Data, Your Choice ',
               style: TextStyle(
                   color: Color(0xffF9A559),
                   fontSize: 25,
@@ -94,9 +97,10 @@ class _YourDataState extends State<YourData> {
                             fontWeight: FontWeight.bold,
                           )),
                     ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => YourData()));
+                    onPressed: () async {
+                      final SharedPreferences prefs = await _prefs;
+                      prefs.setBool("AcceptData", true);
+                      Navigator.pushNamed(context, SignIn.id);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white, // background
