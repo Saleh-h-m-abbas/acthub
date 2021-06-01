@@ -15,6 +15,7 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Palette.scaffold,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -96,7 +97,7 @@ Widget textFiled(String inputType, TextInputType keyboardType, bool obscure) {
           borderSide: BorderSide(color: Colors.white),
         ), //to put border color white when the textfiled not clicked
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(color: Colors.white),
         ), //to set border color grey when the textfiled clicked
         labelText: inputType,
         labelStyle: TextStyle(
