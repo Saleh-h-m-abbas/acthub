@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
         },
         child: MaterialApp(
           home: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Palette.scaffold,
             appBar: AppBar(
               centerTitle: false,

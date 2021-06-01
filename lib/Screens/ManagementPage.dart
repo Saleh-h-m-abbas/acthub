@@ -206,19 +206,13 @@ class _ManagementPageState extends State<ManagementPage> {
               userPageDesign(
                   'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
               userPageDesign(
-                  'https://lh3.googleusercontent.com/proxy/KWB7B_f2Ay26McmQbgXWl42Kg7jWVF7RyYtihw1Xl0NjBxKTz1tIDDx7A6ZDUdIpa6NloU50qW5hbrmQFc6TWfIVAQNqiU1SCZkcprTdEB-yJ3HyJbVo0L28bDJodbdHQsOS68oYcQ5vDMYmQLtWnCE0bF9eKvxfQFOQhldm18WrzNFJhJ4syWqbMDEq6Xm9wilNPyMUlf1GP6s4HTvHFXPSobm9coH5e2HZc9kt5O3QSjMOeGYo'),
-              userPageDesign(
                   'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
               userPageDesign(
                   'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
               userPageDesign(
-                  'https://lh3.googleusercontent.com/proxy/KWB7B_f2Ay26McmQbgXWl42Kg7jWVF7RyYtihw1Xl0NjBxKTz1tIDDx7A6ZDUdIpa6NloU50qW5hbrmQFc6TWfIVAQNqiU1SCZkcprTdEB-yJ3HyJbVo0L28bDJodbdHQsOS68oYcQ5vDMYmQLtWnCE0bF9eKvxfQFOQhldm18WrzNFJhJ4syWqbMDEq6Xm9wilNPyMUlf1GP6s4HTvHFXPSobm9coH5e2HZc9kt5O3QSjMOeGYo'),
-              userPageDesign(
                   'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
               userPageDesign(
                   'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
-              userPageDesign(
-                  'https://lh3.googleusercontent.com/proxy/KWB7B_f2Ay26McmQbgXWl42Kg7jWVF7RyYtihw1Xl0NjBxKTz1tIDDx7A6ZDUdIpa6NloU50qW5hbrmQFc6TWfIVAQNqiU1SCZkcprTdEB-yJ3HyJbVo0L28bDJodbdHQsOS68oYcQ5vDMYmQLtWnCE0bF9eKvxfQFOQhldm18WrzNFJhJ4syWqbMDEq6Xm9wilNPyMUlf1GP6s4HTvHFXPSobm9coH5e2HZc9kt5O3QSjMOeGYo'),
             ],
           ),
         ),
