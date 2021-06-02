@@ -1,3 +1,4 @@
+import 'package:acthub/Classes/Palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -13,9 +14,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor:Palette.scaffold,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           Stack(
             children: [
@@ -31,7 +32,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 ),
               ),
             ],
-          ),
+          ), //Stack to Put back arrow with image
           //contain privacy picture
 
           //contain our privacy policy text
@@ -39,16 +40,19 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             child: Column(
               children: [
                 Center(
-                  child: Text(
-                    'Our Privacy policy ',
-                    style: TextStyle(
-                        color: Color(0xffF9A559),
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top:25.0),
+                    child: Text(
+                      'Our Privacy policy ',
+                      style: TextStyle(
+                          color: Palette.lightOrange,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.only(top: 20),
                   child: Text(Gettext,
                       style: TextStyle(
                         fontSize: 13,
@@ -56,14 +60,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 ),
               ],
             ),
-          ),
+          ),//Contain Column for two texts, expanded for actHub image
           // contain text widget to get privacy policy text from firebase
-          SafeArea(
-            child: Container(
-                height: 50,
-                width: 130,
-                child: Image.asset('Images/ActHubOLogo.png')),
-          )
+          Container(
+              height: MediaQuery.of(context).size.height*0.06,
+              width: MediaQuery.of(context).size.width*0.5,
+              child: Image.asset('Images/ActHubOLogo.png')) //Acthub Image
         ],
       ),
     );

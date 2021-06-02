@@ -33,7 +33,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                 SafeArea(
                   child: Column(
                     children: [
-                      CompanyInformation(context),
+                      PaymentInformation(context),
                       GestureDetector(
                         child: Card(
                           shape: RoundedRectangleBorder(

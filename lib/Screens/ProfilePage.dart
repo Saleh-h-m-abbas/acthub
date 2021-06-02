@@ -81,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 0.06),
+                              MediaQuery.of(context).size.height * 0.06),
                           Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -125,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Palette.online,
                               shape: BoxShape.circle,
                               border:
-                                  Border.all(width: 2.0, color: Palette.white)),
+                              Border.all(width: 2.0, color: Palette.white)),
                         )),
                     Positioned(
                       left: MediaQuery.of(context).size.width * 0.05,
@@ -165,8 +165,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   AutoSizeText(
                                     'Country :      Palestine \n\n'
-                                    'City :             Ramallah\n\n'
-                                    'Age :             25 years old \n\n',
+                                        'City :             Ramallah\n\n'
+                                        'Age :             25 years old \n\n',
                                     style: TextStyle(
                                       color: Palette.orange,
                                       fontSize: 20,
@@ -505,10 +505,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     text == 'About Us'
                         ? Image.asset('Images/act.png')
                         : SvgPicture.asset(
-                            image_Path,
-                            height: 35,
-                            color: Palette.actHubYellow,
-                          ),
+                      image_Path,
+                      height: 35,
+                      color: Palette.actHubYellow,
+                    ),
                     SizedBox(height: 15),
                     Text(
                       '$text',
