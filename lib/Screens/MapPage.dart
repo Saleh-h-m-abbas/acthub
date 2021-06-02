@@ -78,7 +78,8 @@ class _MapPageState extends State<MapPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 17.0),
+                            padding:
+                                const EdgeInsets.only(left: 10.0, top: 20.5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +89,7 @@ class _MapPageState extends State<MapPage> {
                                   style: TextStyle(
                                       shadows: [
                                         Shadow(
-                                            blurRadius: 10,
+                                            blurRadius: 15,
                                             color:
                                                 Colors.black.withOpacity(0.35),
                                             offset: Offset(5, 5))
@@ -119,7 +120,7 @@ class _MapPageState extends State<MapPage> {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 32.0, top: 10.5),
+                                const EdgeInsets.only(right: 52.0, top: 25.5),
                             child: Stack(
                               children: [
                                 CircleAvatar(

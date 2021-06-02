@@ -29,9 +29,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 SafeArea(
                     child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
-                )),
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () => Navigator.pop(context),
+                    )),
               ],
             ), //contain headerlogo and arrow back icon
             Column(
@@ -39,7 +39,7 @@ class _LogInPageState extends State<LogInPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 100, bottom: 20),
                   child:
-                      textFiled('Username', TextInputType.emailAddress, false),
+                  textFiled('Username', TextInputType.emailAddress, false),
                 ),
                 //contain textfiled for user name
                 textFiled('Password', TextInputType.visiblePassword, true),

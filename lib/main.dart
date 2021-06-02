@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:SignUpAsPage.id,
+      initialRoute: SignUpFormPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -51,17 +51,12 @@ class MyApp extends StatelessWidget {
         SubCategoryPage.id: (context) => SubCategoryPage(),
         ActivityPage.id: (context) => ActivityPage(),
         ProfilePage.id: (context) => ProfilePage(),
-        PackagesScreen.id:(context)=>PackagesScreen(),
-        ContactUsPage.id:(context)=>ContactUsPage(),
+        PackagesScreen.id: (context) => PackagesScreen(),
+        ContactUsPage.id: (context) => ContactUsPage(),
         AboutUsScreen.id: (context) => AboutUsScreen(),
         EditProfileScreen.id: (context) => EditProfileScreen(),
         LanguageScreen.id: (context) => LanguageScreen(),
       },
     );
-
   }
-
-
-
 }
-

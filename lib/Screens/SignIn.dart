@@ -17,10 +17,10 @@ class _SignInState extends State<SignIn> {
   void _showButtonPressDialog(BuildContext context, String provider) {
     Scaffold.of(context).showSnackBar(
         SnackBar(
-      content: Text('$provider Button Pressed!'),
-      backgroundColor: Colors.black26,
-      duration: Duration(milliseconds: 400),
-    ));
+          content: Text('$provider Button Pressed!'),
+          backgroundColor: Colors.black26,
+          duration: Duration(milliseconds: 400),
+        ));
   }
 
   @override
@@ -42,7 +42,7 @@ class _SignInState extends State<SignIn> {
 
           ),
           Container(
-             height:MediaQuery.of(context).size.height*0.06,
+              height:MediaQuery.of(context).size.height*0.06,
               child: Image.asset('Images/FinalLogo.png')),
           SizedBox(
             height: 10,
@@ -117,9 +117,9 @@ class _SignInState extends State<SignIn> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              Container(
-                width:MediaQuery.of(context).size.width*0.38,
-                   child: Divider(color: Palette.actHubGreen,thickness: 1,)),
+                Container(
+                    width:MediaQuery.of(context).size.width*0.38,
+                    child: Divider(color: Palette.actHubGreen,thickness: 1,)),
                 Text(
                   'Or',
                   style: TextStyle(

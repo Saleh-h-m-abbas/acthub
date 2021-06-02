@@ -1,4 +1,3 @@
-import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
 import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
@@ -38,18 +37,17 @@ class _YourDataState extends State<YourData> {
                 ),
               ),
             ],
-          ), // Back Arrow & Image
-
+          ),
           Padding(
-            padding: EdgeInsets.only(top: 25),
+            padding: EdgeInsets.only(top: 20),
             child: Text(
               'Your Data, Your Choice ',
               style: TextStyle(
-                  color: Palette.lightOrange,
+                  color: Color(0xffF9A559),
                   fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
-          ), // Your Data Your Choice Text
+          ),
           Center(
             child: new RichText(
               text: new TextSpan(
@@ -83,32 +81,40 @@ class _YourDataState extends State<YourData> {
                 ],
               ),
             ),
-          ), // Terms and conditions ""LINKS"
-          Container(
-
-            width: MediaQuery.of(context).size.width*0.8,
-            height: MediaQuery.of(context).size.height*0.065,
-            child: ElevatedButton(
-                child: Text('Accept',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Palette.actHubGreen,
-                      fontWeight: FontWeight.bold,
+          ),
+          Column(
+            children: [
+              Container(
+                width: 351,
+                height: 46,
+                child: ElevatedButton(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Accept',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xff566357),
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                    onPressed: () async {
+                      final SharedPreferences prefs = await _prefs;
+                      prefs.setBool("AcceptData", true);
+                      Navigator.pushNamed(context, SignIn.id);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white, // background
+                      // foreground
                     )),
-                onPressed: () async {
-                  final SharedPreferences prefs = await _prefs;
-                  prefs.setBool("AcceptData", true);
-                  Navigator.pushNamed(context, SignIn.id);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white, // background
-                  // foreground
-                )),
-          ), //Accept Button
-          Container(
-              height: MediaQuery.of(context).size.height*0.06,
-              width: MediaQuery.of(context).size.width*0.5,
-              child: Image.asset('Images/ActHubOLogo.png'))  //ActHub Image
+              ),
+            ],
+          ),
+          SafeArea(
+            child: Container(
+                height: 50,
+                width: 130,
+                child: Image.asset('Images/ActHubOLogo.png')),
+          )
         ],
       ),
     );
