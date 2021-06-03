@@ -43,7 +43,7 @@ class _SignInState extends State<SignIn> {
           ),
           Container(
               height:MediaQuery.of(context).size.height*0.06,
-              child: Image.asset('Images/FinalLogo.png')),
+              child: Image.asset('Images/finalLogoo.png'),),
           SizedBox(
             height: 10,
           ),
