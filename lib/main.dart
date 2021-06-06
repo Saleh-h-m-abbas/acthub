@@ -15,8 +15,8 @@ import 'package:acthub/Screens/SubCategoryPage.dart';
 import 'package:acthub/Screens/TermsAndConditions.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
-
 import 'Screens/AboutUsScreen.dart';
+import 'Screens/ActivityPage.dart';
 import 'Screens/ActivityPage.dart';
 import 'Screens/ContactUsPage.dart';
 import 'Screens/EditProfileScreen.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SignUpFormPage.id,
+      initialRoute: TermsAndConditions.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),

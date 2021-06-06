@@ -229,9 +229,7 @@ class _MapPageState extends State<MapPage> {
                     image: NetworkImage(
                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
                     )),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(17),
-                ),
+
               ),
               width: MediaQuery.of(context).size.width * 0.98,
               height: MediaQuery.of(context).size.height * 0.23,

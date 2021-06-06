@@ -1,3 +1,4 @@
+import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -66,7 +67,6 @@ class _EnableLocationState extends State<EnableLocation> {
               children: [
                 Image.asset(
                   'Images/Location.png',
-                  fit: BoxFit.cover,
                 ),
                 // contain enable location picture
                 Padding(
@@ -79,36 +79,32 @@ class _EnableLocationState extends State<EnableLocation> {
                   ),
                 ),
                 //contain text widget to get location text from firebase
-                Column(
-                  children: [
-                    Container(
-                      width: 351,
-                      height: 46,
-                      child: ElevatedButton(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Enable Location',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xff566357),
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ),
-                          onPressed: () {
-                            getLocation();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.white, // background
-                            // foreground
-                          )),
-                    ),
-                  ],
+                Container(
+                  width: MediaQuery.of(context).size.width*0.75,
+                  height: MediaQuery.of(context).size.height*0.055,
+                  child: ElevatedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Enable Location',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Palette.actHubGreen,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ),
+                      onPressed: () {
+                        getLocation();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white, // background
+                        // foreground
+                      )),
                 ),
                 //contain the button
                 SafeArea(
                   child: Container(
-                      height: 50,
-                      width: 130,
+                      height: MediaQuery.of(context).size.height*0.05,
+                      width: MediaQuery.of(context).size.width*0.3,
                       child: Image.asset('Images/ActHubOLogo.png')),
                 )
                 //contain ACTHUB text logo

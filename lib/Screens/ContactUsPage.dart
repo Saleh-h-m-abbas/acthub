@@ -19,7 +19,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor: Palette.scaffold,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -39,77 +39,28 @@ class _ContactUsPageState extends State<ContactUsPage> {
             ],
           ),
           //contain privacy picture
-
-          //contain our privacy policy text
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height:20),
-                  Center(
-                    child: Text(
-                      'Contact Us ',
-                      style: TextStyle(
-                          color: Color(0xffF9A559),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),
-                    ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  child: AutoSizeText(
+                    'Contact Us ',
+                    style: TextStyle(
+                        color: Color(0xffF9A559),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                    maxLines: 1,
                   ),
-                  SizedBox(height:40),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                      child: ListTile(leading:Image.asset('Images/messenger.png',height: 35,) ,title: Text('ActHub',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),horizontalTitleGap: 100,),),
-                  ),
-                  SizedBox(height:20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                        child: ListTile(leading:Image.asset('Images/IconInstagram.png',height: 40,) ,title: Text('ActHub',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),horizontalTitleGap: 100,),),
-                  ),
-                  SizedBox(height:20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                      child: ListTile(leading:Image.asset('Images/IconGmail.png',height: 35,) ,title: Text('ActHub@gmail.com',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),horizontalTitleGap: 50,),),
-                  ),
-                  SizedBox(height:20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                      child: ListTile(leading:Image.asset('Images/IconWhatsApp.png',height: 40,) ,title: Text('+970599845646',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),horizontalTitleGap: 65,),),
-                  ),
-                  SizedBox(height:20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                      child: ListTile(leading:Image.asset('Images/call.png',height: 30,) ,title: Text('0599845646',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),horizontalTitleGap: 75,),),
-                  ),
-
-
-
-                ],
-              ),
+                  width: MediaQuery.of(context).size.width*0.29,
+                  height: MediaQuery.of(context).size.height*0.032,
+                ),
+                cardDesign('Images/messenger.png', 'ActHub'),
+                cardDesign('Images/IconInstagram.png', 'ActHub'),
+                cardDesign('Images/IconGmail.png', 'ActHub@gmaile.com'),
+                cardDesign('Images/IconWhatsApp.png','+970599845646' ),
+                cardDesign('Images/call.png','+970599845646'),
+              ],
             ),
           ),
           // contain text widget to get privacy policy text from firebase
@@ -122,7 +73,33 @@ class _ContactUsPageState extends State<ContactUsPage> {
         ],
       ),
     );
-  }
 
-
+}
+Widget cardDesign(String imgURL, String text){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal:15.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        elevation: 5,
+        child: ListTile(
+          leading:Image.asset(
+            imgURL,
+            height: 30,
+          ) ,
+          title: Container(
+              height: MediaQuery.of(context).size.height*0.03,
+              child: AutoSizeText(text,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+                maxLines: 1,
+              )
+          ),
+          horizontalTitleGap: MediaQuery.of(context).size.width*0.18
+          ,),
+      ),
+    );
+}
 }

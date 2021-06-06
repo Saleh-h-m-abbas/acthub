@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/EditProfileScreen.dart';
 import 'package:acthub/Screens/LanguageScreen.dart';
@@ -21,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isGuest = true;
+  bool isGuest = false;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -30,22 +32,25 @@ class _ProfilePageState extends State<ProfilePage> {
       },
       child: MaterialApp(
         home: Scaffold(
-            backgroundColor: Palette.scaffold,
-            body: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20),
-                  child: Text(
-                    'Profile',
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Palette.orange),
-                  ),
+            appBar:  AppBar(
+              centerTitle: false,
+              toolbarHeight: 60,
+              elevation: 0,
+              backgroundColor: Palette.scaffold,
+              title: Container(
+                width: MediaQuery.of(context).size.width*0.25,
+                height: MediaQuery.of(context).size.height*0.05,
+                child: AutoSizeText(
+                  'Profile',
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.orange),
+                  maxLines: 1,
                 ),
-                isGuest ? guestUI(context) : loggedInUI(context),
-              ],
-            )),
+              ),),
+            backgroundColor: Palette.scaffold,
+            body: isGuest ? guestUI(context) : loggedInUI(context)),
       ),
     );
   }
@@ -63,11 +68,11 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.06),
                 buttonCard(
-                    context, "Likes", 'Images/Like.svg', ManagementPage.id),
-                buttonCard(context, "Language", 'Images/language.svg',
-                    LanguageScreen.id),
-                buttonCard(context, "Contact Us", 'Images/contact.svg',
-                    ContactUsPage.id),
+                    context, "Rate this App", 'Images/star.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                buttonCard(context, "Language", 'Images/language.png',
+                    LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                buttonCard(context, "Contact Us", 'Images/contact.png',
+                    ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
               ],
             ),
             Column(
@@ -81,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 0.06),
+                              MediaQuery.of(context).size.height * 0.06),
                           Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -125,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Palette.online,
                               shape: BoxShape.circle,
                               border:
-                                  Border.all(width: 2.0, color: Palette.white)),
+                              Border.all(width: 2.0, color: Palette.white)),
                         )),
                     Positioned(
                       left: MediaQuery.of(context).size.width * 0.05,
@@ -165,8 +170,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   AutoSizeText(
                                     'Country :      Palestine \n\n'
-                                    'City :             Ramallah\n\n'
-                                    'Age :             25 years old \n\n',
+                                        'City :             Ramallah\n\n'
+                                        'Age :             25 years old \n\n',
                                     style: TextStyle(
                                       color: Palette.orange,
                                       fontSize: 20,
@@ -184,298 +189,182 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
                 buttonCard(
-                    context, "About Us", 'Images/act.png', AboutUsScreen.id),
+                    context, "About Us", 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
               ],
             ),
           ],
         ),
-        GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.all(0.5),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              elevation: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Palette.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(17),
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width * .92,
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                    SvgPicture.asset(
-                      'Images/privacy_policy.svg',
-                      height: 35,
-                      color: Palette.actHubYellow,
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.2),
-                    Text(
-                      'Privacy Policy',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Palette.actHubGrey,
-                          fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          onTap: () {
-            Navigator.pushNamed(context, PrivacyPolicy.id);
-          },
-        ),
+       horizontalButton(context,
+         image_Path: 'Images/privacy_policy.png',
+         width:MediaQuery.of(context).size.width * .92,
+         height:MediaQuery.of(context).size.height * 0.1,
+         text: 'Privacy Policy',route: PrivacyPolicy.id,gap:MediaQuery.of(context).size.width*0.18),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(0.5),
+            horizontalButton(context,
+              image_Path: 'Images/edit.png',
+              width:MediaQuery.of(context).size.width * .46,
+              height:MediaQuery.of(context).size.height * 0.1,
+              text: 'Edit Profile',route:EditProfileScreen.id,gap:MediaQuery.of(context).size.width*0.1),
+            horizontalButton(context,
+                image_Path: 'Images/logout.png',
+                width:MediaQuery.of(context).size.width * .46,
+                height:MediaQuery.of(context).size.height * 0.1,
+                text: 'Logout',gap:MediaQuery.of(context).size.width*0.1),
+
+          ],
+        ),
+      ],
+    );
+  }
+  Widget guestUI(BuildContext context){
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.05),
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
                   elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Container(
+                    height:MediaQuery.of(context).size.height*0.35,
+                    width:MediaQuery.of(context).size.width*0.9,
                     decoration: const BoxDecoration(
                       color: Palette.white,
                       borderRadius: BorderRadius.all(
-                        Radius.circular(17),
+                        Radius.circular(30),
                       ),
                     ),
-                    width: MediaQuery.of(context).size.width * .46,
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SvgPicture.asset(
-                          'Images/edit.svg',
-                          height: 35,
-                          color: Palette.actHubYellow,
+                        Padding(
+                          padding: const EdgeInsets.only(top:25.0, left: 25),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.05,
+                            width: MediaQuery.of(context).size.width*0.35,
+                            child: AutoSizeText(
+                              'Welcome',
+                              style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.orange),
+                              maxLines: 1,
+                            ),
+                          ),
                         ),
-                        SizedBox(height: 15),
-                        Text(
-                          'Edit Profile',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Palette.actHubGrey,
-                              fontSize: 20),
+                        Center(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height*0.025,
+                                  width: MediaQuery.of(context).size.width*0.58,
+                                  child: AutoSizeText('Sgined in first to mange your profile.\n',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen.withOpacity(0.33),
+                                    ),
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: MediaQuery.of(context).size.height*0.05,
+                                width: MediaQuery.of(context).size.width*0.63,
+                                child: AutoSizeText("you haven't signed in yet. Please sign in\n to access full experience",
+                                  style:TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.actHubGreen.withOpacity(0.33),
+
+                                  ),
+                                  maxLines: 3,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height*0.05,
+                                  width: MediaQuery.of(context).size.width*0.7,
+                                  child: ElevatedButton(
+                                      onPressed: (){
+                                        Navigator.pushNamed(context, SignIn.id);
+                                      },
+                                      child: Text('Signin',style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),),
+                                    style:  ElevatedButton.styleFrom(
+                                      primary: Palette.blue, // background
+                                      // foreground
+                                    ),
+                                       ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              onTap: () {
-                Navigator.pushNamed(context, EditProfileScreen.id);
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(0.5),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                elevation: 5,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Palette.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(17),
-                    ),
+              Positioned(
+
+                left: MediaQuery.of(context).size.width*0.56,
+                child: Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
                   ),
-                  width: MediaQuery.of(context).size.width * .46,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SvgPicture.asset(
-                        'Images/logout.svg',
-                        height: 35,
-                        color: Palette.actHubYellow,
-                      ),
-                      SizedBox(height: 15),
-                      Text(
-                        'Logout',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Palette.actHubGrey,
-                            fontSize: 20),
-                      ),
-                    ],
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: Palette.white,
+                    backgroundImage: AssetImage('Images/gusetProfilepic.png'),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Column guestUI(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.44,
-            width: MediaQuery.of(context).size.width * 0.95,
-            child: Stack(
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0,right: 8,top: 8,bottom: 8),
+            child: Row(
               children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.44,
-                  width: MediaQuery.of(context).size.width * 0.95,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.06),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        elevation: 5,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Palette.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                          ),
-                          height: MediaQuery.of(context).size.height * 0.34,
-                          width: MediaQuery.of(context).size.width * 0.95,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  left: MediaQuery.of(context).size.width * 0.54,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(55.0),
-                    ),
-                    elevation: 10,
-                    child: CircleAvatar(
-                      radius: 55,
-                      backgroundImage: AssetImage('Images/gusetProfilepic.png'),
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: MediaQuery.of(context).size.width * 0.06,
-                  top: MediaQuery.of(context).size.height * 0.12,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome',
-                        style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: Palette.orange),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30.0, top: 35),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                'Sgined in first to manage your profile.',
-                                style: TextStyle(
-                                    color: Palette.actHubGrey.withOpacity(0.33),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
-                                minFontSize: 12,
-                                maxLines: 3,
-                              ),
-                              SizedBox(height: 10),
-                              AutoSizeText(
-                                'you haven\'t signed in yet. Please sign in to access full experience',
-                                style: TextStyle(
-                                    color: Palette.actHubGrey.withOpacity(0.33),
-                                    fontSize: 15),
-                                minFontSize: 12,
-                                maxLines: 3,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  bottom: MediaQuery.of(context).size.height * 0.045,
-                  left: MediaQuery.of(context).size.width * 0.09,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.01,
-                      right: MediaQuery.of(context).size.width * 0.01,
-                      top: MediaQuery.of(context).size.height * 0.39,
-                    ),
-                    child: SignInButtonBuilder(
-                      text: 'Sign in ',
-                      innerPadding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.27),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, SignIn.id);
-                      },
-                      backgroundColor: Palette.blue,
-                      width: MediaQuery.of(context).size.width * 0.75,
-                    ),
-                  ),
-                ),
+                buttonCard(context, 'Contact us','Images/contact.png', ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                buttonCard(context, 'About Us', 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
               ],
             ),
           ),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.35,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buttonCard(context, "Contact Us", 'Images/contact.svg',
-                      ContactUsPage.id),
-                  buttonCard(
-                      context, "About Us", 'Images/act.png', AboutUsScreen.id),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buttonCard(context, "Privacy Policy",
-                      'Images/privacy_policy.svg', PrivacyPolicy.id),
-                  buttonCard(context, "Language", 'Images/language.svg',
-                      LanguageScreen.id),
-                ],
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0,right: 8.0),
+            child: Row(
+              children: [
+                buttonCard(context, 'Privacy Policy','Images/privacy_policy.png', PrivacyPolicy.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                buttonCard(context, 'Languge', 'Images/language.png', LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
+
+
   buttonCard(
-      BuildContext context, String text, String image_Path, String route) {
+      BuildContext context, String text, String image_Path, String route,double height, double width) {
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(0.5),
@@ -502,13 +391,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    text == 'About Us'
-                        ? Image.asset('Images/act.png')
-                        : SvgPicture.asset(
-                            image_Path,
-                            height: 35,
-                            color: Palette.actHubYellow,
-                          ),
+                         Image.asset(image_Path),
                     SizedBox(height: 15),
                     Text(
                       '$text',
@@ -520,8 +403,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              width: MediaQuery.of(context).size.width * 0.45,
-              height: MediaQuery.of(context).size.height * 0.16,
+              width: width,
+              height: height,
             ),
           ],
         ),
@@ -529,6 +412,49 @@ class _ProfilePageState extends State<ProfilePage> {
       onTap: () {
         Navigator.pushNamed(context, route);
       },
+    );
+  }
+  horizontalButton( BuildContext context,
+      {String text,
+      String image_Path,
+      String route,
+      double height,
+      double width,double gap}){
+   return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      elevation: 5,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Palette.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(17),
+          ),
+        ),
+        width: width,
+        height: height,
+        child: Center(
+          child: ListTile(
+            leading:Image.asset(
+              image_Path,
+              height: 40,
+            ) ,
+            title: Text(text,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Palette.actHubGrey,
+                  fontSize: 20),
+
+            ),
+            horizontalTitleGap: gap,
+            onTap: () {
+              Navigator.pushNamed(context, route);
+            },
+
+          ),
+        ),
+      ),
     );
   }
 }

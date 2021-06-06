@@ -13,404 +13,525 @@ class SignUpFormPage extends StatefulWidget {
 class _SignUpFormPageState extends State<SignUpFormPage> {
   @override
   Widget build(BuildContext context) {
-    bool isUser=true; // make it true to show the user form
-
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xffEFEFEF),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                'Images/HeaderLogoB.png',
-                fit: BoxFit.scaleDown,
-              ),
-              SafeArea(
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  //onPressed:() => Navigator.pop(context, false),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-
-            ],
-          ),
-          isUser?UserForm(context) :Advertiser_SP_Info(context,serviceProvider: false),
-          SizedBox(
-            height: MediaQuery.of(context).size.height *0.03,
-          ),
-          GestureDetector(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 10,
-              child: Container(
-                  width: MediaQuery.of(context).size.width*0.73,
-                  height: MediaQuery.of(context).size.height*0.05,
-                  decoration: const BoxDecoration(
-                    color: Palette.actHubGreen,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: FittedBox(
+                    child: Image.asset(
+                      'Images/HeaderLogoB.png',
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  child: Center(
-                    child: Text(isUser?'Sign Up':'Next',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Palette.white)),
-                  )),
+                ),
+                SafeArea(
+                  child: Column(
+                    children: [
+                      PaymentInformation(context),
+                      GestureDetector(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          elevation: 10,
+                          child: Container(
+                              width: 310,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                color: Palette.actHubGreen,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text('Sign Up',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.white)),
+                              )),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height *0.03,
-          ),
-          SafeArea(
-            child: Container(
-                height: 50,
-                width: 130,
-                child: Image.asset('Images/ActHubG.png')),
-          )
-        ],
+            SafeArea(
+              child: Container(
+                  height: 50,
+                  width: 130,
+                  child: Image.asset('Images/ActHubG.png')),
+            )
+          ],
+        ),
       ),
     );
   }
 
- UserForm(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.topCenter,
+  Column UserForm(BuildContext context) {
+    return Column(
       children: [
-        Column(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height:MediaQuery.of(context).size.height*0.01),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 10,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    color: Palette.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                  ),
-                  width:MediaQuery.of(context).size.width*0.9,
-                  height:MediaQuery.of(context).size.height*0.47,
-                  child: Column(
-                    children: [
-                      SizedBox(height: MediaQuery.of(context).size.height*0.015,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'FULL NAME ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'EMAIL ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'PASSWORD ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'BIRTHDAY ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'COUNTRY ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'STATE ',
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              //onPressed:() => Navigator.pop(context, false),
+              onPressed: () => Navigator.pop(context),
             ),
           ],
         ),
-        Positioned(
-          left:MediaQuery.of(context).size.width*0.08,
-          child: Text(
-            'User',
-            style: TextStyle(
-                color: Palette.actHubGreen,
-                fontWeight: FontWeight.bold,
-                fontSize: 25),
-          ),
+        SizedBox(
+          height: 150,
         ),
-        Padding(
-          padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height *0.45),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+        Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Container(
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      height: 380,
+                      width: 351,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'FULL NAME ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'EMAIL ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'PASSWORD ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'BIRTHDAY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'COUNTRY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'STATE ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
             ),
-            elevation: 10,
-            child: Image.asset(
-              'Images/user.png',
+            Padding(
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
+              child: Container(
+                  height: 100,
+                  width: 100,
+                  child: Text(
+                    'User',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  )),
             ),
-          ),
-        ),
-        Padding(
-          padding:EdgeInsets.only(top: MediaQuery.of(context).size.height *0.47),
-          child: Center(
-              child: Text(
+            Padding(
+              padding: const EdgeInsets.only(top: 360.0),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Image.asset(
+                    'Images/user.png',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 380.0),
+              child: Center(
+                  child: Text(
                 'User',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25),
               )),
-        )
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
-
   }
-// This method includes both forms for Service Provider and Advertiser , and the Payment Information when button Next is bressed
- //**Next Button is not working yet
-Advertiser_SP_Info(BuildContext context, {bool serviceProvider}) {
-    // make it true to show the payment information when the selected user is Service Provider or advertiser
-  bool nextIsPressed=false;
-    return Stack(
-      alignment: AlignmentDirectional.topCenter,
+
+  Column CompanyInformation(BuildContext context) {
+    return Column(
       children: [
-        Column(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height:MediaQuery.of(context).size.height*0.01),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 10,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    color: Palette.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                  ),
-                  width:MediaQuery.of(context).size.width*0.9,
-                  height:MediaQuery.of(context).size.height*0.47,
-                  child: nextIsPressed?Column(
-                    children: [
-                    SizedBox(height: MediaQuery.of(context).size.height*0.03),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'CREDIT NUMBER',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'NAME ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'CVV ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'DATE ',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ):Column(
-                    children: [
-                      SizedBox(height: MediaQuery.of(context).size.height*0.015,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'COMPANY / NAME ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'EMAIL ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'PASSWORD ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'COUNTRY ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'CITY ',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          decoration: const InputDecoration(
-                            labelStyle: TextStyle(
-                                color: Colors.black, fontSize: 12),
-                            hintText: 'What do people call you?',
-                            labelText: 'PHONE ',
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              //onPressed:() => Navigator.pop(context, false),
+              onPressed: () => Navigator.pop(context),
             ),
           ],
         ),
-        Positioned(
-          left:MediaQuery.of(context).size.width*0.08,
-          child: Text(
-            nextIsPressed?'Payment Info': serviceProvider? 'Service Provider':'Advertiser',
-            style: TextStyle(
-                color: Palette.actHubGreen,
-                fontWeight: FontWeight.bold,
-                fontSize: 25),
-          ),
+        SizedBox(
+          height: 150,
         ),
-        Padding(
-          padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height *0.45),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+        Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Container(
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      height: 380,
+                      width: 351,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'COMPANY NAME ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'EMAIL ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'PASSWORD ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'COUNTRY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'CITY ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'PHONE ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
             ),
-            elevation: 10,
-            child: Image.asset(
-              serviceProvider?  'Images/serviceProvider.png': 'Images/advertiser.png',
+            Padding(
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
+              child: Container(
+                  height: 100,
+                  child: Text(
+                    'Company Information',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  )),
             ),
-          ),
-        ),
-        Padding(
-          padding:EdgeInsets.only(top: MediaQuery.of(context).size.height *0.47),
-          child: Center(
-              child: Text(
-                serviceProvider? 'Service Provider':'Advertiser',
+            Padding(
+              padding: const EdgeInsets.only(top: 360.0),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Image.asset(
+                    'Images/serviceProvider.png',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 380.0),
+              child: Center(
+                  child: Text(
+                'Service Provider',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25),
               )),
-        )
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
-
   }
 
+  Column PaymentInformation(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              //onPressed:() => Navigator.pop(context, false),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 150,
+        ),
+        Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Container(
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      height: 300,
+                      width: 351,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'CREDIT NUMBER',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'NAME ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'CVV ',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: TextFormField(
+                              cursorColor: Colors.black,
+                              decoration: const InputDecoration(
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 12),
+                                hintText: 'What do people call you?',
+                                labelText: 'DATE ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 45, bottom: 20),
+              child: Container(
+                  height: 100,
+                  child: Text(
+                    'Payment Information',
+                    style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 280.0),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: Image.asset(
+                    'Images/advertiser.png',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 300.0),
+              child: Center(
+                  child: Text(
+                'Advertiser',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              )),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+      ],
+    );
+  }
 }

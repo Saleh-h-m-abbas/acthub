@@ -1,6 +1,7 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/ActivityPage.dart';
 import 'package:acthub/Screens/SignIn.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,7 +14,7 @@ class ManagementPage extends StatefulWidget {
 }
 
 class _ManagementPageState extends State<ManagementPage> {
-  bool guestOrUser = true;
+  bool isGuest = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,178 +23,209 @@ class _ManagementPageState extends State<ManagementPage> {
           return new Future.value(false);
         },
         child: MaterialApp(
-          home: guestOrUser ? userPage() : guestPage(),
-        ));
-  }
+          home:Scaffold(
+            backgroundColor: Palette.scaffold,
+            appBar:  isGuest?AppBar(
+              centerTitle: false,
+              toolbarHeight: MediaQuery.of(context).size.height*0.074,
+              elevation: 0,
+              backgroundColor: Palette.scaffold,
+              title: Container(
+                height: MediaQuery.of(context).size.height*0.05,
+                width: MediaQuery.of(context).size.width*0.45,
 
-  Widget guestPage() {
-    return Scaffold(
-      backgroundColor: Palette.scaffold,
-      appBar: AppBar(
-        centerTitle: false,
-        toolbarHeight: 60,
-        elevation: 0,
-        backgroundColor: Palette.scaffold,
-        title: Text(
-          'Management',
-          style: TextStyle(
-              fontSize: 36, fontWeight: FontWeight.bold, color: Palette.orange),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 52.0, top: 10.5),
-            child: CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.white,
-              backgroundImage: AssetImage('Images/gusetProfilepic.png'),
-            ),
-          )
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(15),
-        child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: Column(
+                child: AutoSizeText(
+                  'Management',
+                  style: TextStyle(
+                      fontSize: 36, fontWeight: FontWeight.bold, color: Palette.orange),
+                  maxLines: 1,
+                ),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 52.0, top: 10.5),
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+                  ),
+                )
+              ],
+            ): AppBar(
+            centerTitle: false,
+            toolbarHeight: MediaQuery.of(context).size.height*0.074,
+            elevation: 0,
+            backgroundColor: Palette.white,
+            title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0, top: 15),
-                  child: Text(
-                    'Welcome',
+                Container(
+                  height: MediaQuery.of(context).size.height*0.05,
+                  width: MediaQuery.of(context).size.width*0.23,
+                  child: AutoSizeText(
+                    'Saved', // name of activity
                     style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
                         color: Palette.orange),
+                    maxLines: 1,
                   ),
                 ),
-                Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 20,
+                Padding(
+                  padding: const EdgeInsets.only(left: 40.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height*0.024,
+                    width: MediaQuery.of(context).size.width*0.13,
+                    child:AutoSizeText(
+                      'activites', //name of main category
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Palette.actHubGreen.withOpacity(0.35),
                       ),
-                      Text(
-                        'Sgined in first to access this feature.',
-                        //name of main category
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.actHubGreen.withOpacity(0.35),
-                        ),
-                      ),
-                      Image.asset(
-                        'Images/human.png',
-                        height: MediaQuery.of(context).size.height * 0.45,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Text(
-                          "you haven't signed in yet. please sign in\n to manage your activity in application.",
-                          style: TextStyle(
-                            fontSize: 19,
-                            color: Palette.actHubGreen.withOpacity(0.50),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Container(
-                          width: 318,
-                          height: 45,
-                          child: ElevatedButton(
-                              child: Text('Sign in',
-                                  style: TextStyle(
-                                    fontSize: 19,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  )), //to style the text of buttons
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color(0xff475EEE) // background
-                                  // foreground
-                                  ), //to set the color of buttons
-                              onPressed: () {
-                                Navigator.pushNamed(context, SignIn.id);
-                              }),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 )
               ],
             ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 52.0, top: 10.5),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(
+                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                    ),
+                    Positioned(
+                        top: 35,
+                        left: 0,
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          decoration: BoxDecoration(
+                              color: Palette.online,
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 2.0, color: Palette.white)),
+                        ))
+                  ],
+                ),
+              )
+            ],
           ),
-        ),
-      ),
+           body:isGuest ? guestPage() : userPage(),)
+        ));
+  }
+
+  Widget guestPage() {
+    return Padding(
+          padding: EdgeInsets.only(top: 30, left: 15,bottom: 15,right: 15),
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Container(
+              height: MediaQuery.of(context).size.height *0.78 ,
+              width: MediaQuery.of(context).size.width,
+
+
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0, top: 15),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height*0.05,
+                      width: MediaQuery.of(context).size.width*0.3,
+                      child: AutoSizeText(
+                        'Welcome',
+                        style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.orange),
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height*0.02,
+                          width: MediaQuery.of(context).size.width*0.55,
+
+                          child: AutoSizeText(
+                            'Sgined in first to access this feature.',
+                            //name of main category
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Palette.actHubGreen.withOpacity(0.35),
+                            ),
+                            maxLines: 1,
+                          ),
+                        ),
+                        Image.asset(
+                          'Images/human.png',
+                          height: MediaQuery.of(context).size.height * 0.45,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width*0.766,
+                            height: MediaQuery.of(context).size.height*0.059,
+                            child: AutoSizeText(
+                              "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Palette.actHubGreen.withOpacity(0.50),
+                              ),
+                              maxLines: 2,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20,left: 15.0,right: 15.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width*0.766,
+                            height: MediaQuery.of(context).size.height*0.054,
+                            child: ElevatedButton(
+                                child: AutoSizeText('Sign in',
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                maxLines: 1,), //to style the text of buttons
+                                style: ElevatedButton.styleFrom(
+                                    primary: Palette.blue// background
+                                    // foreground
+                                    ), //to set the color of buttons
+                                onPressed: () {
+                                  Navigator.pushNamed(context, SignIn.id);
+                                }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+
     );
+
   }
 
   Widget userPage() {
-    return Scaffold(
-      backgroundColor: Palette.scaffold,
-      appBar: AppBar(
-        centerTitle: false,
-        toolbarHeight: 60,
-        elevation: 0,
-        backgroundColor: Palette.scaffold,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Saved', // name of activity
-              style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Palette.orange),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: Text(
-                'activites', //name of main category
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Palette.actHubGreen.withOpacity(0.35),
-                ),
-              ),
-            )
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 52.0, top: 10.5),
-            child: Stack(
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage(
-                      'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                ),
-                Positioned(
-                    top: 35,
-                    left: 0,
-                    child: Container(
-                      height: 15,
-                      width: 15,
-                      decoration: BoxDecoration(
-                          color: Palette.online,
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Palette.white)),
-                    ))
-              ],
-            ),
-          )
-        ],
-      ),
-      body: Padding(
+    return Padding(
         padding: EdgeInsets.all(15),
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -216,7 +248,6 @@ class _ManagementPageState extends State<ManagementPage> {
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -244,26 +275,33 @@ class _ManagementPageState extends State<ManagementPage> {
               left: 25,
               child: Row(
                 children: [
-                  SvgPicture.asset(
-                    'Images/Like.svg',
-                    height: 30,
-                    color: Palette.orange,
+                  Container(
+                    child: SvgPicture.asset(
+                      'Images/Like.svg',
+                      height: MediaQuery.of(context).size.height*0.027,
+                      color: Palette.orange,
+                    ),
+                   // color: Colors.pink,
                   ),
                   Padding(
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.2),
-                    child: Text(
-                      'Hiking Tour',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                              blurRadius: 10,
-                              color: Colors.black.withOpacity(0.35),
-                              offset: Offset(5, 5))
-                        ],
+                    child: Container(
+                      height: MediaQuery.of(context).size.height*0.027,
+                      width: MediaQuery.of(context).size.width*0.227,
+                      child: Text(
+                        'Hiking Tour',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(0.35),
+                                offset: Offset(5, 5))
+                          ],
+                        ),
                       ),
                     ),
                   )
