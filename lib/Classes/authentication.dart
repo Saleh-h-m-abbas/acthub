@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -18,7 +19,6 @@ class Authentication {
       ),
     );
   }
-
   static Future<FirebaseApp> initializeFirebase({
     BuildContext context,
   }) async {
@@ -36,7 +36,6 @@ class Authentication {
 
     return firebaseApp;
   }
-
   //*****************************************************************************************************************************
   static Future<User> signInWithGoogle({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -156,10 +155,6 @@ class Authentication {
                 }
               }
             });
-
-
-
-
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
                 content:
@@ -185,7 +180,6 @@ class Authentication {
     }
     return user;
   }
-
   static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
@@ -201,7 +195,6 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
   static Future<User> signInWithFacebook({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -304,10 +297,6 @@ class Authentication {
             }
           }
         });
-
-
-
-
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
             content: 'The account already exists with a different credential',
@@ -329,7 +318,6 @@ class Authentication {
     }
     return Facebookuser;
   }
-
   static Future<void> signOutFacebook({BuildContext context}) async {
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     FacebookLogin facebookLogin = FacebookLogin();
@@ -349,7 +337,39 @@ class Authentication {
       );
     }
   }
-
+  //*****************************************************************************************************************************
+  static Future<UserCredential> signInWithTwitter({BuildContext context}) async {
+      // Create a TwitterLogin instance
+      final TwitterLogin twitterLogin = new TwitterLogin(
+        consumerKey: '<your consumer key>',
+        consumerSecret:' <your consumer secret>',
+      );
+      // Trigger the sign-in flow
+      final TwitterLoginResult loginResult = await twitterLogin.authorize();
+      // Get the Logged In session
+      final TwitterSession twitterSession = loginResult.session;
+      // Create a credential from the access token
+      final twitterAuthCredential = TwitterAuthProvider.credential(
+        accessToken: twitterSession.token,
+        secret: twitterSession.secret,
+      );
+      return  FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+    // Once signed in, return the UserCredential
+    //return user;
+  }
+  static Future<void> signOutTwitter({BuildContext context}) async {
+    try {
+      if (!kIsWeb) {
+        await FirebaseAuth.instance.signOut();
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        Authentication.customSnackBar(
+          content: 'Error signing out. Try again.',
+        ),
+      );
+    }
+  }
   //*****************************************************************************************************************************
   static Future<User> signInUsingEmailPassword({
     String email,
@@ -385,7 +405,6 @@ class Authentication {
 
     return user;
   }
-
   static Future<User> registerUsingEmailPassword({
     String name,
     String email,
@@ -427,7 +446,6 @@ class Authentication {
 
     return user;
   }
-
   static Future<User> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await user.reload();
@@ -435,7 +453,6 @@ class Authentication {
     return refreshedUser;
   }
   //*****************************************************************************************************************************
-
   Future<void> test({BuildContext context}) async {
     // Trigger the Google Authentication flow.
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
