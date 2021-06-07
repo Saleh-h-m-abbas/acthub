@@ -37,46 +37,44 @@ class TermsAndConditions extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.15,
-                  vertical: MediaQuery.of(context).size.height*0.02),
-              child: Expanded(
-                child: Container(
+            Container(
+              height: MediaQuery.of(context).size.height*0.05,
+              width: MediaQuery.of(context).size.width*0.55,
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.6,
+                width: MediaQuery.of(context).size.width*0.5,
+                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+                ),
+                child: Center(
                   child: AutoSizeText(
-                    'Terms And Conditions ',
-                    maxFontSize: 25,
-                    minFontSize: 18,
-                    textAlign: TextAlign.justify,
+                    'Terms And Conditions',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Palette.lightOrange,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,fontSize: 30),
                   ),
                 ),
               ),
             ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
-                    horizontal: MediaQuery.of(context).size.width*0.05  ),
+            Container(
+              height: MediaQuery.of(context).size.height*0.5,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
+                  horizontal: MediaQuery.of(context).size.width*0.05  ),
 
-                child: SingleChildScrollView(
-                  child: AutoSizeText(
-                    Gettext,
-                    minFontSize: 18,
-                    maxFontSize: 25,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(wordSpacing: 0.1),
-                  ),
-                ),
-
+              child: AutoSizeText(
+                Gettext,
+                textAlign: TextAlign.center,
+                style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+                overflow: TextOverflow.visible,
               ),
+
             ),//Contain Column for two texts, expanded for actHub image
             // contain text widget to get privacy policy text from firebase
             Container(
-                height: MediaQuery.of(context).size.height*0.09,
-                width: MediaQuery.of(context).size.width*0.55,
-                child: Image.asset('Images/ActHubOLogo.png')) //contain ACTHUB text picture
+                height: MediaQuery.of(context).size.height*0.06,
+                width: MediaQuery.of(context).size.width*0.4,
+                child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
           ],
         ),
     );

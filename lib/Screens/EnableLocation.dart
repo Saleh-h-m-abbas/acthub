@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/YourData.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geocoder/geocoder.dart';
@@ -8,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 class EnableLocation extends StatefulWidget {
   static const String id = 'EnableLocation';
@@ -18,7 +19,7 @@ class EnableLocation extends StatefulWidget {
 }
 
 class _EnableLocationState extends State<EnableLocation> {
-  String Gettext = 'locationText'; //variable to get location text from firebase
+  String Gettext = 'ActHub gets your location for you to get better experience while using the app , however you can adjust your , location settings at any time.'; //variable to get location text from firebase
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   sharedData() async {
@@ -37,20 +38,20 @@ class _EnableLocationState extends State<EnableLocation> {
   void _requestPermissions() {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
+        IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+      alert: true,
+      badge: true,
+      sound: true,
+    );
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
+        MacOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+      alert: true,
+      badge: true,
+      sound: true,
+    );
   }
 
   @override
@@ -62,53 +63,63 @@ class _EnableLocationState extends State<EnableLocation> {
         child: MaterialApp(
           home: Scaffold(
             backgroundColor: Color(0xffEFEFEF),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  'Images/Location.png',
-                ),
-                // contain enable location picture
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: Text(
-                    Gettext,
-                    style: TextStyle(
-                      fontSize: 18,
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    'Images/Location.png',
+                    height: MediaQuery.of(context).size.height*0.4,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.fill,
+                  ), // contain enable location picture
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.2,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
+                        horizontal: MediaQuery.of(context).size.width*0.1 ),
+                    child: AutoSizeText(
+                      Gettext,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+                      overflow: TextOverflow.visible,
                     ),
+
                   ),
-                ),
-                //contain text widget to get location text from firebase
-                Container(
-                  width: MediaQuery.of(context).size.width*0.75,
-                  height: MediaQuery.of(context).size.height*0.055,
-                  child: ElevatedButton(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Enable Location',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Palette.actHubGreen,
-                              fontWeight: FontWeight.bold,
-                            )),
-                      ),
-                      onPressed: () {
-                        getLocation();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background
-                        // foreground
-                      )),
-                ),
-                //contain the button
-                SafeArea(
-                  child: Container(
-                      height: MediaQuery.of(context).size.height*0.05,
-                      width: MediaQuery.of(context).size.width*0.3,
-                      child: Image.asset('Images/ActHubOLogo.png')),
-                )
-                //contain ACTHUB text logo
-              ],
+                  Padding(
+                    padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02,bottom: MediaQuery.of(context).size.height*0.08),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width*0.9,
+                      height: MediaQuery.of(context).size.height*0.055,
+                      child: ElevatedButton(
+
+                          child: Padding(
+                            padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
+                            child: AutoSizeText('Enable Location',
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Palette.actHubGreen,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
+                          onPressed: () {
+                            getLocation();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white, // background
+                            // foreground
+                          )),
+                    ),
+                  ),//contain text widget to get location text from firebase
+             //contain the button
+                  Container(
+                      height: MediaQuery.of(context).size.height*0.06,
+                      width: MediaQuery.of(context).size.width*0.4,
+                      child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
+                  //contain ACTHUB text logo
+                ],
+              ),
             ),
           ),
         ));
@@ -136,7 +147,7 @@ class _EnableLocationState extends State<EnableLocation> {
     final coordinates = new Coordinates(position.latitude, position.longitude);
     print(coordinates);
     var addresses =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    await Geocoder.local.findAddressesFromCoordinates(coordinates);
     var first = addresses.first;
     print("${first.featureName} : ${first.addressLine}");
     if (isLocationServiceEnabled == true) {
