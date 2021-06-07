@@ -3,8 +3,11 @@ import 'package:acthub/Api/translation_widget.dart';
 import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Design/Button.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInPage extends StatefulWidget {
@@ -16,21 +19,26 @@ class _SignInPageState extends State<SignInPage> {
   String defaultLocale;
   var fromLanguageCode;
   var toLanguageCode;
+
   @override
   void initState() {
     checkDeviceLanguage();
     super.initState();
   }
+
   checkDeviceLanguage() async {
     defaultLocale = Platform.localeName;
     print(defaultLocale);
     var arr = defaultLocale.split("_");
-    String deviceLang=arr[0];
+    String deviceLang = arr[0];
     print(deviceLang);
-    fromLanguageCode = Translations.getLanguageFromCode("en"); //todo: DEVICE LANGUGE language from code
-    print( fromLanguageCode);
-    toLanguageCode = Translations.getLanguageFromCode(deviceLang); //todo: get language from code that will be convert to it by setting or by device origial language  also Shared Preferance
+    fromLanguageCode = Translations.getLanguageFromCode(
+        "en"); //todo: DEVICE LANGUGE language from code
+    print(fromLanguageCode);
+    toLanguageCode = Translations.getLanguageFromCode(
+        "ar"); //todo: get language from code that will be convert to it by setting or by device origial language  also Shared Preferance
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,16 +51,19 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 5,
             ),
-            TranslationWidget(message: "مرحبا", fromLanguage: fromLanguageCode, toLanguage: toLanguageCode, builder: (translatedMessage) =>
-                Text(
-                  translatedMessage,
-                  style:TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
+            TranslationWidget(
+              message: "مرحبا",
+              fromLanguage: fromLanguageCode,
+              toLanguage: toLanguageCode,
+              builder: (translatedMessage) => Text(
+                translatedMessage,
+                style: TextStyle(
+                  fontFamily: 'Segoe UI',
+                  fontSize: 16.0,
+                  color: Colors.black,
                 ),
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
                 padding: EdgeInsets.only(top: 10),
@@ -63,21 +74,23 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 5,
             ),
-            TranslationWidget(message: "Login for full enjoyable experience", fromLanguage: fromLanguageCode, toLanguage: toLanguageCode, builder: (translatedMessage) =>
-                Text(
-                  translatedMessage,
-                  style:TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
+            TranslationWidget(
+              message: "Login for full enjoyable experience",
+              fromLanguage: fromLanguageCode,
+              toLanguage: toLanguageCode,
+              builder: (translatedMessage) => Text(
+                translatedMessage,
+                style: TextStyle(
+                  fontFamily: 'Segoe UI',
+                  fontSize: 16.0,
+                  color: Colors.black,
                 ),
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(
               height: 10,
             ),
-
             GoogleSignInButton(),
             SizedBox(
               height: 10,
@@ -101,8 +114,7 @@ class _SignInPageState extends State<SignInPage> {
                 children: <Widget>[
                   Align(
                       alignment: Alignment(0.0, 0.3),
-                      child: SvgPicture.asset("assets/Component 34 – 1.svg")
-                  ),
+                      child: SvgPicture.asset("assets/Component 34 – 1.svg")),
                 ],
               ),
             ),
@@ -110,14 +122,103 @@ class _SignInPageState extends State<SignInPage> {
               height: 10,
             ),
             anonymousSignInButton(),
+
+            LinkedButton(),
+
+           ElevatedButton(
+
+              onPressed:() async {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                try {
+                  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: "barry.allen@example.com",
+                      password: "SuperSecretPassword!"
+                  );
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    print('The password provided is too weak.');
+                  } else if (e.code == 'email-already-in-use') {
+                    print('The account already exists for that email.');
+                    print(e.email);
+                    print(e.credential);
+                    print(e.phoneNumber);
+                    print(e.tenantId);
+                    print(e.code);
+                    print(e.message);
+                    print(e.stackTrace);
+                    List<String> userSignInMethods = await auth.fetchSignInMethodsForEmail(e.email);
+                    print(userSignInMethods.first);
+                  }
+
+                } catch (e) {
+                  print(e);
+                }
+              }, child: const Text('barry'),
+            ),
+           ElevatedButton(
+              onPressed:() async {
+                FirebaseAuth.instance
+                    .authStateChanges()
+                    .listen((User user) {
+                  if (user == null) {
+                    print('User is currently signed out!');
+                  } else {
+                    print('User is signed in!');
+                  }
+                });
+                FirebaseAuth.instance
+                    .idTokenChanges()
+                    .listen((User user) {
+                  if (user == null) {
+                    print('User is currently signed out!');
+                  } else {
+                    print('User is signed in!');
+                  }
+                });
+                FirebaseAuth.instance
+                    .userChanges()
+                    .listen((User user) {
+                  if (user == null) {
+                    print('User is currently signed out!');
+                  } else {
+                    print('User is signed in!');
+                  }
+                });
+
+
+                FirebaseAuth.instance
+                    .authStateChanges()
+                    .listen((User user) {
+                  if (user != null) {
+                    print('User management');
+                    print(user.uid);
+                  }
+                });
+
+                var currentUser = FirebaseAuth.instance.currentUser;
+
+                if (currentUser != null) {
+                  print(currentUser.uid);
+                }
+
+              }, child: const Text('Authentication state'),
+            ),
+
+
+
+
+
+
+
           ],
         ),
       ),
     ));
   }
+
   Padding SignIn(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5,0,5,0),
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: GestureDetector(
         onTap: () async {
           Navigator.push(
@@ -144,23 +245,26 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ],
               ),
-              child: TranslationWidget(message: "Sign in by email", fromLanguage: fromLanguageCode, toLanguage: toLanguageCode, builder: (translatedMessage) =>
-                  Text(
-                    translatedMessage,
-                    style:TextStyle(
-                      fontFamily: 'Segoe UI',
-                      fontSize: 16.0,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-              ),
-
+              child: transMetod("hello world"),
             ),
           ],
         ),
       ),
     );
   }
-}
 
+  Widget transMetod(message) {
+   return TranslationWidget(
+        message: message,
+        fromLanguage: fromLanguageCode,
+        toLanguage: toLanguageCode,
+        builder: (translatedMessage) => Text(
+              translatedMessage,
+              style: TextStyle(
+                fontFamily: 'Segoe UI',
+                fontSize: 16.0,
+                color: Colors.black,
+              ),
+            ));
+  }
+}

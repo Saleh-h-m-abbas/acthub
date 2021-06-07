@@ -46,6 +46,10 @@ class _TranslationWidgetState extends State<TranslationWidget> {
       translation == null ? Container() : widget.builder(translation);
 }
 
+
+
+
+
 class MessageWidget extends StatelessWidget {
   final String translatedMessage;
 

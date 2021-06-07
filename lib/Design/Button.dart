@@ -1,14 +1,12 @@
-import 'dart:io';
-
-import 'package:acthub/Api/translation_widget.dart';
-import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Classes/authentication.dart';
-import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
+import 'package:acthub/Screens/Nested/test.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_Anonymously.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_facebook.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AppleSignInButton extends StatefulWidget {
   @override
@@ -199,7 +197,11 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
                     ),
                   ],
                 ),
-                child: Text(
+                child:
+
+
+
+                Text(
                   'Sign in with Facebook',
                   style: TextStyle(
                     fontFamily: 'Segoe UI',
@@ -208,6 +210,8 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
                   ),
                   textAlign: TextAlign.center,
                 ),
+
+
               ),
               Positioned(
                 left: 16.0,
@@ -528,4 +532,151 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
   }
 }
 
+
+
+
+class LinkedButton extends StatefulWidget {
+  @override
+  _LinkedButtonState createState() => _LinkedButtonState();
+}
+class _LinkedButtonState extends State<LinkedButton> {
+  bool _isSigningIn = false;
+  Future<void> test({BuildContext context}) async {
+    // Trigger the Google Authentication flow.
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+    // Obtain the auth details from the request.
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    // Create a new credential.
+    final GoogleAuthCredential googleCredential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,);
+    // Sign in to Firebase with the Google [UserCredential].
+    final UserCredential googleUserCredential = await FirebaseAuth.instance.signInWithCredential(googleCredential);
+    //""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    // Now let's link Twitter to the currently signed in account.
+    // Create a [FacebookLogin] instance.
+    FacebookLogin facebookLogin = FacebookLogin();
+    final FacebookLoginResult result = await facebookLogin.logIn(['email']);
+    final FacebookAccessToken accessToken = result.accessToken;
+    // AuthCredential credential = FacebookAuthProvider.credential(accessToken.token);
+    final AuthCredential FacebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
+    // Link the Twitter account to the Google account.
+    await googleUserCredential.user.linkWithCredential(FacebookAuthCredential);
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 0.0),
+        child: _isSigningIn
+            ? GestureDetector(
+          onTap: () async {
+            setState(() {
+              _isSigningIn = true;
+            });
+           await test();
+            setState(() {
+              _isSigningIn = false;
+            });
+
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => test1(), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+            },
+          child:  Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                width: 370.0,
+                height: 45.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: Offset(0, 3.0),
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                ),
+                child: Text(
+                  'Sign in with Google and facebook',
+                  style: TextStyle(
+                    fontFamily: 'Segoe UI',
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Positioned(
+                left: 16.0,
+                child: Image.asset("assets/google.png",
+                    width: 20, height: 20),
+              ),
+            ],
+          ),
+        ):
+        GestureDetector(
+          onTap: () async {
+            setState(() {
+              _isSigningIn = true;
+            });
+
+            await  test();
+            setState(() {
+              _isSigningIn = false;
+            });
+
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => test1(), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+          },
+          child:  Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                width: 370.0,
+                height: 45.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: Offset(0, 3.0),
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                ),
+                child: Text(
+                  'Sign in with Google and facebook',
+                  style: TextStyle(
+                    fontFamily: 'Segoe UI',
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Positioned(
+                left: 16.0,
+                child: Image.asset("assets/google.png",
+                    width: 20, height: 20),
+              ),
+            ],
+          ),
+        )
+    );
+  }
+}
 

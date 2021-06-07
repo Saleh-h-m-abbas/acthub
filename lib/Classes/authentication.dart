@@ -7,7 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Authentication {
-  static SnackBar customSnackBar({ String content}) {
+  static SnackBar customSnackBar({String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
       content: Text(
@@ -17,7 +17,9 @@ class Authentication {
     );
   }
 
-  static Future<FirebaseApp> initializeFirebase({BuildContext context,}) async {
+  static Future<FirebaseApp> initializeFirebase({
+    BuildContext context,
+  }) async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     User user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -33,16 +35,18 @@ class Authentication {
     return firebaseApp;
   }
 
-  static Future<User> signInWithGoogle({ BuildContext context}) async {
+  //*****************************************************************************************************************************
+  static Future<User> signInWithGoogle({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
+    bool exist = false;
 
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       try {
         final UserCredential userCredential =
-        await auth.signInWithPopup(authProvider);
+            await auth.signInWithPopup(authProvider);
 
         user = userCredential.user;
       } catch (e) {
@@ -52,34 +56,51 @@ class Authentication {
       final GoogleSignIn googleSignIn = GoogleSignIn();
 
       final GoogleSignInAccount googleSignInAccount =
-      await googleSignIn.signIn();
+          await googleSignIn.signIn();
+      String _googleUserEmail = googleSignInAccount.email; //Todo: get email from google to check it if exist or not
 
+     // print(FirebaseAuth.instance.currentUser.email);
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+            await googleSignInAccount.authentication;
 
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
+
         try {
           final UserCredential userCredential =
-          await auth.signInWithCredential(credential);
-
+              await auth.signInWithCredential(credential);
           user = userCredential.user;
+          userCredential.user.updateEmail(_googleUserEmail);
+          print(user.email);
+
+          FirebaseAuth.instance
+              .authStateChanges()
+              .listen((User user) {
+            if (user == null) {
+              print('plz sign in');
+            } else {
+              print("Email is Exist");
+              print(user.providerData);
+              print(user.providerData[0].providerId);
+            }
+          });
+
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
                 content:
-                'The account already exists with a different credential',
+                    'The account already exists with a different credential',
               ),
             );
           } else if (e.code == 'invalid-credential') {
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
                 content:
-                'Error occurred while accessing credentials. Try again.',
+                    'Error occurred while accessing credentials. Try again.',
               ),
             );
           }
@@ -92,10 +113,10 @@ class Authentication {
         }
       }
     }
-
     return user;
   }
-  static Future<void> signOut({ BuildContext context}) async {
+
+  static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
       if (!kIsWeb) {
@@ -111,46 +132,65 @@ class Authentication {
     }
   }
 
-
-  static Future<User> signInWithFacebook({ BuildContext context}) async {
+  //*****************************************************************************************************************************
+  static Future<User> signInWithFacebook({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User Facebookuser;
-    FacebookLogin facebookLogin = FacebookLogin();
 
+    FacebookLogin facebookLogin = FacebookLogin();
     final FacebookLoginResult result = await facebookLogin.logIn(['email']);
+
     final FacebookAccessToken accessToken = result.accessToken;
     AuthCredential credential =
-    FacebookAuthProvider.credential(accessToken.token);
+        FacebookAuthProvider.credential(accessToken.token);
 
-        try {
-          var a = await auth.signInWithCredential(credential);
-          Facebookuser = a.user;
-        } on FirebaseAuthException catch (e) {
-          if (e.code == 'account-exists-with-different-credential') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              Authentication.customSnackBar(
-                content:
-                'The account already exists with a different credential',
-              ),
-            );
-          } else if (e.code == 'invalid-credential') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              Authentication.customSnackBar(
-                content:
-                'Error occurred while accessing credentials. Try again.',
-              ),
-            );
-          }
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            Authentication.customSnackBar(
-              content: 'Error occurred using Google Sign In. Try again.',
-            ),
-          );
+    try {
+      var a = await auth.signInWithCredential(credential);
+      Facebookuser = a.user;
+      print(Facebookuser.providerData);
+      print(Facebookuser.providerData[0].providerId);
+      String z= Facebookuser.providerData[0].email;
+
+
+      print(z);
+      FirebaseAuth.instance
+          .authStateChanges()
+          .listen((User user) {
+        if (user.email == z) {
+          print('User is signed in! --User is currently signed out!');
+        } else {
+          print(user.email);
+          print('User is signed in!');
         }
-         return Facebookuser;
+      });
+
+
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'account-exists-with-different-credential') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          Authentication.customSnackBar(
+            content: 'The account already exists with a different credential',
+          ),
+        );
+      } else if (e.code == 'invalid-credential') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          Authentication.customSnackBar(
+            content: 'Error occurred while accessing credentials. Try again.',
+          ),
+        );
       }
-  static Future<void> signOutFacebook({ BuildContext context}) async {
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        Authentication.customSnackBar(
+          content: 'Error occurred using Google Sign In. Try again.',
+        ),
+      );
+    }
+    return Facebookuser;
+  }
+
+  static Future<void> signOutFacebook({BuildContext context}) async {
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     FacebookLogin facebookLogin = FacebookLogin();
     try {
@@ -159,9 +199,8 @@ class Authentication {
       }
       await FirebaseAuth.instance.signOut();
       await _firebaseAuth.signOut().then((onValue) {
-          facebookLogin.logOut();
-        });
-
+        facebookLogin.logOut();
+      });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         Authentication.customSnackBar(
@@ -171,13 +210,11 @@ class Authentication {
     }
   }
 
-
-
-
+  //*****************************************************************************************************************************
   static Future<User> signInUsingEmailPassword({
-     String email,
-     String password,
-     BuildContext context,
+    String email,
+    String password,
+    BuildContext context,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
@@ -210,10 +247,10 @@ class Authentication {
   }
 
   static Future<User> registerUsingEmailPassword({
-     String name,
-     String email,
-     String password,
-     BuildContext context,
+    String name,
+    String email,
+    String password,
+    BuildContext context,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
@@ -257,7 +294,32 @@ class Authentication {
     User refreshedUser = auth.currentUser;
     return refreshedUser;
   }
+  //*****************************************************************************************************************************
 
-
-
+  Future<void> test({BuildContext context}) async {
+    // Trigger the Google Authentication flow.
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+    // Obtain the auth details from the request.
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    // Create a new credential.
+    final GoogleAuthCredential googleCredential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    // Sign in to Firebase with the Google [UserCredential].
+    final UserCredential googleUserCredential =
+        await FirebaseAuth.instance.signInWithCredential(googleCredential);
+    //""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    // Now let's link Twitter to the currently signed in account.
+    // Create a [FacebookLogin] instance.
+    FacebookLogin facebookLogin = FacebookLogin();
+    final FacebookLoginResult result = await facebookLogin.logIn(['email']);
+    final FacebookAccessToken accessToken = result.accessToken;
+    // AuthCredential credential = FacebookAuthProvider.credential(accessToken.token);
+    final AuthCredential FacebookAuthCredential =
+        FacebookAuthProvider.credential(accessToken.token);
+    // Link the Twitter account to the Google account.
+    await googleUserCredential.user.linkWithCredential(FacebookAuthCredential);
+  }
 }

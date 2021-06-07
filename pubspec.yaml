@@ -43,7 +43,8 @@ dependencies:
   html_unescape: ^1.0.2
   country_codes: ^2.0.0
   devicelocale: ^0.4.1
-
+  firebase_messaging: ^10.0.0
+  http: ^0.13.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
