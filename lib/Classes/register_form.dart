@@ -154,6 +154,8 @@ class _RegisterFormState extends State<RegisterForm> {
                               .doc(user.uid)
                               .set({
                             'email': user.email,
+                            'GoogleEmail':"",
+                            'FacebookEmail':"",
                             'providerId': "password",
                             'uid': user.uid,
                             'password':_passwordController.text
