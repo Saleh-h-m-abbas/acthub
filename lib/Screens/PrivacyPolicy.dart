@@ -23,7 +23,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             children: [
               Image.asset(
                 'Images/HeaderLogoA.png',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.26,
               ),
               Positioned(
                 top:MediaQuery.of(context).size.height*0.07,

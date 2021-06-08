@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,27 +33,41 @@ class _SignInState extends State<SignIn> {
         children: [
           Image.asset(
             'Images/HeaderLogo1.png',
+            height: MediaQuery.of(context).size.height*0.35,
+            width:MediaQuery.of(context).size.width ,
+            fit: BoxFit.fill,
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            "Welcome To",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color:Color(0xff566357).withOpacity(0.8)),
+          Container(
+            height: MediaQuery.of(context).size.height*0.07,
+            width: MediaQuery.of(context).size.width*0.55,
+            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.025,
+            ),
+            child: AutoSizeText(
+              "Welcome To",
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.visible,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color:Color(0xff566357).withOpacity(0.8)),
 
+            ),
           ),
           Container(
               height:MediaQuery.of(context).size.height*0.06,
-              child: Image.asset('Images/finalLogoo.png'),),
-          SizedBox(
-            height: 10,
+              child: Image.asset('Images/finalLogoo.png',fit: BoxFit.contain,),),
+          Container(
+            height: MediaQuery.of(context).size.height*0.05,
+            width: MediaQuery.of(context).size.width*0.6,
+            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+            ),
+            child: AutoSizeText(
+              "Login for full enjoyable experience.",
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.visible,
+              maxLines: 1,
+              style: TextStyle(color:Colors.black,fontSize: 18),
+            ),
           ),
-          Text(
-            "Login for full enjoyable experience.",
-            style: TextStyle(color:Colors.black,fontSize: 12),
-          ),
           SizedBox(
-            height:30 ,
+            height: MediaQuery.of(context).size.height*0.025,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
@@ -65,7 +80,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height*0.015,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
@@ -79,7 +94,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height*0.015,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
@@ -93,7 +108,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height*0.015,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
@@ -110,7 +125,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height*0.015,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
@@ -120,8 +135,10 @@ class _SignInState extends State<SignIn> {
                 Container(
                     width:MediaQuery.of(context).size.width*0.38,
                     child: Divider(color: Palette.actHubGreen,thickness: 1,)),
-                Text(
+                AutoSizeText(
                   'Or',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.visible,
                   style: TextStyle(
                     fontFamily: 'Segoe UI',
                     fontSize: 16.0,
@@ -135,7 +152,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.height*0.015,
           ),
           Container(
             width: MediaQuery.of(context).size.width*0.85,
