@@ -108,7 +108,6 @@ class _SignInFormState extends State<SignInForm> {
                             email: _emailController.text,
                             password: _passwordController.text,
                           );
-
                           if (user != null) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -119,7 +118,6 @@ class _SignInFormState extends State<SignInForm> {
                             );
                           }
                         }
-
                         setState(() {
                           _isSigningIn = false;
                         });

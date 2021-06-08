@@ -3,6 +3,7 @@ import 'package:acthub/Classes/validator.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'custom_form_field.dart';
@@ -28,7 +29,9 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   final _registerFormKey = GlobalKey<FormState>();
-
+  CollectionReference usersdatabase =
+  FirebaseFirestore.instance.collection('users');
+  var firebaseUser = FirebaseAuth.instance.currentUser;
   bool _isSingningUp = false;
 
   Route _routeToSignInScreen() {
@@ -145,7 +148,17 @@ class _RegisterFormState extends State<RegisterForm> {
                             password: _passwordController.text,
                             context: context,
                           );
-
+                          print(user.email);
+                          usersdatabase
+                              .doc(firebaseUser.uid)
+                              .set({
+                            'email': user.email,
+                            'providerId': "password",
+                            'uid': user.uid,
+                            'password':""
+                          })
+                              .then((value) => print("User Added"))
+                              .catchError((error) => print("Failed to add user: $error"));
                           if (user != null) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -156,7 +169,6 @@ class _RegisterFormState extends State<RegisterForm> {
                             );
                           }
                         }
-
                         setState(() {
                           _isSingningUp = false;
                         });

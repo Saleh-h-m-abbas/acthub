@@ -122,10 +122,8 @@ class _SignInPageState extends State<SignInPage> {
               height: 10,
             ),
             anonymousSignInButton(),
-
             LinkedButton(),
-
-           ElevatedButton(
+            ElevatedButton(
 
               onPressed:() async {
                 FirebaseAuth auth = FirebaseAuth.instance;
@@ -155,7 +153,7 @@ class _SignInPageState extends State<SignInPage> {
                 }
               }, child: const Text('barry'),
             ),
-           ElevatedButton(
+            ElevatedButton(
               onPressed:() async {
                 FirebaseAuth.instance
                     .authStateChanges()
@@ -245,7 +243,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ],
               ),
-              child: transMetod("hello world"),
+              child: transMetod("SignIn"),
             ),
           ],
         ),

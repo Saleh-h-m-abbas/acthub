@@ -1,3 +1,4 @@
+import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_facebook.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-
+String existEmail = "", ProviderId="" , Password="";
 class Authentication {
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
@@ -19,7 +20,6 @@ class Authentication {
       ),
     );
   }
-
   static Future<FirebaseApp> initializeFirebase({
     BuildContext context,
   }) async {
@@ -37,14 +37,12 @@ class Authentication {
 
     return firebaseApp;
   }
-
-  //*****************************************************************************************************************************
+  //****************************************************************************************************************************
   static Future<User> signInWithGoogle({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     var firebaseUser = FirebaseAuth.instance.currentUser;
     User user;
-    CollectionReference usersdatabase =
-        FirebaseFirestore.instance.collection('users');
+    CollectionReference usersdatabase = FirebaseFirestore.instance.collection('users');
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
       try {
@@ -79,14 +77,14 @@ class Authentication {
               .set({
                 'email': user.email,
                 'providerId': "google.com",
-                'uid': user.uid
+                'uid': user.uid,
+                'password':""
               })
               .then((value) => print("User Added"))
               .catchError((error) => print("Failed to add user: $error"));
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             print(e.email);
-            String existEmail, ProviderId;
             FirebaseFirestore.instance
                 .collection('users')
                 .get()
@@ -94,9 +92,11 @@ class Authentication {
               querySnapshot.docs.forEach((doc) {
                 existEmail = doc["email"];
                 ProviderId = doc["providerId"];
+                Password = doc["password"];
               });
               print(existEmail);
               print(ProviderId);
+              print(Password);
               if (existEmail == e.email && ProviderId == "facebook.com") {
                 User userfacebook =
                     await Authentication.signInWithFacebook(context: context);
@@ -115,19 +115,19 @@ class Authentication {
               }
               else if (existEmail == e.email && ProviderId == "password") {
                 User user =
-                    await Authentication.signInWithGoogle(context: context);
+                await Authentication.signInUsingEmailPassword(
+                  context: context,
+                  email: existEmail,
+                  password: Password,
+                );
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => UserInfoScreenGoogle(
+                      builder: (context) => UserInfoScreenEmail(
                         user: user,
-                      ), // in this button we send a user name with this page and we must stour it in database
+                      ),
                     ),
                   );
-
-                  print(user.email);
-                  print(user.displayName);
-                  print(user.photoURL);
                 }
               }
               else if (existEmail == e.email && ProviderId == "apple.com") {
@@ -190,7 +190,6 @@ class Authentication {
     }
     return user;
   }
-
   static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
@@ -206,7 +205,6 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
   static Future<User> signInWithFacebook({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -228,14 +226,14 @@ class Authentication {
           .set({
             'email': Facebookuser.email,
             'providerId': "facebook.com",
-            'uid': Facebookuser.uid
+            'uid': Facebookuser.uid,
+            'password':''
           })
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         print(e.email);
-        String existEmail, ProviderId;
         FirebaseFirestore.instance
             .collection('users')
             .get()
@@ -261,22 +259,25 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          } else if (existEmail == e.email && ProviderId == "password") {
-            User user = await Authentication.signInWithGoogle(context: context);
+          }
+          else if (existEmail == e.email && ProviderId == "password") {
+            User user =
+            await Authentication.signInUsingEmailPassword(
+              context: context,
+              email: existEmail,
+              password: Password,
+            );
             if (user != null) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => UserInfoScreenGoogle(
+                  builder: (context) => UserInfoScreenEmail(
                     user: user,
-                  ), // in this button we send a user name with this page and we must stour it in database
+                  ),
                 ),
               );
-
-              print(user.email);
-              print(user.displayName);
-              print(user.photoURL);
             }
-          } else if (existEmail == e.email && ProviderId == "apple.com") {
+          }
+          else if (existEmail == e.email && ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -330,7 +331,6 @@ class Authentication {
     }
     return Facebookuser;
   }
-
   static Future<void> signOutFacebook({BuildContext context}) async {
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     FacebookLogin facebookLogin = FacebookLogin();
@@ -350,10 +350,8 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
-  static Future<UserCredential> signInWithTwitter(
-      {BuildContext context}) async {
+  static Future<UserCredential> signInWithTwitter({BuildContext context}) async {
     // Create a TwitterLogin instance
     final TwitterLogin twitterLogin = new TwitterLogin(
       consumerKey: '<your consumer key>',
@@ -372,7 +370,6 @@ class Authentication {
     // Once signed in, return the UserCredential
     //return user;
   }
-
   static Future<void> signOutTwitter({BuildContext context}) async {
     try {
       if (!kIsWeb) {
@@ -386,7 +383,6 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
   static Future<User> signInUsingEmailPassword({
     String email,
@@ -411,7 +407,8 @@ class Authentication {
           .set({
             'email': user.email,
             'providerId': "password",
-            'uid': user.uid
+            'uid': user.uid,
+            'password':password,
           })
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
@@ -427,9 +424,11 @@ class Authentication {
           querySnapshot.docs.forEach((doc) {
             existEmail = doc["email"];
             ProviderId = doc["providerId"];
+            Password = doc["password"];
           });
           print(existEmail);
           print(ProviderId);
+          print(Password);
           if (existEmail == e.email && ProviderId == "facebook.com") {
             User userfacebook =
             await Authentication.signInWithFacebook(context: context);
@@ -498,13 +497,6 @@ class Authentication {
             }
           } // not ready to use
         });
-
-
-
-
-
-
-
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
             content: 'No user found for that email. Please create an account.',
@@ -531,17 +523,29 @@ class Authentication {
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
-
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+    CollectionReference usersdatabase = FirebaseFirestore.instance.collection('users');
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-
       user = userCredential.user;
       await user.updateProfile(displayName: name);
       await user.reload();
       user = auth.currentUser;
+      userCredential.user.updateEmail(email);
+      print(user.email);
+      usersdatabase
+          .doc(firebaseUser.uid)
+          .set({
+        'email': user.email,
+        'providerId': "password",
+        'uid': user.uid,
+        'password':password,
+      })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
