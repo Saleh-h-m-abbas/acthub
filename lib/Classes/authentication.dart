@@ -106,38 +106,6 @@ class Authentication {
                   print(userfacebook.photoURL);
                 }
               }
-              else if (existEmail == e.email && ProviderId =="apple.com") {
-                User user = await Authentication.signInWithGoogle(context: context);
-                if (user != null) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => UserInfoScreenGoogle(
-                        user: user,
-                      ), // in this button we send a user name with this page and we must stour it in database
-                    ),
-                  );
-
-                  print(user.email);
-                  print(user.displayName);
-                  print(user.photoURL);
-                }
-              }
-              else if (existEmail == e.email && ProviderId =="twitter.com") {
-                User user = await Authentication.signInWithGoogle(context: context);
-                if (user != null) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => UserInfoScreenGoogle(
-                        user: user,
-                      ), // in this button we send a user name with this page and we must stour it in database
-                    ),
-                  );
-
-                  print(user.email);
-                  print(user.displayName);
-                  print(user.photoURL);
-                }
-              }
               else if (existEmail == e.email && ProviderId =="password") {
                 User user = await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
@@ -154,6 +122,39 @@ class Authentication {
                   print(user.photoURL);
                 }
               }
+              else if (existEmail == e.email && ProviderId =="apple.com") {
+                User user = await Authentication.signInWithGoogle(context: context);
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreenGoogle(
+                        user: user,
+                      ), // in this button we send a user name with this page and we must stour it in database
+                    ),
+                  );
+
+                  print(user.email);
+                  print(user.displayName);
+                  print(user.photoURL);
+                }
+              }// not ready to use
+              else if (existEmail == e.email && ProviderId =="twitter.com") {
+                User user = await Authentication.signInWithGoogle(context: context);
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreenGoogle(
+                        user: user,
+                      ), // in this button we send a user name with this page and we must stour it in database
+                    ),
+                  );
+
+                  print(user.email);
+                  print(user.displayName);
+                  print(user.photoURL);
+                }
+              }// not ready to use
+
             });
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
@@ -161,7 +162,8 @@ class Authentication {
                     'The account already exists with a different credential',
               ),
             );
-          } else if (e.code == 'invalid-credential') {
+          }
+          else if (e.code == 'invalid-credential') {
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
                 content:
@@ -248,38 +250,6 @@ class Authentication {
               print(user.photoURL);
             }
           }
-          else if (existEmail == e.email && ProviderId =="apple.com") {
-            User user = await Authentication.signInWithGoogle(context: context);
-            if (user != null) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => UserInfoScreenGoogle(
-                    user: user,
-                  ), // in this button we send a user name with this page and we must stour it in database
-                ),
-              );
-
-              print(user.email);
-              print(user.displayName);
-              print(user.photoURL);
-            }
-          }
-          else if (existEmail == e.email && ProviderId =="twitter.com") {
-            User user = await Authentication.signInWithGoogle(context: context);
-            if (user != null) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => UserInfoScreenGoogle(
-                    user: user,
-                  ), // in this button we send a user name with this page and we must stour it in database
-                ),
-              );
-
-              print(user.email);
-              print(user.displayName);
-              print(user.photoURL);
-            }
-          }
           else if (existEmail == e.email && ProviderId =="password") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
@@ -296,6 +266,38 @@ class Authentication {
               print(user.photoURL);
             }
           }
+          else if (existEmail == e.email && ProviderId =="apple.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+          else if (existEmail == e.email && ProviderId =="twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }// not ready to use
         });
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(

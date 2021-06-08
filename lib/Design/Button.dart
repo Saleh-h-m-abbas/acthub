@@ -197,11 +197,7 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
                     ),
                   ],
                 ),
-                child:
-
-
-
-                Text(
+                child: Text(
                   'Sign in with Facebook',
                   style: TextStyle(
                     fontFamily: 'Segoe UI',
@@ -418,6 +414,143 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
     );
   }
 }
+
+
+/*class TwitterSignInButton extends StatefulWidget {
+  @override
+  _TwitterSignInButtonState createState() => _TwitterSignInButtonState();
+}
+class _TwitterSignInButtonState extends State<TwitterSignInButton> {
+  bool _isSigningIn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 0.0),
+        child: _isSigningIn
+            ? GestureDetector(
+          onTap: () async {
+            setState(() {
+              _isSigningIn = true;
+            });
+            User user =
+            await Authentication.signInWithTwitter(context: context);
+            setState(() {
+              _isSigningIn = false;
+            });
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          },
+          child:  Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                width: 370.0,
+                height: 45.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: Offset(0, 3.0),
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                ),
+                child: Text(
+                  'Sign in with Twitter',
+                  style: TextStyle(
+                    fontFamily: 'Segoe UI',
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Positioned(
+                left: 16.0,
+                child: Image.asset("assets/google.png",
+                    width: 20, height: 20),
+              ),
+            ],
+          ),
+        ):
+        GestureDetector(
+          onTap: () async {
+            setState(() {
+              _isSigningIn = true;
+            });
+            User user =
+            await Authentication.signInWithGoogle(context: context);
+            setState(() {
+              _isSigningIn = false;
+            });
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          },
+          child:  Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                width: 370.0,
+                height: 45.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: Offset(0, 3.0),
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                ),
+                child: Text(
+                  'Sign in with Twitter',
+                  style: TextStyle(
+                    fontFamily: 'Segoe UI',
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Positioned(
+                left: 16.0,
+                child: Image.asset("assets/google.png",
+                    width: 20, height: 20),
+              ),
+            ],
+          ),
+        )
+    );
+  }
+}*/
 
 
 class anonymousSignInButton extends StatefulWidget {
