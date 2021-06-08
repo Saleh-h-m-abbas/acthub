@@ -1,4 +1,4 @@
-import 'package:acthub/Screens/Nested/test.dart';
+import 'package:acthub/Screens/Nested/CreatePasswordPage.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_facebook.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
@@ -76,7 +76,9 @@ class Authentication {
           usersdatabase
               .doc(user.uid)
               .set({
-                'email': user.email,
+                'email':"",
+                'GoogleEmail':user.email,
+                'FacebookEmail':"",
                 'providerId': "google.com",
                 'uid': user.uid,
                 'password':""
@@ -225,7 +227,9 @@ class Authentication {
       usersdatabase
           .doc(a.user.uid)
           .set({
-            'email': Facebookuser.email,
+            'email': "",
+            'GoogleEmail': "",
+            'FacebookEmail': Facebookuser.email,
             'providerId': "facebook.com",
             'uid': Facebookuser.uid,
             'password':''
@@ -437,6 +441,8 @@ class Authentication {
           .doc(user.uid)
           .set({
             'email': user.email,
+            'GoogleEmail':"",
+            'FacebookEmail':"",
             'providerId': "password",
             'uid': user.uid,
             'password':password,
@@ -572,6 +578,8 @@ class Authentication {
           .doc(user.uid)
           .set({
         'email': user.email,
+        'GoogleEmail':"",
+        'FacebookEmail':"",
         'providerId': "password",
         'uid': user.uid,
         'password':password,

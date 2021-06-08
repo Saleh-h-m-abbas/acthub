@@ -1,5 +1,5 @@
 import 'package:acthub/Classes/authentication.dart';
-import 'package:acthub/Screens/Nested/test.dart';
+import 'package:acthub/Screens/Nested/CreatePasswordPage.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_Anonymously.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';

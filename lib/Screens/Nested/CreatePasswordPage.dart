@@ -1,9 +1,7 @@
 import 'package:acthub/Classes/custom_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Classes/validator.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
-import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
