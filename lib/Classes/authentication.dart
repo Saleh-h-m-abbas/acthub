@@ -19,6 +19,7 @@ class Authentication {
       ),
     );
   }
+
   static Future<FirebaseApp> initializeFirebase({
     BuildContext context,
   }) async {
@@ -36,6 +37,7 @@ class Authentication {
 
     return firebaseApp;
   }
+
   //*****************************************************************************************************************************
   static Future<User> signInWithGoogle({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -49,12 +51,15 @@ class Authentication {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
         user = userCredential.user;
-      } catch (e) { print(e); }
+      } catch (e) {
+        print(e);
+      }
     } else {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount googleSignInAccount =
           await googleSignIn.signIn();
-      String _googleUserEmail = googleSignInAccount.email; //Todo: get email from google to check it if exist or not
+      String _googleUserEmail = googleSignInAccount
+          .email; //Todo: get email from google to check it if exist or not
       // print(FirebaseAuth.instance.currentUser.email);
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
@@ -92,13 +97,15 @@ class Authentication {
               });
               print(existEmail);
               print(ProviderId);
-              if (existEmail == e.email && ProviderId =="facebook.com") {
+              if (existEmail == e.email && ProviderId == "facebook.com") {
                 User userfacebook =
-                await Authentication.signInWithFacebook(context: context);
+                    await Authentication.signInWithFacebook(context: context);
                 if (userfacebook != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => UserInfoScreenFacebook(user: userfacebook,),// in this button we send a user name with this page and we must stour it in database
+                      builder: (context) => UserInfoScreenFacebook(
+                        user: userfacebook,
+                      ), // in this button we send a user name with this page and we must stour it in database
                     ),
                   );
                   print(userfacebook.email);
@@ -106,8 +113,9 @@ class Authentication {
                   print(userfacebook.photoURL);
                 }
               }
-              else if (existEmail == e.email && ProviderId =="password") {
-                User user = await Authentication.signInWithGoogle(context: context);
+              else if (existEmail == e.email && ProviderId == "password") {
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -122,8 +130,9 @@ class Authentication {
                   print(user.photoURL);
                 }
               }
-              else if (existEmail == e.email && ProviderId =="apple.com") {
-                User user = await Authentication.signInWithGoogle(context: context);
+              else if (existEmail == e.email && ProviderId == "apple.com") {
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -137,9 +146,10 @@ class Authentication {
                   print(user.displayName);
                   print(user.photoURL);
                 }
-              }// not ready to use
-              else if (existEmail == e.email && ProviderId =="twitter.com") {
-                User user = await Authentication.signInWithGoogle(context: context);
+              } // not ready to use
+              else if (existEmail == e.email && ProviderId == "twitter.com") {
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -153,8 +163,7 @@ class Authentication {
                   print(user.displayName);
                   print(user.photoURL);
                 }
-              }// not ready to use
-
+              } // not ready to use
             });
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
@@ -162,8 +171,7 @@ class Authentication {
                     'The account already exists with a different credential',
               ),
             );
-          }
-          else if (e.code == 'invalid-credential') {
+          } else if (e.code == 'invalid-credential') {
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
                 content:
@@ -182,6 +190,7 @@ class Authentication {
     }
     return user;
   }
+
   static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
@@ -197,12 +206,14 @@ class Authentication {
       );
     }
   }
+
   //*****************************************************************************************************************************
   static Future<User> signInWithFacebook({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User Facebookuser;
     var firebaseUser = FirebaseAuth.instance.currentUser;
-    CollectionReference usersdatabase = FirebaseFirestore.instance.collection('users');
+    CollectionReference usersdatabase =
+        FirebaseFirestore.instance.collection('users');
     FacebookLogin facebookLogin = FacebookLogin();
     final FacebookLoginResult result = await facebookLogin.logIn(['email']);
     final FacebookAccessToken accessToken = result.accessToken;
@@ -215,11 +226,12 @@ class Authentication {
       usersdatabase
           .doc(firebaseUser.uid)
           .set({
-        'email': Facebookuser.email,
-        'providerId': "facebook.com",
-        'uid': Facebookuser.uid
-      }).then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+            'email': Facebookuser.email,
+            'providerId': "facebook.com",
+            'uid': Facebookuser.uid
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         print(e.email);
@@ -234,7 +246,7 @@ class Authentication {
           });
           print(existEmail);
           print(ProviderId);
-          if (existEmail == e.email && ProviderId =="google.com") {
+          if (existEmail == e.email && ProviderId == "google.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -249,8 +261,7 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          }
-          else if (existEmail == e.email && ProviderId =="password") {
+          } else if (existEmail == e.email && ProviderId == "password") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -265,8 +276,7 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          }
-          else if (existEmail == e.email && ProviderId =="apple.com") {
+          } else if (existEmail == e.email && ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -282,7 +292,7 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-          else if (existEmail == e.email && ProviderId =="twitter.com") {
+          else if (existEmail == e.email && ProviderId == "twitter.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -297,7 +307,7 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          }// not ready to use
+          } // not ready to use
         });
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
@@ -320,6 +330,7 @@ class Authentication {
     }
     return Facebookuser;
   }
+
   static Future<void> signOutFacebook({BuildContext context}) async {
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     FacebookLogin facebookLogin = FacebookLogin();
@@ -339,26 +350,29 @@ class Authentication {
       );
     }
   }
+
   //*****************************************************************************************************************************
-  static Future<UserCredential> signInWithTwitter({BuildContext context}) async {
-      // Create a TwitterLogin instance
-      final TwitterLogin twitterLogin = new TwitterLogin(
-        consumerKey: '<your consumer key>',
-        consumerSecret:' <your consumer secret>',
-      );
-      // Trigger the sign-in flow
-      final TwitterLoginResult loginResult = await twitterLogin.authorize();
-      // Get the Logged In session
-      final TwitterSession twitterSession = loginResult.session;
-      // Create a credential from the access token
-      final twitterAuthCredential = TwitterAuthProvider.credential(
-        accessToken: twitterSession.token,
-        secret: twitterSession.secret,
-      );
-      return  FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+  static Future<UserCredential> signInWithTwitter(
+      {BuildContext context}) async {
+    // Create a TwitterLogin instance
+    final TwitterLogin twitterLogin = new TwitterLogin(
+      consumerKey: '<your consumer key>',
+      consumerSecret: ' <your consumer secret>',
+    );
+    // Trigger the sign-in flow
+    final TwitterLoginResult loginResult = await twitterLogin.authorize();
+    // Get the Logged In session
+    final TwitterSession twitterSession = loginResult.session;
+    // Create a credential from the access token
+    final twitterAuthCredential = TwitterAuthProvider.credential(
+      accessToken: twitterSession.token,
+      secret: twitterSession.secret,
+    );
+    return FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
     // Once signed in, return the UserCredential
     //return user;
   }
+
   static Future<void> signOutTwitter({BuildContext context}) async {
     try {
       if (!kIsWeb) {
@@ -372,6 +386,7 @@ class Authentication {
       );
     }
   }
+
   //*****************************************************************************************************************************
   static Future<User> signInUsingEmailPassword({
     String email,
@@ -380,16 +395,116 @@ class Authentication {
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
-
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+    CollectionReference usersdatabase =
+        FirebaseFirestore.instance.collection('users');
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       user = userCredential.user;
+      userCredential.user.updateEmail(email);
+      print(user.email);
+      usersdatabase
+          .doc(firebaseUser.uid)
+          .set({
+            'email': user.email,
+            'providerId': "password",
+            'uid': user.uid
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        print(e.email);
+        String existEmail, ProviderId;
+        FirebaseFirestore.instance
+            .collection('users')
+            .get()
+            .then((QuerySnapshot querySnapshot) async {
+          querySnapshot.docs.forEach((doc) {
+            existEmail = doc["email"];
+            ProviderId = doc["providerId"];
+          });
+          print(existEmail);
+          print(ProviderId);
+          if (existEmail == e.email && ProviderId == "facebook.com") {
+            User userfacebook =
+            await Authentication.signInWithFacebook(context: context);
+            if (userfacebook != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenFacebook(
+                    user: userfacebook,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+              print(userfacebook.email);
+              print(userfacebook.displayName);
+              print(userfacebook.photoURL);
+            }
+          }
+          else if (existEmail == e.email && ProviderId == "google.com") {
+            User user =
+            await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+          else if (existEmail == e.email && ProviderId == "apple.com") {
+            User user =
+            await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+          else if (existEmail == e.email && ProviderId == "twitter.com") {
+            User user =
+            await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+        });
+
+
+
+
+
+
+
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
             content: 'No user found for that email. Please create an account.',
@@ -407,6 +522,7 @@ class Authentication {
 
     return user;
   }
+
   static Future<User> registerUsingEmailPassword({
     String name,
     String email,
@@ -448,12 +564,14 @@ class Authentication {
 
     return user;
   }
+
   static Future<User> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await user.reload();
     User refreshedUser = auth.currentUser;
     return refreshedUser;
   }
+
   //*****************************************************************************************************************************
   Future<void> test({BuildContext context}) async {
     // Trigger the Google Authentication flow.
