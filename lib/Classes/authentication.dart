@@ -1,3 +1,4 @@
+import 'package:acthub/Screens/Nested/test.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_facebook.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_google.dart';
@@ -390,6 +391,7 @@ class Authentication {
   static Future<User> signInUsingEmailPassword({
     String email,
     String password,
+    String uid,
     BuildContext context,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -398,6 +400,32 @@ class Authentication {
     CollectionReference usersdatabase =
         FirebaseFirestore.instance.collection('users');
     try {
+
+    /*  //Todo:
+      FirebaseFirestore.instance
+          .collection('users')
+          .get()
+          .then((QuerySnapshot querySnapshot) async {
+        querySnapshot.docs.forEach((doc) {
+          existEmail = doc["email"];
+          ProviderId = doc["providerId"];
+          Password = doc["password"];
+          uid= doc["uid"];
+        });
+        print(Password);
+        if( password == "" || password == null )
+        {
+          print("please create password");
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => CreatePasswordForm(uid: uid), // in this button we send a user name with this page and we must stour it in database
+            ),
+          );
+        }
+      });*/
+
+
+
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
