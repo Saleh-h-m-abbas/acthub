@@ -17,6 +17,7 @@ import 'package:acthub/Screens/YourData.dart';
 import 'package:flutter/material.dart';
 import 'Screens/AboutUsScreen.dart';
 import 'Screens/ActivityPage.dart';
+import 'Screens/ActivityPage.dart';
 import 'Screens/ContactUsPage.dart';
 import 'Screens/EditProfileScreen.dart';
 import 'Screens/LanguageScreen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: YourData.id,
+      initialRoute:SignUpFormPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),

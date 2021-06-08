@@ -15,7 +15,7 @@ class YourData extends StatefulWidget {
 }
 
 class _YourDataState extends State<YourData> {
-  String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get Data Text from firebase
+  String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our '; //to get Data Text from firebase
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
@@ -28,10 +28,12 @@ class _YourDataState extends State<YourData> {
             children: [
               Image.asset(
                 'Images/YourData.png',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.5,
               ),
               Positioned(
-                top:MediaQuery.of(context).size.height*0.07,
+                top:MediaQuery.of(context).size.height*0.05,
                 child: Container(
                   height: MediaQuery.of(context).size.width*0.1,
                   width:MediaQuery.of(context).size.width*0.1,
@@ -48,41 +50,38 @@ class _YourDataState extends State<YourData> {
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.15,
-                vertical: MediaQuery.of(context).size.height*0.02),
-            child: Expanded(
-              child: Container(
+          Container(
+            height: MediaQuery.of(context).size.height*0.05,
+            width: MediaQuery.of(context).size.width*0.55,
+            child: Container(
+                height: MediaQuery.of(context).size.height*0.6,
+                width: MediaQuery.of(context).size.width*0.5,
+                  padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+                   ),
+              child: Center(
                 child: AutoSizeText(
                   'Your Data, Your Choice',
-                  maxFontSize: 25,
-                  minFontSize: 18,
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Palette.lightOrange,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,fontSize: 30),
                 ),
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
-                horizontal: MediaQuery.of(context).size.width*0.1 ),
-            child: SingleChildScrollView(
-              child: AutoSizeText(
-                Gettext,
-                minFontSize: 18,
-                maxFontSize: 25,
-                textAlign: TextAlign.justify,
-                style: TextStyle(wordSpacing: 0.1),
-              ),
-            ),
-          ),
-          Center(
-            child: new RichText(
-              text: new TextSpan(
+          Padding(
+            padding:  EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.03,horizontal: MediaQuery.of(context).size.width*0.12,),
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.16,
+              width: MediaQuery.of(context).size.width*0.9,
+              alignment: Alignment.topCenter,
+              child: new AutoSizeText.rich(
+               TextSpan(
                 children: [
+                  TextSpan(
+                    text: Gettext,
+                    style: new TextStyle(color: Colors.black),
+                  ),
                   TextSpan(
                     text: 'Terms And Conditions',
                     style: TextStyle(color: Colors.blue),
@@ -111,19 +110,27 @@ class _YourDataState extends State<YourData> {
                   )
                 ],
               ),
+                textAlign:TextAlign.center ,
+                overflow: TextOverflow.visible,
+                style: TextStyle(fontSize: 25),
+
+            ),
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.025,bottom: MediaQuery.of(context).size.height*0.05),
+            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02,bottom: MediaQuery.of(context).size.height*0.08),
             child: Container(
-              width: MediaQuery.of(context).size.width*0.75,
+              width: MediaQuery.of(context).size.width*0.9,
               height: MediaQuery.of(context).size.height*0.055,
               child: ElevatedButton(
+
                   child: Padding(
-                    padding:  EdgeInsets.all(8),
-                    child: Text('Accept',
+                    padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
+                    child: AutoSizeText('Accept',
+
+                        overflow: TextOverflow.visible,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           color: Palette.actHubGreen,
                           fontWeight: FontWeight.bold,
                         )),
@@ -139,12 +146,10 @@ class _YourDataState extends State<YourData> {
                   )),
             ),
           ),
-          SafeArea(
-            child: Container(
-                height: MediaQuery.of(context).size.height*0.05,
-                width: MediaQuery.of(context).size.width*0.3,
-                child: Image.asset('Images/ActHubOLogo.png')),
-          ),
+          Container(
+            height: MediaQuery.of(context).size.height*0.06,
+            width: MediaQuery.of(context).size.width*0.4,
+            child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
         ],
       ),
     );

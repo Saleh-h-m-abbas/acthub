@@ -33,7 +33,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                 SafeArea(
                   child: Column(
                     children: [
-                      PaymentInformation(context),
+                      UserForm(context),
                       GestureDetector(
                         child: Card(
                           shape: RoundedRectangleBorder(
@@ -223,12 +223,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               padding: const EdgeInsets.only(top: 380.0),
               child: Center(
                   child: Text(
-                'User',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
-              )),
+                    'User',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  )),
             )
           ],
         ),
@@ -383,12 +383,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               padding: const EdgeInsets.only(top: 380.0),
               child: Center(
                   child: Text(
-                'Service Provider',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
-              )),
+                    'Service Provider',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  )),
             )
           ],
         ),
@@ -402,16 +402,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
   Column PaymentInformation(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              //onPressed:() => Navigator.pop(context, false),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        ),
         SizedBox(
           height: 150,
         ),
@@ -519,12 +509,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               padding: const EdgeInsets.only(top: 300.0),
               child: Center(
                   child: Text(
-                'Advertiser',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
-              )),
+                    'Advertiser',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  )),
             )
           ],
         ),

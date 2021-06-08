@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/SignIn.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -24,52 +25,55 @@ class _LogInPageState extends State<LogInPage> {
             .height,
         width: MediaQuery.of(context).size.width,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Stack(
               children: [
                 Image.asset(
                   'Images/HeaderLogoB.png',
-                  fit: BoxFit.scaleDown,
+                  fit: BoxFit.fill,
+                  width: MediaQuery.of(context).size.width,
+                  height:MediaQuery.of(context).size.height*0.26,
                 ),
-                SafeArea(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () => Navigator.pop(context),
-                    )),
-              ],
-            ), //contain headerlogo and arrow back icon
-            Padding(
-              padding: EdgeInsets.only(top: 100, bottom: 15),
-              child:
-              textFiled('Username', TextInputType.emailAddress, false),
-            ),
-            //contain textfiled for user name
-            textFiled('Password', TextInputType.visiblePassword, true),
-            //text filed for password
-            Padding(
-              padding: EdgeInsets.only(top: 60, bottom: 20),
-              child: buttons('Login', Palette.actHubGreen, () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignIn()));
-              }),
-            ),
-            //contain the button of log in
-            buttons("Don't have an account?", Palette.orange, () {}), //column of text fileds and buttons
-            SafeArea(
-              child: Padding(
-                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.19),
-                child: Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.07,
-                  width: MediaQuery.of(context).size.width*0.35,
-                  child: Image.asset(
-                    'Images/ActHubG.png',
+                Positioned(
+                  top:MediaQuery.of(context).size.height*0.07,
+                  child: Container(
+                    height: MediaQuery.of(context).size.width*0.1,
+                    width:MediaQuery.of(context).size.width*0.1,
+
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back_ios,size: 30,),
+                        onPressed: () => Navigator.pop(context),
+
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ) //contain acthubpic
+              ],
+            ), //contain headerlogo and arrow back icon
+            Column(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.02),
+                  child: textFiled('Username', TextInputType.emailAddress, false),
+                ),
+                textFiled('Password', TextInputType.visiblePassword, true),
+                Padding(
+                  padding: EdgeInsets.only( bottom: MediaQuery.of(context).size.height*0.01,top: MediaQuery.of(context).size.height*0.04),
+                  child: buttons('Login', Palette.actHubGreen, (){} ),
+                ),
+                buttons("Don't have an account?", Palette.orange, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignIn()));
+                }),
+              ],
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height*0.06,
+                width: MediaQuery.of(context).size.width*0.4,
+                child: Image.asset('Images/ActHubG.png',fit: BoxFit.contain,)),//contain acthubpic
           ],
         ),
       ),
@@ -84,15 +88,15 @@ class _LogInPageState extends State<LogInPage> {
       width: MediaQuery.of(context).size.width*0.78,
       height: MediaQuery.of(context).size.height*0.05,
       decoration: BoxDecoration(color: Colors.white, //color of container
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              offset: Offset(0, 3),
-            ) //to add shadow for text filed
-          ],
-          borderRadius: BorderRadius.all(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            offset: Offset(0, 3),
+          ) //to add shadow for text filed
+        ],
+        borderRadius: BorderRadius.all(
           Radius.circular(7),
-    ),),
+        ),),
       child: TextField(
         obscureText: obscure,
         obscuringCharacter: '*',
@@ -109,7 +113,7 @@ class _LogInPageState extends State<LogInPage> {
           labelText: inputType,
           labelStyle: TextStyle(
             color: Colors.black,
-            fontSize: 19,
+            fontSize: MediaQuery.of(context).size.height*0.025,
           ), //to set the color of hint black
         ), //decorat input text
       ),
@@ -127,12 +131,17 @@ class _LogInPageState extends State<LogInPage> {
           .width * 0.7,
       height: MediaQuery.of(context).size.height*0.05,
       child: ElevatedButton(
-        child: Text(buttonText,
-            style: TextStyle(
-              fontSize: 19,
-              color: Colors.white,
-              //fontWeight: FontWeight.bold,
-            )), //to style the text of buttons
+        child: Padding(
+          padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
+          child: AutoSizeText(buttonText,
+              textAlign: TextAlign.center,
+               overflow: TextOverflow.visible,
+              style: TextStyle(
+                fontSize: 19,
+                color: Colors.white,
+                //fontWeight: FontWeight.bold,
+              )),
+        ), //to style the text of buttons
         style: ElevatedButton.styleFrom(
           primary: color, // background
           // foreground
@@ -141,4 +150,4 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-}// function of log in and dont have account buttons
+}//
