@@ -149,13 +149,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             context: context,
                           );
                           print(user.email);
+                          print(user.uid);
                           usersdatabase
-                              .doc(firebaseUser.uid)
+                              .doc(user.uid)
                               .set({
                             'email': user.email,
                             'providerId': "password",
                             'uid': user.uid,
-                            'password':""
+                            'password':_passwordController.text
                           })
                               .then((value) => print("User Added"))
                               .catchError((error) => print("Failed to add user: $error"));

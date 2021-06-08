@@ -73,7 +73,7 @@ class Authentication {
           userCredential.user.updateEmail(_googleUserEmail);
           print(user.email);
           usersdatabase
-              .doc(firebaseUser.uid)
+              .doc(user.uid)
               .set({
                 'email': user.email,
                 'providerId': "google.com",
@@ -222,7 +222,7 @@ class Authentication {
       Facebookuser = a.user;
       print(a.user.email);
       usersdatabase
-          .doc(firebaseUser.uid)
+          .doc(a.user.uid)
           .set({
             'email': Facebookuser.email,
             'providerId': "facebook.com",
@@ -232,7 +232,8 @@ class Authentication {
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'account-exists-with-different-credential') {
+      if (e.code == 'account-exists-with-different-credential')
+      {
         print(e.email);
         FirebaseFirestore.instance
             .collection('users')
@@ -241,9 +242,11 @@ class Authentication {
           querySnapshot.docs.forEach((doc) {
             existEmail = doc["email"];
             ProviderId = doc["providerId"];
+            Password = doc["password"];
           });
           print(existEmail);
           print(ProviderId);
+          print(Password);
           if (existEmail == e.email && ProviderId == "google.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
@@ -403,7 +406,7 @@ class Authentication {
       userCredential.user.updateEmail(email);
       print(user.email);
       usersdatabase
-          .doc(firebaseUser.uid)
+          .doc(user.uid)
           .set({
             'email': user.email,
             'providerId': "password",
@@ -530,6 +533,7 @@ class Authentication {
         email: email,
         password: password,
       );
+      print(password+"---------------------------------------");
       user = userCredential.user;
       await user.updateProfile(displayName: name);
       await user.reload();
@@ -537,7 +541,7 @@ class Authentication {
       userCredential.user.updateEmail(email);
       print(user.email);
       usersdatabase
-          .doc(firebaseUser.uid)
+          .doc(user.uid)
           .set({
         'email': user.email,
         'providerId': "password",
