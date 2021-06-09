@@ -10,7 +10,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-String existEmail = "", ProviderId="" , Password="";
+String EmailOnly = "",GoogleEmail = "",FacebookEmail = "",ProviderId="" , Password="";
 class Authentication {
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
@@ -93,14 +93,18 @@ class Authentication {
                 .get()
                 .then((QuerySnapshot querySnapshot) async {
               querySnapshot.docs.forEach((doc) {
-                existEmail = doc["email"];
+                EmailOnly = doc["email"];
+                GoogleEmail = doc["GoogleEmail"];
+                FacebookEmail = doc["FacebookEmail"];
                 ProviderId = doc["providerId"];
                 Password = doc["password"];
               });
-              print(existEmail);
+              print(EmailOnly);
+              print(GoogleEmail);
+              print(FacebookEmail);
               print(ProviderId);
               print(Password);
-              if (existEmail == e.email && ProviderId == "facebook.com") {
+              if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email)  && ProviderId == "facebook.com") {
                 User userfacebook =
                     await Authentication.signInWithFacebook(context: context);
                 if (userfacebook != null) {
@@ -116,11 +120,11 @@ class Authentication {
                   print(userfacebook.photoURL);
                 }
               }
-              else if (existEmail == e.email && ProviderId == "password") {
+              else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "password") {
                 User user =
                 await Authentication.signInUsingEmailPassword(
                   context: context,
-                  email: existEmail,
+                  email: EmailOnly,
                   password: Password,
                 );
                 if (user != null) {
@@ -133,7 +137,7 @@ class Authentication {
                   );
                 }
               }
-              else if (existEmail == e.email && ProviderId == "apple.com") {
+              else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "apple.com") {
                 User user =
                     await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
@@ -150,7 +154,7 @@ class Authentication {
                   print(user.photoURL);
                 }
               } // not ready to use
-              else if (existEmail == e.email && ProviderId == "twitter.com") {
+              else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "twitter.com") {
                 User user =
                     await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
@@ -245,14 +249,18 @@ class Authentication {
             .get()
             .then((QuerySnapshot querySnapshot) async {
           querySnapshot.docs.forEach((doc) {
-            existEmail = doc["email"];
+            EmailOnly = doc["email"];
+            GoogleEmail = doc["GoogleEmail"];
+            FacebookEmail = doc["FacebookEmail"];
             ProviderId = doc["providerId"];
             Password = doc["password"];
           });
-          print(existEmail);
+          print(EmailOnly);
+          print(GoogleEmail);
+          print(FacebookEmail);
           print(ProviderId);
           print(Password);
-          if (existEmail == e.email && ProviderId == "google.com") {
+          if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "google.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -268,11 +276,11 @@ class Authentication {
               print(user.photoURL);
             }
           }
-          else if (existEmail == e.email && ProviderId == "password") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "password") {
             User user =
             await Authentication.signInUsingEmailPassword(
               context: context,
-              email: existEmail,
+              email: EmailOnly,
               password: Password,
             );
             if (user != null) {
@@ -285,7 +293,7 @@ class Authentication {
               );
             }
           }
-          else if (existEmail == e.email && ProviderId == "apple.com") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -301,7 +309,7 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-          else if (existEmail == e.email && ProviderId == "twitter.com") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "twitter.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -411,7 +419,7 @@ class Authentication {
           .get()
           .then((QuerySnapshot querySnapshot) async {
         querySnapshot.docs.forEach((doc) {
-          existEmail = doc["email"];
+          EmailOnly = doc["email"];
           ProviderId = doc["providerId"];
           Password = doc["password"];
           uid= doc["uid"];
@@ -453,20 +461,24 @@ class Authentication {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
         print(e.email);
-        String existEmail, ProviderId;
+        String EmailOnly, ProviderId;
         FirebaseFirestore.instance
             .collection('users')
             .get()
             .then((QuerySnapshot querySnapshot) async {
           querySnapshot.docs.forEach((doc) {
-            existEmail = doc["email"];
+            EmailOnly = doc["email"];
+            GoogleEmail = doc["GoogleEmail"];
+            FacebookEmail = doc["FacebookEmail"];
             ProviderId = doc["providerId"];
             Password = doc["password"];
           });
-          print(existEmail);
+          print(EmailOnly);
+          print(GoogleEmail);
+          print(FacebookEmail);
           print(ProviderId);
           print(Password);
-          if (existEmail == e.email && ProviderId == "facebook.com") {
+          if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "facebook.com") {
             User userfacebook =
             await Authentication.signInWithFacebook(context: context);
             if (userfacebook != null) {
@@ -482,7 +494,7 @@ class Authentication {
               print(userfacebook.photoURL);
             }
           }
-          else if (existEmail == e.email && ProviderId == "google.com") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "google.com") {
             User user =
             await Authentication.signInWithGoogle(context: context);
             if (user != null) {
@@ -499,7 +511,7 @@ class Authentication {
               print(user.photoURL);
             }
           }
-          else if (existEmail == e.email && ProviderId == "apple.com") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "apple.com") {
             User user =
             await Authentication.signInWithGoogle(context: context);
             if (user != null) {
@@ -516,7 +528,7 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-          else if (existEmail == e.email && ProviderId == "twitter.com") {
+          else if ((EmailOnly == e.email ||GoogleEmail == e.email||FacebookEmail == e.email) && ProviderId == "twitter.com") {
             User user =
             await Authentication.signInWithGoogle(context: context);
             if (user != null) {
