@@ -1,3 +1,4 @@
+import 'package:acthub/Screens/Nested/LinkAccountPage.dart';
 import 'package:acthub/Screens/Signin_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignInPage()),
+                  MaterialPageRoute(builder: (context) => LinkAccountPage()),
                 );
               },
               child: const Text('go'),

@@ -103,6 +103,10 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 10,
             ),
+            TwitterSignInButton(),
+            SizedBox(
+              height: 10,
+            ),
             SignIn(context),
             SizedBox(
               height: 10,

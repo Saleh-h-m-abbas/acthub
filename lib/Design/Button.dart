@@ -416,7 +416,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 }
 
 
-/*class TwitterSignInButton extends StatefulWidget {
+class TwitterSignInButton extends StatefulWidget {
   @override
   _TwitterSignInButtonState createState() => _TwitterSignInButtonState();
 }
@@ -434,7 +434,7 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
               _isSigningIn = true;
             });
             User user =
-            await Authentication.signInWithTwitter(context: context);
+            await Authentication.signInWithGoogle(context: context);
             setState(() {
               _isSigningIn = false;
             });
@@ -461,7 +461,7 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
+                  color: Color(0xFF1DA1F2),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.16),
@@ -475,14 +475,14 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
                   style: TextStyle(
                     fontFamily: 'Segoe UI',
                     fontSize: 16.0,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               Positioned(
                 left: 16.0,
-                child: Image.asset("assets/google.png",
+                child: Image.asset("assets/Twitter.png",
                     width: 20, height: 20),
               ),
             ],
@@ -521,7 +521,7 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
                 height: 45.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
+                  color: Color(0xFF1DA1F2),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.16),
@@ -535,14 +535,14 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
                   style: TextStyle(
                     fontFamily: 'Segoe UI',
                     fontSize: 16.0,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               Positioned(
                 left: 16.0,
-                child: Image.asset("assets/google.png",
+                child: Image.asset("assets/Twitter.png",
                     width: 20, height: 20),
               ),
             ],
@@ -550,7 +550,7 @@ class _TwitterSignInButtonState extends State<TwitterSignInButton> {
         )
     );
   }
-}*/
+}
 
 
 class anonymousSignInButton extends StatefulWidget {
