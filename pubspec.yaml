@@ -19,6 +19,7 @@ dependencies:
   flutter_twitter_login: ^1.1.0
   list_tile_switch: ^1.0.0
   eva_icons_flutter: ^3.0.0
+  getwidget:
 #  feature_discovery: ^0.14.0
 #  sign_in_with_apple: ^2.5.2
 #  crypto: ^2.1.5
