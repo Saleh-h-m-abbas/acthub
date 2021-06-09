@@ -23,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isGuest = false;
+  bool isGuest = true;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -107,25 +107,25 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Positioned(
-                      left: 35,
+                      left: MediaQuery.of(context).size.width*0.095,
                       child: Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(55.0),
+                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width*0.12),
                         ),
                         elevation: 10,
                         child: CircleAvatar(
-                          radius: 55,
+                          radius: MediaQuery.of(context).size.width*0.12,
                           backgroundImage: NetworkImage(
                               'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                         ),
                       ),
                     ),
                     Positioned(
-                        top: 90,
-                        left: 43,
+                        top:  MediaQuery.of(context).size.width>=500?MediaQuery.of(context).size.height*0.12:MediaQuery.of(context).size.height*0.1,
+                        left:MediaQuery.of(context).size.width>=500? MediaQuery.of(context).size.width*0.1:MediaQuery.of(context).size.width*0.11,
                         child: Container(
-                          height: 17,
-                          width: 17,
+                          height:  MediaQuery.of(context).size.width*0.04,
+                          width:  MediaQuery.of(context).size.width*0.04,
                           decoration: BoxDecoration(
                               color: Palette.online,
                               shape: BoxShape.circle,
@@ -142,27 +142,27 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.03,
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                'Lara ',
-                                style: TextStyle(
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.orange),
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(height: 15),
-                                  Text('Giovani',
-                                      style: TextStyle(
-                                          color: Palette.orange, fontSize: 16)),
-                                ],
-                              )
-                            ],
-                          ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0, top: 15),
+                            padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02,),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              child: AutoSizeText.rich(TextSpan(
+                                children: [
+                                  TextSpan(text:'Lara ',style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orange), ),
+                                  TextSpan(text:'Giovani',style: TextStyle(
+                                      color: Palette.orange, fontSize: 16), )
+                                ]
+                              ),
+                              overflow: TextOverflow.visible,),
+                            ),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02,),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.35,
                               child: Column(
@@ -220,144 +220,157 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
   Widget guestUI(BuildContext context){
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          Stack(
+    return LayoutBuilder(
+
+      builder: (context, constraints) {
+        return Container(
+          height: constraints.maxHeight,
+          width: constraints.maxWidth,
+          child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.05),
-                child: Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Container(
-                    height:MediaQuery.of(context).size.height*0.35,
-                    width:MediaQuery.of(context).size.width*0.9,
-                    decoration: const BoxDecoration(
-                      color: Palette.white,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
+              Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.05),
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Container(
+                        height:MediaQuery.of(context).size.height*0.35,
+                        width:MediaQuery.of(context).size.width*0.9,
+                        decoration: const BoxDecoration(
+                          color: Palette.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height*0.03
+                                  , left:MediaQuery.of(context).size.width*0.06),
+                              child: Container(
+                                height: MediaQuery.of(context).size.height*0.05,
+                                width: MediaQuery.of(context).size.width*0.35,
+                                child: AutoSizeText(
+                                  'Welcome',
+                                  style: TextStyle(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orange),
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ),
+                            Center(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06,
+                                        left:MediaQuery.of(context).size.width*0.03,
+                                        right:MediaQuery.of(context).size.width*0.03,
+                                        bottom: MediaQuery.of(context).size.height*0.01),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*0.1,
+                                      width: MediaQuery.of(context).size.width*0.6,
+                                      child: AutoSizeText.rich(
+                                        TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: 'Sgined in first to mange your profile.\n',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Palette.actHubGreen.withOpacity(0.33),
+                                              ),
+
+                                            ),
+
+                                            TextSpan(
+                                              text: "you haven't signed in yet. Please sign in to access full experience",
+                                              style: TextStyle(
+                                                fontSize: 16,
+
+                                                color: Palette.actHubGreen.withOpacity(0.33),
+                                              ),
+
+                                            ),
+                                          ]
+                                        ),
+
+                                        maxLines: 3,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.03),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*0.05,
+                                      width: MediaQuery.of(context).size.width*0.7,
+                                      child: ElevatedButton(
+                                          onPressed: (){
+                                            Navigator.pushNamed(context, SignIn.id);
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.003),
+                                            child: AutoSizeText('Signin',style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),),
+                                          ),
+                                        style:  ElevatedButton.styleFrom(
+                                          primary: Palette.blue, // background
+                                          // foreground
+                                        ),
+                                           ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top:25.0, left: 25),
-                          child: Container(
-                            height: MediaQuery.of(context).size.height*0.05,
-                            width: MediaQuery.of(context).size.width*0.35,
-                            child: AutoSizeText(
-                              'Welcome',
-                              style: TextStyle(
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.orange),
-                              maxLines: 1,
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06),
-                                child: Container(
-                                  height: MediaQuery.of(context).size.height*0.025,
-                                  width: MediaQuery.of(context).size.width*0.58,
-                                  child: AutoSizeText('Sgined in first to mange your profile.\n',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.actHubGreen.withOpacity(0.33),
-                                    ),
-                                    maxLines: 2,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.05,
-                                width: MediaQuery.of(context).size.width*0.63,
-                                child: AutoSizeText("you haven't signed in yet. Please sign in\n to access full experience",
-                                  style:TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen.withOpacity(0.33),
-
-                                  ),
-                                  maxLines: 3,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 30.0),
-                                child: Container(
-                                  height: MediaQuery.of(context).size.height*0.05,
-                                  width: MediaQuery.of(context).size.width*0.7,
-                                  child: ElevatedButton(
-                                      onPressed: (){
-                                        Navigator.pushNamed(context, SignIn.id);
-                                      },
-                                      child: Text('Signin',style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),),
-                                    style:  ElevatedButton.styleFrom(
-                                      primary: Palette.blue, // background
-                                      // foreground
-                                    ),
-                                       ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  ),
+                  Positioned(
+                    left: constraints.maxWidth*0.58,
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(constraints.maxWidth*0.12,),
+                      ),
+                      child: CircleAvatar(
+                        radius: constraints.maxWidth*0.12,
+                        backgroundColor: Palette.white,
+                        backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-              Positioned(
-
-                left: MediaQuery.of(context).size.width*0.56,
-                child: Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60),
-                  ),
-                  child: CircleAvatar(
-                    radius: 55,
-                    backgroundColor: Palette.white,
-                    backgroundImage: AssetImage('Images/gusetProfilepic.png'),
-                  ),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buttonCard(context, 'Contact us','Images/contact.png', ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, 'About Us', 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buttonCard(context, 'Privacy Policy','Images/privacy_policy.png', PrivacyPolicy.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, 'Languge', 'Images/language.png', LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0,right: 8,top: 8,bottom: 8),
-            child: Row(
-              children: [
-                buttonCard(context, 'Contact us','Images/contact.png', ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-                buttonCard(context, 'About Us', 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0,right: 8.0),
-            child: Row(
-              children: [
-                buttonCard(context, 'Privacy Policy','Images/privacy_policy.png', PrivacyPolicy.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-                buttonCard(context, 'Languge', 'Images/language.png', LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 
@@ -367,12 +380,12 @@ class _ProfilePageState extends State<ProfilePage> {
       BuildContext context, String text, String image_Path, String route,double height, double width) {
     return GestureDetector(
       child: Padding(
-        padding: const EdgeInsets.all(0.5),
+        padding:  EdgeInsets.all(MediaQuery.of(context).size.width*0.0009),
         child: Stack(
           children: [
             Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(17.0),
               ),
               elevation: 5,
               child: Container(
@@ -387,18 +400,18 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Container(
+
               child: Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                          Image.asset(image_Path),
-                    SizedBox(height: 15),
-                    Text(
+                    AutoSizeText(
                       '$text',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Palette.actHubGrey,
-                          fontSize: 20),
+                          fontSize:20),
                     ),
                   ],
                 ),
