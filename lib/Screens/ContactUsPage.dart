@@ -22,37 +22,51 @@ class _ContactUsPageState extends State<ContactUsPage> {
       backgroundColor: Palette.scaffold,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           Stack(
             children: [
               Image.asset(
                 'Images/HeaderLogoA.png',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.26,
               ),
-              SafeArea(
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  //onPressed:() => Navigator.pop(context, false),
-                  onPressed: () => Navigator.pop(context),
+              Positioned(
+                top:MediaQuery.of(context).size.height*0.07,
+                child: Container(
+                  height: MediaQuery.of(context).size.width*0.1,
+                  width:MediaQuery.of(context).size.width*0.1,
+
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios,size: 30,),
+                      onPressed: () => Navigator.pop(context),
+
+                    ),
+                  ),
                 ),
               ),
             ],
-          ),
-          //contain privacy picture
+          ),//contain privacy picture
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  child: AutoSizeText(
-                    'Contact Us ',
-                    style: TextStyle(
-                        color: Color(0xffF9A559),
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                    maxLines: 1,
+
+                  child: Center(
+                    child: AutoSizeText(
+                      'Contact Us ',
+                      style: TextStyle(
+                          color: Color(0xffF9A559),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                    ),
                   ),
-                  width: MediaQuery.of(context).size.width*0.29,
+                  width: MediaQuery.of(context).size.width*0.32,
                   height: MediaQuery.of(context).size.height*0.032,
                 ),
                 cardDesign('Images/messenger.png', 'ActHub'),
@@ -62,14 +76,11 @@ class _ContactUsPageState extends State<ContactUsPage> {
                 cardDesign('Images/call.png','+970599845646'),
               ],
             ),
-          ),
-          // contain text widget to get privacy policy text from firebase
-          SafeArea(
-            child: Container(
-                height: 50,
-                width: 130,
-                child: Image.asset('Images/ActHubOLogo.png')),
-          )
+          ), // contain text widget to get privacy policy text from firebase
+          Container(
+              height: MediaQuery.of(context).size.height*0.06,
+              width: MediaQuery.of(context).size.width*0.4,
+              child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
         ],
       ),
     );
@@ -77,7 +88,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
 }
 Widget cardDesign(String imgURL, String text){
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:15.0),
+      padding:  EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width*0.03),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -86,7 +97,7 @@ Widget cardDesign(String imgURL, String text){
         child: ListTile(
           leading:Image.asset(
             imgURL,
-            height: 30,
+            height: MediaQuery.of(context).size.height*0.04,
           ) ,
           title: Container(
               height: MediaQuery.of(context).size.height*0.03,
@@ -97,8 +108,8 @@ Widget cardDesign(String imgURL, String text){
                 maxLines: 1,
               )
           ),
-          horizontalTitleGap: MediaQuery.of(context).size.width*0.18
-          ,),
+       horizontalTitleGap: MediaQuery.of(context).size.width*0.1
+          ),
       ),
     );
 }

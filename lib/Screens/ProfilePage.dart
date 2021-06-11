@@ -23,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isGuest = true;
+  bool isGuest = false;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
         home: Scaffold(
             appBar:  AppBar(
               centerTitle: false,
-              toolbarHeight: 60,
+              toolbarHeight: MediaQuery.of(context).size.height*0.1,
               elevation: 0,
               backgroundColor: Palette.scaffold,
               title: Container(
@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Radius.circular(30),
                                 ),
                               ),
-                              height: MediaQuery.of(context).size.height * 0.33,
+                              height: MediaQuery.of(context).size.height * 0.3,
                               width: MediaQuery.of(context).size.width * 0.45,
                             ),
                           ),
@@ -108,32 +108,42 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Positioned(
                       left: MediaQuery.of(context).size.width*0.095,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width*0.12),
-                        ),
-                        elevation: 10,
-                        child: CircleAvatar(
-                          radius: MediaQuery.of(context).size.width*0.12,
-                          backgroundImage: NetworkImage(
-                              'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                        ),
+
+                      child: Stack(
+                        alignment:Alignment.bottomLeft,
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  MediaQuery.of(context).size.width>500
+                                      ?MediaQuery.of(context).size.width*0.1:
+                                  MediaQuery.of(context).size.width*0.12),
+                            ),
+                            elevation: 10,
+                            child: CircleAvatar(
+                               radius:    MediaQuery.of(context).size.width>500
+                                   ?
+                               MediaQuery.of(context).size.width*0.1:
+                               MediaQuery.of(context).size.width*0.12,
+                              backgroundImage: NetworkImage(
+                                  'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.width>500
+                                ?MediaQuery.of(context).size.width*0.05:MediaQuery.of(context).size.width*0.06,
+                            width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
+                            decoration: BoxDecoration(
+                                color: Palette.online,
+                                shape: BoxShape.circle,
+                                border: Border.all(width: 2.0, color: Palette.white)),
+                          )
+                        ],
                       ),
                     ),
+
                     Positioned(
-                        top:  MediaQuery.of(context).size.width>=500?MediaQuery.of(context).size.height*0.12:MediaQuery.of(context).size.height*0.1,
-                        left:MediaQuery.of(context).size.width>=500? MediaQuery.of(context).size.width*0.1:MediaQuery.of(context).size.width*0.11,
-                        child: Container(
-                          height:  MediaQuery.of(context).size.width*0.04,
-                          width:  MediaQuery.of(context).size.width*0.04,
-                          decoration: BoxDecoration(
-                              color: Palette.online,
-                              shape: BoxShape.circle,
-                              border:
-                              Border.all(width: 2.0, color: Palette.white)),
-                        )),
-                    Positioned(
-                      left: MediaQuery.of(context).size.width * 0.05,
+                      left: MediaQuery.of(context).size.width * 0.02,
                       top: MediaQuery.of(context).size.height * 0.12,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02,),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.4,
-                              height: MediaQuery.of(context).size.height * 0.08,
+                              height: MediaQuery.of(context).size.height * 0.04,
                               child: AutoSizeText.rich(TextSpan(
                                 children: [
                                   TextSpan(text:'Lara ',style: TextStyle(
@@ -160,26 +170,19 @@ class _ProfilePageState extends State<ProfilePage> {
                               overflow: TextOverflow.visible,),
                             ),
                           ),
-
                           Padding(
                             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02,),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.35,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AutoSizeText(
-                                    'Country :      Palestine \n\n'
-                                        'City :             Ramallah\n\n'
-                                        'Age :             25 years old \n\n',
-                                    style: TextStyle(
-                                      color: Palette.orange,
-                                      fontSize: 20,
-                                    ),
-                                    minFontSize: 12,
-                                    maxLines: 6,
-                                  ),
-                                ],
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: AutoSizeText(
+                                'Country :  Palestine \n'
+                                    'City :         Ramallah\n'
+                                    'Age :        25 years old \n',
+                                style: TextStyle(
+                                  color: Palette.orange,
+                                  fontSize: 20,
+                                ),
+                                maxLines: 6,
                               ),
                             ),
                           ),
@@ -377,7 +380,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
   buttonCard(
-      BuildContext context, String text, String image_Path, String route,double height, double width) {
+      BuildContext context,
+      String text,
+      String image_Path,
+      String route,
+      double height,
+      double width) {
     return GestureDetector(
       child: Padding(
         padding:  EdgeInsets.all(MediaQuery.of(context).size.width*0.0009),
@@ -432,7 +440,7 @@ class _ProfilePageState extends State<ProfilePage> {
       String image_Path,
       String route,
       double height,
-      double width,double gap}){
+      double width, double gap}){
    return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),

@@ -3,6 +3,7 @@ import 'package:acthub/Screens/ActivityPage.dart';
 import 'package:acthub/Screens/SignIn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ManagementPage extends StatefulWidget {
@@ -43,11 +44,15 @@ class _ManagementPageState extends State<ManagementPage> {
               ),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 52.0, top: 10.5),
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+                  padding: EdgeInsets.only(right:MediaQuery.of(context).size.width*0.15,
+                    top:MediaQuery.of(context).size.height*0.01,),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: CircleAvatar(
+                      radius:MediaQuery.of(context).size.width*0.06 ,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+                    ),
                   ),
                 )
               ],
@@ -55,7 +60,7 @@ class _ManagementPageState extends State<ManagementPage> {
             centerTitle: false,
             toolbarHeight: MediaQuery.of(context).size.height*0.074,
             elevation: 0,
-            backgroundColor: Palette.white,
+            backgroundColor: Palette.scaffold,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -89,25 +94,27 @@ class _ManagementPageState extends State<ManagementPage> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 52.0, top: 10.5),
+                padding: EdgeInsets.only(right:MediaQuery.of(context).size.width*0.15,
+                  top:MediaQuery.of(context).size.height*0.01,),
                 child: Stack(
+                  alignment:Alignment.bottomLeft,
                   children: [
-                    CircleAvatar(
-                      radius: 25,
-                      backgroundImage: NetworkImage(
-                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: CircleAvatar(
+                        radius: MediaQuery.of(context).size.width*0.06,
+                        backgroundImage: NetworkImage(
+                            'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                      ),
                     ),
-                    Positioned(
-                        top: 35,
-                        left: 0,
-                        child: Container(
-                          height: 15,
-                          width: 15,
-                          decoration: BoxDecoration(
-                              color: Palette.online,
-                              shape: BoxShape.circle,
-                              border: Border.all(width: 2.0, color: Palette.white)),
-                        ))
+                    Container(
+                      height: MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.025:MediaQuery.of(context).size.width*0.033,
+                      width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.025:MediaQuery.of(context).size.width*0.033,
+                      decoration: BoxDecoration(
+                          color: Palette.online,
+                          shape: BoxShape.circle,
+                          border: Border.all(width: 2.0, color: Palette.white)),
+                    )
                   ],
                 ),
               )
@@ -119,24 +126,22 @@ class _ManagementPageState extends State<ManagementPage> {
 
   Widget guestPage() {
     return Padding(
-          padding: EdgeInsets.only(top: 30, left: 15,bottom: 15,right: 15),
+          padding: EdgeInsets.all( MediaQuery.of(context).size.height*0.02 ),
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
             ),
             child: Container(
               height: MediaQuery.of(context).size.height *0.78 ,
               width: MediaQuery.of(context).size.width,
-
-
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 12.0, top: 15),
+                    padding: EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.025, top: MediaQuery.of(context).size.height *0.01),
                     child: Container(
                       height: MediaQuery.of(context).size.height*0.05,
                       width: MediaQuery.of(context).size.width*0.3,
@@ -151,10 +156,12 @@ class _ManagementPageState extends State<ManagementPage> {
                     ),
                   ),
                   Center(
-                    child: Column(
+                    child: Column
+                      (
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 20,
+                          height:MediaQuery.of(context).size.height*0.02,
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height*0.02,
@@ -168,6 +175,7 @@ class _ManagementPageState extends State<ManagementPage> {
                               fontWeight: FontWeight.bold,
                               color: Palette.actHubGreen.withOpacity(0.35),
                             ),
+                            textAlign: TextAlign.center,
                             maxLines: 1,
                           ),
                         ),
@@ -176,33 +184,37 @@ class _ManagementPageState extends State<ManagementPage> {
                           height: MediaQuery.of(context).size.height * 0.45,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02,),
                           child: Container(
                             width: MediaQuery.of(context).size.width*0.766,
                             height: MediaQuery.of(context).size.height*0.059,
                             child: AutoSizeText(
-                              "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                              "you haven't signed in yet. please sign in to manage your activity in application.",
                               style: TextStyle(
                                 fontSize: 19,
                                 color: Palette.actHubGreen.withOpacity(0.50),
                               ),
+                              textAlign: TextAlign.center,
                               maxLines: 2,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20,left: 15.0,right: 15.0),
+                          padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02,left: 15.0,right: 15.0),
                           child: Container(
                             width: MediaQuery.of(context).size.width*0.766,
                             height: MediaQuery.of(context).size.height*0.054,
                             child: ElevatedButton(
-                                child: AutoSizeText('Sign in',
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                maxLines: 1,), //to style the text of buttons
+                                child: Padding(
+                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.width*0.02),
+                                  child: AutoSizeText('Sign in',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  maxLines: 1,),
+                                ), //to style the text of buttons
                                 style: ElevatedButton.styleFrom(
                                     primary: Palette.blue// background
                                     // foreground
@@ -226,7 +238,7 @@ class _ManagementPageState extends State<ManagementPage> {
 
   Widget userPage() {
     return Padding(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.02),
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -257,55 +269,57 @@ class _ManagementPageState extends State<ManagementPage> {
         Navigator.pushNamed(context, ActivityPage.id);
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 10.0, left: 20),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02),
         child: Stack(
+          alignment: Alignment.center,
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.85,
               child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(17.0)),
+                  borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.height*0.02)),
                   child: Image.network(
                     imgURL,
                     fit: BoxFit.cover,
                   )),
             ),
-            Positioned(
-              top: (MediaQuery.of(context).size.height * 0.070) / 2,
-              left: 25,
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.85,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  Padding(
+                    padding: EdgeInsets.only(left:
+                    MediaQuery.of(context).size.width * 0.05),
                     child: SvgPicture.asset(
-                      'Images/Like.svg',
+                      'Images/like.svg',
                       height: MediaQuery.of(context).size.height*0.027,
                       color: Palette.orange,
                     ),
-                   // color: Colors.pink,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.2),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height*0.027,
-                      width: MediaQuery.of(context).size.width*0.227,
-                      child: Text(
-                        'Hiking Tour',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          shadows: [
-                            Shadow(
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.35),
-                                offset: Offset(5, 5))
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
                 ],
+              ),
+
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height*0.027,
+              width: MediaQuery.of(context).size.width*0.227,
+              child: Center(
+                child: AutoSizeText(
+                  'Hiking Tour',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                          blurRadius: 10,
+                          color: Colors.black.withOpacity(0.35),
+                          offset: Offset(5, 5))
+                    ],
+                  ),
+                ),
               ),
             )
           ],

@@ -57,13 +57,16 @@ class _LandingPageState extends State<LandingPage> {
                 children: [
                   Center(
                     child: Container(
-                        width: 250, child: Image.asset('Images/Logo.png')),
+                        width: MediaQuery.of(context).size.width*0.55, child: Image.asset('Images/Logo.png')),
                   ),
-                  Stack(
-                    children: [
-                      Image.asset('Images/LandingPage2.png'),
-                      Image.asset('Images/LandingPage1.png'),
-                    ],
+                  Container(
+                  width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: [
+                        Image.asset('Images/LandingPage2.png',fit: BoxFit.fitWidth),
+                        Image.asset('Images/LandingPage1.png',fit: BoxFit.fitWidth),
+                      ],
+                    ),
                   )
                 ],
               ),
