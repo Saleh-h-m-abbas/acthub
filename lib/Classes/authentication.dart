@@ -10,7 +10,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-String EmailOnly = "",GoogleEmail = "",FacebookEmail = "",ProviderId="" , Password="";
+String EmailOnly = "",GoogleEmail = "",FacebookEmail = "",ProviderId="" , Password="",MainEmail="";
 class Authentication {
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
@@ -77,6 +77,7 @@ class Authentication {
               .doc(user.uid)
               .set({
                 'email':"",
+                'MainEmail':user.email,
                 'GoogleEmail':user.email,
                 'FacebookEmail':"",
                 'providerId': "google.com",
@@ -232,6 +233,7 @@ class Authentication {
           .doc(a.user.uid)
           .set({
             'email': "",
+            'MainEmail':Facebookuser.email,
             'GoogleEmail': "",
             'FacebookEmail': Facebookuser.email,
             'providerId': "facebook.com",
@@ -448,6 +450,7 @@ class Authentication {
       usersdatabase
           .doc(user.uid)
           .set({
+            'MainEmail':user.email,
             'email': user.email,
             'GoogleEmail':"",
             'FacebookEmail':"",
@@ -589,6 +592,7 @@ class Authentication {
       usersdatabase
           .doc(user.uid)
           .set({
+        'MainEmail':user.email,
         'email': user.email,
         'GoogleEmail':"",
         'FacebookEmail':"",
