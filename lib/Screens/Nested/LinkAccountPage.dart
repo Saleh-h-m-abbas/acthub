@@ -1,6 +1,7 @@
 import 'package:acthub/Classes/authentication.dart';
 import 'package:acthub/Classes/custom_form_field.dart';
 import 'package:acthub/Classes/validator.dart';
+import 'package:acthub/Screens/Signin_Page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -83,17 +84,41 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
           print(pa);
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
+     /*   ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
             content: 'please reset your password',
           ),
-        );
-        _showMyDialog();
+        );*/
+        SendEmailRequest(MainEmail);
+
+        //_showMyDialog(); //todo lazem tro7 3la safha taneh orrrr ze mhe hla2
       }
     });
   }
 
-  _showMyDialog() async {
+
+  SendEmailRequest(String Email){
+    (() async {
+        await  auth.sendPasswordResetEmail(email: Email);
+        Fluttertoast.showToast(
+            msg: "Please Check your email to Reset your password",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        await FirebaseAuth.instance.signOut();
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()),);
+
+    })();
+
+  }
+
+
+
+ /* _showMyDialog() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -133,8 +158,6 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         if (_emailController.text.isNotEmpty  || _emailController.text.length != 0) {
                         setState(() {
                           (() async {
-
-
                          try{
                            await  auth.sendPasswordResetEmail(email: _emailController.text);
                            Fluttertoast.showToast(
@@ -200,8 +223,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
         );
       },
     );
-  }
-
+  }*/
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -239,7 +261,31 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    fa = value;
+                    (() async {
+                      if (G == "" && E == "") {
+                        print(G == "" && E == "");
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'email': MainEmail,
+                          'FacebookEmail': "",
+                          'providerId': "password",
+                        })
+                            .then((value) => print("User Added"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        fa = false;
+                      } else {
+                        setState(() {
+                          fa = true;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Authentication.customSnackBar(
+                            content: 'Wait to link account',
+                          ),
+                        );
+                      }
+                    })();
                   });
                 },
                 switchActiveColor: Colors.orange,
@@ -281,7 +327,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         go = false;
                       } else {
                         setState(() {
-                          go = value;
+                          go = true;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -358,6 +404,11 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 height: 15,
                 thickness: 5,
               ),
+
+
+              // todo : hlaw hoon lazem tnshal otseer 2l mainnnnnnnnnnnn o bedooon ma tbayeeen
+
+
               ListTileSwitch(
                 value: em,
                 leading: Icon(
