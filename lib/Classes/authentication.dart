@@ -59,17 +59,16 @@ class Authentication {
       print("google :" + value.data()["GoogleEmail"]);
       print("facebook :" + value.data()["FacebookEmail"]);
       print("email :" + value.data()["email"]);
-      print("twiter :"+value.data()["TwitterEmail"]);
+      print("twiter :" + value.data()["TwitterEmail"]);
       print("pass :" + value.data()["password"]);
       print("provider :" + value.data()["providerId"]);
       print("main :" + value.data()["MainEmail"]);
 
-
       GoogleEmail = value.data()["GoogleEmail"];
       FacebookEmail = value.data()["FacebookEmail"];
       EmailOnly = value.data()["email"];
-      TwitterEmail= value.data()["TwitterEmail"];
-      Password= value.data()["password"];
+      TwitterEmail = value.data()["TwitterEmail"];
+      Password = value.data()["password"];
       MainEmail = value.data()["MainEmail"];
       ProviderId = value.data()["providerId"];
     });
@@ -96,7 +95,8 @@ class Authentication {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount googleSignInAccount =
           await googleSignIn.signIn();
-      String _googleUserEmail = googleSignInAccount.email; //Todo: get email from google to check it if exist or not
+      String _googleUserEmail = googleSignInAccount
+          .email; //Todo: get email from google to check it if exist or not
       // print(FirebaseAuth.instance.currentUser.email);
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
@@ -107,16 +107,16 @@ class Authentication {
         );
         try {
           getData();
-         // final UserCredential userCredential =
-         //     await auth.signInWithCredential(credential);
-         // user = userCredential.user;
-         // userCredential.user.updateEmail(_googleUserEmail);
-        //  print(user.email);
-          if(MainEmail.isNotEmpty && ProviderId.isNotEmpty){
-            if(ProviderId.isNotEmpty){
+          // final UserCredential userCredential =
+          //     await auth.signInWithCredential(credential);
+          // user = userCredential.user;
+          // userCredential.user.updateEmail(_googleUserEmail);
+          //  print(user.email);
+          if (MainEmail.isNotEmpty) {
+            if (ProviderId.isNotEmpty) {
               if (ProviderId == "facebook.com") {
                 User userfacebook =
-                await Authentication.signInWithFacebook(context: context);
+                    await Authentication.signInWithFacebook(context: context);
                 if (userfacebook != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -129,8 +129,7 @@ class Authentication {
                   print(userfacebook.displayName);
                   print(userfacebook.photoURL);
                 }
-              }
-              else if (ProviderId == "password") {
+              } else if (ProviderId == "password") {
                 User user = await Authentication.signInUsingEmailPassword(
                   context: context,
                   email: EmailOnly,
@@ -145,8 +144,10 @@ class Authentication {
                     ),
                   );
                 }
-              }
-              else if ( ProviderId == "apple.com") {User user = await Authentication.signInWithGoogle(context: context);if (user != null) {
+              } else if (ProviderId == "apple.com") {
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
+                if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => UserInfoScreenGoogle(
@@ -158,10 +159,11 @@ class Authentication {
                   print(user.email);
                   print(user.displayName);
                   print(user.photoURL);
-                }} // not ready to use
-              else if ( ProviderId == "twitter.com") {
+                }
+              } // not ready to use
+              else if (ProviderId == "twitter.com") {
                 User user =
-                await Authentication.signInWithGoogle(context: context);
+                    await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -178,36 +180,36 @@ class Authentication {
               }
             }
           }
-          else if(MainEmail.isNotEmpty && ProviderId.isEmpty){
+          else if (MainEmail.isNotEmpty && ProviderId.isEmpty) {
             usersdatabase
                 .doc(user.uid)
                 .update({
-              'GoogleEmail': user.email,
-              'providerId':"google.com",
-              'uid': user.uid,
-            })
+                  'GoogleEmail': user.email,
+                  'providerId': "google.com",
+                  'uid': user.uid,
+                })
                 .then((value) => print("User Added"))
                 .catchError((error) => print("Failed to add user: $error"));
             final UserCredential userCredential =
                 await auth.signInWithCredential(credential);
             user = userCredential.user;
             userCredential.user.updateEmail(_googleUserEmail);
-             print(user.email);
+            print(user.email);
           }
-          else if(MainEmail.isEmpty){
+          else if (MainEmail.isEmpty) {
             usersdatabase
                 .doc(user.uid)
                 .update({
-              'GoogleEmail': user.email,
-              'MainEmail':user.email,
-              'uid': user.uid,
-            })
+                  'GoogleEmail': user.email,
+                  'MainEmail': user.email,
+                  'uid': user.uid,
+                })
                 .then((value) => print("User Added"))
                 .catchError((error) => print("Failed to add user: $error"));
-            if(ProviderId.isNotEmpty){
+            if (ProviderId.isNotEmpty) {
               if (ProviderId == "facebook.com") {
                 User userfacebook =
-                await Authentication.signInWithFacebook(context: context);
+                    await Authentication.signInWithFacebook(context: context);
                 if (userfacebook != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -220,8 +222,7 @@ class Authentication {
                   print(userfacebook.displayName);
                   print(userfacebook.photoURL);
                 }
-              }
-              else if (ProviderId == "password") {
+              } else if (ProviderId == "password") {
                 User user = await Authentication.signInUsingEmailPassword(
                   context: context,
                   email: EmailOnly,
@@ -236,23 +237,26 @@ class Authentication {
                     ),
                   );
                 }
-              }
-              else if ( ProviderId == "apple.com") {User user = await Authentication.signInWithGoogle(context: context);if (user != null) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => UserInfoScreenGoogle(
-                      user: user,
-                    ), // in this button we send a user name with this page and we must stour it in database
-                  ),
-                );
-
-                print(user.email);
-                print(user.displayName);
-                print(user.photoURL);
-              }} // not ready to use
-              else if ( ProviderId == "twitter.com") {
+              } else if (ProviderId == "apple.com") {
                 User user =
-                await Authentication.signInWithGoogle(context: context);
+                    await Authentication.signInWithGoogle(context: context);
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreenGoogle(
+                        user: user,
+                      ), // in this button we send a user name with this page and we must stour it in database
+                    ),
+                  );
+
+                  print(user.email);
+                  print(user.displayName);
+                  print(user.photoURL);
+                }
+              } // not ready to use
+              else if (ProviderId == "twitter.com") {
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -269,25 +273,24 @@ class Authentication {
               }
             }
           }
-          else if(MainEmail.isEmpty && ProviderId.isEmpty){
+          else if (MainEmail.isEmpty && ProviderId.isEmpty) {
             usersdatabase
                 .doc(user.uid)
                 .update({
-              'GoogleEmail': user.email,
-              'MainEmail':user.email,
-              'providerId':"google.com",
-              'uid': user.uid,
-            })
+                  'GoogleEmail': user.email,
+                  'MainEmail': user.email,
+                  'providerId': "google.com",
+                  'uid': user.uid,
+                })
                 .then((value) => print("User Added"))
                 .catchError((error) => print("Failed to add user: $error"));
             final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
+                await auth.signInWithCredential(credential);
             user = userCredential.user;
             userCredential.user.updateEmail(_googleUserEmail);
             print(user.email);
           }
-
-        }  catch (e) {
+        } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
             Authentication.customSnackBar(
               content: 'Error occurred using Google Sign In. Try again.',
@@ -328,47 +331,14 @@ class Authentication {
     AuthCredential credential =
         FacebookAuthProvider.credential(accessToken.token);
     try {
-      var a = await auth.signInWithCredential(credential);
-      Facebookuser = a.user;
-      print(a.user.email);
-      usersdatabase
-          .doc(a.user.uid)
-          .update({
-            'email': "",
-            'MainEmail': Facebookuser.email,
-            'GoogleEmail': "",
-            'FacebookEmail': Facebookuser.email,
-            "TwitterEmail": "",
-            "AppleEmail": "",
-            'providerId': "facebook.com",
-            'uid': Facebookuser.uid,
-            'password': ''
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'account-exists-with-different-credential') {
-        print(e.email);
-        FirebaseFirestore.instance
-            .collection('users')
-            .get()
-            .then((QuerySnapshot querySnapshot) async {
-          querySnapshot.docs.forEach((doc) {
-            EmailOnly = doc["email"];
-            GoogleEmail = doc["GoogleEmail"];
-            FacebookEmail = doc["FacebookEmail"];
-            ProviderId = doc["providerId"];
-            Password = doc["password"];
-          });
-          print(EmailOnly);
-          print(GoogleEmail);
-          print(FacebookEmail);
-          print(ProviderId);
-          print(Password);
-          if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "google.com") {
+      // var a = await auth.signInWithCredential(credential);
+      // Facebookuser = a.user;
+      // print(a.user.email);
+      getData();
+
+      if (MainEmail.isNotEmpty ) {
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -383,10 +353,8 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          } else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "password") {
+          }
+          else if (ProviderId == "password") {
             User user = await Authentication.signInUsingEmailPassword(
               context: context,
               email: EmailOnly,
@@ -401,10 +369,8 @@ class Authentication {
                 ),
               );
             }
-          } else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "apple.com") {
+          }
+          else if (ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -420,10 +386,7 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-          else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "twitter.com") {
+          else if (ProviderId == "twitter.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -438,20 +401,117 @@ class Authentication {
               print(user.displayName);
               print(user.photoURL);
             }
-          } // not ready to use
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'The account already exists with a different credential',
-          ),
-        );
-      } else if (e.code == 'invalid-credential') {
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'Error occurred while accessing credentials. Try again.',
-          ),
-        );
+          }
+        }
       }
+      else if (MainEmail.isNotEmpty && ProviderId.isEmpty) {
+        var a = await auth.signInWithCredential(credential);
+         Facebookuser = a.user;
+         print(a.user.email);
+        usersdatabase
+            .doc(a.user.uid)
+            .update({
+          'FacebookEmail': Facebookuser.email,
+          'providerId': "facebook.com",
+          'uid': Facebookuser.uid,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+
+      }
+      else if (MainEmail.isEmpty) {
+        var a = await auth.signInWithCredential(credential);
+        Facebookuser = a.user;
+        print(a.user.email);
+        usersdatabase
+            .doc(a.user.uid)
+            .update({
+          'FacebookEmail': Facebookuser.email,
+          'uid': Facebookuser.uid,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } else if (ProviderId == "password") {
+            User user = await Authentication.signInUsingEmailPassword(
+              context: context,
+              email: EmailOnly,
+              password: Password,
+            );
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenEmail(
+                    user: user,
+                  ),
+                ),
+              );
+            }
+          } else if (ProviderId == "apple.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+          else if (ProviderId == "twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+        }
+      }
+      else if (MainEmail.isEmpty && ProviderId.isEmpty) {
+        var a = await auth.signInWithCredential(credential);
+        Facebookuser = a.user;
+        print(a.user.email);
+        usersdatabase
+            .doc(a.user.uid)
+            .update({
+          'FacebookEmail': Facebookuser.email,
+          'MainEmail': Facebookuser.email,
+          'uid': Facebookuser.uid,
+          'providerId': "facebook.com",
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         Authentication.customSnackBar(
@@ -531,78 +591,34 @@ class Authentication {
     CollectionReference usersdatabase =
         FirebaseFirestore.instance.collection('users');
     try {
-      /*  //Todo:
-      FirebaseFirestore.instance
-          .collection('users')
-          .get()
-          .then((QuerySnapshot querySnapshot) async {
-        querySnapshot.docs.forEach((doc) {
-          EmailOnly = doc["email"];
-          ProviderId = doc["providerId"];
-          Password = doc["password"];
-          uid= doc["uid"];
-        });
-        print(Password);
-        if( password == "" || password == null )
-        {
-          print("please create password");
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => CreatePasswordForm(uid: uid), // in this button we send a user name with this page and we must stour it in database
-            ),
-          );
-        }
-      });*/
+      getData();
+      // UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password,);
+      // user = userCredential.user;
+      // userCredential.user.updateEmail(email);
+      // print(user.email);
+      //
 
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      user = userCredential.user;
-      userCredential.user.updateEmail(email);
-      print(user.email);
-      usersdatabase
-          .doc(user.uid)
-          .update({
-            'MainEmail': user.email,
-            'email': user.email,
-            'GoogleEmail': "",
-            'FacebookEmail': "",
-            "TwitterEmail": "",
-            "AppleEmail": "",
-            'providerId': "password",
-            'uid': user.uid,
-            'password': password,
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-        print(e.email);
-        String EmailOnly, ProviderId;
-        FirebaseFirestore.instance
-            .collection('users')
-            .get()
-            .then((QuerySnapshot querySnapshot) async {
-          querySnapshot.docs.forEach((doc) {
-            EmailOnly = doc["email"];
-            GoogleEmail = doc["GoogleEmail"];
-            FacebookEmail = doc["FacebookEmail"];
-            ProviderId = doc["providerId"];
-            Password = doc["password"];
-          });
-          print(EmailOnly);
-          print(GoogleEmail);
-          print(FacebookEmail);
-          print(ProviderId);
-          print(Password);
-          if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "facebook.com") {
+      if (MainEmail.isNotEmpty ) {
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+          else if (ProviderId == "facebook.com") {
             User userfacebook =
-                await Authentication.signInWithFacebook(context: context);
+            await Authentication.signInWithFacebook(context: context);
             if (userfacebook != null) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -615,28 +631,8 @@ class Authentication {
               print(userfacebook.displayName);
               print(userfacebook.photoURL);
             }
-          } else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "google.com") {
-            User user = await Authentication.signInWithGoogle(context: context);
-            if (user != null) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => UserInfoScreenGoogle(
-                    user: user,
-                  ), // in this button we send a user name with this page and we must stour it in database
-                ),
-              );
-
-              print(user.email);
-              print(user.displayName);
-              print(user.photoURL);
-            }
-          } else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "apple.com") {
+          }
+          else if (ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -652,10 +648,88 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-          else if ((EmailOnly == e.email ||
-                  GoogleEmail == e.email ||
-                  FacebookEmail == e.email) &&
-              ProviderId == "twitter.com") {
+          else if (ProviderId == "twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+        }
+      }
+      else if (MainEmail.isNotEmpty && ProviderId.isEmpty) {
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password,);
+        user = userCredential.user;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'providerId': "password",
+          'uid': user.uid,
+          'password': password,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+      else if (MainEmail.isEmpty) {
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password,);
+        user = userCredential.user;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'uid': user.uid,
+          'password': password,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+          else if (ProviderId == "facebook.com") {
+            User userfacebook =
+            await Authentication.signInWithFacebook(context: context);
+            if (userfacebook != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenFacebook(
+                    user: userfacebook,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+              print(userfacebook.email);
+              print(userfacebook.displayName);
+              print(userfacebook.photoURL);
+            }
+          }
+          else if (ProviderId == "apple.com") {
             User user = await Authentication.signInWithGoogle(context: context);
             if (user != null) {
               Navigator.of(context).pushReplacement(
@@ -671,22 +745,45 @@ class Authentication {
               print(user.photoURL);
             }
           } // not ready to use
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'No user found for that email. Please create an account.',
-          ),
-        );
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'Wrong password provided.',
-          ),
-        );
+          else if (ProviderId == "twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+        }
+      }
+      else if (MainEmail.isEmpty && ProviderId.isEmpty) {
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password,);
+        user = userCredential.user;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'MainEmail': user.email,
+          'uid': user.uid,
+          'password': password,
+          'providerId': "password",
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
       }
     }
-
+    catch (e) {
+      print(e);
+    }
     return user;
   }
 
@@ -702,55 +799,226 @@ class Authentication {
     CollectionReference usersdatabase =
         FirebaseFirestore.instance.collection('users');
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      print(password + "---------------------------------------");
-      user = userCredential.user;
-      await user.updateProfile(displayName: name);
-      await user.reload();
-      user = auth.currentUser;
-      userCredential.user.updateEmail(email);
-      print(user.email);
-      usersdatabase
-          .doc(user.uid)
-          .update({
-            'MainEmail': user.email,
-            'email': user.email,
-            'GoogleEmail': "",
-            'FacebookEmail': "",
-            "TwitterEmail": "",
-            "AppleEmail": "",
-            'providerId': "password",
-            'uid': user.uid,
-            'password': password,
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'The password provided is too weak.',
-          ),
-        );
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'The account already exists for that email.',
-          ),
-        );
+      // UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      //   email: email,
+      //   password: password,
+      // );
+      // print(password + "---------------------------------------");
+      // user = userCredential.user;
+      // await user.updateProfile(displayName: name);
+      // await user.reload();
+      //  user = auth.currentUser;
+      //  userCredential.user.updateEmail(email);
+      //  print(user.email);
+
+      if (MainEmail.isNotEmpty ) {
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+          else if (ProviderId == "facebook.com") {
+            User userfacebook =
+            await Authentication.signInWithFacebook(context: context);
+            if (userfacebook != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenFacebook(
+                    user: userfacebook,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+              print(userfacebook.email);
+              print(userfacebook.displayName);
+              print(userfacebook.photoURL);
+            }
+          }
+          else if (ProviderId == "apple.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+          else if (ProviderId == "twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+        }
       }
-    } catch (e) {
+      else if (MainEmail.isNotEmpty && ProviderId.isEmpty) {
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        print(password + "---------------------------------------");
+        user = userCredential.user;
+        await user.updateProfile(displayName: name);
+        await user.reload();
+        user = auth.currentUser;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'providerId': "password",
+          'uid': user.uid,
+          'password': password,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+      else if (MainEmail.isEmpty) {
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        print(password + "---------------------------------------");
+        user = userCredential.user;
+        await user.updateProfile(displayName: name);
+        await user.reload();
+        user = auth.currentUser;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'uid': user.uid,
+          'password': password,
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+        if (ProviderId.isNotEmpty) {
+          if (ProviderId == "google.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+          else if (ProviderId == "facebook.com") {
+            User userfacebook =
+            await Authentication.signInWithFacebook(context: context);
+            if (userfacebook != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenFacebook(
+                    user: userfacebook,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+              print(userfacebook.email);
+              print(userfacebook.displayName);
+              print(userfacebook.photoURL);
+            }
+          }
+          else if (ProviderId == "apple.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          } // not ready to use
+          else if (ProviderId == "twitter.com") {
+            User user = await Authentication.signInWithGoogle(context: context);
+            if (user != null) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => UserInfoScreenGoogle(
+                    user: user,
+                  ), // in this button we send a user name with this page and we must stour it in database
+                ),
+              );
+
+              print(user.email);
+              print(user.displayName);
+              print(user.photoURL);
+            }
+          }
+        }
+      }
+      else if (MainEmail.isEmpty && ProviderId.isEmpty) {
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        print(password + "---------------------------------------");
+        user = userCredential.user;
+        await user.updateProfile(displayName: name);
+        await user.reload();
+        user = auth.currentUser;
+        userCredential.user.updateEmail(email);
+        print(user.email);
+        usersdatabase
+            .doc(user.uid)
+            .update({
+          'email': user.email,
+          'MainEmail': user.email,
+          'uid': user.uid,
+          'password': password,
+          'providerId': "password",
+        })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+    }  catch (e) {
       print(e);
     }
-
     return user;
   }
-
   static Future<User> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await user.reload();
