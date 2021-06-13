@@ -1,3 +1,4 @@
+import 'package:acthub/Screens/ActLink.dart';
 import 'package:acthub/Screens/EnableLocation.dart';
 import 'package:acthub/Screens/HomePage.dart';
 import 'package:acthub/Screens/LandingPage.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: ProfilePage.id,
+      initialRoute: NavigationPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         AboutUsScreen.id: (context) => AboutUsScreen(),
         EditProfileScreen.id: (context) => EditProfileScreen(),
         LanguageScreen.id: (context) => LanguageScreen(),
+        ActLink.id: (context) => ActLink(),
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:acthub/Classes/Palette.dart';
+import 'package:acthub/Screens/ActLink.dart';
 import 'package:acthub/Screens/EditProfileScreen.dart';
 import 'package:acthub/Screens/LanguageScreen.dart';
 import 'package:acthub/Screens/ManagementPage.dart';
@@ -24,6 +25,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool isGuest = false;
+  bool isGuide=true;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -50,176 +52,357 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),),
             backgroundColor: Palette.scaffold,
-            body: isGuest ? guestUI(context) : loggedInUI(context)),
+            body: isGuest ? guestUI(context) : isGuide?guideUI(context): loggedInUI(context)),
       ),
     );
   }
 
-  Column loggedInUI(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-                buttonCard(
-                    context, "Rate this App", 'Images/star.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-                buttonCard(context, "Language", 'Images/language.png',
-                    LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-                buttonCard(context, "Contact Us", 'Images/contact.png',
-                    ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-              ],
-            ),
-            Column(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.40,
-                      width: MediaQuery.of(context).size.width * 0.45,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                              height:
-                              MediaQuery.of(context).size.height * 0.06),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+ loggedInUI(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                  buttonCard(
+                      context, "Rate this App", 'Images/star.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, "Language", 'Images/language.png',
+                      LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, "Contact Us", 'Images/contact.png',
+                      ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
+              ),
+              Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height:
+                                MediaQuery.of(context).size.height * 0.06),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              elevation: 5,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Palette.white,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
+                                  ),
+                                ),
+                                height: MediaQuery.of(context).size.height * 0.33,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                              ),
                             ),
-                            elevation: 5,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Palette.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(30),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: MediaQuery.of(context).size.width*0.095,
+                        child: Stack(
+                          alignment:Alignment.bottomLeft,
+                          children: [
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.width>500
+                                        ?MediaQuery.of(context).size.width*0.1:
+                                    MediaQuery.of(context).size.width*0.12),
+                              ),
+                              elevation: 10,
+                              child: CircleAvatar(
+                                 radius:    MediaQuery.of(context).size.width>500
+                                     ?
+                                 MediaQuery.of(context).size.width*0.1:
+                                 MediaQuery.of(context).size.width*0.12,
+                                backgroundImage: NetworkImage(
+                                    'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.width>500
+                                  ?MediaQuery.of(context).size.width*0.05:MediaQuery.of(context).size.width*0.06,
+                              width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
+                              decoration: BoxDecoration(
+                                  color: Palette.online,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 2.0, color: Palette.white)),
+                            )
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        top: MediaQuery.of(context).size.height * 0.12,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02,),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height: MediaQuery.of(context).size.height * 0.04,
+                                child: AutoSizeText.rich(TextSpan(
+                                  children: [
+                                    TextSpan(text:'Lara ',style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orange), ),
+                                    TextSpan(text:'Giovani',style: TextStyle(
+                                        color: Palette.orange, fontSize: 16), )
+                                  ]
+                                ),
+                                overflow: TextOverflow.visible,),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02,),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: AutoSizeText(
+                                  'Country :  Palestine \n'
+                                      'City :         Ramallah\n'
+                                      'Age :        25 years old \n',
+                                  style: TextStyle(
+                                    color: Palette.orange,
+                                    fontSize: 20,
+                                  ),
+                                  maxLines: 6,
                                 ),
                               ),
-                              height: MediaQuery.of(context).size.height * 0.3,
-                              width: MediaQuery.of(context).size.width * 0.45,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      left: MediaQuery.of(context).size.width*0.095,
+                    ],
+                  ),
+                  buttonCard(
+                      context, "About Us", 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
+              ),
+            ],
+          ),
+         horizontalButton(context,
+           image_Path: 'Images/privacy_policy.png',
+           width:MediaQuery.of(context).size.width * .92,
+           height:MediaQuery.of(context).size.height * 0.1,
+           text: 'Privacy Policy',route: PrivacyPolicy.id,gap:MediaQuery.of(context).size.width*0.18),
 
-                      child: Stack(
-                        alignment:Alignment.bottomLeft,
-                        children: [
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  MediaQuery.of(context).size.width>500
-                                      ?MediaQuery.of(context).size.width*0.1:
-                                  MediaQuery.of(context).size.width*0.12),
-                            ),
-                            elevation: 10,
-                            child: CircleAvatar(
-                               radius:    MediaQuery.of(context).size.width>500
-                                   ?
-                               MediaQuery.of(context).size.width*0.1:
-                               MediaQuery.of(context).size.width*0.12,
-                              backgroundImage: NetworkImage(
-                                  'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.width>500
-                                ?MediaQuery.of(context).size.width*0.05:MediaQuery.of(context).size.width*0.06,
-                            width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
-                            decoration: BoxDecoration(
-                                color: Palette.online,
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 2.0, color: Palette.white)),
-                          )
-                        ],
-                      ),
-                    ),
-
-                    Positioned(
-                      left: MediaQuery.of(context).size.width * 0.02,
-                      top: MediaQuery.of(context).size.height * 0.12,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02,),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              height: MediaQuery.of(context).size.height * 0.04,
-                              child: AutoSizeText.rich(TextSpan(
-                                children: [
-                                  TextSpan(text:'Lara ',style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.orange), ),
-                                  TextSpan(text:'Giovani',style: TextStyle(
-                                      color: Palette.orange, fontSize: 16), )
-                                ]
-                              ),
-                              overflow: TextOverflow.visible,),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02,),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: AutoSizeText(
-                                'Country :  Palestine \n'
-                                    'City :         Ramallah\n'
-                                    'Age :        25 years old \n',
-                                style: TextStyle(
-                                  color: Palette.orange,
-                                  fontSize: 20,
-                                ),
-                                maxLines: 6,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                buttonCard(
-                    context, "About Us", 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-              ],
-            ),
-          ],
-        ),
-       horizontalButton(context,
-         image_Path: 'Images/privacy_policy.png',
-         width:MediaQuery.of(context).size.width * .92,
-         height:MediaQuery.of(context).size.height * 0.1,
-         text: 'Privacy Policy',route: PrivacyPolicy.id,gap:MediaQuery.of(context).size.width*0.18),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            horizontalButton(context,
-              image_Path: 'Images/edit.png',
-              width:MediaQuery.of(context).size.width * .46,
-              height:MediaQuery.of(context).size.height * 0.1,
-              text: 'Edit Profile',route:EditProfileScreen.id,gap:MediaQuery.of(context).size.width*0.1),
-            horizontalButton(context,
-                image_Path: 'Images/logout.png',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              horizontalButton(context,
+                image_Path: 'Images/edit.png',
                 width:MediaQuery.of(context).size.width * .46,
                 height:MediaQuery.of(context).size.height * 0.1,
-                text: 'Logout',gap:MediaQuery.of(context).size.width*0.1),
+                text: 'Edit Profile',route:EditProfileScreen.id,gap:MediaQuery.of(context).size.width*0.1),
+                  horizontalButton(context,
+                  image_Path: 'Images/logout.png',
+                  width:MediaQuery.of(context).size.width * .46,
+                  height:MediaQuery.of(context).size.height * 0.1,
+                  text: 'Logout',gap:MediaQuery.of(context).size.width*0.1),
 
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+Widget guideUI(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                  buttonCard(
+                      context, "Billing", 'Images/billing.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, "Language", 'Images/language.png',
+                      LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, "Contact Us", 'Images/contact.png',
+                      ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
+              ),
+              Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height:
+                                MediaQuery.of(context).size.height * 0.06),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              elevation: 5,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Palette.white,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
+                                  ),
+                                ),
+                                height: MediaQuery.of(context).size.height * 0.33,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: MediaQuery.of(context).size.width*0.095,
+                        child: Stack(
+                          alignment:Alignment.bottomLeft,
+                          children: [
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.width>500
+                                        ?MediaQuery.of(context).size.width*0.1:
+                                    MediaQuery.of(context).size.width*0.12),
+                              ),
+                              elevation: 10,
+                              child: CircleAvatar(
+                                radius:    MediaQuery.of(context).size.width>500
+                                    ?
+                                MediaQuery.of(context).size.width*0.1:
+                                MediaQuery.of(context).size.width*0.12,
+                                backgroundImage: NetworkImage(
+                                    'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.width>500
+                                  ?MediaQuery.of(context).size.width*0.05:MediaQuery.of(context).size.width*0.06,
+                              width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
+                              decoration: BoxDecoration(
+                                  color: Palette.online,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 2.0, color: Palette.white)),
+                            )
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: MediaQuery.of(context).size.width * 0.02,
+                        top: MediaQuery.of(context).size.height * 0.12,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02,),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height: MediaQuery.of(context).size.height * 0.04,
+                                child: AutoSizeText.rich(TextSpan(
+                                    children: [
+                                      TextSpan(text:'Lara ',style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orange), ),
+                                      TextSpan(text:'Giovani',style: TextStyle(
+                                          color: Palette.orange, fontSize: 16), )
+                                    ]
+                                ),
+                                  overflow: TextOverflow.visible,),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02,),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: AutoSizeText(
+                                  'Country :      Palestine \n'
+                                      'City :             Ramallah\n'
+                                      'Company :    Sky \n',
+                                  style: TextStyle(
+                                    color: Palette.orange,
+                                    fontSize: 16,
+                                  ),
+                                  maxLines: 6,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+
+                  buttonCard(
+                      context, "About Us", 'Images/act.png', AboutUsScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                ],
+              ),
+            ],
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              horizontalButton(context,
+                  image_Path: 'Images/privacy_policy.png',
+                  width:MediaQuery.of(context).size.width * .46,
+                  height:MediaQuery.of(context).size.height * 0.1,
+                  text: 'Privacy Policy',route:EditProfileScreen.id,gap:MediaQuery.of(context).size.width*0.1),
+              horizontalButton(context,
+                  image_Path: 'Images/link.png',
+                  width:MediaQuery.of(context).size.width * .46,
+                  height:MediaQuery.of(context).size.height * 0.1,
+                  text: 'Act Link',gap:MediaQuery.of(context).size.width*0.1,
+              route: ActLink.id),
+
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              horizontalButton(context,
+                  image_Path: 'Images/edit.png',
+                  width:MediaQuery.of(context).size.width * .46,
+                  height:MediaQuery.of(context).size.height * 0.1,
+                  text: 'Edit Profile',route:EditProfileScreen.id,gap:MediaQuery.of(context).size.width*0.1),
+              horizontalButton(context,
+                  image_Path: 'Images/logout.png',
+                  width:MediaQuery.of(context).size.width * .46,
+                  height:MediaQuery.of(context).size.height * 0.1,
+                  text: 'Logout',gap:MediaQuery.of(context).size.width*0.1),
+
+            ],
+          ),
+        ],
+      ),
     );
   }
   Widget guestUI(BuildContext context){
@@ -376,6 +559,7 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     );
   }
+
 
 
 
