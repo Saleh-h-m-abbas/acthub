@@ -78,26 +78,16 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
       //     print(tw);
       //   });
       // }
-      if (P.isNotEmpty) {
+      if (P.isEmpty) {
         setState(() {
-          pa = true;
-          print(pa);
+          sendEmailRequest(MainEmail);
         });
-      } else {
-     /*   ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'please reset your password',
-          ),
-        );*/
-        SendEmailRequest(MainEmail);
-
-        //_showMyDialog(); //todo lazem tro7 3la safha taneh orrrr ze mhe hla2
       }
     });
   }
 
 
-  SendEmailRequest(String Email){
+  sendEmailRequest(String Email){
     (() async {
         await  auth.sendPasswordResetEmail(email: Email);
         Fluttertoast.showToast(
@@ -115,115 +105,6 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
     })();
 
   }
-
-
-
- /* _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Reset Password'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  inputAction: TextInputAction.done,
-                  validator: (value) => Validator.validateEmail(
-                    email: value,
-                  ),
-                  label: 'Email',
-                  hint: 'Enter your Email',
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      child: Text(
-                        'Send Request',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {
-                        if (_emailController.text.isNotEmpty  || _emailController.text.length != 0) {
-                        setState(() {
-                          (() async {
-                         try{
-                           await  auth.sendPasswordResetEmail(email: _emailController.text);
-                           Fluttertoast.showToast(
-                               msg: "Please Check your email to Reset your password",
-                               toastLength: Toast.LENGTH_SHORT,
-                               gravity: ToastGravity.BOTTOM,
-                               timeInSecForIosWeb: 1,
-                               backgroundColor: Colors.red,
-                               textColor: Colors.white,
-                               fontSize: 16.0
-                           );
-                         }
-                         on FirebaseAuthException catch (e) {
-                           if (e.code == 'The email address is badly formatted') {
-                             Fluttertoast.showToast(
-                                 msg: "The email address is badly formatted",
-                                 toastLength: Toast.LENGTH_SHORT,
-                                 gravity: ToastGravity.BOTTOM,
-                                 timeInSecForIosWeb: 1,
-                                 backgroundColor: Colors.red,
-                                 textColor: Colors.white,
-                                 fontSize: 16.0
-                             );
-                           }
-                         } catch (e) {
-                           ScaffoldMessenger.of(context).showSnackBar(
-                             Authentication.customSnackBar(
-                               content: 'The email address is badly formatted',
-                             ),
-                           );
-                         }
-                          })();
-                          });
-                       }
-                        else if (_emailController.text.isEmpty  || _emailController.text.length == 0) {
-                            setState(() {
-                              Fluttertoast.showToast(
-                                  msg: "Please Fill Email",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0
-                              );
-                            });
-                          }
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }*/
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -361,7 +242,31 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    ap = value;
+                    (() async {
+                      if (G == "" && E == "" && F=="") {
+                        print(G == "" && E == ""&& F=="");
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'email': MainEmail,
+                          'AppleEmail': "",
+                          'providerId': "password",
+                        })
+                            .then((value) => print("User Added"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        ap = false;
+                      } else {
+                        setState(() {
+                          ap = true;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Authentication.customSnackBar(
+                            content: 'Wait to link account',
+                          ),
+                        );
+                      }
+                    })();
                   });
                 },
                 switchActiveColor: Colors.orange,
@@ -387,7 +292,31 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    tw = value;
+                    (() async {
+                      if (G == "" && E == "" && F=="" && T =="") {
+                        print(G == "" && E == ""&& F=="" && T =="");
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'email': MainEmail,
+                          'TwitterEmail': "",
+                          'providerId': "password",
+                        })
+                            .then((value) => print("User Added"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        tw = false;
+                      } else {
+                        setState(() {
+                          tw = true;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Authentication.customSnackBar(
+                            content: 'Wait to link account',
+                          ),
+                        );
+                      }
+                    })();
                   });
                 },
                 switchActiveColor: Colors.orange,
