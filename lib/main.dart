@@ -23,6 +23,7 @@ import 'Screens/ContactUsPage.dart';
 import 'Screens/EditProfileScreen.dart';
 import 'Screens/LanguageScreen.dart';
 import 'Screens/ProfilePage.dart';
+import 'Screens/AddActivity.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
         EditProfileScreen.id: (context) => EditProfileScreen(),
         LanguageScreen.id: (context) => LanguageScreen(),
         ActLink.id: (context) => ActLink(),
+       AddActivity.id: (context) => AddActivity(),
       },
     );
   }
