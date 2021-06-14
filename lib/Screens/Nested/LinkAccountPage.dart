@@ -19,17 +19,11 @@ class LinkAccountPage extends StatefulWidget {
 class _LinkAccountPageState extends State<LinkAccountPage> {
   bool go = false, fa = false, tw = false, pa = false, em = false, ap = false;
   final firestoreInstance = FirebaseFirestore.instance;
-  String G = "",
-      F = "",
-      T = "",
-      E = "",
-      P = "",
+  String G = "", F = "", T = "", E = "", P = "", A="",
       MainEmail = "",
       ProviderId = "";
   CollectionReference usersdatabase =
       FirebaseFirestore.instance.collection('users');
-  String _email;
-  final TextEditingController _emailController = TextEditingController();
 
   final auth = FirebaseAuth.instance;
   void getData() async {
@@ -41,7 +35,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
       print("google :" + value.data()["GoogleEmail"]);
       print("facebook :" + value.data()["FacebookEmail"]);
       print("email :" + value.data()["email"]);
-      //print("twiter :"+value.data()["TwitterEmail"]);
+      print("twiter :"+value.data()["TwitterEmail"]);
+      print("apple :"+value.data()["AppleEmail"]);
       print("pass :" + value.data()["password"]);
       print("provider :" + value.data()["providerId"]);
       print("main :" + value.data()["MainEmail"]);
@@ -51,6 +46,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
       E = value.data()["email"];
       T = value.data()["TwitterEmail"];
       P = value.data()["password"];
+      A= value.data()["AppleEmail"];
       MainEmail = value.data()["MainEmail"];
       ProviderId = value.data()["providerId"];
 
@@ -72,12 +68,18 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
           print(em);
         });
       }
-      // if (T.isNotEmpty) {
-      //   setState(() {
-      //     tw = true;
-      //     print(tw);
-      //   });
-      // }
+      if (T.isNotEmpty) {
+        setState(() {
+          tw = true;
+          print(tw);
+        });
+      }
+      if (A.isNotEmpty) {
+        setState(() {
+          ap = true;
+          print(ap);
+        });
+      }
       if (P.isEmpty) {
         setState(() {
           sendEmailRequest(MainEmail);
@@ -100,7 +102,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
             fontSize: 16.0
         );
         await FirebaseAuth.instance.signOut();
-        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()),);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInForm()),);
 
     })();
 
@@ -143,8 +145,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (G == "" && E == "") {
-                        print(G == "" && E == "");
+                      if (G.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty) {
+                        print(G.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty);
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
@@ -156,13 +158,27 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
                         fa = false;
-                      } else {
+                      }
+                     else if (G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty) {
+                        print(G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty);
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'FacebookEmail': "",
+                        })
+                            .then((value) => print("User email delete"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        fa = false;
+                      }
+
+                      if(F.isEmpty) {
                         setState(() {
-                          fa = true;
+                          fa = value;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
-                            content: 'Wait to link account',
+                            content: 'Wait to link account by method',
                           ),
                         );
                       }
@@ -193,8 +209,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (F == "" && E == "") {
-                        print(F == "" && E == "");
+                      if (F == "" && E == "" && T == "" && A == "") {
+                        print(F == "" && E == "" && T == "" && A == "");
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
@@ -208,7 +224,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         go = false;
                       } else {
                         setState(() {
-                          go = true;
+                          go = value;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -243,8 +259,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (G == "" && E == "" && F=="") {
-                        print(G == "" && E == ""&& F=="");
+                      if (G == "" && E == "" && T == "" && F == "") {
+                        print(G == "" && E == "" && T == "" && F == "");
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
@@ -258,7 +274,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         ap = false;
                       } else {
                         setState(() {
-                          ap = true;
+                          ap = value;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -293,8 +309,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (G == "" && E == "" && F=="" && T =="") {
-                        print(G == "" && E == ""&& F=="" && T =="");
+                      if (G == "" && E == "" && F == "" && A == "") {
+                        print(G == "" && E == "" && F == "" && A == "");
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
@@ -308,7 +324,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         tw = false;
                       } else {
                         setState(() {
-                          tw = true;
+                          tw = value;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -333,11 +349,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 height: 15,
                 thickness: 5,
               ),
-
-
               // todo : hlaw hoon lazem tnshal otseer 2l mainnnnnnnnnnnn o bedooon ma tbayeeen
-
-
               ListTileSwitch(
                 value: em,
                 leading: Icon(
@@ -359,6 +371,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                   ),
                 ),
               ),
+
               Divider(
                 height: 15,
                 thickness: 5,
