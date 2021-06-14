@@ -1,5 +1,4 @@
-import 'package:acthub/Classes/reset.dart';
-import 'package:acthub/Classes/sign_in_form.dart';
+import 'package:acthub/Classes/custom_form_field.dart';
 import 'package:acthub/Screens/Nested/user_info_screen_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -667,7 +667,6 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
 
 
 
-
 class LinkedButton extends StatefulWidget {
   @override
   _LinkedButtonState createState() => _LinkedButtonState();

@@ -1,4 +1,4 @@
-import 'package:acthub/Classes/register_form.dart';
+import 'package:acthub/Classes/custom_form_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
