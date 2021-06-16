@@ -19,7 +19,12 @@ class LinkAccountPage extends StatefulWidget {
 class _LinkAccountPageState extends State<LinkAccountPage> {
   bool go = false, fa = false, tw = false, pa = false, em = false, ap = false;
   final firestoreInstance = FirebaseFirestore.instance;
-  String G = "", F = "", T = "", E = "", P = "", A="",
+  String G = "",
+      F = "",
+      T = "",
+      E = "",
+      P = "",
+      A = "",
       MainEmail = "",
       ProviderId = "";
   CollectionReference usersdatabase =
@@ -35,8 +40,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
       print("google :" + value.data()["GoogleEmail"]);
       print("facebook :" + value.data()["FacebookEmail"]);
       print("email :" + value.data()["email"]);
-      print("twiter :"+value.data()["TwitterEmail"]);
-      print("apple :"+value.data()["AppleEmail"]);
+      print("twiter :" + value.data()["TwitterEmail"]);
+      print("apple :" + value.data()["AppleEmail"]);
       print("pass :" + value.data()["password"]);
       print("provider :" + value.data()["providerId"]);
       print("main :" + value.data()["MainEmail"]);
@@ -46,7 +51,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
       E = value.data()["email"];
       T = value.data()["TwitterEmail"];
       P = value.data()["password"];
-      A= value.data()["AppleEmail"];
+      A = value.data()["AppleEmail"];
       MainEmail = value.data()["MainEmail"];
       ProviderId = value.data()["providerId"];
 
@@ -88,25 +93,25 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
     });
   }
 
-
-  sendEmailRequest(String Email){
+  sendEmailRequest(String Email) {
     (() async {
-        await  auth.sendPasswordResetEmail(email: Email);
-        Fluttertoast.showToast(
-            msg: "Please Check your email to Reset your password",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-        await FirebaseAuth.instance.signOut();
-        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInForm()),);
-
+      await auth.sendPasswordResetEmail(email: Email);
+      Fluttertoast.showToast(
+          msg: "Please Check your email to Reset your password",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      await FirebaseAuth.instance.signOut();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SignInForm()),
+      );
     })();
-
   }
+
   static SnackBar customSnackBar({String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -150,29 +155,31 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
-                          'email': MainEmail,
-                          'FacebookEmail': "",
-                          'providerId': "password",
-                        })
+                              'email': MainEmail,
+                              'FacebookEmail': "",
+                              'providerId': "password",
+                            })
                             .then((value) => print("User Added"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
                         fa = false;
                       }
-                     else if (G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty) {
-                        print(G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty);
+                      else if (G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty) {
+                        print(G.isNotEmpty ||
+                            E.isNotEmpty ||
+                            T.isNotEmpty ||
+                            A.isNotEmpty);
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
-                          'FacebookEmail': "",
-                        })
+                              'FacebookEmail': "",
+                            })
                             .then((value) => print("User email delete"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
                         fa = false;
                       }
-
-                      if(F.isEmpty) {
+                      if (F.isEmpty) {
                         setState(() {
                           fa = value;
                         });
@@ -209,6 +216,52 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
+
+                      if (F.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty) {
+                        print(F.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty);
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'email': MainEmail,
+                          'GoogleEmail': "",
+                          'providerId': "password",
+                        })
+                            .then((value) => print("User Added"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        go = false;
+                      }
+                      else if (F.isNotEmpty || E.isNotEmpty || T.isNotEmpty || A.isNotEmpty) {
+                        print(F.isNotEmpty ||
+                            E.isNotEmpty ||
+                            T.isNotEmpty ||
+                            A.isNotEmpty);
+                        await usersdatabase
+                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .update({
+                          'GoogleEmail': "",
+                        })
+                            .then((value) => print("User email delete"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        go = false;
+                      }
+                      if (G.isEmpty) {
+                        setState(() {
+                          go = value;
+                           Authentication.link(context: context);
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Authentication.customSnackBar(
+                            content: 'Wait to link account by method',
+                          ),
+                        );
+                      }
+
+
+
+
+
                       if (F == "" && E == "" && T == "" && A == "") {
                         print(F == "" && E == "" && T == "" && A == "");
                         await usersdatabase
@@ -225,6 +278,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                       } else {
                         setState(() {
                           go = value;
+                          Authentication.link(context: context);
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -232,6 +286,9 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                           ),
                         );
                       }
+
+
+
                     })();
                   });
                 },
@@ -264,10 +321,10 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
-                          'email': MainEmail,
-                          'AppleEmail': "",
-                          'providerId': "password",
-                        })
+                              'email': MainEmail,
+                              'AppleEmail': "",
+                              'providerId': "password",
+                            })
                             .then((value) => print("User Added"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
@@ -314,10 +371,10 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                         await usersdatabase
                             .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
                             .update({
-                          'email': MainEmail,
-                          'TwitterEmail': "",
-                          'providerId': "password",
-                        })
+                              'email': MainEmail,
+                              'TwitterEmail': "",
+                              'providerId': "password",
+                            })
                             .then((value) => print("User Added"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));

@@ -107,12 +107,6 @@ class Authentication {
         );
 
         getData();
-        //----------------------------------------
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
-        user = userCredential.user;
-        userCredential.user.updateEmail(_googleUserEmail);
-        print(user.email);
         //------------------------------------------
         print(GoogleEmail);
         print(FacebookEmail);
@@ -127,6 +121,11 @@ class Authentication {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);
           user = userCredential.user;
+
+          print(userCredential.user);
+
+
+
           userCredential.user.updateEmail(_googleUserEmail);
           print(user.email);
           usersdatabase
@@ -361,7 +360,6 @@ class Authentication {
     }
     return user;
   }
-
   static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
@@ -377,7 +375,6 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
   static Future<User> signInWithFacebook({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -644,7 +641,6 @@ class Authentication {
     }
     return Facebookuser;
   }
-
   static Future<void> signOutFacebook({BuildContext context}) async {
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     FacebookLogin facebookLogin = FacebookLogin();
@@ -664,7 +660,6 @@ class Authentication {
       );
     }
   }
-
   //*****************************************************************************************************************************
   static Future<UserCredential> signInWithTwitter(
       {BuildContext context}) async {
@@ -1284,7 +1279,10 @@ class Authentication {
   }
 
   //*****************************************************************************************************************************
-  Future<void> test({BuildContext context}) async {
+  static Future<void> link({BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+
     // Trigger the Google Authentication flow.
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request.
@@ -1298,16 +1296,34 @@ class Authentication {
     // Sign in to Firebase with the Google [UserCredential].
     final UserCredential googleUserCredential =
         await FirebaseAuth.instance.signInWithCredential(googleCredential);
+
+
     //""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    // Now let's link Twitter to the currently signed in account.
-    // Create a [FacebookLogin] instance.
+
+
+
+    // Link the facebook account to the Google account.
     FacebookLogin facebookLogin = FacebookLogin();
     final FacebookLoginResult result = await facebookLogin.logIn(['email']);
     final FacebookAccessToken accessToken = result.accessToken;
     // AuthCredential credential = FacebookAuthProvider.credential(accessToken.token);
     final AuthCredential FacebookAuthCredential =
         FacebookAuthProvider.credential(accessToken.token);
-    // Link the Twitter account to the Google account.
     await googleUserCredential.user.linkWithCredential(FacebookAuthCredential);
+
+
+
+/*    // Link the email account to the Google account.
+    final UserCredential emailUserCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: "nadeemarayes@gmail.com",
+      password: "1122334455",
+    );
+    await googleUserCredential.user.linkWithCredential(emailUserCredential.credential);*/
+
+
+
+
+
+
   }
 }
