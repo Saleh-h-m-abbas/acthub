@@ -236,7 +236,7 @@ Widget guideUI(BuildContext context) {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   buttonCard(
                       context, "Billing", 'Images/billing.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                   buttonCard(context, "Language", 'Images/language.png',
@@ -250,13 +250,13 @@ Widget guideUI(BuildContext context) {
                   Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.37,
                         width: MediaQuery.of(context).size.width * 0.45,
                         child: Column(
                           children: [
                             SizedBox(
                                 height:
-                                MediaQuery.of(context).size.height * 0.06),
+                                MediaQuery.of(context).size.height * 0.03),
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
