@@ -34,7 +34,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
   void getData() async {
     await firestoreInstance
         .collection("users")
-        .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+        .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
         .get()
         .then((value) {
       print("google :" + value.data()["GoogleEmail"]);
@@ -85,17 +85,20 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
           print(ap);
         });
       }
+
       if (P.isEmpty) {
         setState(() {
-          sendEmailRequest(MainEmail);
+          em = true;
+         // sendEmailRequest(MainEmail);
         });
       }
+
     });
   }
 
   sendEmailRequest(String Email) {
     (() async {
-      await auth.sendPasswordResetEmail(email: Email);
+     // await auth.sendPasswordResetEmail(email: Email);
       Fluttertoast.showToast(
           msg: "Please Check your email to Reset your password",
           toastLength: Toast.LENGTH_SHORT,
@@ -153,7 +156,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                       if (G.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty) {
                         print(G.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
                               'email': MainEmail,
                               'FacebookEmail': "",
@@ -170,7 +173,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                             T.isNotEmpty ||
                             A.isNotEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
                               'FacebookEmail': "",
                             })
@@ -182,6 +185,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                       if (F.isEmpty) {
                         setState(() {
                           fa = value;
+                          Authentication.link(ProviderId,"facebook",context: context);
+
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -216,11 +221,10 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-
                       if (F.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty) {
                         print(F.isEmpty && E.isEmpty && T.isEmpty && A.isEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
                           'email': MainEmail,
                           'GoogleEmail': "",
@@ -237,7 +241,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                             T.isNotEmpty ||
                             A.isNotEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
                           'GoogleEmail': "",
                         })
@@ -249,7 +253,7 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                       if (G.isEmpty) {
                         setState(() {
                           go = value;
-                           Authentication.link(context: context);
+                           Authentication.link(ProviderId,"google",context: context);
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
@@ -257,38 +261,6 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                           ),
                         );
                       }
-
-
-
-
-
-                      if (F == "" && E == "" && T == "" && A == "") {
-                        print(F == "" && E == "" && T == "" && A == "");
-                        await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
-                            .update({
-                              'email': MainEmail,
-                              'GoogleEmail': "",
-                              'providerId': "password",
-                            })
-                            .then((value) => print("User Added"))
-                            .catchError(
-                                (error) => print("Failed to add user: $error"));
-                        go = false;
-                      } else {
-                        setState(() {
-                          go = value;
-                          Authentication.link(context: context);
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          Authentication.customSnackBar(
-                            content: 'Wait to link account',
-                          ),
-                        );
-                      }
-
-
-
                     })();
                   });
                 },
@@ -316,29 +288,49 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (G == "" && E == "" && T == "" && F == "") {
-                        print(G == "" && E == "" && T == "" && F == "");
+
+                      if (G.isEmpty && E.isEmpty && T.isEmpty && F.isEmpty) {
+                        print(G.isEmpty && E.isEmpty && T.isEmpty && F.isEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
-                              'email': MainEmail,
-                              'AppleEmail': "",
-                              'providerId': "password",
-                            })
+                          'email': MainEmail,
+                          'AppleEmail': "",
+                          'providerId': "password",
+                        })
                             .then((value) => print("User Added"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
+                        fa = false;
+                      }
+                      else if (G.isNotEmpty || E.isNotEmpty || T.isNotEmpty || F.isNotEmpty) {
+                        print(G.isNotEmpty ||
+                            E.isNotEmpty ||
+                            T.isNotEmpty ||
+                            F.isNotEmpty);
+                        await usersdatabase
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
+                            .update({
+                          'AppleEmail': "",
+                        })
+                            .then((value) => print("User email delete"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
                         ap = false;
-                      } else {
+                      }
+                      if (A.isEmpty) {
                         setState(() {
                           ap = value;
+                          Authentication.link(ProviderId,"apple",context: context);
+
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
-                            content: 'Wait to link account',
+                            content: 'Wait to link account by method',
                           ),
                         );
                       }
+
                     })();
                   });
                 },
@@ -366,26 +358,46 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                 onChanged: (value) {
                   setState(() {
                     (() async {
-                      if (G == "" && E == "" && F == "" && A == "") {
-                        print(G == "" && E == "" && F == "" && A == "");
+
+                      if (G.isEmpty && E.isEmpty && F.isEmpty && A.isEmpty) {
+                        print(G.isEmpty && E.isEmpty && F.isEmpty && A.isEmpty);
                         await usersdatabase
-                            .doc("4sMasxJxApX2eLexAqfnQHrpxaV2")
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
                             .update({
-                              'email': MainEmail,
-                              'TwitterEmail': "",
-                              'providerId': "password",
-                            })
+                          'email': MainEmail,
+                          'TwitterEmail': "",
+                          'providerId': "password",
+                        })
                             .then((value) => print("User Added"))
                             .catchError(
                                 (error) => print("Failed to add user: $error"));
                         tw = false;
-                      } else {
+                      }
+                      else if (G.isNotEmpty || E.isNotEmpty || F.isNotEmpty || A.isNotEmpty) {
+                        print(G.isNotEmpty ||
+                            E.isNotEmpty ||
+                            F.isNotEmpty ||
+                            A.isNotEmpty);
+                        await usersdatabase
+                            .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
+                            .update({
+                          'TwitterEmail': "",
+                        })
+                            .then((value) => print("User email delete"))
+                            .catchError(
+                                (error) => print("Failed to add user: $error"));
+                        tw = false;
+                      }
+
+                      if (A.isEmpty) {
                         setState(() {
                           tw = value;
+                          Authentication.link(ProviderId,"apple",context: context);
+
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
                           Authentication.customSnackBar(
-                            content: 'Wait to link account',
+                            content: 'Wait to link account by method',
                           ),
                         );
                       }

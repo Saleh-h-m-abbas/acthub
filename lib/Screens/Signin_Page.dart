@@ -3,6 +3,7 @@ import 'package:acthub/Api/translation_widget.dart';
 import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Design/Button.dart';
 import 'package:acthub/Screens/Nested/Email_Password_Signin_Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -19,10 +20,24 @@ class _SignInPageState extends State<SignInPage> {
   String defaultLocale;
   var fromLanguageCode;
   var toLanguageCode;
-
+  CollectionReference usersdatabase = FirebaseFirestore.instance.collection('users');
   @override
   void initState() {
     checkDeviceLanguage();
+    // usersdatabase
+    //     .doc("3m4jjjnICBfhLQJxT6x7leOS80H3")
+    //     .update({
+    //   'GoogleEmail': null,
+    //   'FacebookEmail':null,
+    //   'TwitterEmail':null,
+    //   'AppleEmail':null,
+    //   'providerId':null,
+    //   'MainEmail':null,
+    //   'email':null,
+    //   'password':null,
+    // })
+    //     .then((value) => print("User Added"))
+    //     .catchError((error) => print("Failed to add user: $error"));
     super.initState();
   }
 

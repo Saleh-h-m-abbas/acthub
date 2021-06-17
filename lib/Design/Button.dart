@@ -665,149 +665,89 @@ class _anonymousSignInButtonState extends State<anonymousSignInButton> {
   }
 }
 
+class CustomFormField extends StatelessWidget {
+  const CustomFormField({
+    Key key,
+    TextEditingController controller,
+    FocusNode focusNode,
+    TextInputType keyboardType,
+    TextInputAction inputAction,
+    String label,
+    String hint,
+    Function(String value) validator,
+    this.isObscure = false,
+    this.isCapitalized = false,
+  })  : _emailController = controller,
+        _emailFocusNode = focusNode,
+        _keyboardtype = keyboardType,
+        _inputAction = inputAction,
+        _label = label,
+        _hint = hint,
+        _validator = validator,
+        super(key: key);
 
-
-class LinkedButton extends StatefulWidget {
-  @override
-  _LinkedButtonState createState() => _LinkedButtonState();
-}
-class _LinkedButtonState extends State<LinkedButton> {
-  bool _isSigningIn = false;
-  Future<void> test({BuildContext context}) async {
-    // Trigger the Google Authentication flow.
-    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-    // Obtain the auth details from the request.
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    // Create a new credential.
-    final GoogleAuthCredential googleCredential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,);
-    // Sign in to Firebase with the Google [UserCredential].
-    final UserCredential googleUserCredential = await FirebaseAuth.instance.signInWithCredential(googleCredential);
-    //""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    // Now let's link Twitter to the currently signed in account.
-    // Create a [FacebookLogin] instance.
-    FacebookLogin facebookLogin = FacebookLogin();
-    final FacebookLoginResult result = await facebookLogin.logIn(['email']);
-    final FacebookAccessToken accessToken = result.accessToken;
-    // AuthCredential credential = FacebookAuthProvider.credential(accessToken.token);
-    final AuthCredential FacebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
-    // Link the Twitter account to the Google account.
-    await googleUserCredential.user.linkWithCredential(FacebookAuthCredential);
-
-  }
+  final TextEditingController _emailController;
+  final FocusNode _emailFocusNode;
+  final TextInputType _keyboardtype;
+  final TextInputAction _inputAction;
+  final String _label;
+  final String _hint;
+  final bool isObscure;
+  final bool isCapitalized;
+  final Function(String) _validator;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(bottom: 0.0),
-        child: _isSigningIn
-            ? GestureDetector(
-          onTap: () async {
-            setState(() {
-              _isSigningIn = true;
-            });
-           await test();
-            setState(() {
-              _isSigningIn = false;
-            });
-
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => test1(), // in this button we send a user name with this page and we must stour it in database
-                ),
-              );
-            },
-          child:  Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                width: 370.0,
-                height: 45.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.16),
-                      offset: Offset(0, 3.0),
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                ),
-                child: Text(
-                  'Sign in with Google and facebook',
-                  style: TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Positioned(
-                left: 16.0,
-                child: Image.asset("assets/google.png",
-                    width: 20, height: 20),
-              ),
-            ],
+    return
+      TextFormField(
+      controller: _emailController,
+      focusNode: _emailFocusNode,
+      keyboardType: _keyboardtype,
+      obscureText: isObscure,
+      textCapitalization:
+      isCapitalized ? TextCapitalization.words : TextCapitalization.none,
+      textInputAction: _inputAction,
+      cursorColor: Color(0xFFFFCA28),
+      validator: (value) => _validator(value),
+      decoration: InputDecoration(
+        labelText: _label,
+        labelStyle: TextStyle(color: Color(0xFFFFCA28)),
+        hintText: _hint,
+        hintStyle: TextStyle(
+          color: Color(0xFFECEFF1).withOpacity(0.5),
+        ),
+        errorStyle: TextStyle(
+          color: Colors.redAccent,
+          fontWeight: FontWeight.bold,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0xFFFFA000),
+            width: 2,
           ),
-        ):
-        GestureDetector(
-          onTap: () async {
-            setState(() {
-              _isSigningIn = true;
-            });
-
-            await  test();
-            setState(() {
-              _isSigningIn = false;
-            });
-
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => test1(), // in this button we send a user name with this page and we must stour it in database
-                ),
-              );
-
-          },
-          child:  Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                width: 370.0,
-                height: 45.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.16),
-                      offset: Offset(0, 3.0),
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                ),
-                child: Text(
-                  'Sign in with Google and facebook',
-                  style: TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Positioned(
-                left: 16.0,
-                child: Image.asset("assets/google.png",
-                    width: 20, height: 20),
-              ),
-            ],
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0xFF030303).withOpacity(0.5),
           ),
-        )
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 2,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Colors.redAccent,
+            width: 2,
+          ),
+        ),
+      ),
     );
   }
 }
