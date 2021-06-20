@@ -1,6 +1,8 @@
+import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:getwidget/getwidget.dart';
 
 class SignUpAsPage extends StatefulWidget {
   const SignUpAsPage({Key key}) : super(key: key);
@@ -21,13 +23,24 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
           children: [
             Image.asset(
               'Images/HeaderLogoB.png',
-              fit: BoxFit.scaleDown,
+              fit: BoxFit.fill,
+              width: MediaQuery.of(context).size.width,
+              height:MediaQuery.of(context).size.height*0.26,
             ),
-            SafeArea(
-              child: IconButton(
-                icon: Icon(Icons.arrow_back),
-                //onPressed:() => Navigator.pop(context, false),
-                onPressed: () => Navigator.pop(context),
+            Positioned(
+              top:MediaQuery.of(context).size.height*0.07,
+              child: Container(
+                height: MediaQuery.of(context).size.width*0.1,
+                width:MediaQuery.of(context).size.width*0.1,
+
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios,size: 30,),
+                    onPressed: () => Navigator.pop(context),
+
+                  ),
+                ),
               ),
             ),
           ],
@@ -37,23 +50,20 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
           children: [
             Container(
               //container for the continue as
-              height: 28.5,
-              width: 343,
-
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Text(
-                  'Continue as ',
-                  style: TextStyle(
-                      color: Color(0xff566357).withOpacity(0.6),
-                      fontSize: 20,
-                      fontFamily: 'Segoe UI'),
-                ),
+              height: MediaQuery.of(context).size.height*0.03,
+              width: MediaQuery.of(context).size.width*0.77,
+              child: AutoSizeText(
+                'Continue as ',
+                style: TextStyle(
+                    color: Color(0xff566357).withOpacity(0.6),
+                    fontSize: 30,
+                    fontFamily: 'Segoe UI'),
               ),
             ),
             Padding(
               //Divider line
-              padding: EdgeInsets.only(right: 30, left: 30),
+              padding: EdgeInsets.only(right:MediaQuery.of(context).size.width*0.075,
+                  left: MediaQuery.of(context).size.width*0.075),
               child: Divider(color: Color(0xffF9A559), thickness: 1.0),
             ),
             UserCard(context,'serviceProvider'),
@@ -61,14 +71,11 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
             UserCard(context,'user'),
           ],
         ),
-        SafeArea(
-          child: Container(
-            width: 200,
-            child: Image.asset(
-              'Images/ActHubG.png',
-            ),
-          ),
-        ),
+        Container(
+            height: MediaQuery.of(context).size.height*0.06,
+            width: MediaQuery.of(context).size.width*0.4,
+            child: Image.asset('Images/ActHubG.png',fit: BoxFit.contain,)),
+
       ]),
     );
   }
@@ -90,17 +97,21 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
                   ),
                   elevation: 3,
                   child: Container(
-                    height: MediaQuery.of(context).size.height*0.125,
+                    height: MediaQuery.of(context).size.height*0.145,
                     width: MediaQuery.of(context).size.width*0.85,
                     child: Padding(
-                      padding:EdgeInsets.only(top: MediaQuery.of(context).size.height*0.04,left:MediaQuery.of(context).size.width*0.04,right: MediaQuery.of(context).size.width*0.04 ),
+                      padding:EdgeInsets.only(top: MediaQuery.of(context).size.height*0.06,left:MediaQuery.of(context).size.width*0.04,
+                          right: MediaQuery.of(context).size.width*0.04 ,bottom:  MediaQuery.of(context).size.height*0.018),
                       child: Center(
                         child: AutoSizeText(
                           'as service provider, you have the right to add your services and offers about your trip, and you can get offer from us for long terms ',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 12,
+                            fontSize: 15,
                           ),
+                          textAlign: TextAlign.center,
+                          minFontSize: 8,
+
 
                         ),
                       ),
@@ -111,14 +122,28 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
             ),
             Positioned(
               left:MediaQuery.of(context).size.width*0.04 ,
-              child: Image.asset(
-                'Images/$user.png',
-                fit: BoxFit.cover,
+              child: GFImageOverlay(
+               image:AssetImage('Images/$user.png') ,
                 width: MediaQuery.of(context).size.width*0.77,
+                height: MediaQuery.of(context).size.height*0.08,
+                borderRadius: BorderRadius.circular(18),
+                child: Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width*0.4,
+                    height: MediaQuery.of(context).size.height*0.04,
+                    child: Center(
+                      child: AutoSizeText(
+                       "$user",
+                        style: TextStyle(
+                            fontSize:25,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.white),
+                      ),
+                    ),
+                  ),
+                ),
 
               ),
-
-
             ),
           ],
         ),

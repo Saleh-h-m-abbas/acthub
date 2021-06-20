@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:acthub/Classes/Palette.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -79,40 +80,52 @@ class _MapPageState extends State<MapPage> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 10.0, top: 20.5),
+                                 EdgeInsets.only(left: MediaQuery.of(context).size.width *0.02, top: MediaQuery.of(context).size.height *0.025),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Discover',
-                                  style: TextStyle(
-                                      shadows: [
-                                        Shadow(
-                                            blurRadius: 15,
-                                            color:
-                                                Colors.black.withOpacity(0.35),
-                                            offset: Offset(5, 5))
-                                      ],
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.orange),
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.only(left: 65.0),
-                                    child: Text(
-                                      'Near You',
-                                      style: TextStyle(
+                                Container(
+                                  child: AutoSizeText(
+                                    'Discover',
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                    style: TextStyle(
                                         shadows: [
                                           Shadow(
-                                              blurRadius: 10,
-                                              color: Colors.black
-                                                  .withOpacity(0.35),
+                                              blurRadius: 15,
+                                              color:
+                                                  Colors.black.withOpacity(0.35),
                                               offset: Offset(5, 5))
                                         ],
-                                        fontSize: 14,
+                                        fontSize: 36,
                                         fontWeight: FontWeight.bold,
-                                        color: Palette.orange,
+                                        color: Palette.orange),
+                                  ),
+                                  height: MediaQuery.of(context).size.height*0.05,
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width *0.15),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*0.03,
+                                      width: MediaQuery.of(context).size.width*0.2,
+                                      child: AutoSizeText(
+                                        'Near You',
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          shadows: [
+                                            Shadow(
+                                                blurRadius: 10,
+                                                color: Colors.black
+                                                    .withOpacity(0.35),
+                                                offset: Offset(5, 5))
+                                          ],
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orange,
+                                        ),
                                       ),
                                     )),
                               ],
@@ -229,19 +242,29 @@ class _MapPageState extends State<MapPage> {
                     image: NetworkImage(
                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
                     )),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(17),
+                ),
+
               ),
               width: MediaQuery.of(context).size.width * 0.98,
               height: MediaQuery.of(context).size.height * 0.23,
             ),
             Positioned(
-                left: 15,
-                top: 145,
-                child: Text(
-                  'weekend Trip',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold),
+                left: MediaQuery.of(context).size.width*0.045,
+                top: MediaQuery.of(context).size.height * 0.16,
+                child: Container(
+                  height:MediaQuery.of(context).size.height * 0.04 ,
+                  width: MediaQuery.of(context).size.width*0.35 ,
+                  child: AutoSizeText(
+                    'weekend Trip',
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ))
           ],
         ),

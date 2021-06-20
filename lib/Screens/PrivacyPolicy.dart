@@ -23,7 +23,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             children: [
               Image.asset(
                 'Images/HeaderLogoA.png',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.26,
               ),
               Positioned(
                 top:MediaQuery.of(context).size.height*0.07,
@@ -46,15 +48,19 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           Container(
             height: MediaQuery.of(context).size.height*0.05,
             width: MediaQuery.of(context).size.width*0.55,
-            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
-            ),
-            child: Center(
-              child: AutoSizeText(
-                'Privacy Policy',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Palette.lightOrange,
-                    fontWeight: FontWeight.bold,fontSize: 30),
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.6,
+              width: MediaQuery.of(context).size.width*0.5,
+              padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+              ),
+              child: Center(
+                child: AutoSizeText(
+                  'Privacy Policy',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Palette.lightOrange,
+                      fontWeight: FontWeight.bold,fontSize: 30),
+                ),
               ),
             ),
           ),

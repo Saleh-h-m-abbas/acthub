@@ -135,7 +135,7 @@ class _LogInPageState extends State<LogInPage> {
           padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
           child: AutoSizeText(buttonText,
               textAlign: TextAlign.center,
-               overflow: TextOverflow.visible,
+              overflow: TextOverflow.visible,
               style: TextStyle(
                 fontSize: 19,
                 color: Colors.white,

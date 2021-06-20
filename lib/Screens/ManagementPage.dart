@@ -58,106 +58,106 @@ class _ManagementPageState extends State<ManagementPage> {
         ],
       ) ,
       body: Padding(
-            padding: EdgeInsets.only(top: 30, left: 15,bottom: 15,right: 15),
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height *0.78 ,
-                width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.only(top: 30, left: 15,bottom: 15,right: 15),
+        child: Card(
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Container(
+            height: MediaQuery.of(context).size.height *0.78 ,
+            width: MediaQuery.of(context).size.width,
 
 
-                decoration: BoxDecoration(
-                    color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12.0, top: 15),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height*0.05,
-                        width: MediaQuery.of(context).size.width*0.3,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0, top: 15),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height*0.05,
+                    width: MediaQuery.of(context).size.width*0.3,
+                    child: AutoSizeText(
+                      'Welcome',
+                      style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                          color: Palette.orange),
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height*0.02,
+                        width: MediaQuery.of(context).size.width*0.55,
+
                         child: AutoSizeText(
-                          'Welcome',
+                          'Sgined in first to access this feature.',
+                          //name of main category
                           style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                              color: Palette.orange),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.actHubGreen.withOpacity(0.35),
+                          ),
                           maxLines: 1,
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height*0.02,
-                            width: MediaQuery.of(context).size.width*0.55,
-
-                            child: AutoSizeText(
-                              'Sgined in first to access this feature.',
-                              //name of main category
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                              maxLines: 1,
+                      Image.asset(
+                        'Images/human.png',
+                        height: MediaQuery.of(context).size.height * 0.45,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.766,
+                          height: MediaQuery.of(context).size.height*0.059,
+                          child: AutoSizeText(
+                            "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                            style: TextStyle(
+                              fontSize: 19,
+                              color: Palette.actHubGreen.withOpacity(0.50),
                             ),
+                            maxLines: 2,
                           ),
-                          Image.asset(
-                            'Images/human.png',
-                            height: MediaQuery.of(context).size.height * 0.45,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width*0.766,
-                              height: MediaQuery.of(context).size.height*0.059,
-                              child: AutoSizeText(
-                                "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20,left: 15.0,right: 15.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.766,
+                          height: MediaQuery.of(context).size.height*0.054,
+                          child: ElevatedButton(
+                              child: AutoSizeText('Sign in',
                                 style: TextStyle(
                                   fontSize: 19,
-                                  color: Palette.actHubGreen.withOpacity(0.50),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                maxLines: 2,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20,left: 15.0,right: 15.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width*0.766,
-                              height: MediaQuery.of(context).size.height*0.054,
-                              child: ElevatedButton(
-                                  child: AutoSizeText('Sign in',
-                                      style: TextStyle(
-                                        fontSize: 19,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                  maxLines: 1,), //to style the text of buttons
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Palette.blue// background
-                                      // foreground
-                                      ), //to set the color of buttons
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, SignIn.id);
-                                  }),
-                            ),
-                          ),
-                        ],
+                                maxLines: 1,), //to style the text of buttons
+                              style: ElevatedButton.styleFrom(
+                                  primary: Palette.blue// background
+                                // foreground
+                              ), //to set the color of buttons
+                              onPressed: () {
+                                Navigator.pushNamed(context, SignIn.id);
+                              }),
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
+                    ],
+                  ),
+                )
+              ],
             ),
+          ),
+        ),
 
       ),
     );
@@ -230,28 +230,28 @@ class _ManagementPageState extends State<ManagementPage> {
         ],
       ),
       body: Padding(
-          padding: EdgeInsets.all(15),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [
-                userPageDesign(
-                    'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
-                userPageDesign(
-                    'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
-                userPageDesign(
-                    'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
-                userPageDesign(
-                    'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
-                userPageDesign(
-                    'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
-                userPageDesign(
-                    'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
-              ],
-            ),
+        padding: EdgeInsets.all(15),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              userPageDesign(
+                  'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
+              userPageDesign(
+                  'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
+              userPageDesign(
+                  'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
+              userPageDesign(
+                  'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
+              userPageDesign(
+                  'https://www.routesnorth.com/wp-content/uploads/2019/04/kjerag-boulder.jpg'),
+              userPageDesign(
+                  'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,g_xy_center,h_800,q_50,w_640,x_576,y_183/v1/clients/texas/ritaarias17_instagram_5053966003_68c2771e-bece-4fe0-81d5-59ac10ef4622.jpg'),
+            ],
           ),
+        ),
       ),
     );
   }
@@ -286,7 +286,7 @@ class _ManagementPageState extends State<ManagementPage> {
                       height: MediaQuery.of(context).size.height*0.027,
                       color: Palette.orange,
                     ),
-                   // color: Colors.pink,
+                    // color: Colors.pink,
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -394,8 +394,8 @@ class _ManagementPageState extends State<ManagementPage> {
 
           children: [
             mainActivitiesContainer(),
-             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-             activitiesContainer('Reject','https://edpsyched.com/wp-content/uploads/2015/05/Summer-Fun.jpg'),
+            SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+            activitiesContainer('Reject','https://edpsyched.com/wp-content/uploads/2015/05/Summer-Fun.jpg'),
             SizedBox(height: MediaQuery.of(context).size.height*0.01,),
             activitiesContainer('Pending','https://simplifyingfamily.com/wp-content/uploads/2013/07/Summer-activities-for-families.jpg.webp'),
           ],

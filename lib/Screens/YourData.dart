@@ -51,22 +51,16 @@ class _YourDataState extends State<YourData> {
             ],
           ),
           Container(
-            height: MediaQuery.of(context).size.height*0.05,
-            width: MediaQuery.of(context).size.width*0.55,
-            child: Container(
-                height: MediaQuery.of(context).size.height*0.6,
-                width: MediaQuery.of(context).size.width*0.5,
-                  padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
-                   ),
-              child: Center(
-                child: AutoSizeText(
-                  'Your Data, Your Choice',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Palette.lightOrange,
-                      fontWeight: FontWeight.bold,fontSize: 30),
-                ),
-              ),
+              height: MediaQuery.of(context).size.height*0.05,
+              width: MediaQuery.of(context).size.width*0.55,
+                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+                 ),
+            child: AutoSizeText(
+              'Your Data, Your Choice',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Palette.lightOrange,
+                  fontWeight: FontWeight.bold,fontSize: 30),
             ),
           ),
           Padding(
@@ -118,7 +112,7 @@ class _YourDataState extends State<YourData> {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02,bottom: MediaQuery.of(context).size.height*0.08),
+            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.035,bottom: MediaQuery.of(context).size.height*0.08),
             child: Container(
               width: MediaQuery.of(context).size.width*0.9,
               height: MediaQuery.of(context).size.height*0.055,
