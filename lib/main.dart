@@ -9,6 +9,7 @@ import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:acthub/Screens/PackagesScreen.dart';
 import 'package:acthub/Screens/PrivacyPolicy.dart';
 import 'package:acthub/Screens/SearchPage.dart';
+import 'package:acthub/Screens/SelectLanguage.dart';
 import 'package:acthub/Screens/SignIn.dart';
 import 'package:acthub/Screens/SignUpAsPage.dart';
 import 'package:acthub/Screens/SignUpFormPage.dart';
@@ -21,7 +22,7 @@ import 'Screens/ActivityPage.dart';
 import 'Screens/ActivityPage.dart';
 import 'Screens/ContactUsPage.dart';
 import 'Screens/EditProfileScreen.dart';
-import 'Screens/LanguageScreen.dart';
+
 import 'Screens/ProfilePage.dart';
 import 'Screens/AddActivity.dart';
 
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
         ContactUsPage.id: (context) => ContactUsPage(),
         AboutUsScreen.id: (context) => AboutUsScreen(),
         EditProfileScreen.id: (context) => EditProfileScreen(),
-        LanguageScreen.id: (context) => LanguageScreen(),
+        SelectLanguage.id: (context) => SelectLanguage(),
         ActLink.id: (context) => ActLink(),
        AddActivity.id: (context) => AddActivity(),
       },

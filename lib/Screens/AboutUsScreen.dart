@@ -1,13 +1,14 @@
+import 'package:acthub/Classes/Palette.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 class AboutUsScreen extends StatelessWidget {
   static const String id = 'AboutUsScreen';
-
-  String Gettext =
-      'this is about us text'; //to get condition text from firebase
+  String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
+  //to get condition text from firebase
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEFEFEF),
+      backgroundColor:Palette.scaffold,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -15,47 +16,66 @@ class AboutUsScreen extends StatelessWidget {
             children: [
               Image.asset(
                 'Images/HeaderLogoA.png',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.26,
               ),
-              SafeArea(
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  //onPressed:() => Navigator.pop(context, false),
-                  onPressed: () => Navigator.pop(context),
+              Positioned(
+                top:MediaQuery.of(context).size.height*0.07,
+                child: Container(
+                  height: MediaQuery.of(context).size.width*0.1,
+                  width:MediaQuery.of(context).size.width*0.1,
+
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios,size: 30,),
+                      onPressed: () => Navigator.pop(context),
+
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: Text(
-                    'About Us ',
-                    style: TextStyle(
-                        color: Color(0xffF9A559),
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
+          Container(
+            height: MediaQuery.of(context).size.height*0.05,
+            width: MediaQuery.of(context).size.width*0.55,
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.6,
+              width: MediaQuery.of(context).size.width*0.5,
+              padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+              ),
+              child: Center(
+                child: AutoSizeText(
+                  'About Us',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Palette.lightOrange,
+                      fontWeight: FontWeight.bold,fontSize: 30),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(Gettext,
-                      style: TextStyle(
-                        fontSize: 13,
-                      )),
-                ),
-              ],
+              ),
             ),
           ),
-          SafeArea(
-            child: Container(
-                height: 50,
-                width: 130,
-                child: Image.asset('Images/ActHubOLogo.png')),
-          ) //contain ACTHUB text picture
+          Container(
+            height: MediaQuery.of(context).size.height*0.5,
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
+                horizontal: MediaQuery.of(context).size.width*0.05  ),
+
+            child: AutoSizeText(
+              Gettext,
+              textAlign: TextAlign.center,
+              style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+              overflow: TextOverflow.visible,
+            ),
+
+          ),//Contain Column for two texts, expanded for actHub image
+          // contain text widget to get privacy policy text from firebase
+          Container(
+              height: MediaQuery.of(context).size.height*0.06,
+              width: MediaQuery.of(context).size.width*0.4,
+              child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
         ],
       ),
     );

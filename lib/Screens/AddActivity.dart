@@ -46,6 +46,7 @@ class _AddActivityState extends State<AddActivity> {
         toolbarHeight: MediaQuery.of(context).size.height*0.1,
       ),
       body: SingleChildScrollView(
+
         child: Column(
           children: [
             Center(
@@ -564,7 +565,7 @@ class _AddActivityState extends State<AddActivity> {
                                        ),
                                      ),
                                      Container(
-                                       width: MediaQuery.of(context).size.width * 0.1,
+                                       width: MediaQuery.of(context).size.width * 0.15,
                                        child: Row(
                                          mainAxisAlignment: MainAxisAlignment.center,
                                          children:[

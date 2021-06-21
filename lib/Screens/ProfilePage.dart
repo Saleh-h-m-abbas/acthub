@@ -1,21 +1,15 @@
-import 'dart:math';
-
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/ActLink.dart';
 import 'package:acthub/Screens/EditProfileScreen.dart';
-import 'package:acthub/Screens/LanguageScreen.dart';
 import 'package:acthub/Screens/ManagementPage.dart';
+import 'package:acthub/Screens/SelectLanguage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'AboutUsScreen.dart';
 import 'ContactUsPage.dart';
 import 'PrivacyPolicy.dart';
 import 'SignIn.dart';
-
 class ProfilePage extends StatefulWidget {
   static const String id = 'ProfilePage';
 
@@ -73,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   buttonCard(
                       context, "Rate this App", 'Images/star.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                   buttonCard(context, "Language", 'Images/language.png',
-                      LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                      SelectLanguage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                   buttonCard(context, "Contact Us", 'Images/contact.png',
                       ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                 ],
@@ -240,7 +234,7 @@ Widget guideUI(BuildContext context) {
                   buttonCard(
                       context, "Billing", 'Images/billing.png', ManagementPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                   buttonCard(context, "Language", 'Images/language.png',
-                      LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  SelectLanguage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                   buttonCard(context, "Contact Us", 'Images/contact.png',
                       ContactUsPage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                 ],
@@ -550,7 +544,7 @@ Widget guideUI(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buttonCard(context, 'Privacy Policy','Images/privacy_policy.png', PrivacyPolicy.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
-                  buttonCard(context, 'Languge', 'Images/language.png', LanguageScreen.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
+                  buttonCard(context, 'Languge', 'Images/language.png', SelectLanguage.id,MediaQuery.of(context).size.height * 0.16,MediaQuery.of(context).size.width * 0.45),
                 ],
               ),
             ],

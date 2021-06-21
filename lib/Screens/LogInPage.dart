@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/SignIn.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -87,15 +88,15 @@ class _LogInPageState extends State<LogInPage> {
       width: MediaQuery.of(context).size.width*0.78,
       height: MediaQuery.of(context).size.height*0.05,
       decoration: BoxDecoration(color: Colors.white, //color of container
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              offset: Offset(0, 3),
-            ) //to add shadow for text filed
-          ],
-          borderRadius: BorderRadius.all(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            offset: Offset(0, 3),
+          ) //to add shadow for text filed
+        ],
+        borderRadius: BorderRadius.all(
           Radius.circular(7),
-    ),),
+        ),),
       child: TextField(
         obscureText: obscure,
         obscuringCharacter: '*',
@@ -112,7 +113,7 @@ class _LogInPageState extends State<LogInPage> {
           labelText: inputType,
           labelStyle: TextStyle(
             color: Colors.black,
-            fontSize: 19,
+            fontSize: MediaQuery.of(context).size.height*0.025,
           ), //to set the color of hint black
         ), //decorat input text
       ),
@@ -130,12 +131,17 @@ class _LogInPageState extends State<LogInPage> {
           .width * 0.7,
       height: MediaQuery.of(context).size.height*0.05,
       child: ElevatedButton(
-        child: Text(buttonText,
-            style: TextStyle(
-              fontSize: 19,
-              color: Colors.white,
-              //fontWeight: FontWeight.bold,
-            )), //to style the text of buttons
+        child: Padding(
+          padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
+          child: AutoSizeText(buttonText,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.visible,
+              style: TextStyle(
+                fontSize: 19,
+                color: Colors.white,
+                //fontWeight: FontWeight.bold,
+              )),
+        ), //to style the text of buttons
         style: ElevatedButton.styleFrom(
           primary: color, // background
           // foreground
@@ -144,4 +150,4 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-}// function of log in and dont have account buttons
+}//

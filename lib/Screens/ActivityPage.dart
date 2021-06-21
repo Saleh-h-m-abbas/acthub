@@ -50,9 +50,9 @@ class _ActivityPageState extends State<ActivityPage> {
               color: Palette.actHubGreen,
             ),
             onPressed: () => Navigator.pop(context)),
+        elevation: 0,
         centerTitle: false,
       toolbarHeight: MediaQuery.of(context).size.height*0.1,
-        elevation: 0,
         backgroundColor: Palette.scaffold,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -622,6 +622,40 @@ class _ActivityPageState extends State<ActivityPage> {
                                 _current = index;
                               });
                             }),
+                      ),
+                    ),
+                    Positioned(
+                      left: MediaQuery.of(context).size.width*0.73,
+                      top: MediaQuery.of(context).size.height*0.005 ,
+                      child: GestureDetector(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.12 ,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: imgList.map((url) {
+                              int index = 3;
+                              return Container(
+                                width: constraints.maxWidth>constraints.maxHeight?
+                                MediaQuery.of(context).size.height*0.008:
+                                MediaQuery.of(context).size.width*0.018,
+                                height: constraints.maxWidth>constraints.maxHeight?
+                                MediaQuery.of(context).size.height*0.008:
+                                MediaQuery.of(context).size.width*0.018,
+                                margin: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height*0.009, horizontal:  MediaQuery.of(context).size.width*0.0025,),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Palette.actHubGrey, width:  MediaQuery.of(context).size.width*0.0025,),
+                                    shape: BoxShape.circle,
+                                    color: _current == index
+                                        ? Palette.actHubGreen
+                                        : Palette.white),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                        onTap: (){
+                        },
                       ),
                     ),
                     Positioned(
