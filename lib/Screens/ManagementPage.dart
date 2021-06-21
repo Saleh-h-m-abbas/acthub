@@ -24,7 +24,7 @@ class _ManagementPageState extends State<ManagementPage> {
           return new Future.value(false);
         },
         child: MaterialApp(
-          home: serviceProviderPage(),
+          home: guestPage(),
         ));
   }
   Widget guestPage() {
@@ -50,8 +50,8 @@ class _ManagementPageState extends State<ManagementPage> {
           Padding(
             padding: const EdgeInsets.only(right: 52.0, top: 10.5),
             child: CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.white,
+              radius:MediaQuery.of(context).size.width*0.0603,
+              backgroundColor: Palette.white,
               backgroundImage: AssetImage('Images/gusetProfilepic.png'),
             ),
           )

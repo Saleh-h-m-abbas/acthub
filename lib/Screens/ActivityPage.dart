@@ -153,212 +153,214 @@ class _ActivityPageState extends State<ActivityPage> {
 
                   ),
                   elevation: 5,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width ,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                        BorderRadius.circular(MediaQuery.of(context).size.height*0.02)),
-                    child: Padding(
-                      padding:  EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height*0.15,
-                        left:MediaQuery.of(context).size.height*0.07,
-                        right:  MediaQuery.of(context).size.height*0.07,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.04,
-                                width:constraints.maxWidth*0.4,
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      child: AutoSizeText(
-                                        'Hiking Tour',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                          color: Palette.actHubGreen,
+                  child: Flexible(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width ,
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                          BorderRadius.circular(MediaQuery.of(context).size.height*0.02)),
+                      child: Padding(
+                        padding:  EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height*0.15,
+                          left:MediaQuery.of(context).size.height*0.07,
+                          right:  MediaQuery.of(context).size.height*0.07,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.04,
+                                  width:constraints.maxWidth*0.4,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        child: AutoSizeText(
+                                          'Hiking Tour',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold,
+                                            color: Palette.actHubGreen,
+                                          ),
                                         ),
+                                        height: MediaQuery.of(context).size.height*0.03,
+                                        width: MediaQuery.of(context).size.width*0.234,
                                       ),
-                                      height: MediaQuery.of(context).size.height*0.03,
-                                      width: MediaQuery.of(context).size.width*0.234,
-                                    ),
-                                    Container(
-                                      child: AutoSizeText(
-                                        '200\$',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Palette.actHubGreen,
+                                      Container(
+                                        child: AutoSizeText(
+                                          '200\$',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Palette.actHubGreen,
+                                          ),
                                         ),
+                                        height: MediaQuery.of(context).size.height*0.028,
+                                        width: MediaQuery.of(context).size.width*0.1,
                                       ),
-                                      height: MediaQuery.of(context).size.height*0.028,
-                                      width: MediaQuery.of(context).size.width*0.1,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.03,
-                                width:constraints.maxWidth*0.4,
-                                child: AutoSizeText(
-                                  'Difficulty level: Medium',
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.025,
-                                width:constraints.maxWidth*0.4,
-                                child: AutoSizeText(
-                                  '7Km long',
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.025,
-                                width:constraints.maxWidth*0.4,
-                                child: AutoSizeText(
-                                  'From Ain Fawar to Wadi Qelt\n',
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height:MediaQuery.of(context).size.height*0.05,
-                                width:constraints.maxWidth*0.4,
-                                child: AutoSizeText(
-                                  'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Palette.actHubGreen,
-                                  ),
-
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding:  EdgeInsets.only(
-                                    top: MediaQuery.of(context).size.height*0.009,
-                                    bottom: MediaQuery.of(context).size.height*0.009),
-                                child: Container(
-                                  height: MediaQuery.of(context).size.height*0.022,
-                                  width:constraints.maxWidth*0.2,
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.03,
+                                  width:constraints.maxWidth*0.4,
                                   child: AutoSizeText(
-                                    'Guide : Yazan Tayyah',
+                                    'Difficulty level: Medium',
                                     style: TextStyle(
-                                      fontSize: 19,
+                                      fontSize: 13.5,
                                       fontWeight: FontWeight.bold,
                                       color: Palette.actHubGreen,
                                     ),
-                                    maxLines: 1,
                                   ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.phone_enabled_rounded,
-                                    color: Colors.grey,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left:MediaQuery.of(context).size.width*0.002),
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height*0.022,
-                                      width:constraints.maxWidth*0.2,
-                                      child: AutoSizeText(
-                                        '+02 2815291',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                      ),
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.025,
+                                  width:constraints.maxWidth*0.4,
+                                  child: AutoSizeText(
+                                    '7Km long',
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
                                     ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'Images/whatsapp.svg',
-                                    height: MediaQuery.of(context).size.height*0.026,
-                                    color: Color(0xFF566357)
-                                        .withOpacity(0.35),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left:
-                                    MediaQuery.of(context).size.width*0.002),
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height*0.022,
-                                      width:constraints.maxWidth*0.2,
-                                      child: AutoSizeText(
-                                        '+02 2815291',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                      ),
+                                ),
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.025,
+                                  width:constraints.maxWidth*0.4,
+                                  child: AutoSizeText(
+                                    'From Ain Fawar to Wadi Qelt\n',
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
                                     ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.email,
-                                    color: Colors.grey,
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left:
-                                    MediaQuery.of(context).size.width*0.002,),
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height*0.022,
-                                      width:constraints.maxWidth*0.2,
-                                      child: AutoSizeText(
-                                        'tayyahyazan@gmail.com',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
+                                ),
+                                Container(
+                                  height:MediaQuery.of(context).size.height*0.05,
+                                  width:constraints.maxWidth*0.4,
+                                  child: AutoSizeText(
+                                    'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Palette.actHubGreen,
+                                    ),
+
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height*0.009,
+                                      bottom: MediaQuery.of(context).size.height*0.009),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height*0.022,
+                                    width:constraints.maxWidth*0.2,
+                                    child: AutoSizeText(
+                                      'Guide : Yazan Tayyah',
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.actHubGreen,
+                                      ),
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.phone_enabled_rounded,
+                                      color: Colors.grey,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left:MediaQuery.of(context).size.width*0.002),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.022,
+                                        width:constraints.maxWidth*0.2,
+                                        child: AutoSizeText(
+                                          '+02 2815291',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          maxLines: 1,
                                         ),
                                       ),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      'Images/whatsapp.svg',
+                                      height: MediaQuery.of(context).size.height*0.026,
+                                      color: Color(0xFF566357)
+                                          .withOpacity(0.35),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
+                                    Padding(
+                                      padding: EdgeInsets.only(left:
+                                      MediaQuery.of(context).size.width*0.002),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.022,
+                                        width:constraints.maxWidth*0.2,
+                                        child: AutoSizeText(
+                                          '+02 2815291',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.email,
+                                      color: Colors.grey,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left:
+                                      MediaQuery.of(context).size.width*0.002,),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.022,
+                                        width:constraints.maxWidth*0.2,
+                                        child: AutoSizeText(
+                                          'tayyahyazan@gmail.com',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
