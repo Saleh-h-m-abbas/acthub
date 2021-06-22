@@ -1,4 +1,6 @@
 import 'package:acthub/Screens/ActLink.dart';
+import 'package:acthub/Screens/BillingPage.dart';
+import 'package:acthub/Screens/CurrencyPage.dart';
 import 'package:acthub/Screens/EnableLocation.dart';
 import 'package:acthub/Screens/HomePage.dart';
 import 'package:acthub/Screens/LandingPage.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: NavigationPage.id,
+      initialRoute:PrivacyPolicy.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -60,6 +62,8 @@ class MyApp extends StatelessWidget {
         LanguageScreen.id: (context) => LanguageScreen(),
         ActLink.id: (context) => ActLink(),
        AddActivity.id: (context) => AddActivity(),
+        CurrencyPage.id: (context) => CurrencyPage(),
+        BillingPage.id: (context) => BillingPage(),
       },
     );
   }

@@ -27,6 +27,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 width: MediaQuery.of(context).size.width,
                 height:MediaQuery.of(context).size.height*0.26,
               ),
+              Image.asset(
+                'Images/HeaderLogoA.png',
+                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height:MediaQuery.of(context).size.height*0.26,
+              ),
               Positioned(
                 top:MediaQuery.of(context).size.height*0.07,
                 child: Container(
