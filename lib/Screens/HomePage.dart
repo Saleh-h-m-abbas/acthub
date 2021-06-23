@@ -742,6 +742,8 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: Palette.white,
                     ),
                   )
+
+
                       :
                   Padding(
                     padding:  EdgeInsets.only(right:

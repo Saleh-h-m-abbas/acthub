@@ -41,99 +41,194 @@ class _ActivityPageState extends State<ActivityPage> {
   int _current = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Palette.scaffold,
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Palette.actHubGreen,
-            ),
-            onPressed: () => Navigator.pop(context)),
-        elevation: 0,
-        centerTitle: false,
-      toolbarHeight: MediaQuery.of(context).size.height*0.1,
-        backgroundColor: Palette.scaffold,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height:MediaQuery.of(context).size.height*0.06 ,
-              width:MediaQuery.of(context).size.width*0.3 ,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Palette.scaffold,
+            appBar: AppBar(
+              leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Palette.actHubGreen,
+                  ),
+                  onPressed: () => Navigator.pop(context)),
+              elevation: 0,
+              centerTitle: false,
+              toolbarHeight: MediaQuery
+                  .of(context)
+                  .size
+                  .width > 500 ? MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.13 : MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.1,
+              backgroundColor: Palette.orange,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .width > 500 ? MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.06 : MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.05,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.4,
+                    color: Colors.pink,
 
-              child: AutoSizeText(
-                'Hiking', // name of activity
-                style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Palette.orange),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
-              child: Container(
-                height:MediaQuery.of(context).size.height*0.027 ,
-                width:MediaQuery.of(context).size.width*0.25 ,
-                child: AutoSizeText(
-                  'Outdoor activites',
-                  overflow: TextOverflow.visible,//name of main category
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Palette.actHubGreen.withOpacity(0.35),
+                    child: AutoSizeText(
+                      'Hiking', // name of activity
+                      style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                          color: Palette.orange),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery
+                            .of(context)
+                            .size
+                            .width > 500 ? MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.03 : MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.08),
+                    child: Container(
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .width > 500 ? MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.05 : MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.03,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.32,
+                      color: Colors.pink,
+                      child: AutoSizeText(
+                        'Outdoor activites',
+                        overflow: TextOverflow.visible, //name of main category
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Palette.actHubGreen.withOpacity(0.35),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right:MediaQuery.of(context).size.width*0.1,
-              top:MediaQuery.of(context).size.height*0.01,),
-            child: Stack(
-              alignment:Alignment.bottomLeft,
-              children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.width*0.06,
-                    backgroundImage: NetworkImage(
-                        'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                  ),
+              actions: [
+                Stack(
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(top: MediaQuery.of(context).size.width*0.0242,right: MediaQuery.of(context).size.width*0.0242 ),
+                      child: CircleAvatar(
+                        radius: MediaQuery
+                            .of(context)
+                            .size
+                            .width > 500
+                            ?
+                        MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.03 :
+                        MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.07,
+                        backgroundImage: NetworkImage(
+                            'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.only(top: MediaQuery.of(context).size.width*0.14,),
+                      child: Container(
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .width > 500
+                            ? MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.015 : MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.04,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width > 500 ? MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.07 : MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.09,
+                        decoration: BoxDecoration(
+                            color: Palette.online,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 2.0, color: Palette.white)),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.025:MediaQuery.of(context).size.width*0.033,
-                  width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.025:MediaQuery.of(context).size.width*0.033,
-                  decoration: BoxDecoration(
-                      color: Palette.online,
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 2.0, color: Palette.white)),
-                )
               ],
             ),
-          )
-        ],
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: CarouselSlider.builder(
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int section, int index) {
-            return Padding(
-              padding:  EdgeInsets.all(MediaQuery.of(context).size.width*0.02),
-              child: textCard(context),
-            );
-          },
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * 0.9,
-            viewportFraction: 1.0,
-            enlargeCenterPage: true,
-            // autoPlay: false,
+            body: Container(
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              child: CarouselSlider.builder(
+                itemCount: 3,
+                itemBuilder: (BuildContext context, int section, int index) {
+                  return Padding(
+                    padding: EdgeInsets.all(MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.02),
+                    child: textCard(context),
+                  );
+                },
+                options: CarouselOptions(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.9,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: true,
+                  // autoPlay: false,
+                ),
+              ),
+            ),
+
           ),
-        ),
-      ),
-    );
+        );
+      }
+        );
   }
 
   Widget textCard(BuildContext context) {

@@ -58,168 +58,239 @@ class _MapPageState extends State<MapPage> {
           home: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Palette.scaffold,
-            body: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                        target: LatLng(40.712776, -74.005974), zoom: 12),
-                    onMapCreated: onMapCreated,
-                    markers: {blueMarker},
-                  ),
-                ),
-                Column(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding:
-                                 EdgeInsets.only(left: MediaQuery.of(context).size.width *0.02, top: MediaQuery.of(context).size.height *0.025),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: AutoSizeText(
-                                    'Discover',
-                                    textAlign: TextAlign.start,
-                                    overflow: TextOverflow.visible,
-                                    style: TextStyle(
-                                        shadows: [
-                                          Shadow(
-                                              blurRadius: 15,
-                                              color:
-                                                  Colors.black.withOpacity(0.35),
-                                              offset: Offset(5, 5))
-                                        ],
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.orange),
-                                  ),
-                                  height: MediaQuery.of(context).size.height*0.05,
-                                  width: MediaQuery.of(context).size.width*0.4,
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width *0.15),
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height*0.03,
-                                      width: MediaQuery.of(context).size.width*0.2,
-                                      child: AutoSizeText(
-                                        'Near You',
-                                        textAlign: TextAlign.start,
-                                        overflow: TextOverflow.visible,
-                                        style: TextStyle(
-                                          shadows: [
-                                            Shadow(
-                                                blurRadius: 10,
-                                                color: Colors.black
-                                                    .withOpacity(0.35),
-                                                offset: Offset(5, 5))
-                                          ],
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Palette.orange,
-                                        ),
-                                      ),
-                                    )),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(right: 52.0, top: 25.5),
-                            child: Stack(
-                              children: [
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage: NetworkImage(
-                                      'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                                ),
-                                Positioned(
-                                    top: 35,
-                                    left: 0,
-                                    child: Container(
-                                      height: 15,
-                                      width: 15,
-                                      decoration: BoxDecoration(
-                                          color: Palette.online,
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              width: 2.0,
-                                              color: Palette.white)),
-                                    ))
-                              ],
-                            ),
-                          )
-                        ],
+            body: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Stack(
+                    children: [
+                      Container(
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        child: GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                              target: LatLng(40.712776, -74.005974), zoom: 12),
+                          onMapCreated: onMapCreated,
+                          markers: {blueMarker},
+                        ),
                       ),
-                    ),
-                    // showSearchBar
-                    //     ? PlacePicker(
-                    //         apiKey: 'AIzaSyCr7e5y2ZzJdTJDkovlkJIeLu3g_4Z5K9M',
-                    //         // initialPosition: MapPage.kInitialPosition,
-                    //         useCurrentLocation: true,
-                    //         selectInitialPosition: true,
-                    //
-                    //         //usePlaceDetailSearch: true,
-                    //         onPlacePicked: (result) {
-                    //           var selectedPlace = result;
-                    //           Navigator.of(context).pop();
-                    //           setState(() {});
-                    //         },
-                    //         forceSearchOnZoomChanged: true,
-                    //         automaticallyImplyAppBarLeading: false,
-                    //         autocompleteLanguage: "ko",
-                    //         region: 'au',
-                    //
-                    //         selectedPlaceWidgetBuilder:
-                    //             (_, selectedPlace, state, isSearchBarFocused) {
-                    //           print(
-                    //               "state: $state, isSearchBarFocused: $isSearchBarFocused");
-                    //           return isSearchBarFocused
-                    //               ? Container()
-                    //               : FloatingCard(
-                    //                   bottomPosition:
-                    //                       0.0, // MediaQuery.of(context) will cause rebuild. See MediaQuery document for the information.
-                    //                   leftPosition: 0.0,
-                    //                   rightPosition: 0.0,
-                    //                   width: 500,
-                    //                   borderRadius: BorderRadius.circular(12.0),
-                    //                   child: state == SearchingState.Searching
-                    //                       ? Center(
-                    //                           child:
-                    //                               CircularProgressIndicator())
-                    //                       : RaisedButton(
-                    //                           child: Text("Pick Here"),
-                    //                           onPressed: () {
-                    //                             // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as
-                    //                             //            this will override default 'Select here' Button.
-                    //                             print(
-                    //                                 "do something with [selectedPlace] data");
-                    //                             Navigator.of(context).pop();
-                    //                           },
-                    //                         ),
-                    //                 );
-                    //         },
-                    //         pinBuilder: (context, state) {
-                    //           if (state == PinState.Idle) {
-                    //             return Icon(Icons.favorite_border);
-                    //           } else {
-                    //             return Icon(Icons.favorite);
-                    //           }
-                    //         },
-                    //       ):
-                    Container(),
-                  ],
-                ),
-                showCard ? _buildContainer() : Container()
-              ],
+                      SafeArea(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .height * 0.15,
+
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding:
+                                    EdgeInsets.only(left: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width * 0.02, top: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width > 500 ? MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height * 0.004 : MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height * 0.025),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .center,
+                                      children: [
+                                        Container(
+                                          child: AutoSizeText(
+                                            'Discover',
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                                shadows: [
+                                                  Shadow(
+                                                      blurRadius: 15,
+                                                      color:
+                                                      Colors.black.withOpacity(
+                                                          0.35),
+                                                      offset: Offset(5, 5))
+                                                ],
+                                                fontSize: 36,
+                                                fontWeight: FontWeight.bold,
+                                                color: Palette.orange),
+                                          ),
+                                          height: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width > 500 ? MediaQuery
+                                              .of(context)
+                                              .size
+                                              .height * 0.06 : MediaQuery
+                                              .of(context)
+                                              .size
+                                              .height * 0.05,
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width * 0.4,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                left: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width > 500 ? MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width * 0.03 : MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width * 0.15),
+                                            child: Container(
+                                              height: MediaQuery
+                                                  .of(context)
+                                                  .size
+                                                  .width > 500 ? MediaQuery
+                                                  .of(context)
+                                                  .size
+                                                  .height * 0.05 : MediaQuery
+                                                  .of(context)
+                                                  .size
+                                                  .height * 0.03,
+                                              width: MediaQuery
+                                                  .of(context)
+                                                  .size
+                                                  .width * 0.2,
+
+                                              child: AutoSizeText(
+                                                'Near You',
+                                                textAlign: TextAlign.start,
+                                                overflow: TextOverflow.visible,
+                                                style: TextStyle(
+                                                  shadows: [
+                                                    Shadow(
+                                                        blurRadius: 10,
+                                                        color: Colors.black
+                                                            .withOpacity(0.35),
+                                                        offset: Offset(5, 5))
+                                                  ],
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Palette.orange,
+                                                ),
+                                              ),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+
+                                  padding: EdgeInsets.only(
+                                    right:  MediaQuery.of(context).size.width>500? MediaQuery.of(context).size.width*0.015:MediaQuery.of(context).size.width*0.05,),
+                                    child: Stack(
+                                      alignment:Alignment.bottomLeft,
+                                      children: [
+                                        CircleAvatar(
+                                          radius:    MediaQuery.of(context).size.width>500
+                                              ?
+                                          MediaQuery.of(context).size.width*0.03:
+                                          MediaQuery.of(context).size.width*0.06,
+                                          backgroundImage: NetworkImage('https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'
+                                          ),
+                                        ),
+                                        Positioned(
+                                          right: MediaQuery.of(context).size.width>500? MediaQuery.of(context).size.width*0.015:MediaQuery.of(context).size.width*0.05,
+                                          child: Container(
+                                            height: MediaQuery.of(context).size.width>500
+                                                ?MediaQuery.of(context).size.width*0.017:MediaQuery.of(context).size.width*0.03,
+                                            width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
+                                            decoration: BoxDecoration(
+                                                color: Palette.online,
+                                                shape: BoxShape.circle,
+                                                border: Border.all(width: 2.0, color: Palette.white)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // showSearchBar
+                            //     ? PlacePicker(
+                            //         apiKey: 'AIzaSyCr7e5y2ZzJdTJDkovlkJIeLu3g_4Z5K9M',
+                            //         // initialPosition: MapPage.kInitialPosition,
+                            //         useCurrentLocation: true,
+                            //         selectInitialPosition: true,
+                            //
+                            //         //usePlaceDetailSearch: true,
+                            //         onPlacePicked: (result) {
+                            //           var selectedPlace = result;
+                            //           Navigator.of(context).pop();
+                            //           setState(() {});
+                            //         },
+                            //         forceSearchOnZoomChanged: true,
+                            //         automaticallyImplyAppBarLeading: false,
+                            //         autocompleteLanguage: "ko",
+                            //         region: 'au',
+                            //
+                            //         selectedPlaceWidgetBuilder:
+                            //             (_, selectedPlace, state, isSearchBarFocused) {
+                            //           print(
+                            //               "state: $state, isSearchBarFocused: $isSearchBarFocused");
+                            //           return isSearchBarFocused
+                            //               ? Container()
+                            //               : FloatingCard(
+                            //                   bottomPosition:
+                            //                       0.0, // MediaQuery.of(context) will cause rebuild. See MediaQuery document for the information.
+                            //                   leftPosition: 0.0,
+                            //                   rightPosition: 0.0,
+                            //                   width: 500,
+                            //                   borderRadius: BorderRadius.circular(12.0),
+                            //                   child: state == SearchingState.Searching
+                            //                       ? Center(
+                            //                           child:
+                            //                               CircularProgressIndicator())
+                            //                       : RaisedButton(
+                            //                           child: Text("Pick Here"),
+                            //                           onPressed: () {
+                            //                             // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as
+                            //                             //            this will override default 'Select here' Button.
+                            //                             print(
+                            //                                 "do something with [selectedPlace] data");
+                            //                             Navigator.of(context).pop();
+                            //                           },
+                            //                         ),
+                            //                 );
+                            //         },
+                            //         pinBuilder: (context, state) {
+                            //           if (state == PinState.Idle) {
+                            //             return Icon(Icons.favorite_border);
+                            //           } else {
+                            //             return Icon(Icons.favorite);
+                            //           }
+                            //         },
+                            //       ):
+                            Container(),
+                          ],
+                        ),
+                      ),
+                      showCard ? _buildContainer() : Container()
+                    ],
+                  );
+                }
             ),
           ),
         ));
@@ -240,19 +311,19 @@ class _MapPageState extends State<MapPage> {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
+                      'https://www.travelanddestinations.com/wp-content/uploads/2020/12/Cappadocia-landscape-and-balloons.jpg',
                     )),
                 borderRadius: BorderRadius.all(
                   Radius.circular(17),
                 ),
 
               ),
-              width: MediaQuery.of(context).size.width * 0.98,
-              height: MediaQuery.of(context).size.height * 0.23,
+              width: MediaQuery.of(context).size.width>500? MediaQuery.of(context).size.width*0.99: MediaQuery.of(context).size.width * 0.98,
+              height: MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.height * 0.3:MediaQuery.of(context).size.height * 0.23,
             ),
             Positioned(
-                left: MediaQuery.of(context).size.width*0.045,
-                top: MediaQuery.of(context).size.height * 0.16,
+                left:MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.04: MediaQuery.of(context).size.width*0.045,
+                top: MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.height * 0.23: MediaQuery.of(context).size.height * 0.16,
                 child: Container(
                   height:MediaQuery.of(context).size.height * 0.04 ,
                   width: MediaQuery.of(context).size.width*0.35 ,
