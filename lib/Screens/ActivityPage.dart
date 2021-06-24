@@ -16,7 +16,7 @@ List<Widget> slider(BuildContext context) {
   return imgList
       .map(
         (item) => Container(
-          width: MediaQuery.of(context).size.width * 0.85,
+          width: MediaQuery.of(context).size.width ,
           height: MediaQuery.of(context).size.height * 0.5,
           child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(17.0)),
@@ -199,7 +199,7 @@ class _ActivityPageState extends State<ActivityPage> {
               ),
 
             ),
-            body: Container(
+            body: MediaQuery.of(context).size.width>500?SingleChildScrollView(child: landScapeCarouselSlider(context)):Container(
               height: MediaQuery
                   .of(context)
                   .size
@@ -211,19 +211,7 @@ class _ActivityPageState extends State<ActivityPage> {
               child: CarouselSlider.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int section, int index) {
-                  return Padding(
-                    padding: EdgeInsets.all(MediaQuery
-                        .of(context)
-                        .size
-                        .width>500?MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.01:MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.02),
-                    child: textCard(context),
-                  );
+                  return textCard(context);
                 },
                 options: CarouselOptions(
                   height: MediaQuery
@@ -231,250 +219,296 @@ class _ActivityPageState extends State<ActivityPage> {
                       .size
                       .height * 0.9,
                   viewportFraction: 1.0,
-                  enlargeCenterPage: true,
+                  enlargeCenterPage:false,
                   // autoPlay: false,
                 ),
               ),
             ),
-
           ),
         );
       }
         );
   }
+  Widget landScapeCarouselSlider(BuildContext context){
+    List<Widget> list = [
+      Container(
+          width: MediaQuery.of(context).size.width,
+          height:  MediaQuery.of(context).size.height,
+          child: textCard(context)),
+    ];
+    return Container(
+    width: MediaQuery.of(context).size.width,
+    child: CarouselSlider(
+    options: CarouselOptions(
+    disableCenter: true,
+    ),
+    items: list
+        .map((item) => Container(
+    child: item,
+    ))
+        .toList(),
+    ),
+    );
+  }
 
   Widget textCard(BuildContext context) {
     return Stack(
-      alignment: Alignment.topCenter,
       children: [
         LayoutBuilder(
           builder: (context, constraints) {
             return constraints.maxWidth>constraints.maxHeight?
-            SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(height:MediaQuery.of(context).size.height*0.4),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
 
+                  ),
+                  elevation: 5,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width ,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
                     ),
-                    elevation: 5,
-                    child: Flexible(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width *0.55,
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                            BorderRadius.circular(MediaQuery.of(context).size.height*0.02)),
-                        child: Padding(
-                          padding:  EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height*0.15,
-                            left:MediaQuery.of(context).size.height*0.07,
-                            right:  MediaQuery.of(context).size.height*0.07,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Padding(
+                      padding:  EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height*0.055,
+                        left:MediaQuery.of(context).size.height*0.07,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: MediaQuery.of(context).size.height*0.04,
-                                    width:constraints.maxWidth*0.4,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: AutoSizeText(
-                                            'Hiking Tour',
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.bold,
-                                              color: Palette.actHubGreen,
-                                            ),
-                                          ),
-                                          height: MediaQuery.of(context).size.height*0.03,
-                                          width: MediaQuery.of(context).size.width*0.234,
+                              Container(
+                                height: MediaQuery.of(context).size.height*0.055,
+                                width:constraints.maxWidth*0.4,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: AutoSizeText(
+                                        'Hiking Tour',
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.actHubGreen,
                                         ),
-                                        Container(
-                                          child: AutoSizeText(
-                                            '200\$',
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Palette.actHubGreen,
-                                            ),
-                                          ),
-                                          height: MediaQuery.of(context).size.height*0.028,
-                                          width: MediaQuery.of(context).size.width*0.1,
+                                      ),
+                                      height: MediaQuery.of(context).size.height*0.055,
+                                      width: MediaQuery.of(context).size.width*0.15,
+                                    ),
+                                    Container(
+                                      child: AutoSizeText(
+                                        '200\$',
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.actHubGreen,
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height*0.03,
-                                    width:constraints.maxWidth*0.4,
-                                    child: AutoSizeText(
-                                      'Difficulty level: Medium',
-                                      style: TextStyle(
-                                        fontSize: 13.5,
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.actHubGreen,
                                       ),
+                                      height: MediaQuery.of(context).size.height*0.05,
+                                      width: MediaQuery.of(context).size.width*0.1,
                                     ),
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height*0.025,
-                                    width:constraints.maxWidth*0.4,
-                                    child: AutoSizeText(
-                                      '7Km long',
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        fontSize: 13.5,
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.actHubGreen,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height*0.025,
-                                    width:constraints.maxWidth*0.4,
-                                    child: AutoSizeText(
-                                      'From Ain Fawar to Wadi Qelt\n',
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        fontSize: 13.5,
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.actHubGreen,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height:MediaQuery.of(context).size.height*0.05,
-                                    width:constraints.maxWidth*0.4,
-                                    child: AutoSizeText(
-                                      'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Palette.actHubGreen,
-                                      ),
-
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                              Column(
+                              Container(
+                                height: MediaQuery.of(context).size.height*0.05,
+                                width:constraints.maxWidth*0.4,
+                                child: Align(
+                                  child: AutoSizeText(
+                                    'Difficulty level: Medium',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                ),
+                              ),
+                              Container(
+                                height: MediaQuery.of(context).size.height*0.04,
+                                width:constraints.maxWidth*0.4,
+
+                                child: Align(
+                                  child: AutoSizeText(
+                                    '7Km long',
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                ),
+                              ),
+                              Container(
+                                height: MediaQuery.of(context).size.height*0.05,
+                                width:constraints.maxWidth*0.4,
+
+                                child: Align(
+                                  child: AutoSizeText(
+                                    'From Ain Fawar to Wadi Qelt\n',
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                ),
+                              ),
+                              Container(
+                                height:MediaQuery.of(context).size.height*0.15,
+                                width:constraints.maxWidth*0.42,
+                                child: Align(
+                                  child: AutoSizeText(
+                                    'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                    maxLines: 5,
+
+                                  ),
+                                  alignment: Alignment.topLeft,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding:  EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height*0.009,
+                                    bottom: MediaQuery.of(context).size.height*0.009),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height*0.022,
+                                  width:constraints.maxWidth*0.2,
+                                  child: AutoSizeText(
+                                    'Guide : Yazan Tayyah',
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                              ),
+                              Row(
                                 children: [
+                                  Icon(
+                                    Icons.phone_enabled_rounded,
+                                    color: Colors.grey,
+                                  ),
                                   Padding(
-                                    padding:  EdgeInsets.only(
-                                        top: MediaQuery.of(context).size.height*0.009,
-                                        bottom: MediaQuery.of(context).size.height*0.009),
+                                    padding: EdgeInsets.only(
+                                        left:MediaQuery.of(context).size.width*0.002),
                                     child: Container(
                                       height: MediaQuery.of(context).size.height*0.022,
                                       width:constraints.maxWidth*0.2,
                                       child: AutoSizeText(
-                                        'Guide : Yazan Tayyah',
+                                        '+02 2815291',
                                         style: TextStyle(
-                                          fontSize: 19,
+                                          color: Colors.grey,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
-                                          color: Palette.actHubGreen,
                                         ),
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
                                         maxLines: 1,
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.phone_enabled_rounded,
-                                        color: Colors.grey,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left:MediaQuery.of(context).size.width*0.002),
-                                        child: Container(
-                                          height: MediaQuery.of(context).size.height*0.022,
-                                          width:constraints.maxWidth*0.2,
-                                          child: AutoSizeText(
-                                            '+02 2815291',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'Images/whatsapp.svg',
-                                        height: MediaQuery.of(context).size.height*0.026,
-                                        color: Color(0xFF566357)
-                                            .withOpacity(0.35),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left:
-                                        MediaQuery.of(context).size.width*0.002),
-                                        child: Container(
-                                          height: MediaQuery.of(context).size.height*0.022,
-                                          width:constraints.maxWidth*0.2,
-                                          child: AutoSizeText(
-                                            '+02 2815291',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.email,
-                                        color: Colors.grey,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left:
-                                        MediaQuery.of(context).size.width*0.002,),
-                                        child: Container(
-                                          height: MediaQuery.of(context).size.height*0.022,
-                                          width:constraints.maxWidth*0.2,
-                                          child: AutoSizeText(
-                                            'tayyahyazan@gmail.com',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                  )
                                 ],
-                              )
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'Images/whatsapp.svg',
+                                    height: MediaQuery.of(context).size.height*0.026,
+                                    color: Color(0xFF566357)
+                                        .withOpacity(0.35),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left:
+                                    MediaQuery.of(context).size.width*0.002),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*0.022,
+                                      width:constraints.maxWidth*0.2,
+                                      child: AutoSizeText(
+                                        '+02 2815291',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                        maxLines: 1,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.email,
+                                    color: Colors.grey,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left:
+                                    MediaQuery.of(context).size.width*0.002,),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*0.022,
+                                      width:constraints.maxWidth*0.2,
+                                      child: AutoSizeText(
+                                        'tayyahyazan@gmail.com',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
-                          ),
-                        ),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ):
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -725,9 +759,15 @@ class _ActivityPageState extends State<ActivityPage> {
             );
           }
         ),
-        Positioned(
+        MediaQuery.of(context).size.width>500?Positioned(
           left: MediaQuery.of(context).size.width*0.01,
             right: MediaQuery.of(context).size.width*0.01,
+            bottom:  MediaQuery.of(context).size.height*0.36,
+            child: imageCard(context)):Positioned(
+            top:MediaQuery.of(context).size.width*0.03,
+            left: MediaQuery.of(context).size.width*0.01,
+            right: MediaQuery.of(context).size.width*0.01,
+
             child: imageCard(context)),
       ],
     );
@@ -736,7 +776,185 @@ class _ActivityPageState extends State<ActivityPage> {
     return LayoutBuilder(
 
       builder: (context,constraints) {
-        return Container(
+        return MediaQuery.of(context).size.width>500? Container(
+          width: MediaQuery.of(context).size.width*0.9,
+          height: MediaQuery.of(context).size.height*0.5,
+          child: Center(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width ,
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      child: CarouselSlider(
+                        items: slider(context),
+                        options: CarouselOptions(
+                          enlargeCenterPage: true,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 3),
+                            autoPlayAnimationDuration: Duration(milliseconds: 800),
+                            aspectRatio: 1,
+                            viewportFraction: 1,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _current = index;
+                              });
+                            }),
+                      ),
+                    ),
+                    Positioned(
+                      left: MediaQuery.of(context).size.width*0.715,
+                      top: MediaQuery.of(context).size.height*0.01,
+                      child: GestureDetector(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.1,
+
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: imgList.map((url) {
+                              int index = 3;
+                              return Container(
+                                width:  MediaQuery.of(context).size.width>500?
+                                MediaQuery.of(context).size.height*0.015:
+                                MediaQuery.of(context).size.width*0.018,
+                                height:  MediaQuery.of(context).size.width>500 ?
+                                MediaQuery.of(context).size.height*0.015:
+                                MediaQuery.of(context).size.width*0.01,
+                                margin: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height*0.005, horizontal:  MediaQuery.of(context).size.width*0.001,),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Palette.actHubGrey, width:  MediaQuery.of(context).size.width*0.002,),
+                                    shape: BoxShape.circle,
+                                    color: _current == index
+                                        ? Colors.black
+                                        : Colors.white),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                        onTap: (){
+                        },
+                      ),
+                    ),
+                    Positioned(
+                      height: MediaQuery.of(context).size.height * 0.48,
+                      left: MediaQuery.of(context).size.width * 0.05,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: imgList.map((url) {
+                                int index = imgList.indexOf(url);
+                                return Container(
+                                  width: MediaQuery.of(context).size.width*0.01,
+                                  height: MediaQuery.of(context).size.width*0.01,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: MediaQuery.of(context).size.height*0.009, horizontal:  MediaQuery.of(context).size.width*0.0025,),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Palette.actHubGrey, width:  MediaQuery.of(context).size.width*0.002,),
+                                      shape: BoxShape.circle,
+                                      color: _current == index
+                                          ? Palette.actHubGreen
+                                          : Palette.white),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.70,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('Images/like.svg',
+                                        height:  MediaQuery.of(context).size.height*0.035, color: Palette.actHubYellow),
+                                    Padding(
+                                      padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.01,),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.04,
+                                        width: MediaQuery.of(context).size.width*0.07,
+                                        child: Align(
+                                          child: AutoSizeText(
+                                            '5',
+                                            style: TextStyle(
+                                                fontSize:20,
+                                                color: Palette.actHubYellow),
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                          ),
+                                          alignment: Alignment.centerLeft,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('Images/dislike.svg',
+                                        height:  MediaQuery.of(context).size.height*0.035, color: Palette.actHubYellow),
+                                    Padding(
+                                      padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.01,),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.04,
+                                        width: MediaQuery.of(context).size.width*0.07,
+                                        child: Align(
+                                          child: AutoSizeText(
+                                            '5',
+                                            style: TextStyle(
+                                                fontSize:20,
+                                                color: Palette.actHubYellow),
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                          ),
+                                          alignment: Alignment.centerLeft,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('Images/view.svg',
+                                        height: MediaQuery.of(context).size.height*0.035, color: Palette.actHubYellow),
+                                    Padding(
+                                      padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.01,),
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height*0.04,
+                                        width: MediaQuery.of(context).size.width*0.07,
+                                        child: Align(
+                                          child: AutoSizeText(
+                                            '5',
+                                            style: TextStyle(
+                                                fontSize:20,
+                                                color: Palette.actHubYellow),
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                          ),
+                                          alignment: Alignment.centerLeft,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ): Container(
           width: MediaQuery.of(context).size.width*0.83,
           height: MediaQuery.of(context).size.height*0.52,
           child: Center(
@@ -750,7 +968,7 @@ class _ActivityPageState extends State<ActivityPage> {
                       child: CarouselSlider(
                         items: slider(context),
                         options: CarouselOptions(
-                          enlargeCenterPage: true,
+                            enlargeCenterPage: true,
                             autoPlay: true,
                             autoPlayInterval: Duration(seconds: 3),
                             autoPlayAnimationDuration: Duration(milliseconds: 800),
@@ -814,10 +1032,10 @@ class _ActivityPageState extends State<ActivityPage> {
                                   width: MediaQuery.of(context).size.width*0.015,
                                   height: MediaQuery.of(context).size.width*0.015,
                                   margin: EdgeInsets.symmetric(
-                                      vertical: MediaQuery.of(context).size.height*0.009, horizontal:  MediaQuery.of(context).size.width*0.0025,),
+                                    vertical: MediaQuery.of(context).size.height*0.009, horizontal:  MediaQuery.of(context).size.width*0.0025,),
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: Palette.actHubGrey, width:  MediaQuery.of(context).size.width*0.002,),
+                                        color: Palette.actHubGrey, width:  MediaQuery.of(context).size.width*0.002,),
                                       shape: BoxShape.circle,
                                       color: _current == index
                                           ? Palette.actHubGreen
