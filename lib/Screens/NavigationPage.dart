@@ -49,7 +49,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
       ),
 
-     bottomNavigationBar: isGuide?bottomNav1(context):bottomNav2(context)
+     bottomNavigationBar: isGuide?bottomNav2(context):bottomNav2(context)
     );
   }
   bottomNav1(BuildContext context){
