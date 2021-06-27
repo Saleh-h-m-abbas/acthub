@@ -1,30 +1,31 @@
-import 'package:acthub/Screens/ActLink.dart';
-import 'package:acthub/Screens/EnableLocation.dart';
-import 'package:acthub/Screens/HomePage.dart';
+import 'package:acthub/Screens/Home/HomePage.dart';
+import 'package:acthub/Screens/Home/Nested/SearchPage.dart';
+import 'package:acthub/Screens/Home/Nested/SubCategoryPage.dart';
 import 'package:acthub/Screens/LandingPage.dart';
-import 'package:acthub/Screens/LogInPage.dart';
-import 'package:acthub/Screens/ManagementPage.dart';
-import 'package:acthub/Screens/MapPage.dart';
+import 'package:acthub/Screens/Management/ManagementPage.dart';
+import 'package:acthub/Screens/Map/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
-import 'package:acthub/Screens/PackagesScreen.dart';
-import 'package:acthub/Screens/PrivacyPolicy.dart';
-import 'package:acthub/Screens/SearchPage.dart';
-import 'package:acthub/Screens/SelectLanguage.dart';
-import 'package:acthub/Screens/SignIn.dart';
-import 'package:acthub/Screens/SignUpAsPage.dart';
-import 'package:acthub/Screens/SignUpFormPage.dart';
-import 'package:acthub/Screens/SubCategoryPage.dart';
-import 'package:acthub/Screens/TermsAndConditions.dart';
-import 'package:acthub/Screens/YourData.dart';
+import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
+import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
+import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
+import 'package:acthub/Screens/Profile/Nested/PackagesScreen.dart';
+import 'package:acthub/Screens/Welcome/EnableLocation.dart';
+import 'package:acthub/Screens/Welcome/LogInPage.dart';
+import 'package:acthub/Screens/Welcome/PrivacyPolicy.dart';
+import 'package:acthub/Screens/Welcome/SignIn.dart';
+import 'package:acthub/Screens/Welcome/SignUpAsPage.dart';
+import 'package:acthub/Screens/Welcome/SignUpFormPage.dart';
+import 'package:acthub/Screens/Welcome/TermsAndConditions.dart';
+import 'package:acthub/Screens/Welcome/YourData.dart';
 import 'package:flutter/material.dart';
-import 'Screens/AboutUsScreen.dart';
-import 'Screens/ActivityPage.dart';
-import 'Screens/ActivityPage.dart';
-import 'Screens/ContactUsPage.dart';
-import 'Screens/EditProfileScreen.dart';
 
-import 'Screens/ProfilePage.dart';
-import 'Screens/AddActivity.dart';
+import 'Screens/ActivityPage.dart';
+import 'Screens/Management/Nested/AddActivity.dart';
+import 'Screens/Profile/Nested/AboutUsScreen.dart';
+import 'Screens/Profile/Nested/ContactUsPage.dart';
+import 'Screens/Profile/Nested/EditProfileScreen.dart';
+import 'Screens/Profile/Nested/LanguageScreen.dart';
+import 'Screens/Profile/ProfilePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: NavigationPage.id,
+      initialRoute: LandingPage.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -58,9 +59,11 @@ class MyApp extends StatelessWidget {
         ContactUsPage.id: (context) => ContactUsPage(),
         AboutUsScreen.id: (context) => AboutUsScreen(),
         EditProfileScreen.id: (context) => EditProfileScreen(),
-        SelectLanguage.id: (context) => SelectLanguage(),
+        LanguageScreen.id: (context) => LanguageScreen(),
         ActLink.id: (context) => ActLink(),
-       AddActivity.id: (context) => AddActivity(),
+        AddActivity.id: (context) => AddActivity(),
+        CurrencyPage.id: (context) => CurrencyPage(),
+        BillingPage.id: (context) => BillingPage(),
       },
     );
   }

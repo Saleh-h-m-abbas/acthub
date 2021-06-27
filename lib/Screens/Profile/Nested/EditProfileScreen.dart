@@ -91,7 +91,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01),
                     child: Container(
                       height:  MediaQuery.of(context).size.height>MediaQuery.of(context).size.width ?
-                    MediaQuery.of(context).size.height*0.55:MediaQuery.of(context).size.width*0.45,
+                      MediaQuery.of(context).size.height*0.55:MediaQuery.of(context).size.width*0.45,
                       width: MediaQuery.of(context).size.width*0.93,
 
                       decoration: BoxDecoration(

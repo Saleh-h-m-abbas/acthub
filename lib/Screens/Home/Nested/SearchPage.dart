@@ -11,7 +11,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-
+    timeDilation = 5;
     return WillPopScope(
         onWillPop: () {
           return new Future.value(false);

@@ -25,8 +25,14 @@ class _AddActivityState extends State<AddActivity> {
       backgroundColor:Palette.scaffold,
       appBar: AppBar(
         elevation: 0,
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Palette.actHubGreen,
+            ),
+            onPressed: () => Navigator.pop(context)),
 
-       title: Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AutoSizeText(
@@ -63,9 +69,9 @@ class _AddActivityState extends State<AddActivity> {
                 Padding(
                   padding: const EdgeInsets.only(bottom:15 ),
                   child: Card(
-                  shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
@@ -87,7 +93,7 @@ class _AddActivityState extends State<AddActivity> {
                               children: [
                                 ListTile(
                                     leading:Image.asset(
-                                     'Images/title.png',
+                                      'Images/title.png',
                                       height: allHeight*0.04,
                                     ) ,
                                     title: Container(
@@ -109,46 +115,46 @@ class _AddActivityState extends State<AddActivity> {
                                   shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
                                   elevation: 5,
                                   child: Container(
-                                    height: allHeight*0.06,
-                                    width: allWidth*0.8,
-                                    decoration: const BoxDecoration(
-                                      color: Palette.white,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                      height: allHeight*0.06,
+                                      width: allWidth*0.8,
+                                      decoration: const BoxDecoration(
+                                        color: Palette.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
                                       ),
-                                    ),
-                                    child:TextField(
-                                      cursorWidth: 2,
-                                      cursorHeight:
-                                      allHeight * 0.03,
-                                      cursorColor: Colors.black,
-                                      decoration: InputDecoration(
+                                      child:TextField(
+                                        cursorWidth: 2,
+                                        cursorHeight:
+                                        allHeight * 0.03,
+                                        cursorColor: Colors.black,
+                                        decoration: InputDecoration(
 
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.white),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.white),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
                                           ),
-                                        ),
-                                        //to put border color white when the textfiled not clicked
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
+                                          //to put border color white when the textfiled not clicked
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                            borderSide: BorderSide(color: Colors.white),
                                           ),
-                                          borderSide: BorderSide(color: Colors.white),
+                                          //to set border color grey when the textfiled clicked
+                                          labelStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 19,
+                                          ), //to set the color of hint black
                                         ),
-                                        //to set border color grey when the textfiled clicked
-                                        labelStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 19,
-                                        ), //to set the color of hint black
-                                      ),
-                                      onTap: (){
-                                        setState(() {
-                                          isPressed=false;
-                                        });
-                                      },//decorat input text
-                                    )
+                                        onTap: (){
+                                          setState(() {
+                                            isPressed=false;
+                                          });
+                                        },//decorat input text
+                                      )
 
                                   ),
 
@@ -263,33 +269,33 @@ class _AddActivityState extends State<AddActivity> {
                                           allHeight * 0.03,
                                           cursorColor: Colors.black,
                                           decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.white),
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(30),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.white),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(30),
+                                                ),
                                               ),
-                                            ),
-                                            //to put border color white when the textfiled not clicked
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(30),
+                                              //to put border color white when the textfiled not clicked
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(30),
+                                                ),
+                                                borderSide: BorderSide(color: Colors.white),
                                               ),
-                                              borderSide: BorderSide(color: Colors.white),
-                                            ),
-                                            //to set border color grey when the textfiled clicked
-                                            labelStyle: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 19,
-                                            ),
-                                            suffixIcon: Padding(
-                                              padding: const EdgeInsets.only(top:10.0,left: 15),
-                                              child: Text(  '\$',
-                                              style: TextStyle(
-                                                color: Palette.orange,
-                                                fontSize: 25
+                                              //to set border color grey when the textfiled clicked
+                                              labelStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 19,
                                               ),
-                                           ),
-                                            )//to set the color of hint black
+                                              suffixIcon: Padding(
+                                                padding: const EdgeInsets.only(top:10.0,left: 15),
+                                                child: Text(  '\$',
+                                                  style: TextStyle(
+                                                      color: Palette.orange,
+                                                      fontSize: 25
+                                                  ),
+                                                ),
+                                              )//to set the color of hint black
                                           ),
 
                                           //decorat input text
@@ -319,119 +325,119 @@ class _AddActivityState extends State<AddActivity> {
                                     ),
                                     horizontalTitleGap: allWidth*0.01
                                 ),
-                               Row(
-                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   Column(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: [
-                                       Padding(
-                                         padding: const EdgeInsets.only(left:12.0),
-                                         child: Text('Start Date'),
-                                       ),
-                                       Card(
-                                         shape: RoundedRectangleBorder(
-                                           borderRadius: BorderRadius.circular(20),
-                                         ),
-                                         shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                         elevation: 5,
-                                         child: Container(
-                                             height: allHeight*0.06,
-                                             width: allWidth*0.38,
-                                             decoration: const BoxDecoration(
-                                               color: Palette.white,
-                                               borderRadius: BorderRadius.all(
-                                                 Radius.circular(20),
-                                               ),
-                                             ),
-                                             child:FlatButton(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:12.0),
+                                          child: Text('Start Date'),
+                                        ),
+                                        Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
+                                          elevation: 5,
+                                          child: Container(
+                                            height: allHeight*0.06,
+                                            width: allWidth*0.38,
+                                            decoration: const BoxDecoration(
+                                              color: Palette.white,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(20),
+                                              ),
+                                            ),
+                                            child:FlatButton(
 
-                                                 child: FittedBox(
-                                                   fit: BoxFit.contain,
-                                                   child: Text.rich(
-                                                     TextSpan(
-                                                       style: Theme.of(context)
-                                                           .textTheme
-                                                           .headline4,
-                                                       children: [
-                                                         WidgetSpan(
-                                                           child: Text('Start Date')
-                                                         ),
-                                                         WidgetSpan(
-                                                           child: Icon(
-                                                             Icons.keyboard_arrow_down,
-                                                             color: Palette.orange
-                                                           ),
-                                                         ),
-                                                         WidgetSpan(
-                                                           child: SizedBox(width: 10),
-                                                         ),
+                                                child: FittedBox(
+                                                  fit: BoxFit.contain,
+                                                  child: Text.rich(
+                                                    TextSpan(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline4,
+                                                      children: [
+                                                        WidgetSpan(
+                                                            child: Text('Start Date')
+                                                        ),
+                                                        WidgetSpan(
+                                                          child: Icon(
+                                                              Icons.keyboard_arrow_down,
+                                                              color: Palette.orange
+                                                          ),
+                                                        ),
+                                                        WidgetSpan(
+                                                          child: SizedBox(width: 10),
+                                                        ),
 
-                                                       ],
-                                                     ),
-                                                   ),
-                                                 )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )),
 
-                                         ),
-                                       ),
-                                     ],
-                                   ),
-                                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: [
-                                       Padding(
-                                         padding: const EdgeInsets.only(left:12.0),
-                                         child: Text('End Date'),
-                                       ),
-                                       Card(
-                                         shape: RoundedRectangleBorder(
-                                           borderRadius: BorderRadius.circular(20),
-                                         ),
-                                         shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                         elevation: 5,
-                                         child: Container(
-                                             height: allHeight*0.06,
-                                             width: allWidth*0.38,
-                                             decoration: const BoxDecoration(
-                                               color: Palette.white,
-                                               borderRadius: BorderRadius.all(
-                                                 Radius.circular(20),
-                                               ),
-                                             ),
-                                           child:FlatButton(
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:12.0),
+                                          child: Text('End Date'),
+                                        ),
+                                        Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
+                                          elevation: 5,
+                                          child: Container(
+                                            height: allHeight*0.06,
+                                            width: allWidth*0.38,
+                                            decoration: const BoxDecoration(
+                                              color: Palette.white,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(20),
+                                              ),
+                                            ),
+                                            child:FlatButton(
 
-                                               child: FittedBox(
-                                                 fit: BoxFit.contain,
-                                                 child: Text.rich(
-                                                   TextSpan(
-                                                     style: Theme.of(context)
-                                                         .textTheme
-                                                         .headline4,
-                                                     children: [
-                                                       WidgetSpan(
-                                                           child: Text('End Date')
-                                                       ),
-                                                       WidgetSpan(
-                                                         child: Icon(
-                                                             Icons.keyboard_arrow_down,
-                                                             color: Palette.orange
-                                                         ),
-                                                       ),
-                                                       WidgetSpan(
-                                                         child: SizedBox(width: 10),
-                                                       ),
+                                                child: FittedBox(
+                                                  fit: BoxFit.contain,
+                                                  child: Text.rich(
+                                                    TextSpan(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline4,
+                                                      children: [
+                                                        WidgetSpan(
+                                                            child: Text('End Date')
+                                                        ),
+                                                        WidgetSpan(
+                                                          child: Icon(
+                                                              Icons.keyboard_arrow_down,
+                                                              color: Palette.orange
+                                                          ),
+                                                        ),
+                                                        WidgetSpan(
+                                                          child: SizedBox(width: 10),
+                                                        ),
 
-                                                     ],
-                                                   ),
-                                                 ),
-                                               )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )),
 
-                                         ),
-                                       ),
-                                     ],
-                                   )
-                                 ],
-                               )
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
 
                               ],
                             ),
@@ -454,17 +460,17 @@ class _AddActivityState extends State<AddActivity> {
                                     ),
                                     horizontalTitleGap: allWidth*0.01
                                 ),
-                               Container(
-                                 height: allHeight*0.1,
-                                 width: allWidth*0.8,
-                                 child: Column(
-                                   children: [
-                                     Container(
-                                       height: allHeight*0.06,
-                                       width: allWidth*0.8,
-                                       child: Center(
-                                         child: ListView(
-                                           scrollDirection: Axis.horizontal,
+                                Container(
+                                  height: allHeight*0.1,
+                                  width: allWidth*0.8,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: allHeight*0.06,
+                                        width: allWidth*0.8,
+                                        child: Center(
+                                          child: ListView(
+                                            scrollDirection: Axis.horizontal,
                                             children: [
                                               Card(
                                                 shape: RoundedRectangleBorder(
@@ -576,13 +582,13 @@ class _AddActivityState extends State<AddActivity> {
                                               ),
                                             ],
                                           ),
-                                       ),
-                                     ),
+                                        ),
+                                      ),
 
-                                   ],
-                                 ),
+                                    ],
+                                  ),
 
-                               )
+                                )
                                 ,
                               ],
                             ),
@@ -734,32 +740,32 @@ class _AddActivityState extends State<AddActivity> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom:8.0),
                     child: GestureDetector(
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                elevation: 5,
-                                child: Container(
-                               height: 60,
-                               width: 140,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 5,
+                        child: Container(
+                          height: 60,
+                          width: 140,
                           decoration: BoxDecoration(
 
-                                  shape: BoxShape.rectangle,
+                            shape: BoxShape.rectangle,
                           ),
-                               child: Center(
-                                 child: Text('Submit',style: TextStyle(
-                                   color: Palette.orange,fontSize: 30,fontWeight: FontWeight.bold
-                                 ),
+                          child: Center(
+                            child: Text('Submit',style: TextStyle(
+                                color: Palette.orange,fontSize: 30,fontWeight: FontWeight.bold
+                            ),
 
 
 
-                    ),
-                               ),
+                            ),
+                          ),
                         ),
 
-                              ),
-                              onTap: (){},
-                            ),
+                      ),
+                      onTap: (){},
+                    ),
                   ),
                 )
               ],

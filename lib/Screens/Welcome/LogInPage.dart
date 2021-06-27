@@ -1,5 +1,5 @@
 import 'package:acthub/Classes/Palette.dart';
-import 'package:acthub/Screens/SignIn.dart';
+import 'package:acthub/Screens/Welcome/SignIn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,10 +19,7 @@ class _LogInPageState extends State<LogInPage> {
       backgroundColor: Palette.scaffold,
       resizeToAvoidBottomInset: false,
       body: Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
+        height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,20 +30,21 @@ class _LogInPageState extends State<LogInPage> {
                   'Images/HeaderLogoB.png',
                   fit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  height:MediaQuery.of(context).size.height*0.26,
+                  height: MediaQuery.of(context).size.height * 0.26,
                 ),
                 Positioned(
-                  top:MediaQuery.of(context).size.height*0.07,
+                  top: MediaQuery.of(context).size.height * 0.07,
                   child: Container(
-                    height: MediaQuery.of(context).size.width*0.1,
-                    width:MediaQuery.of(context).size.width*0.1,
-
+                    height: MediaQuery.of(context).size.width * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.1,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios,size: 30,),
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          size: 30,
+                        ),
                         onPressed: () => Navigator.pop(context),
-
                       ),
                     ),
                   ),
@@ -56,13 +54,17 @@ class _LogInPageState extends State<LogInPage> {
             Column(
               children: [
                 Padding(
-                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.02),
-                  child: textFiled('Username', TextInputType.emailAddress, false),
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.02),
+                  child:
+                      textFiled('Username', TextInputType.emailAddress, false),
                 ),
                 textFiled('Password', TextInputType.visiblePassword, true),
                 Padding(
-                  padding: EdgeInsets.only( bottom: MediaQuery.of(context).size.height*0.01,top: MediaQuery.of(context).size.height*0.04),
-                  child: buttons('Login', Palette.actHubGreen, (){} ),
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.01,
+                      top: MediaQuery.of(context).size.height * 0.04),
+                  child: buttons('Login', Palette.actHubGreen, () {}),
                 ),
                 buttons("Don't have an account?", Palette.orange, () {
                   Navigator.push(context,
@@ -71,9 +73,12 @@ class _LogInPageState extends State<LogInPage> {
               ],
             ),
             Container(
-                height: MediaQuery.of(context).size.height*0.06,
-                width: MediaQuery.of(context).size.width*0.4,
-                child: Image.asset('Images/ActHubG.png',fit: BoxFit.contain,)),//contain acthubpic
+                height: MediaQuery.of(context).size.height * 0.06,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Image.asset(
+                  'Images/ActHubG.png',
+                  fit: BoxFit.contain,
+                )), //contain acthubpic
           ],
         ),
       ),
@@ -85,9 +90,10 @@ class _LogInPageState extends State<LogInPage> {
     //keyboardType  => to set the type of textInputType emailAddress or password
     //obscure => to hide the password
     return Container(
-      width: MediaQuery.of(context).size.width*0.78,
-      height: MediaQuery.of(context).size.height*0.05,
-      decoration: BoxDecoration(color: Colors.white, //color of container
+      width: MediaQuery.of(context).size.width * 0.78,
+      height: MediaQuery.of(context).size.height * 0.05,
+      decoration: BoxDecoration(
+        color: Colors.white, //color of container
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -96,7 +102,8 @@ class _LogInPageState extends State<LogInPage> {
         ],
         borderRadius: BorderRadius.all(
           Radius.circular(7),
-        ),),
+        ),
+      ),
       child: TextField(
         obscureText: obscure,
         obscuringCharacter: '*',
@@ -113,7 +120,7 @@ class _LogInPageState extends State<LogInPage> {
           labelText: inputType,
           labelStyle: TextStyle(
             color: Colors.black,
-            fontSize: MediaQuery.of(context).size.height*0.025,
+            fontSize: MediaQuery.of(context).size.height * 0.025,
           ), //to set the color of hint black
         ), //decorat input text
       ),
@@ -125,14 +132,13 @@ class _LogInPageState extends State<LogInPage> {
     //color=> to set the color of the buttons
     //onpress => function onpressed to set onpressed button function
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width * 0.7,
-      height: MediaQuery.of(context).size.height*0.05,
+      width: MediaQuery.of(context).size.width * 0.7,
+      height: MediaQuery.of(context).size.height * 0.05,
       child: ElevatedButton(
         child: Padding(
-          padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.009,),
+          padding: EdgeInsets.all(
+            MediaQuery.of(context).size.height * 0.009,
+          ),
           child: AutoSizeText(buttonText,
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
@@ -150,4 +156,4 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-}//
+} //
