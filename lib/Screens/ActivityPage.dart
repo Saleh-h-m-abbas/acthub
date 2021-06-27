@@ -298,7 +298,7 @@ class _ActivityPageState extends State<ActivityPage> {
       children: [
         LayoutBuilder(
             builder: (context, constraints) {
-              return constraints.maxWidth>constraints.maxHeight?
+              return MediaQuery.of(context).size.width>500?
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -958,7 +958,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      SvgPicture.asset('Images/like.svg',
+                                      SvgPicture.asset('Images/Like.svg',
                                           height:  MediaQuery.of(context).size.height*0.04, color: Palette.actHubYellow),
                                       Padding(
                                         padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.01,),
@@ -1084,12 +1084,8 @@ class _ActivityPageState extends State<ActivityPage> {
                               children: imgList.map((url) {
                                 int index = 3;
                                 return Container(
-                                  width: constraints.maxWidth>constraints.maxHeight?
-                                  MediaQuery.of(context).size.height*0.008:
-                                  MediaQuery.of(context).size.width*0.018,
-                                  height: constraints.maxWidth>constraints.maxHeight?
-                                  MediaQuery.of(context).size.height*0.005:
-                                  MediaQuery.of(context).size.width*0.01,
+                                  width: MediaQuery.of(context).size.height*0.008,
+                                  height:MediaQuery.of(context).size.height*0.005,
                                   margin: EdgeInsets.symmetric(
                                     vertical: MediaQuery.of(context).size.height*0.005, horizontal:  MediaQuery.of(context).size.width*0.001,),
                                   decoration: BoxDecoration(
@@ -1142,7 +1138,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      SvgPicture.asset('Images/like.svg',
+                                      SvgPicture.asset('Images/Like.svg',
                                           height:  MediaQuery.of(context).size.height*0.025, color: Palette.actHubYellow),
                                       Padding(
                                         padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width*0.025,),
