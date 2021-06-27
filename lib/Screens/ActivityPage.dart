@@ -303,7 +303,8 @@ class _ActivityPageState extends State<ActivityPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(
+                    shape
+                        : RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
 
                     ),

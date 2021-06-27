@@ -1,3 +1,4 @@
+import 'package:acthub/Screens/ActivityPages.dart';
 import 'package:acthub/Screens/Home/HomePage.dart';
 import 'package:acthub/Screens/Home/Nested/SearchPage.dart';
 import 'package:acthub/Screens/Home/Nested/SubCategoryPage.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:LandingPage.id,
+      initialRoute:ActivityPages.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         AddActivity.id: (context) => AddActivity(),
         CurrencyPage.id: (context) => CurrencyPage(),
         BillingPage.id: (context) => BillingPage(),
+        ActivityPages.id:(context)=>ActivityPages(),
       },
     );
   }
