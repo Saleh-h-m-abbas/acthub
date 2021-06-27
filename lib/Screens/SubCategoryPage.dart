@@ -19,7 +19,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(
-              Icons.arrow_back,
+              Icons.arrow_back_ios,
               color: Palette.actHubGreen,
             ),
             onPressed: () => Navigator.pop(context)),
@@ -103,15 +103,18 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                       "Explore the best hiking sights with us!!"),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height*0.481,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Sub_Category_Card(context, 'Hiking'),
-                Sub_Category_Card(context, 'Hiking'),
-              ],
+          Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.007),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Sub_Category_Card(context, 'Hiking'),
+                  Sub_Category_Card(context, 'Hiking'),
+                ],
+              ),
+
             ),
           ),
 
@@ -141,7 +144,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                     image: DecorationImage(
                         fit: BoxFit.fill,
                         image: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
+                          'https://www.rei.com/dam/vagnini_181016_2024_hiking_beginners_hero_lg.jpg',
                         )),
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
@@ -202,95 +205,102 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
     );
   }
  Widget Sub_Category_Card(BuildContext context, String subCategory) {
-    return Row(
-      children: [
-        Stack(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Align(
+        alignment:Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              elevation: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-                      )),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(17),
+            Stack(
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  elevation: 5,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                            'https://static1.evcdn.net/images/reduction/1544352_w-360_h-360_q-70_m-crop.jpg',
+                          )),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(17),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: MediaQuery.of(context).size.height * 0.19,
                   ),
                 ),
-                width: MediaQuery.of(context).size.width * 0.45,
-                height: MediaQuery.of(context).size.height * 0.19,
-              ),
+                Container(
+                  child: Center(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height*0.045,
+                      width: MediaQuery.of(context).size.width*0.4,
+                      child: AutoSizeText(
+                        '$subCategory',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.19,
+                ),
+              ],
             ),
-            Container(
-              child: Center(
-                child: Container(
-                  height: MediaQuery.of(context).size.height*0.045,
-                  width: MediaQuery.of(context).size.width*0.4,
-                  child: AutoSizeText(
-                    '$subCategory',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 20),
+            Stack(
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  elevation: 5,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                            'https://static1.evcdn.net/images/reduction/1544352_w-360_h-360_q-70_m-crop.jpg',
+                          )),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(17),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: MediaQuery.of(context).size.height * 0.19,
                   ),
                 ),
-              ),
-              width: MediaQuery.of(context).size.width * 0.45,
-              height: MediaQuery.of(context).size.height * 0.19,
-            ),
+                Container(
+                  child: Center(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height*0.045,
+                      width: MediaQuery.of(context).size.width*0.4,
+                      child: AutoSizeText(
+                        '$subCategory',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.19,
+                ),
+              ],
+            )
           ],
         ),
-        Stack(
-          children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              elevation: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQU4Bm0cXJvDKldO7wUCeWFy_b8J8pzdIWA&usqp=CAU',
-                      )),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(17),
-                  ),
-                ),
-                width: MediaQuery.of(context).size.width * 0.45,
-                height: MediaQuery.of(context).size.height * 0.19,
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Container(
-                  height: MediaQuery.of(context).size.height*0.045,
-                  width: MediaQuery.of(context).size.width*0.4,
-                  child: AutoSizeText(
-                    '$subCategory',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 20),
-                  ),
-                ),
-              ),
-              width: MediaQuery.of(context).size.width * 0.45,
-              height: MediaQuery.of(context).size.height * 0.19,
-            ),
-          ],
-        )
-      ],
+      ),
     );
   }
 }
