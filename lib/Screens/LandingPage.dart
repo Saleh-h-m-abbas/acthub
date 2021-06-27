@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:acthub/Screens/EnableLocation.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
-import 'package:acthub/Screens/SignIn.dart';
-import 'package:acthub/Screens/YourData.dart';
+import 'package:acthub/Screens/Welcome/EnableLocation.dart';
+import 'package:acthub/Screens/Welcome/SignIn.dart';
+import 'package:acthub/Screens/Welcome/YourData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,13 +57,20 @@ class _LandingPageState extends State<LandingPage> {
                 children: [
                   Center(
                     child: Container(
-                        width: 250, child: Image.asset('Images/Logo.png')),
+                        width: MediaQuery.of(context).size.width * 0.55,
+                        child: Image.asset('Images/Logo.png')),
                   ),
-                  Stack(
-                    children: [
-                      Image.asset('Images/LandingPage2.png'),
-                      Image.asset('Images/LandingPage1.png'),
-                    ],
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: [
+                        Image.asset('Images/LandingPage2.png',
+                            fit: BoxFit.fitWidth),
+                        Image.asset('Images/LandingPage1.png',
+                            fit: BoxFit.fitWidth),
+                      ],
+                    ),
                   )
                 ],
               ),
