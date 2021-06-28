@@ -14,6 +14,14 @@ ManagementPage getManagement = new ManagementPage();
 ProfilePage getProfile = new ProfilePage();
 AddActivity getAddActivity = new AddActivity();
 NotificationPage getNotification=new NotificationPage();
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
 
 class NavigationPage extends StatefulWidget {
   static const String id = 'NavBarScreen';
@@ -66,7 +74,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   bottomNav(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.08,
+      height: allHeight(context) * 0.08,
 
       decoration: BoxDecoration(
 color : Colors.white,
