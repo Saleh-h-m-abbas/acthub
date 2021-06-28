@@ -6,6 +6,7 @@ import 'package:acthub/Screens/LandingPage.dart';
 import 'package:acthub/Screens/Management/ManagementPage.dart';
 import 'package:acthub/Screens/Map/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
+import 'package:acthub/Screens/Profile/Nested/AboutProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
@@ -22,7 +23,7 @@ import 'package:flutter/material.dart';
 
 import 'Screens/ActivityPage.dart';
 import 'Screens/Management/Nested/AddActivity.dart';
-import 'Screens/Profile/Nested/AboutUsScreen.dart';
+import 'Screens/Welcome/AboutUsScreen.dart';
 import 'Screens/Profile/Nested/ContactUsPage.dart';
 import 'Screens/Profile/Nested/EditProfileScreen.dart';
 import 'Screens/Profile/Nested/LanguageScreen.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
         AddActivity.id: (context) => AddActivity(),
         CurrencyPage.id: (context) => CurrencyPage(),
         BillingPage.id: (context) => BillingPage(),
+        AboutProfile.id:(context) => AboutProfile(),
       },
     );
   }

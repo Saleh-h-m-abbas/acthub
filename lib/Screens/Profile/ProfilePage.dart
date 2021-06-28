@@ -1,5 +1,5 @@
 import 'package:acthub/Classes/Palette.dart';
-import 'package:acthub/Screens/Profile/Nested/AboutUsScreen.dart';
+import 'package:acthub/Screens/Welcome/AboutUsScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
