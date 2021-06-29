@@ -344,7 +344,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                   ],
                 ),
               ),
-            )
+            ),
         ),
         Positioned(
           top: allHeight(context)*0.007,
