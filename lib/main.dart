@@ -6,10 +6,12 @@ import 'package:acthub/Screens/Management/ManagementPage.dart';
 import 'package:acthub/Screens/Map/MapPage.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:acthub/Screens/Notification/NotificationPage.dart';
+import 'package:acthub/Screens/Profile/Nested/AboutProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
 import 'package:acthub/Screens/Profile/Nested/PackagesScreen.dart';
+import 'package:acthub/Screens/Profile/Nested/PrivacyPolicyProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/SelectLanguage.dart';
 import 'package:acthub/Screens/Welcome/EnableLocation.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
@@ -20,7 +22,6 @@ import 'package:acthub/Screens/Welcome/SignUpFormPage.dart';
 import 'package:acthub/Screens/Welcome/TermsAndConditions.dart';
 import 'package:acthub/Screens/Welcome/YourData.dart';
 import 'package:flutter/material.dart';
-
 import 'Screens/ActivityPage.dart';
 import 'Screens/Management/Nested/AddActivity.dart';
 import 'Screens/Profile/Nested/AboutUsScreen.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SubCategoryPage.id,
+      initialRoute:YourData.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -66,6 +67,8 @@ class MyApp extends StatelessWidget {
         BillingPage.id: (context) => BillingPage(),
         NotificationPage.id: (context) => NotificationPage(),
         SelectLanguage.id:(context) => SelectLanguage(),
+        AboutProfile.id:(context)=>AboutProfile(),
+        PrivacyPolicyProfile.id:(context)=>PrivacyPolicy()
       },
     );
   }

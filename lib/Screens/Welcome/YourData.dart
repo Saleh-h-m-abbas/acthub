@@ -24,14 +24,12 @@ class _YourDataState extends State<YourData> {
     return Scaffold(
       backgroundColor: Color(0xffEFEFEF),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Stack(
             children: [
               Image.asset(
                 'Images/YourData.png',
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.5,
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.05,
@@ -55,9 +53,6 @@ class _YourDataState extends State<YourData> {
           Container(
             height: MediaQuery.of(context).size.height * 0.05,
             width: MediaQuery.of(context).size.width * 0.55,
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.015,
-            ),
             child: AutoSizeText(
               'Your Data, Your Choice',
               textAlign: TextAlign.center,
@@ -67,94 +62,85 @@ class _YourDataState extends State<YourData> {
                   fontSize: 30),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height * 0.03,
-              horizontal: MediaQuery.of(context).size.width * 0.12,
-            ),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.16,
-              width: MediaQuery.of(context).size.width * 0.9,
-              alignment: Alignment.topCenter,
-              child: new AutoSizeText.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: Gettext,
-                      style: new TextStyle(color: Colors.black),
-                    ),
-                    TextSpan(
-                      text: 'Terms And Conditions',
-                      style: TextStyle(color: Colors.blue),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => TermsAndConditions()));
-                        },
-                    ),
-                    TextSpan(
-                      text: ' And ',
-                      style: new TextStyle(color: Colors.black),
-                    ),
-                    TextSpan(
-                      text: 'PrivacyPolicy',
-                      style: TextStyle(color: Colors.blue),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PrivacyPolicy()));
-                        },
-                    )
-                  ],
-                ),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.visible,
-                style: TextStyle(fontSize: 25),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.035,
-                bottom: MediaQuery.of(context).size.height * 0.08),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.055,
-              child: ElevatedButton(
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                      MediaQuery.of(context).size.height * 0.009,
-                    ),
-                    child: AutoSizeText('Accept',
-                        overflow: TextOverflow.visible,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Palette.actHubGreen,
-                          fontWeight: FontWeight.bold,
-                        )),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width * 0.9,
+            alignment: Alignment.topCenter,
+            child: new AutoSizeText.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: Gettext,
+                    style: new TextStyle(color: Colors.black),
                   ),
-                  onPressed: () async {
-                    final SharedPreferences prefs = await _prefs;
-                    prefs.setBool("AcceptData", true);
-                    Navigator.pushNamed(context, SignIn.id);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // background
-                    // foreground
-                  )),
+                  TextSpan(
+                    text: '\nTerms And Conditions',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TermsAndConditions()));
+                      },
+                  ),
+                  TextSpan(
+                    text: ' And ',
+                    style: new TextStyle(color: Colors.black),
+                  ),
+                  TextSpan(
+                    text: 'PrivacyPolicy',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PrivacyPolicy()));
+                      },
+                  )
+                ],
+              ),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.visible,
+              style: TextStyle(fontSize: 25),
             ),
           ),
           Container(
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: Image.asset(
-                'Images/ActHubOLogo.png',
-                fit: BoxFit.contain,
-              )),
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.055,
+            child: ElevatedButton(
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    MediaQuery.of(context).size.height * 0.009,
+                  ),
+                  child: AutoSizeText('Accept',
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Palette.actHubGreen,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                onPressed: () async {
+                  final SharedPreferences prefs = await _prefs;
+                  prefs.setBool("AcceptData", true);
+                  Navigator.pushNamed(context, SignIn.id);
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white, // background
+                  // foreground
+                )),
+          ),
+          SafeArea(
+            child: Container(
+                height: MediaQuery.of(context).size.height * 0.06,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Image.asset(
+                  'Images/ActHubOLogo.png',
+                  fit: BoxFit.contain,
+                )),
+          ),
         ],
       ),
     );
