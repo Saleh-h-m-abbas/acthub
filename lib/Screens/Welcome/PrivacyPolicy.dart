@@ -23,15 +23,6 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             children: [
               Image.asset(
                 'Images/HeaderLogoA.png',
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                height:MediaQuery.of(context).size.height*0.26,
-              ),
-              Image.asset(
-                'Images/HeaderLogoA.png',
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                height:MediaQuery.of(context).size.height*0.26,
               ),
               Positioned(
                 top:MediaQuery.of(context).size.height*0.07,
@@ -54,27 +45,19 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           Container(
             height: MediaQuery.of(context).size.height*0.05,
             width: MediaQuery.of(context).size.width*0.55,
-            child: Container(
-              height: MediaQuery.of(context).size.height*0.6,
-              width: MediaQuery.of(context).size.width*0.5,
-              padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
-              ),
-              child: Center(
-                child: AutoSizeText(
-                  'Privacy Policy',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Palette.lightOrange,
-                      fontWeight: FontWeight.bold,fontSize: 30),
-                ),
+            child: Center(
+              child: AutoSizeText(
+                'Privacy Policy',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Palette.lightOrange,
+                    fontWeight: FontWeight.bold,fontSize: 30),
               ),
             ),
           ),
           Container(
             height: MediaQuery.of(context).size.height*0.5,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
-                horizontal: MediaQuery.of(context).size.width*0.05  ),
+            width: MediaQuery.of(context).size.width*0.85,
 
             child: AutoSizeText(
               Gettext,
@@ -85,10 +68,12 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
           ),//Contain Column for two texts, expanded for actHub image
           // contain text widget to get privacy policy text from firebase
-          Container(
-              height: MediaQuery.of(context).size.height*0.06,
-              width: MediaQuery.of(context).size.width*0.4,
-              child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
+          SafeArea(
+            child: Container(
+                height: MediaQuery.of(context).size.height*0.06,
+                width: MediaQuery.of(context).size.width*0.4,
+                child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
+          ), //contain ACTHUB text picture
         ],
       ),
     );

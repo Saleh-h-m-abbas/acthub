@@ -1,3 +1,5 @@
+
+import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 class CurrencyPage extends StatefulWidget {
   static const String id = 'Currency Page';
@@ -11,14 +13,23 @@ class CurrencyPage extends StatefulWidget {
 class _CurrencyPageState extends State<CurrencyPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          'Currency Page',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Demo for currency picker')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            showCurrencyPicker(
+              context: context,
+              showFlag: true,
+              showCurrencyName: true,
+              showCurrencyCode: true,
+              onSelect: (Currency currency) {
+                print('Select currency: ${currency.name}');
+              },
+              favorite: ['SEK'],
+            );
+          },
+          child: const Text('Show currency picker'),
         ),
       ),
     );

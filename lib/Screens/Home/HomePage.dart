@@ -13,6 +13,15 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../Management/ManagementPage.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width*0.85  ;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height >MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
+
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -323,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                   tag: 'search',
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     elevation: 10,
                     child: Container(
@@ -333,16 +342,17 @@ class _HomePageState extends State<HomePage> {
                           Radius.circular(30),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.height * 0.085,
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      height:allHeight(context) * 0.06,
+                      width: allWidth(context) * 0.87,
                       child: TextField(
                         cursorWidth: 2,
-                        cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                        cursorHeight:
+                        allHeight(context) * 0.03,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search_rounded,
-                            color: Palette.actHubGreen.withOpacity(0.33),
+                            color: Palette.orange,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
@@ -362,10 +372,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 19,
                           ), //to set the color of hint black
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, SearchPage.id);
-                        }, //decorat input text
+                        ), //decorat input text
                       ),
                     ),
                   ),
@@ -599,7 +606,7 @@ class _HomePageState extends State<HomePage> {
                   tag: 'search',
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     elevation: 10,
                     child: Container(
@@ -609,16 +616,17 @@ class _HomePageState extends State<HomePage> {
                           Radius.circular(30),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.87,
+                      height:allHeight(context) * 0.06,
+                      width: allWidth(context) * 0.87,
                       child: TextField(
                         cursorWidth: 2,
-                        cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                        cursorHeight:
+                        allHeight(context) * 0.03,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search_rounded,
-                            color: Palette.actHubGreen.withOpacity(0.33),
+                            color: Palette.orange,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
@@ -638,10 +646,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 19,
                           ), //to set the color of hint black
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, SearchPage.id);
-                        }, //decorat input text
+                        ), //decorat input text
                       ),
                     ),
                   ),
@@ -883,7 +888,7 @@ class _HomePageState extends State<HomePage> {
           tag: 'search',
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(30.0),
             ),
             elevation: 10,
             child: Container(
@@ -893,11 +898,12 @@ class _HomePageState extends State<HomePage> {
                   Radius.circular(30),
                 ),
               ),
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.87,
+              height:allHeight(context) * 0.06,
+              width: allWidth(context) * 0.87,
               child: TextField(
                 cursorWidth: 2,
-                cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                cursorHeight:
+                allHeight(context) * 0.03,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -922,10 +928,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black,
                     fontSize: 19,
                   ), //to set the color of hint black
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, SearchPage.id);
-                }, //decorat input text
+                ), //decorat input text
               ),
             ),
           ),

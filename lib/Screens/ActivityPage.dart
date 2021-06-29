@@ -50,10 +50,12 @@ class ActivityPage extends StatefulWidget {
 class _ActivityPageState extends State<ActivityPage> {
   bool isGuest = false;
   int _current =0;
+  bool report=false;
+  bool reportDone=false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: pageLayout(context),
+      child: pageLayout(context),
     );
   }
   Widget textCardForPortraitLayout(BuildContext context) {
@@ -63,174 +65,232 @@ class _ActivityPageState extends State<ActivityPage> {
         LayoutBuilder(
             builder: (context, constraints) {
               return
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(allHeight(context)*0.02),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(allHeight(context)*0.02),
 
-                    ),
-                    elevation: 5,
-                    child: Container(
-                      width: allWidth(context) * 0.9,
-                      height: allHeight(context) * 0.38,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(allHeight(context)*0.02)),
-                      child: Padding(
-                        padding:  EdgeInsets.only(
-                            top:allHeight(context) * 0.047,
-                            left:allHeight(context)*0.02,
-                            right:allHeight(context)*0.02),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: allHeight(context)*0.04,
-                              child: Row(
+                      ),
+                      elevation: 5,
+                      child: Container(
+                        width: allWidth(context) * 0.9,
+                        height: allHeight(context) * 0.38,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(allHeight(context)*0.02)),
+                        child: Padding(
+                          padding:  EdgeInsets.only(
+                              top:allHeight(context) * 0.047,
+                              left:allHeight(context)*0.02,
+                              right:allHeight(context)*0.02),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: allHeight(context)*0.04,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Align(
+                                        child: AutoSizeText(
+                                          'Hiking Tour',
+                                          textAlign: TextAlign.start ,
+                                          overflow: TextOverflow.visible,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Palette.actHubGreen,
+                                          ),
+                                        ),
+                                        alignment: Alignment.centerLeft,
+                                      ),
+                                      height: allHeight(context)*0.04,
+                                      width: allWidth(context)*0.3,
+                                    ),
+                                    Container(
+                                      child: Align(
+                                        child: AutoSizeText(
+                                          '200\$',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Palette.actHubGreen,
+                                          ),
+                                        ),
+                                        alignment: Alignment.centerRight,
+                                      ),
+                                      height: allHeight(context)*0.04,
+                                      width: allWidth(context)*0.2,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                height: allHeight(context)*0.03,
+                                width: allWidth(context)*0.5,
+
+                                child: Align(
+                                  child: AutoSizeText(
+                                    'Difficulty level: Medium',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.topLeft,
+                                ),
+                              ),
+                              Container(
+                                height: allHeight(context)*0.03,
+                                width: allWidth(context)*0.5,
+
+                                child: Align(
+                                  child: AutoSizeText(
+                                    '7Km',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.topLeft,
+                                ),
+                              ),
+                              Container(
+                                height: allHeight(context)*0.03,
+                                width: allWidth(context)*0.5,
+
+                                child: Align(
+                                  child: AutoSizeText(
+                                    'From Ain Fawar to Wadi Qalt',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.actHubGreen,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                  alignment: Alignment.topLeft,
+                                ),
+                              ),
+                              Container(
+                                height:allHeight(context)*0.06,
+                                width: allWidth(context)*0.9,
+                                child: AutoSizeText(
+                                  'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Palette.actHubGreen,
+                                  ),
+                                  maxLines: 5,
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.visible,
+
+                                ),
+                              ),
+                              Container(
+                                height: allHeight(context)*0.04,
+                                width: allWidth(context)*0.6,
+                                child: AutoSizeText(
+                                  'Guide : Yazan Tayyah',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.actHubGreen,
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ),
+                              Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    child: Align(
-                                      child: AutoSizeText(
-                                        'Hiking Tour',
-                                        textAlign: TextAlign.start ,
-                                        overflow: TextOverflow.visible,
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Palette.actHubGreen,
-                                        ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.phone_enabled_rounded,
+                                        color: Colors.grey,
+                                        size:allHeight(context)*0.033,
                                       ),
-                                      alignment: Alignment.centerLeft,
-                                    ),
-                                    height: allHeight(context)*0.04,
-                                    width: allWidth(context)*0.3,
+                                      Padding(
+                                        padding: EdgeInsets.only(left:allWidth(context)*0.02),
+                                        child: Container(
+                                          height: allHeight(context)*0.03,
+                                          width: allWidth(context)*0.22,
+                                          child: AutoSizeText(
+                                            '+02 2815291',
+                                            style: TextStyle(
+                                              color: Palette.actHubGreen,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                            maxLines: 1,
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Container(
-                                    child: Align(
-                                      child: AutoSizeText(
-                                        '200\$',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Palette.actHubGreen,
-                                        ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'Images/whatsapp.svg',
+                                        height: allHeight(context)*0.026,
+                                        color: Color(0xFF566357)
+                                            .withOpacity(0.35),
                                       ),
-                                      alignment: Alignment.centerRight,
-                                    ),
-                                    height: allHeight(context)*0.04,
-                                    width: allWidth(context)*0.2,
+                                      Padding(
+                                        padding: EdgeInsets.only(left: allWidth(context)*0.02),
+                                        child: Container(
+                                          height: allHeight(context)*0.03,
+                                          width: allWidth(context)*0.22,
+                                          child: AutoSizeText(
+                                            '+02 2815291',
+                                            style: TextStyle(
+                                              color: Palette.actHubGreen,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            overflow: TextOverflow.visible,
+                                            maxLines: 1,
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
-                            ),
-                            Container(
-                              height: allHeight(context)*0.03,
-                              width: allWidth(context)*0.5,
-
-                              child: Align(
-                                child: AutoSizeText(
-                                  'Difficulty level: Medium',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.email,
+                                    color: Colors.grey,
+                                    size:allHeight(context)*0.035,
                                   ),
-                                  textAlign: TextAlign.start,
-                                  overflow: TextOverflow.visible,
-                                ),
-                                alignment: Alignment.topLeft,
-                              ),
-                            ),
-                            Container(
-                              height: allHeight(context)*0.03,
-                              width: allWidth(context)*0.5,
-
-                              child: Align(
-                                child: AutoSizeText(
-                                  '7Km',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  overflow: TextOverflow.visible,
-                                ),
-                                alignment: Alignment.topLeft,
-                              ),
-                            ),
-                            Container(
-                              height: allHeight(context)*0.03,
-                              width: allWidth(context)*0.5,
-
-                              child: Align(
-                                child: AutoSizeText(
-                                  'From Ain Fawar to Wadi Qalt',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Palette.actHubGreen,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  overflow: TextOverflow.visible,
-                                ),
-                                alignment: Alignment.topLeft,
-                              ),
-                            ),
-                            Container(
-                              height:allHeight(context)*0.06,
-                              width: allWidth(context)*0.9,
-                              child: AutoSizeText(
-                                'Unlock your full potential with our hiking tour.Explore the best hiking sights with us!!',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Palette.actHubGreen,
-                                ),
-                                maxLines: 5,
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.visible,
-
-                              ),
-                            ),
-                            Container(
-                              height: allHeight(context)*0.04,
-                              width: allWidth(context)*0.6,
-                              child: AutoSizeText(
-                                'Guide : Yazan Tayyah',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.actHubGreen,
-                                ),
-                                maxLines: 1,
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.visible,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.phone_enabled_rounded,
-                                      color: Colors.grey,
-                                      size:allHeight(context)*0.033,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left:allWidth(context)*0.02),
-                                      child: Container(
-                                        height: allHeight(context)*0.03,
-                                        width: allWidth(context)*0.22,
+                                  Padding(
+                                    padding: EdgeInsets.only(left: allWidth(context)*0.02,),
+                                    child: Container(
+                                      height: allHeight(context)*0.03,
+                                      width: allWidth(context)*0.7,
+                                      child: Align(
                                         child: AutoSizeText(
-                                          '+02 2815291',
+                                          'tayyahyazan@gmail.com',
                                           style: TextStyle(
                                             color: Palette.actHubGreen,
                                             fontSize: 15,
@@ -240,85 +300,27 @@ class _ActivityPageState extends State<ActivityPage> {
                                           overflow: TextOverflow.visible,
                                           maxLines: 1,
                                         ),
+                                        alignment: Alignment.centerLeft,
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      'Images/whatsapp.svg',
-                                      height: allHeight(context)*0.026,
-                                      color: Color(0xFF566357)
-                                          .withOpacity(0.35),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: allWidth(context)*0.02),
-                                      child: Container(
-                                        height: allHeight(context)*0.03,
-                                        width: allWidth(context)*0.22,
-                                        child: AutoSizeText(
-                                          '+02 2815291',
-                                          style: TextStyle(
-                                            color: Palette.actHubGreen,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          overflow: TextOverflow.visible,
-                                          maxLines: 1,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.email,
-                                  color: Colors.grey,
-                                  size:allHeight(context)*0.035,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: allWidth(context)*0.02,),
-                                  child: Container(
-                                    height: allHeight(context)*0.03,
-                                    width: allWidth(context)*0.7,
-                                    child: Align(
-                                      child: AutoSizeText(
-                                        'tayyahyazan@gmail.com',
-                                        style: TextStyle(
-                                          color: Palette.actHubGreen,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.start,
-                                        overflow: TextOverflow.visible,
-                                        maxLines: 1,
-                                      ),
-                                      alignment: Alignment.centerLeft,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              );
+                  ],
+                );
             }
         ),
-       Positioned(
+        Positioned(
             left: allWidth(context)*0.01,
             right: allWidth(context)*0.01,
             bottom:  allHeight(context)*0.339,
-             child:  imageCardForPortraitLayout(context)
-    ),
+            child:  imageCardForPortraitLayout(context)
+        ),
       ],
     );
   }
@@ -377,35 +379,372 @@ class _ActivityPageState extends State<ActivityPage> {
                       ),
                     ),
                     onTap: (){
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return report?
+                            AlertDialog(
+                              content:    Form(
+                                  child:
+                                  Column(
+                                    mainAxisSize:
+                                    MainAxisSize.min,
+                                    children: [
+                                      Image.asset('Images/alert1.png'),
+                                      SizedBox(
+                                        height:MediaQuery.of(context).size.height*0.02
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Report',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+                                        onTap: (){
+                                          setState(() {
+                                            report=true;
+                                          });
+                                        },
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Share',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Cancel',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+
+
+                                    ],
+                                  )
+
+                              ),
+                            )
+                            : reportDone?
+                            AlertDialog(
+                              content:    Form(
+                                  child:
+                                  Column(
+                                    mainAxisSize:
+                                    MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: allHeight(context) * 0.03,
+                                        width: allWidth(context) * 0.2,
+                                        child: AutoSizeText(
+                                          'Report',
+                                          textAlign: TextAlign.start,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                        ),
+                                      ),
+                                      Image.asset('Images/alert2.png'),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.02
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Report',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Share',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Cancel',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+
+
+                                    ],
+                                  )
+
+                              ),
+                            ):
+                            AlertDialog(
+                              content:    Form(
+                                  child:
+                                  Column(
+                                    mainAxisSize:
+                                    MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: allHeight(context) * 0.03,
+                                        width: allWidth(context) * 0.2,
+                                        child: AutoSizeText(
+                                          'Report',
+                                          textAlign: TextAlign.start,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                        ),
+                                      ),
+                                      Image.asset('Images/alert3.png'),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.02
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Report',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Share',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+                                      SizedBox(
+                                          height:MediaQuery.of(context).size.height*0.01
+                                      ),
+                                      GestureDetector(
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          elevation: 10,
+                                          child: Container(
+                                              width: MediaQuery.of(context).size.width*0.73,
+                                              height: MediaQuery.of(context).size.height*0.04,
+                                              decoration: const BoxDecoration(
+                                                color: Palette.actHubGreen,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                                  child: AutoSizeText('Cancel',
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Palette.white)),
+                                                ),
+                                              )),
+                                        ),
+
+                                      ),
+
+
+                                    ],
+                                  )
+
+                              ),
+                            )
+
+                            ;
+                          });
                     },
                   ),
-                  // child: GestureDetector(
-                  //   child: Container(
-                  //     width: allWidth(context) * 0.12 ,
-                  //
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.start,
-                  //       children: imgList.map((url) {
-                  //         int index = 3;
-                  //         return Container(
-                  //           width: allHeight(context)*0.008,
-                  //           height:allHeight(context)*0.005,
-                  //           margin: EdgeInsets.symmetric(
-                  //             vertical: allHeight(context)*0.005, horizontal:  allWidth(context)*0.001,),
-                  //           decoration: BoxDecoration(
-                  //               border: Border.all(
-                  //                 color: Palette.actHubGrey, width:  allWidth(context)*0.002,),
-                  //               shape: BoxShape.circle,
-                  //               color: _current == index
-                  //                   ? Colors.black
-                  //                   : Colors.white),
-                  //         );
-                  //       }).toList(),
-                  //     ),
-                  //   ),
-                  //   onTap: (){
-                  //   },
-                  // ),
+
                 ),
                 Positioned(
                   height: allHeight(context) * 0.48,

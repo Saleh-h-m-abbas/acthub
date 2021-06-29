@@ -10,7 +10,14 @@ class EditProfileScreen extends StatefulWidget {
   @override
   _EditProfileScreenState createState() => _EditProfileScreenState();
 }
-
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
 class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
@@ -29,8 +36,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
 
           leading:  Container(
-            height: MediaQuery.of(context).size.width*0.1,
-            width:MediaQuery.of(context).size.width*0.1,
+            height: allWidth(context)*0.1,
+            width:allWidth(context)*0.1,
 
             child: FittedBox(
               fit: BoxFit.fill,
@@ -46,39 +53,37 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
           child: Center(
             child: Container(
-              height:MediaQuery.of(context).size.height>MediaQuery.of(context).size.width ?
-              MediaQuery.of(context).size.height*0.88:MediaQuery.of(context).size.width*0.8,
-              width: MediaQuery.of(context).size.width*0.9,
+              height:allHeight(context)>allWidth(context) ?
+              allHeight(context)*0.88:allWidth(context)*0.8,
+              width: allWidth(context)*0.9,
               child: Column(
-
-
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01),
+                    padding:  EdgeInsets.only(top:allHeight(context)*0.01),
                     child:  Stack(
                       alignment:Alignment.bottomLeft,
                       children: [
                         Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
-                                MediaQuery.of(context).size.width>500
-                                    ?MediaQuery.of(context).size.width*0.1:
-                                MediaQuery.of(context).size.width*0.12),
+                                allWidth(context)>500
+                                    ?allWidth(context)*0.1:
+                                allWidth(context)*0.12),
                           ),
                           elevation: 10,
                           child: CircleAvatar(
-                            radius:    MediaQuery.of(context).size.width>500
+                            radius:    allWidth(context)>500
                                 ?
-                            MediaQuery.of(context).size.width*0.1:
-                            MediaQuery.of(context).size.width*0.12,
+                            allWidth(context)*0.1:
+                            allWidth(context)*0.12,
                             backgroundImage: NetworkImage(
                                 'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                           ),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.width>500
-                              ?MediaQuery.of(context).size.width*0.05:MediaQuery.of(context).size.width*0.06,
-                          width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
+                          height: allWidth(context)>500
+                              ?allWidth(context)*0.05:allWidth(context)*0.06,
+                          width:  allWidth(context)>500?allWidth(context)*0.07:allWidth(context)*0.09,
                           decoration: BoxDecoration(
                               color: Palette.online,
                               shape: BoxShape.circle,
@@ -88,11 +93,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01),
+                    padding:  EdgeInsets.only(top:allHeight(context)*0.01),
                     child: Container(
-                      height:  MediaQuery.of(context).size.height>MediaQuery.of(context).size.width ?
-                      MediaQuery.of(context).size.height*0.55:MediaQuery.of(context).size.width*0.45,
-                      width: MediaQuery.of(context).size.width*0.93,
+                      height:  allHeight(context)>allWidth(context) ?
+                      allHeight(context)*0.55:allWidth(context)*0.45,
+                      width: allWidth(context)*0.93,
 
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -103,45 +108,158 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       child: Center(
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
+mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            textFeild('FULL NAME',false,TextInputType.name),
-                            textFeild('EMAIL', false, TextInputType.emailAddress),
-                            textFeild('PASSWORD', true, TextInputType.visiblePassword),
-                            textFeild('BIRTHDAY', false, TextInputType.datetime),
-                            textFeild('COUNTRY', false, TextInputType.name),
-                            textFeild('STATE', false, TextInputType.name),
 
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration:InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'FULL NAME ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
 
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context)*0.01,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration:InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'EMAIL ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
+                                  ),
+
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context)*0.01,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration:InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'PASSWORD ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context)*0.01,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration: InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'BIRTHDAY ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context)*0.01,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration:  InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'COUNTRY ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context)*0.01,),
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: allWidth(context)*0.05,),
+                              child: Container(
+                                height: allHeight(context)*0.06,
+                                child: TextFormField(
+                                  cursorColor: Colors.black,
+                                  decoration:  InputDecoration(
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: allWidth(context)*0.03),
+                                    hintText: 'What do people call you?',
+                                    labelText: 'STATE ',
+                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    hintStyle:  TextStyle(
+                                        color: Colors.black,
+                                        fontSize: allWidth(context)*0.03),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01),
-                    child: GestureDetector(
+                    padding:  EdgeInsets.only(top:allHeight(context)*0.01),
+                    child:    GestureDetector(
                       child: Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(allWidth(context) *0.02),
                         ),
                         elevation: 10,
                         child: Container(
-                            width: MediaQuery.of(context).size.width*0.73,
-                            height: MediaQuery.of(context).size.height*0.05,
-                            decoration: const BoxDecoration(
+                            width: allWidth(context)*0.73,
+                            height: allHeight(context)*0.06,
+                            decoration: BoxDecoration(
                               color: Palette.actHubGreen,
                               borderRadius: BorderRadius.all(
-                                Radius.circular(15),
+                                Radius.circular(allWidth(context) *0.02),
                               ),
                             ),
                             child: Center(
                               child: Padding(
-                                padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.007),
+                                padding:  EdgeInsets.all(allHeight(context)*0.009),
                                 child: AutoSizeText('Save',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: allWidth(context) *0.056,
                                         fontWeight: FontWeight.bold,
                                         color: Palette.white)),
                               ),
@@ -159,45 +277,5 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     );
   }
-  Widget textFeild(String labelText,bool obscureText,TextInputType keyboardType){
-    TextEditingController controller=new TextEditingController();
-    return Container(
-      width:MediaQuery.of(context).size.width*0.70,
-      height:MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
-      MediaQuery.of(context).size.width*0.1 :MediaQuery.of(context).size.height*0.1 ,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
-        child: TextField(
-          obscureText: obscureText,
-          obscuringCharacter: '*',
-          keyboardType: keyboardType,
-          cursorColor: Colors.black,
-          decoration: InputDecoration(
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey,
-              ),
-            ),
-            labelText: labelText,
-            hintText: controller.text.trim(),
-            hintStyle: TextStyle(
-              color: Colors.grey,
-            ),
-            labelStyle: TextStyle(
-              fontSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          style: TextStyle(
-            color: Colors.black,
-          ),
 
-        ),
-      ),
-    );
-  }
 }

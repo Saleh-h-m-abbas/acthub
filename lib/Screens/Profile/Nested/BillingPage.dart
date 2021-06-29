@@ -22,9 +22,9 @@ class _BillingPageState extends State<BillingPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-          backgroundColor: Palette.scaffold,
-          appBar:AppBar(
+      child: Scaffold(
+        backgroundColor: Palette.scaffold,
+        appBar:AppBar(
           centerTitle: true,
           toolbarHeight: allHeight(context)*0.08,
           backgroundColor: Palette.scaffold,
@@ -55,137 +55,137 @@ class _BillingPageState extends State<BillingPage> {
             ),
           ),
         ),
-          body: ListView(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: allWidth(context)*0.07,
-                    width: allWidth(context)*0.9,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: AutoSizeText(
-                        'You are joined with us by ',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.visible,
-                        style: TextStyle(
-                          color: Palette.actHubGreen,
-                          fontSize:23,
-                        ),
+        body: ListView(
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: allWidth(context)*0.07,
+                  width: allWidth(context)*0.9,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: AutoSizeText(
+                      'You are joined with us by ',
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.visible,
+                      style: TextStyle(
+                        color: Palette.actHubGreen,
+                        fontSize:23,
                       ),
                     ),
                   ),
-                  Container(
-                      width: allWidth(context),
-                      height: allHeight(context)*0.6,
-                      child: Center(child: packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),))),
-                 Padding(
-                   padding:  EdgeInsets.only(top: allHeight(context)*0.015),
-                   child: Card(
-                     shape: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(allHeight(context)*0.02),),
-                     elevation: 5,
-                     child: Container(
-                       height: allHeight(context)*0.16,
-                       width: allWidth(context)*0.9,
-                       decoration: BoxDecoration(
-                         color: Colors.white,
-                         borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                       ),
-                       child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.center,
-                         children: [
-                           Container(
-                             height: allHeight(context)*0.05,
-                             width: allWidth(context)*0.9,
-                             child: Align(
-                               alignment: Alignment.center,
-                               child: AutoSizeText(
-                                 'Your Package',
-                                 textAlign: TextAlign.center,
-                                 overflow: TextOverflow.visible,
-                                 style: TextStyle(
-                                   fontSize: 25,
-                                   fontWeight: FontWeight.bold,
-                                   color: Palette.actHubGreen.withOpacity(0.75),
-                                 ),
-                               ),
-                             ),
-                           ),
-                           Container(
-                             height: allHeight(context)*0.05,
-                             width: allWidth(context)*0.55,
-
-                             child: Align(
-                               alignment: Alignment.center,
-                               child: AutoSizeText(
-                                 'Started From    28/6/2021',
-                                 textAlign: TextAlign.center,
-                                 overflow: TextOverflow.visible,
-                                 style: TextStyle(
-                                   fontSize: 25,
-                                   color: Palette.actHubGreen.withOpacity(0.75),
-                                 ),
-                               ),
-                             ),
-                           ),
-                           Container(
-                             height: allHeight(context)*0.035,
-                             width: allWidth(context)*0.55,
-
-                             child: Align(
-                               alignment: Alignment.center,
-                               child: AutoSizeText(
-                                 'Up to \t\t\t\t\t\t\t\t\t\t  28/7/2021',
-                                 textAlign: TextAlign.center,
-                                 overflow: TextOverflow.visible,
-                                 style: TextStyle(
-                                   fontSize: 25,
-                                   color: Palette.actHubGreen.withOpacity(0.75),
-                                 ),
-                               ),
-                             ),
-                           ),
-                         ],
-                       ),
-                     ),
-                   ),
-                 ),
-                  Padding(
-                    padding:  EdgeInsets.only(top:  allHeight(context)*0.065),
+                ),
+                Container(
+                    width: allWidth(context),
+                    height: allHeight(context)*0.6,
+                    child: Center(child: packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),))),
+                Padding(
+                  padding:  EdgeInsets.only(top: allHeight(context)*0.015),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(allHeight(context)*0.02),),
+                    elevation: 5,
                     child: Container(
-                      height: allHeight(context)*0.065,
-                      width: allWidth(context)*0.85,
-                      child: ElevatedButton(
-                        child: AutoSizeText(
-                            'Upgrade Your Package',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Palette.white,
-                              //fontWeight: FontWeight.bold,
-                            )),
-                        style: ElevatedButton.styleFrom(
-                          primary: Palette.actHubGreen,
+                      height: allHeight(context)*0.16,
+                      width: allWidth(context)*0.9,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(allHeight(context)*0.02),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: allHeight(context)*0.05,
+                            width: allWidth(context)*0.9,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: AutoSizeText(
+                                'Your Package',
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.actHubGreen.withOpacity(0.75),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: allHeight(context)*0.05,
+                            width: allWidth(context)*0.55,
 
-                        ),
-                        onPressed: (){},
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: AutoSizeText(
+                                'Started From    28/6/2021',
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Palette.actHubGreen.withOpacity(0.75),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: allHeight(context)*0.035,
+                            width: allWidth(context)*0.55,
+
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: AutoSizeText(
+                                'Up to \t\t\t\t\t\t\t\t\t\t  28/7/2021',
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Palette.actHubGreen.withOpacity(0.75),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  SafeArea(child: Container(
-                      height: allHeight(context) * 0.1,
-                      width:allWidth(context) * 0.25,
-                      child: Image.asset(
-                        'Images/Ylogo.png',
-                        fit: BoxFit.contain,
-                      )),)
-                ],
-              ),
-            ],
-          ),
-        ),);
+                ),
+                Padding(
+                  padding:  EdgeInsets.only(top:  allHeight(context)*0.065),
+                  child: Container(
+                    height: allHeight(context)*0.065,
+                    width: allWidth(context)*0.85,
+                    child: ElevatedButton(
+                      child: AutoSizeText(
+                          'Upgrade Your Package',
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Palette.white,
+                            //fontWeight: FontWeight.bold,
+                          )),
+                      style: ElevatedButton.styleFrom(
+                        primary: Palette.actHubGreen,
+
+                      ),
+                      onPressed: (){},
+                    ),
+                  ),
+                ),
+                SafeArea(child: Container(
+                    height: allHeight(context) * 0.1,
+                    width:allWidth(context) * 0.25,
+                    child: Image.asset(
+                      'Images/Ylogo.png',
+                      fit: BoxFit.contain,
+                    )),)
+              ],
+            ),
+          ],
+        ),
+      ),);
   }
   Widget packageDesign(BuildContext context,String packageURL,String price, String Access, String checkURL, String falseURL, String PackageType,Color PackageTypeColor,Color buttonColor){
     return Stack(

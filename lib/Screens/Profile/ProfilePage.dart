@@ -1,10 +1,10 @@
 import 'package:acthub/Classes/Palette.dart';
-import 'package:acthub/Screens/Welcome/AboutUsScreen.dart';
+import 'package:acthub/Screens/Profile/Nested/AboutUsScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
 import 'package:acthub/Screens/Profile/Nested/EditProfileScreen.dart';
-import 'package:acthub/Screens/Profile/Nested/LanguageScreen.dart';
+import 'package:acthub/Screens/Profile/Nested/SelectLanguage.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
 import 'package:acthub/Screens/Welcome/PrivacyPolicy.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (index == 2) {
       return buttonCard(
-          context1, "Language", "Images/language.png", LanguageScreen.id);
+          context1, "Language", "Images/language.png", SelectLanguage.id);
     }
     if (index == 3) {
       return buttonCard(

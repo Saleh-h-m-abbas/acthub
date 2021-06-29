@@ -65,36 +65,27 @@ class _EnableLocationState extends State<EnableLocation> {
           home: Scaffold(
             backgroundColor: Color(0xffEFEFEF),
             body: Center(
-              child: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?MediaQuery.of(context).size.height*0.49:MediaQuery.of(context).size.width*0.49,
-                    child: Image.asset(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
                       'Images/Location.png',
+
+                    ), // contain enable location picture
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
                       width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.fill,
+                      padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.0125,
+                          horizontal: MediaQuery.of(context).size.width * 0.1),
+                      child: AutoSizeText(
+                        Gettext,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(wordSpacing: 0.1, fontSize: 20),
+                        overflow: TextOverflow.visible,
+                      ),
                     ),
-                  ), // contain enable location picture
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(
-                        vertical: MediaQuery.of(context).size.height * 0.0125,
-                        horizontal: MediaQuery.of(context).size.width * 0.1),
-                    child: AutoSizeText(
-                      Gettext,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(wordSpacing: 0.1, fontSize: 20),
-                      overflow: TextOverflow.visible,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.02,
-                        bottom: MediaQuery.of(context).size.height * 0.08),
-                    child: Container(
+                    Container(
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.055,
                       child: ElevatedButton(
@@ -117,72 +108,6 @@ class _EnableLocationState extends State<EnableLocation> {
                             primary: Colors.white, // background
                             // foreground
                           )),
-                    ),
-                  ), //contain text widget to get location text from firebase
-                  //contain the button
-                  Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Image.asset(
-                        'Images/ActHubOLogo.png',
-                        fit: BoxFit.contain,
-                      )),
-                  //contain ACTHUB text logo
-                ],
-              ):SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?MediaQuery.of(context).size.height*0.49:MediaQuery.of(context).size.width*0.49,
-                      child: Image.asset(
-                        'Images/Location.png',
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.fill,
-                      ),
-                    ), // contain enable location picture
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.0125,
-                          horizontal: MediaQuery.of(context).size.width * 0.1),
-                      child: AutoSizeText(
-                        Gettext,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(wordSpacing: 0.1, fontSize: 20),
-                        overflow: TextOverflow.visible,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.02,
-                          bottom: MediaQuery.of(context).size.height * 0.08),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.055,
-                        child: ElevatedButton(
-                            child: Padding(
-                              padding: EdgeInsets.all(
-                                MediaQuery.of(context).size.height * 0.009,
-                              ),
-                              child: AutoSizeText('Enable Location',
-                                  overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Palette.actHubGreen,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                            onPressed: () {
-                              getLocation();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white, // background
-                              // foreground
-                            )),
-                      ),
                     ), //contain text widget to get location text from firebase
                     //contain the button
                     Container(
@@ -194,8 +119,7 @@ class _EnableLocationState extends State<EnableLocation> {
                         )),
                     //contain ACTHUB text logo
                   ],
-                ),
-              ),
+                )
             ),
           ),
         ));

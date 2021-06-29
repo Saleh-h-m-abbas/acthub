@@ -32,8 +32,7 @@ class _LandingPageState extends State<LandingPage> {
     if (prefs.getBool('Guest') != null && prefs.getBool('Guest')) {
       routePage = NavigationPage.id;
     }
-    // Timer(Duration(seconds: 1), ()
-    // => Navigator.pushNamed(context, routePage));
+    Timer(Duration(seconds: 1), () => Navigator.pushNamed(context, routePage));
   }
 
   @override
@@ -62,11 +61,14 @@ class _LandingPageState extends State<LandingPage> {
                         child: Image.asset('Images/Logo.png')),
                   ),
                   Container(
-
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
                     child: Stack(
                       children: [
-                        Image.asset('Images/LandingPage2.png'),
-                        Image.asset('Images/LandingPage1.png',),
+                        Image.asset('Images/LandingPage2.png',
+                            fit: BoxFit.fitWidth),
+                        Image.asset('Images/LandingPage1.png',
+                            fit: BoxFit.fitWidth),
                       ],
                     ),
                   )

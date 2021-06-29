@@ -2,6 +2,14 @@ import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width*0.5;
+}
 class ActLink extends StatefulWidget {
 
   static const String id = 'ActLink';
@@ -20,11 +28,11 @@ class _ActLinkState extends State<ActLink> {
         appBar: AppBar(
           elevation: 0,
           leading: Container(
-            height: MediaQuery.of(context).size.width*0.05,
+            height:allWidth(context)*0.05,
             width:MediaQuery.of(context).size.width*0.15,
 
             child: Padding(
-              padding:  EdgeInsets.only(top: MediaQuery.of(context).size.width > 500? MediaQuery.of(context).size.width*0.0204 : MediaQuery.of(context).size.width*0.0604 ),
+              padding:  EdgeInsets.only(top:allWidth(context) > 500?allWidth(context)*0.0204 :allWidth(context)*0.0604 ),
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: IconButton(
@@ -36,7 +44,7 @@ class _ActLinkState extends State<ActLink> {
             ),
           ),
           title: Padding(
-            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.width > 500? MediaQuery.of(context).size.width*0.0204 : MediaQuery.of(context).size.width*0.0604 ),
+            padding:  EdgeInsets.only(top:allWidth(context) > 500?allWidth(context)*0.0204 :allWidth(context)*0.0604 ),
             child: AutoSizeText(
               'Social',
               style: TextStyle(
@@ -49,83 +57,87 @@ class _ActLinkState extends State<ActLink> {
           centerTitle:true ,
           backgroundColor: Palette.scaffold,
 
-          toolbarHeight: MediaQuery.of(context).size.height*0.1,
+          toolbarHeight:allHeight(context)*0.1,
         ),
         body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height*0.86,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height*0.06,
-                        width: MediaQuery.of(context).size.width*0.4,
-                      ),
+          child: Center(
+            child: Container(
+              height:allHeight(context)*0.86,
+              width:allWidth(context),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                      ListTileSwitch(
-                        value: _value,
-                        leading:   Image.asset('Images/facebook.png',fit: BoxFit.contain,),
-                        onChanged: (value) {
-                          setState(() {
-                            _value = value;
-                          });
-                        },
+                children: [
+                  Column(
 
-                        visualDensity: VisualDensity.adaptivePlatformDensity,
-                        switchType: SwitchType.cupertino,
-                        switchActiveColor: Palette.orange,
-                        switchInactiveColor: Palette.actHubGreen.withOpacity(0.33),
-
-                        title: AutoSizeText('Facebook',style: TextStyle(color:
-                        Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),
-
-
+                      children: [
+                        SizedBox(
+                          height:allHeight(context)*0.06,
+                          width:allWidth(context)*0.4,
                         ),
-                      ),
-                      ListTileSwitch(
+
+                        ListTileSwitch(
                           value: _value,
-                          leading:   Image.asset('Images/twitter.png',fit: BoxFit.contain,),
+                          leading:   Image.asset('Images/facebook.png',fit: BoxFit.contain,),
                           onChanged: (value) {
                             setState(() {
                               _value = value;
                             });
                           },
+
                           visualDensity: VisualDensity.adaptivePlatformDensity,
                           switchType: SwitchType.cupertino,
                           switchActiveColor: Palette.orange,
-                          title:
-                          AutoSizeText('Twitter',style: TextStyle(color:
-                          Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),)
+                          switchInactiveColor: Palette.actHubGreen.withOpacity(0.33),
 
-                      ),
-                      ListTileSwitch(
-                        value: _value,
+                          title: AutoSizeText('Facebook',style: TextStyle(color:
+                          Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),
 
-                        leading:   Image.asset('Images/apple.png',fit: BoxFit.contain,),
-                        onChanged: (value) {
-                          setState(() {
-                            _value = value;
-                          });
-                        },
-                        visualDensity: VisualDensity.comfortable,
-                        switchType: SwitchType.cupertino,
-                        switchActiveColor: Palette.orange,
-                        title: AutoSizeText('Apple',style: TextStyle(color:
-                        Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),
+
+                          ),
                         ),
+                        ListTileSwitch(
+                            value: _value,
+                            leading:   Image.asset('Images/twitter.png',fit: BoxFit.contain,),
+                            onChanged: (value) {
+                              setState(() {
+                                _value = value;
+                              });
+                            },
+                            visualDensity: VisualDensity.adaptivePlatformDensity,
+                            switchType: SwitchType.cupertino,
+                            switchActiveColor: Palette.orange,
+                            title:
+                            AutoSizeText('Twitter',style: TextStyle(color:
+                            Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),)
+
+                        ),
+                        ListTileSwitch(
+                          value: _value,
+
+                          leading:   Image.asset('Images/apple.png',fit: BoxFit.contain,),
+                          onChanged: (value) {
+                            setState(() {
+                              _value = value;
+                            });
+                          },
+                          visualDensity: VisualDensity.comfortable,
+                          switchType: SwitchType.cupertino,
+                          switchActiveColor: Palette.orange,
+                          title: AutoSizeText('Apple',style: TextStyle(color:
+                          Palette.actHubGreen.withOpacity(0.5),fontWeight: FontWeight.bold),
+                          ),
 
 
-                      ),
-                    ]
-                ),
-                Container(
-                    height: MediaQuery.of(context).size.height*0.06,
-                    width: MediaQuery.of(context).size.width*0.4,
-                    child: Image.asset('Images/yellowlogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
-              ],
+                        ),
+                      ]
+                  ),
+                  SafeArea(child: Container(
+                      height: allHeight(context)*0.06,
+                      width: allWidth(context)*0.4,
+                      child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )//contain ACTHUB text picture
+                ],
+              ),
             ),
           ),
         ),

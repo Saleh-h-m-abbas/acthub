@@ -67,10 +67,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     itemCount: 3,
                     itemBuilder: (BuildContext context, int section, int index){
                       return  Padding(
-                        padding: EdgeInsets.all(allWidth(context) * 0.02),
-                        child: section == 0? packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),):
-                      section==1 ?packageDesign(context,'Images/OrangePackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Color(0xffF9A559),):
-                      packageDesign(context,'Images/GreenPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Palette.actHubGreen,)
+                          padding: EdgeInsets.all(allWidth(context) * 0.02),
+                          child: section == 0? packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),):
+                          section==1 ?packageDesign(context,'Images/OrangePackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Color(0xffF9A559),):
+                          packageDesign(context,'Images/GreenPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Palette.actHubGreen,)
                       );
                     },
                     options: CarouselOptions(
@@ -101,10 +101,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         itemCount: 3,
                         itemBuilder: (BuildContext context, int section, int index){
                           return  Padding(
-                            padding: EdgeInsets.all(allWidth(context) * 0.02),
-                            child: section == 0? packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),):
-                            section==1 ?packageDesign(context,'Images/OrangePackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Color(0xffF9A559),):
-                            packageDesign(context,'Images/GreenPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Palette.actHubGreen,)
+                              padding: EdgeInsets.all(allWidth(context) * 0.02),
+                              child: section == 0? packageDesign(context,'Images/GreyPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.actHubGreen,Palette.actHubGreen.withOpacity(0.33),):
+                              section==1 ?packageDesign(context,'Images/OrangePackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Color(0xffF9A559),):
+                              packageDesign(context,'Images/GreenPackage.png',"300\$ /mo",'Access To','Images/check.svg','Images/false.svg','Standard Package',Palette.white,Palette.actHubGreen,)
                           );
                         },
                         options: CarouselOptions(
@@ -134,217 +134,217 @@ class _PackagesScreenState extends State<PackagesScreen> {
       children: [
         Card(
             shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(allHeight(context)*0.02),),
-        elevation: 5,
-        child: Container(
+              borderRadius: BorderRadius.circular(allHeight(context)*0.02),),
+            elevation: 5,
+            child: Container(
               height: allHeight(context)*0.65,
               width: allWidth(context)*0.9,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-          ),
-          child: Padding(
-            padding:  EdgeInsets.only(top: allHeight(context)*0.26),
-            child: Column(
-              children: [
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(allHeight(context)*0.02),
+              ),
+              child: Padding(
+                padding:  EdgeInsets.only(top: allHeight(context)*0.26),
+                child: Column(
+                  children: [
 
-                Container(
-                  height: allHeight(context)*0.07,
-                  width: allWidth(context)*0.9,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: AutoSizeText(
-                      price,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.visible,
-                      style: TextStyle(
-                        color: Palette.orange,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                    Container(
+                      height: allHeight(context)*0.07,
+                      width: allWidth(context)*0.9,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: AutoSizeText(
+                          price,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                            color: Palette.orange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: allHeight(context)*0.065,
-                  width: allWidth(context)*0.85,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                  ),
-                  child: ElevatedButton(
-                    child: AutoSizeText(
-                      'Join',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.visible,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: PackageTypeColor,
-                          //fontWeight: FontWeight.bold,
-                        )),
-                    style: ElevatedButton.styleFrom(
-                      primary: buttonColor, // background
-                      // foreground
+                    Container(
+                      height: allHeight(context)*0.065,
+                      width: allWidth(context)*0.85,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(allHeight(context)*0.02),
+                      ),
+                      child: ElevatedButton(
+                        child: AutoSizeText(
+                            'Join',
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.visible,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: PackageTypeColor,
+                              //fontWeight: FontWeight.bold,
+                            )),
+                        style: ElevatedButton.styleFrom(
+                          primary: buttonColor, // background
+                          // foreground
+                        ),
+                        onPressed: (){},
+                      ),
                     ),
-                    onPressed: (){},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: allHeight(context)*0.015),
-                  child: Container(
-                    height: allHeight(context)*0.04,
-                    width: allWidth(context)*0.85,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: allWidth(context)*0.06),
-                      child: Row(
-                        children: [
-                          // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
-                          SvgPicture.asset(
-                            checkURL,
-                            height: allHeight(context)*0.02,
-                            color:Palette.orange,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: allWidth(context)*0.27),
-                            child: AutoSizeText(
-                              Access,
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
+                    Padding(
+                      padding: EdgeInsets.only(top: allHeight(context)*0.015),
+                      child: Container(
+                        height: allHeight(context)*0.04,
+                        width: allWidth(context)*0.85,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: allWidth(context)*0.06),
+                          child: Row(
+                            children: [
+                              // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
+                              SvgPicture.asset(
+                                checkURL,
+                                height: allHeight(context)*0.02,
+                                color:Palette.orange,
                               ),
+                              Padding(
+                                padding: EdgeInsets.only(left: allWidth(context)*0.27),
+                                child: AutoSizeText(
+                                  Access,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
 
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: allHeight(context)*0.04,
-                  width: allWidth(context)*0.85,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: allWidth(context)*0.06),
-                    child: Row(
-                      children: [
-                        // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
-                        SvgPicture.asset(
-                          falseURL,
-                          height: allHeight(context)*0.02,
-                          color:Palette.actHubGrey.withOpacity(0.40),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: allWidth(context)*0.28),
-                          child: AutoSizeText(
-                            Access,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
+                    Container(
+                      height: allHeight(context)*0.04,
+                      width: allWidth(context)*0.85,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: allWidth(context)*0.06),
+                        child: Row(
+                          children: [
+                            // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
+                            SvgPicture.asset(
+                              falseURL,
+                              height: allHeight(context)*0.02,
+                              color:Palette.actHubGrey.withOpacity(0.40),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(left: allWidth(context)*0.28),
+                              child: AutoSizeText(
+                                Access,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
 
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: allHeight(context)*0.04,
-                  width: allWidth(context)*0.85,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: allWidth(context)*0.06),
-                    child: Row(
-                      children: [
-                        // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
-                        SvgPicture.asset(
-                          falseURL,
-                          height: allHeight(context)*0.02,
-                          color:Palette.actHubGrey.withOpacity(0.40),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: allWidth(context)*0.28),
-                          child: AutoSizeText(
-                            Access,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
+                              ),
                             ),
-
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: allHeight(context)*0.04,
-                  width: allWidth(context)*0.85,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: allWidth(context)*0.06),
-                    child: Row(
-                      children: [
-                        // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
-                        SvgPicture.asset(
-                          falseURL,
-                          height: allHeight(context)*0.02,
-                          color:Palette.actHubGrey.withOpacity(0.40),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: allWidth(context)*0.28),
-                          child: AutoSizeText(
-                            Access,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
+                    Container(
+                      height: allHeight(context)*0.04,
+                      width: allWidth(context)*0.85,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: allWidth(context)*0.06),
+                        child: Row(
+                          children: [
+                            // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
+                            SvgPicture.asset(
+                              falseURL,
+                              height: allHeight(context)*0.02,
+                              color:Palette.actHubGrey.withOpacity(0.40),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(left: allWidth(context)*0.28),
+                              child: AutoSizeText(
+                                Access,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
 
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: allHeight(context)*0.04,
-                  width: allWidth(context)*0.85,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: allWidth(context)*0.06),
-                    child: Row(
-                      children: [
-                        // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
-                        SvgPicture.asset(
-                          falseURL,
-                          height: allHeight(context)*0.02,
-                          color:Palette.actHubGrey.withOpacity(0.40),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: allWidth(context)*0.28),
-                          child: AutoSizeText(
-                            Access,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
+                              ),
                             ),
-
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      height: allHeight(context)*0.04,
+                      width: allWidth(context)*0.85,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: allWidth(context)*0.06),
+                        child: Row(
+                          children: [
+                            // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
+                            SvgPicture.asset(
+                              falseURL,
+                              height: allHeight(context)*0.02,
+                              color:Palette.actHubGrey.withOpacity(0.40),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: allWidth(context)*0.28),
+                              child: AutoSizeText(
+                                Access,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: allHeight(context)*0.04,
+                      width: allWidth(context)*0.85,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: allWidth(context)*0.06),
+                        child: Row(
+                          children: [
+                            // Icon(Icons.check_sharp,size: allHeight(context)*0.04,color: Palette.orange,),
+                            SvgPicture.asset(
+                              falseURL,
+                              height: allHeight(context)*0.02,
+                              color:Palette.actHubGrey.withOpacity(0.40),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: allWidth(context)*0.28),
+                              child: AutoSizeText(
+                                Access,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-            )
         ),
         Positioned(
           top: allHeight(context)*0.007,
@@ -354,26 +354,26 @@ class _PackagesScreenState extends State<PackagesScreen> {
               height: allHeight(context)*0.24,
               child: Image.asset(packageURL,fit: BoxFit.fill,)),),
         Positioned(
-          top: allHeight(context)*0.06,
+            top: allHeight(context)*0.06,
             left: allWidth(context)*0.15,
             child: Container(
-          height: allHeight(context)*0.1,
-          width: allWidth(context)*0.65,
-          child: Align(
-            alignment: Alignment.center,
-            child: AutoSizeText(
-              PackageType,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: PackageTypeColor
+              height: allHeight(context)*0.1,
+              width: allWidth(context)*0.65,
+              child: Align(
+                alignment: Alignment.center,
+                child: AutoSizeText(
+                  PackageType,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.visible,
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: PackageTypeColor
+                  ),
+                ),
               ),
-            ),
-          ),
 
-        ))
+            ))
       ],
     );
   }

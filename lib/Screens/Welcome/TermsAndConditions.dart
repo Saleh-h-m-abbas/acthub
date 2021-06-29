@@ -71,10 +71,12 @@ class TermsAndConditions extends StatelessWidget {
 
             ),//Contain Column for two texts, expanded for actHub image
             // contain text widget to get privacy policy text from firebase
-            Container(
-                height: MediaQuery.of(context).size.height*0.06,
-                width: MediaQuery.of(context).size.width*0.4,
-                child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
+            SafeArea(
+              child: Container(
+                  height: MediaQuery.of(context).size.height*0.06,
+                  width: MediaQuery.of(context).size.width*0.4,
+                  child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
+            ), //contain ACTHUB text picture
           ],
         ),
     );
