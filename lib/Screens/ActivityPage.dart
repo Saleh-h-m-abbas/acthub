@@ -382,7 +382,8 @@ class _ActivityPageState extends State<ActivityPage> {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return report?AlertDialog(
+                            return report?
+                            AlertDialog(
                               content:    Form(
                                   child:
                                   Column(
@@ -495,7 +496,8 @@ class _ActivityPageState extends State<ActivityPage> {
 
                               ),
                             )
-                            : reportDone?AlertDialog(
+                            : reportDone?
+                            AlertDialog(
                               content:    Form(
                                   child:
                                   Column(
@@ -616,7 +618,7 @@ class _ActivityPageState extends State<ActivityPage> {
 
                               ),
                             ):
-                                    AlertDialog(
+                            AlertDialog(
                               content:    Form(
                                   child:
                                   Column(

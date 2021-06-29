@@ -61,7 +61,6 @@ class TermsAndConditions extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
                   horizontal: MediaQuery.of(context).size.width*0.05  ),
-
               child: AutoSizeText(
                 Gettext,
                 textAlign: TextAlign.center,
