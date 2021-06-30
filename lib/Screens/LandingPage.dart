@@ -66,9 +66,9 @@ class _LandingPageState extends State<LandingPage> {
                     child: Stack(
                       children: [
                         Image.asset('Images/LandingPage2.png',
-                            fit: BoxFit.fitWidth),
+                            fit: BoxFit.fill),
                         Image.asset('Images/LandingPage1.png',
-                            fit: BoxFit.fitWidth),
+                            fit: BoxFit.fill),
                       ],
                     ),
                   )

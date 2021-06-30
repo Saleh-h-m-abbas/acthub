@@ -2,6 +2,8 @@ import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter/cupertino.dart';
 class AddActivity extends StatefulWidget {
 
   static const String id = 'AddActivity';
@@ -47,12 +49,27 @@ class _AddActivityState extends State<AddActivity> {
             )
           ],
         ),
+        leading:  Container(
+          height: allWidth * 0.05,
+          width: allWidth * 0.05,
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+                color: Palette.actHubGreen,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+        ),
 
         backgroundColor: Palette.scaffold,
 
         toolbarHeight: allHeight*0.1,
       ),
-      body: adsAdd(context),
+      body: sPAdd(context),
     );
   }
   Widget sPAdd(BuildContext context){
@@ -66,6 +83,7 @@ class _AddActivityState extends State<AddActivity> {
     }
     int index =0;
     bool isPressed=false;
+    final controller = PageController(viewportFraction: 1);
     return  Container(
 
       child: SingleChildScrollView(
@@ -467,136 +485,7 @@ class _AddActivityState extends State<AddActivity> {
                                   ),
                                   horizontalTitleGap: allWidth*0.01
                               ),
-                              Container(
-                                height: allHeight*0.1,
-                                width: allWidth*0.8,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: allHeight*0.06,
-                                      width: allWidth*0.8,
-                                      child: Center(
-                                        child: ListView(
-                                          scrollDirection: Axis.horizontal,
-                                          children: [
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20),
-                                              ),
-                                              shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                              elevation: 5,
-                                              child: Container(
-                                                  height: allHeight*0.06,
-                                                  width: allWidth*0.3,
-                                                  decoration: const BoxDecoration(
-                                                    color: Palette.white,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(20),
-                                                    ),
-                                                  ),
-                                                  child:Center(child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: AutoSizeText('Hiking',
-                                                      style: TextStyle(
-                                                          color: Palette.actHubGreen,
-                                                          fontSize: 20),
-                                                      maxLines: 1,
-                                                    ),
-                                                  ))
-
-                                              ),
-                                            ),
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20),
-                                              ),
-                                              shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                              elevation: 5,
-                                              child: Container(
-                                                  height: allHeight*0.06,
-                                                  width: allWidth*0.3,
-                                                  decoration: const BoxDecoration(
-                                                    color: Palette.white,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(20),
-                                                    ),
-                                                  ),
-                                                  child:Center(child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: AutoSizeText('Hiking',
-                                                      style: TextStyle(
-                                                          color: Palette.actHubGreen,
-                                                          fontSize: 20),
-                                                      maxLines: 1,
-                                                    ),
-                                                  ))
-
-                                              ),
-                                            ),
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20),
-                                              ),
-                                              shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                              elevation: 5,
-                                              child: Container(
-                                                  height: allHeight*0.06,
-                                                  width: allWidth*0.3,
-                                                  decoration: const BoxDecoration(
-                                                    color: Palette.white,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(20),
-                                                    ),
-                                                  ),
-                                                  child:Center(child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: AutoSizeText('Hiking',
-                                                      style: TextStyle(
-                                                          color: Palette.actHubGreen,
-                                                          fontSize: 20),
-                                                      maxLines: 1,
-                                                    ),
-                                                  ))
-
-                                              ),
-                                            ),
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20),
-                                              ),
-                                              shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
-                                              elevation: 5,
-                                              child: Container(
-                                                  height: allHeight*0.06,
-                                                  width: allWidth*0.3,
-                                                  decoration: const BoxDecoration(
-                                                    color: Palette.white,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(20),
-                                                    ),
-                                                  ),
-                                                  child:Center(child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: AutoSizeText('Hiking',
-                                                      style: TextStyle(
-                                                          color: Palette.actHubGreen,
-                                                          fontSize: 20),
-                                                      maxLines: 1,
-                                                    ),
-                                                  ))
-
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-
-                              )
-                              ,
+                              dots(context),
                             ],
                           ),
                           Column(
@@ -1099,5 +988,113 @@ class _AddActivityState extends State<AddActivity> {
       ),
     );
 
+  }
+  Widget dots(BuildContext context){
+    double allWidth =MediaQuery.of(context).size.width;
+    double allHeight = MediaQuery.of(context).size.height;
+    if(allWidth>=allHeight){
+      setState(() {
+        allWidth=MediaQuery.of(context).size.height*1.5;
+        allHeight=MediaQuery.of(context).size.width;
+      });
+    }
+    bool isPressed=false;
+    final controller =PageController();
+    return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 16),
+            Container(
+              height: allHeight*0.06,
+              width: allWidth*0.8,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                controller: controller,
+                itemCount: 3,
+                itemBuilder: (BuilderContext, int index){
+                  return  Container(
+                    width: allWidth*0.64,
+                    height: allHeight*0.02,
+                    child: Row(
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
+                          elevation: 5,
+                          child: Container(
+                              height: allHeight*0.06,
+                              width: allWidth*0.3,
+                              decoration: const BoxDecoration(
+                                color: Palette.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child:Center(child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: AutoSizeText('Hiking',
+                                  style: TextStyle(
+                                      color: Palette.actHubGreen,
+                                      fontSize: 20),
+                                  maxLines: 1,
+                                ),
+                              ))
+
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
+                          elevation: 5,
+                          child: Container(
+                              height: allHeight*0.06,
+                              width: allWidth*0.3,
+                              decoration: const BoxDecoration(
+                                color: Palette.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child:Center(child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: AutoSizeText('Hiking',
+                                  style: TextStyle(
+                                      color: Palette.actHubGreen,
+                                      fontSize: 20),
+                                  maxLines: 1,
+                                ),
+                              ))
+
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+
+                },
+              ),
+            ),
+            SizedBox( height: allHeight*0.02,),
+
+            SmoothPageIndicator(
+                controller: controller,
+                count: 3,
+                effect: ScrollingDotsEffect(
+                  activeDotScale:1,
+                  dotWidth: 8,
+                  dotHeight: 8,
+                  radius: 8,
+                  spacing:5,
+                  activeDotColor: Palette.actHubGreen,
+                )),
+          ],
+        ),
+
+    );
   }
 }
