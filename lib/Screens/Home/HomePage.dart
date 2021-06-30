@@ -13,6 +13,15 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../Management/ManagementPage.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width*0.85  ;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height >MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
+
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -323,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                   tag: 'search',
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     elevation: 10,
                     child: Container(
@@ -333,16 +342,17 @@ class _HomePageState extends State<HomePage> {
                           Radius.circular(30),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.height * 0.085,
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      height:allHeight(context) * 0.06,
+                      width: allWidth(context) * 0.87,
                       child: TextField(
                         cursorWidth: 2,
-                        cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                        cursorHeight:
+                        allHeight(context) * 0.03,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search_rounded,
-                            color: Palette.actHubGreen.withOpacity(0.33),
+                            color: Palette.orange,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
@@ -362,10 +372,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 19,
                           ), //to set the color of hint black
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, SearchPage.id);
-                        }, //decorat input text
+                        ), //decorat input text
                       ),
                     ),
                   ),
@@ -434,18 +441,18 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
+          width: allWidth(context),
           child: AppBar(
             centerTitle: false,
             elevation: 0,
-            toolbarHeight: MediaQuery.of(context).size.height * 0.06,
+            toolbarHeight: allHeight(context) * 0.06,
             backgroundColor: Palette.scaffold,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                  width: MediaQuery.of(context).size.width * 0.2,
+                  height: allHeight(context) * 0.03,
+                  width: allHeight(context) * 0.4,
                   child: AutoSizeText(
                     'Home',
                     textAlign: TextAlign.start,
@@ -458,13 +465,13 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.08),
+                      left: allHeight(context) * 0.035),
                   child: AutoSizeText(
                     'Have a nice day',
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.visible,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Palette.actHubGreen.withOpacity(0.35),
                     ),
                   ),
@@ -473,48 +480,49 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: [
               isGuest
-                  ? Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.1,
-                          top: MediaQuery.of(context).size.height * 0.01),
-                      child: CircleAvatar(
-                        radius: MediaQuery.of(context).size.width * 0.0603,
-                        backgroundImage:
-                            AssetImage("Images/gusetProfilepic.png"),
-                        backgroundColor: Palette.white,
-                      ),
-                    )
+                  ?
+              Padding(
+                padding: EdgeInsets.only(
+                    right:    allHeight(context) * 0.053,
+                    top: allHeight(context) * 0.01),
+                child: CircleAvatar(
+                  radius: allWidth(context) * 0.0603,
+                  backgroundImage:
+                  AssetImage("Images/gusetProfilepic.png"),
+                  backgroundColor: Palette.white,
+                ),
+              )
                   : Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.1,
-                          top: MediaQuery.of(context).size.height * 0.01),
-                      child: Stack(
-                        children: [
-                          CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.05,
-                            backgroundImage: NetworkImage(
-                                'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                          ),
-                          Positioned(
-                              top: MediaQuery.of(context).size.height * 0.032,
-                              left: 0,
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.018,
-                                width:
-                                    MediaQuery.of(context).size.width * 0.034,
-                                decoration: BoxDecoration(
-                                    color: Palette.online,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.0045,
-                                        color: Palette.white)),
-                              ))
-                        ],
-                      ),
-                    )
+                padding: EdgeInsets.only(
+                    right:  allHeight(context) * 0.053,
+                    top: allHeight(context) * 0.01),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: allHeight(context) * 0.03,
+                      backgroundImage: NetworkImage(
+                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                    ),
+                    Positioned(
+                        top: allHeight(context) * 0.032,
+                        left: 0,
+                        child: Container(
+                          height:
+                          allHeight(context) * 0.018,
+                          width:
+                          allHeight(context) * 0.018,
+                          decoration: BoxDecoration(
+                              color: Palette.online,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  width:
+                                  allHeight(context) *
+                                      0.003,
+                                  color: Palette.white)),
+                        ))
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -599,7 +607,7 @@ class _HomePageState extends State<HomePage> {
                   tag: 'search',
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     elevation: 10,
                     child: Container(
@@ -609,16 +617,17 @@ class _HomePageState extends State<HomePage> {
                           Radius.circular(30),
                         ),
                       ),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.87,
+                      height:allHeight(context) * 0.06,
+                      width: allWidth(context) * 0.87,
                       child: TextField(
                         cursorWidth: 2,
-                        cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                        cursorHeight:
+                        allHeight(context) * 0.03,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search_rounded,
-                            color: Palette.actHubGreen.withOpacity(0.33),
+                            color: Palette.orange,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
@@ -638,10 +647,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 19,
                           ), //to set the color of hint black
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, SearchPage.id);
-                        }, //decorat input text
+                        ), //decorat input text
                       ),
                     ),
                   ),
@@ -883,7 +889,7 @@ class _HomePageState extends State<HomePage> {
           tag: 'search',
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(30.0),
             ),
             elevation: 10,
             child: Container(
@@ -893,11 +899,12 @@ class _HomePageState extends State<HomePage> {
                   Radius.circular(30),
                 ),
               ),
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.87,
+              height:allHeight(context) * 0.06,
+              width: allWidth(context) * 0.87,
               child: TextField(
                 cursorWidth: 2,
-                cursorHeight: MediaQuery.of(context).size.height * 0.03,
+                cursorHeight:
+                allHeight(context) * 0.03,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -922,10 +929,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black,
                     fontSize: 19,
                   ), //to set the color of hint black
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, SearchPage.id);
-                }, //decorat input text
+                ), //decorat input text
               ),
             ),
           ),

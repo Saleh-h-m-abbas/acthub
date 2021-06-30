@@ -1,6 +1,16 @@
 import 'package:acthub/Classes/Palette.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width*0.85  ;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height >MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
+
 
 class SearchPage extends StatefulWidget {
   static const String id = 'SearchPage';
@@ -9,6 +19,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  bool isGuest=false;
   @override
   Widget build(BuildContext context) {
     timeDilation = 5;
@@ -20,69 +31,95 @@ class _SearchPageState extends State<SearchPage> {
           home: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Palette.scaffold,
-            appBar: AppBar(
-              leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Palette.actHubGreen,
-                  ),
-                  onPressed: () => Navigator.pop(context)),
-              centerTitle: false,
-              toolbarHeight: 60,
-              elevation: 0,
-              backgroundColor: Palette.scaffold,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Search',
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Palette.orange),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32.0),
-                    child: Text(
-                      'Have a nice day',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Palette.actHubGreen.withOpacity(0.35),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 52.0, top: 10.5),
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundImage: NetworkImage(
-                            'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                      ),
-                      Positioned(
-                          top: 35,
-                          left: 0,
-                          child: Container(
-                            height: 15,
-                            width: 15,
-                            decoration: BoxDecoration(
-                                color: Palette.online,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    width: 2.0, color: Palette.white)),
-                          ))
-                    ],
-                  ),
-                )
-              ],
-            ),
             body: SafeArea(
               child: Column(
                 children: [
+                  Container(
+                    width: allWidth(context),
+                    child: AppBar(
+                      centerTitle: false,
+                      elevation: 0,
+                      toolbarHeight: allHeight(context) * 0.06,
+                      backgroundColor: Palette.scaffold,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: allHeight(context) * 0.03,
+                            width: allHeight(context) * 0.4,
+                            child: AutoSizeText(
+                              'Search',
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.visible,
+                              style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.orange),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: allHeight(context) * 0.035),
+                            child: AutoSizeText(
+                              'Have a nice day',
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.visible,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Palette.actHubGreen.withOpacity(0.35),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      actions: [
+                        isGuest
+                            ?
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right:    allHeight(context) * 0.053,
+                              top: allHeight(context) * 0.01),
+                          child: CircleAvatar(
+                            radius: allWidth(context) * 0.0603,
+                            backgroundImage:
+                            AssetImage("Images/gusetProfilepic.png"),
+                            backgroundColor: Palette.white,
+                          ),
+                        )
+                            : Padding(
+                          padding: EdgeInsets.only(
+                              right:  allHeight(context) * 0.053,
+                              top: allHeight(context) * 0.01),
+                          child: Stack(
+                            children: [
+                              CircleAvatar(
+                                radius: allHeight(context) * 0.03,
+                                backgroundImage: NetworkImage(
+                                    'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                              ),
+                              Positioned(
+                                  top: allHeight(context) * 0.032,
+                                  left: 0,
+                                  child: Container(
+                                    height:
+                                    allHeight(context) * 0.018,
+                                    width:
+                                    allHeight(context) * 0.018,
+                                    decoration: BoxDecoration(
+                                        color: Palette.online,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            width:
+                                            allHeight(context) *
+                                                0.003,
+                                            color: Palette.white)),
+                                  ))
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 25),
@@ -100,12 +137,12 @@ class _SearchPageState extends State<SearchPage> {
                                 Radius.circular(30),
                               ),
                             ),
-                            height: MediaQuery.of(context).size.height * 0.06,
-                            width: MediaQuery.of(context).size.width * 0.87,
+                            height:allHeight(context) * 0.06,
+                            width: allWidth(context) * 0.87,
                             child: TextField(
                               cursorWidth: 2,
                               cursorHeight:
-                                  MediaQuery.of(context).size.height * 0.03,
+                                 allHeight(context) * 0.03,
                               cursorColor: Colors.black,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(

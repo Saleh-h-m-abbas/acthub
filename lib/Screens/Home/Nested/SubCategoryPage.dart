@@ -6,6 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/image/gf_image_overlay.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
 class SubCategoryPage extends StatefulWidget {
   static const String id = 'SubCategoryPage';
 
@@ -13,7 +21,7 @@ class SubCategoryPage extends StatefulWidget {
   _SubCategoryPageState createState() => _SubCategoryPageState();
 }
 class _SubCategoryPageState extends State<SubCategoryPage> {
-  bool isGuest = true;
+  bool isGuest = false;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -22,157 +30,87 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
             child: Scaffold(
               backgroundColor: Palette.scaffold,
               appBar: AppBar(
-                leading: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Palette.actHubGreen,
-                    ),
-                    onPressed: () => Navigator.pop(context)),
-                elevation: 0,
                 centerTitle: false,
-                toolbarHeight: MediaQuery
-                    .of(context)
-                    .size
-                    .width > 500 ? MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.13 : MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.1,
+                elevation: 0,
+                toolbarHeight: allHeight(context) * 0.06,
                 backgroundColor: Palette.scaffold,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .width > 500 ? MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.06 : MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.05,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.4,
-                          child: AutoSizeText(
-                            'Discover',
-                            textAlign: TextAlign.start ,
-                            overflow: TextOverflow.visible,
-                            maxLines: 1,// name of activity
-                            style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                              color: Palette.orange,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width > 500 ? MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.03 : MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.08),
-                          child: Container(
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width > 500 ? MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.05 : MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.32,
-                            child: AutoSizeText(
-                              'Outdoor activites',
-                              textAlign: TextAlign.start ,
-                              overflow: TextOverflow.visible,
-                              maxLines: 1,  //name of main category
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Palette.actHubGreen.withOpacity(0.35),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                    Container(
+                      height: allHeight(context) * 0.03,
+                      width: allHeight(context) * 0.4,
+                      child: AutoSizeText(
+                        'Discover',
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                            color: Palette.orange),
+                      ),
                     ),
-                    Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: MediaQuery
-                              .of(context)
-                              .size
-                              .width > 500
-                              ?
-                          MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.03 :
-                          MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.065,
-                          backgroundImage: NetworkImage(
-                              'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'
-                          ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: allHeight(context) * 0.035),
+                      child: AutoSizeText(
+                        'Outdoor Activity',
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Palette.actHubGreen.withOpacity(0.35),
                         ),
-                        Positioned(
-                          top: MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.043:MediaQuery.of(context).size.width*0.09,
-                          right:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.015:MediaQuery.of(context).size.width*0.06,
-                          child: Container(
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .width > 500
-                                ? MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.017 : MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.04,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width > 500 ? MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.07 : MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.09,
-                            decoration: BoxDecoration(
-                                color: Palette.online,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    width: 2.0, color: Palette.white)),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    )
                   ],
                 ),
-
+                actions: [
+                  isGuest
+                      ?
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right:    allHeight(context) * 0.053,
+                        top: allHeight(context) * 0.01),
+                    child: CircleAvatar(
+                      radius: allWidth(context) * 0.0603,
+                      backgroundImage:
+                      AssetImage("Images/gusetProfilepic.png"),
+                      backgroundColor: Palette.white,
+                    ),
+                  )
+                      : Padding(
+                    padding: EdgeInsets.only(
+                        right:  allHeight(context) * 0.053,
+                        top: allHeight(context) * 0.01),
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: allHeight(context) * 0.03,
+                          backgroundImage: NetworkImage(
+                              'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                        ),
+                        Positioned(
+                            top: allHeight(context) * 0.032,
+                            left: 0,
+                            child: Container(
+                              height:
+                              allHeight(context) * 0.018,
+                              width:
+                              allHeight(context) * 0.018,
+                              decoration: BoxDecoration(
+                                  color: Palette.online,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      width:
+                                      allHeight(context) *
+                                          0.003,
+                                      color: Palette.white)),
+                            ))
+                      ],
+                    ),
+                  )
+                ],
               ),
               body: MediaQuery.of(context).size.width>500?SingleChildScrollView(
                 child: Column(
@@ -470,7 +408,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                         )
                       ],
                       fontWeight: FontWeight.bold,
-                      color: Colors.pink,
+                      color: Colors.white,
                       fontSize: 20),
                 ),
 

@@ -7,7 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+bool isGuest=false;
 class ManagementPage extends StatefulWidget {
   const ManagementPage({Key key}) : super(key: key);
   static const String id = 'ManagementPage';
@@ -17,14 +17,13 @@ class ManagementPage extends StatefulWidget {
 }
 double allHeight(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
-  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width*0.85;
 }
 double allWidth(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
   MediaQuery.of(context).size.width:MediaQuery.of(context).size.width*0.85;
 }
 class _ManagementPageState extends State<ManagementPage> {
-  bool isGuest = false;
   @override
   Widget build(BuildContext context) {
 
@@ -33,7 +32,7 @@ class _ManagementPageState extends State<ManagementPage> {
           return new Future.value(false);
         },
         child: MaterialApp(
-          home: serviceProviderPage()
+          home: guestPage()
         ));
   }
   Widget guestPage() {
@@ -41,31 +40,75 @@ class _ManagementPageState extends State<ManagementPage> {
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
         centerTitle: false,
-        toolbarHeight: allHeight(context)*0.074,
         elevation: 0,
+        toolbarHeight: allHeight(context) * 0.06,
         backgroundColor: Palette.scaffold,
-        title: Container(
-          height: allHeight(context)*0.05,
-          width: allWidth(context)*0.45,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: allHeight(context) * 0.03,
+              width: allHeight(context) * 0.4,
+              child: AutoSizeText(
+                'Management',
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.visible,
+                style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Palette.orange),
+              ),
+            ),
 
-          child: AutoSizeText(
-            'Management',
-            style: TextStyle(
-                fontSize: 36, fontWeight: FontWeight.bold, color: Palette.orange),
-            maxLines: 1,
-          ),
+          ],
         ),
         actions: [
+          isGuest
+              ?
           Padding(
-            padding: const EdgeInsets.only(right: 52.0, top: 10.5),
+            padding: EdgeInsets.only(
+                right:    allHeight(context) * 0.053,
+                top: allHeight(context) * 0.01),
             child: CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.white,
-              backgroundImage: AssetImage('Images/gusetProfilepic.png'),
+              radius: allWidth(context) * 0.0603,
+              backgroundImage:
+              AssetImage("Images/gusetProfilepic.png"),
+              backgroundColor: Palette.white,
+            ),
+          )
+              : Padding(
+            padding: EdgeInsets.only(
+                right:  allHeight(context) * 0.053,
+                top: allHeight(context) * 0.01),
+            child: Stack(
+              children: [
+                CircleAvatar(
+                  radius: allHeight(context) * 0.03,
+                  backgroundImage: NetworkImage(
+                      'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                ),
+                Positioned(
+                    top: allHeight(context) * 0.032,
+                    left: 0,
+                    child: Container(
+                      height:
+                      allHeight(context) * 0.018,
+                      width:
+                      allHeight(context) * 0.018,
+                      decoration: BoxDecoration(
+                          color: Palette.online,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              width:
+                              allHeight(context) *
+                                  0.003,
+                              color: Palette.white)),
+                    ))
+              ],
             ),
           )
         ],
-      ) ,
+      ),
       body: Padding(
         padding: EdgeInsets.only(top:allHeight(context)*0.01, left: allWidth(context)*0.01
             ,bottom: allWidth(context)*0.01,right: allWidth(context)*0.01),
@@ -106,18 +149,23 @@ class _ManagementPageState extends State<ManagementPage> {
                             height: allHeight(context)*0.01,
                           ),
                           Container(
-                            height: allHeight(context)*0.02,
-                            width: allWidth(context)*0.55,
+                            width: allWidth(context),
+                            child: Container(
+                              height: allHeight(context)*0.05,
+                              width: allWidth(context),
 
-                            child: AutoSizeText(
-                              'Sgined in first to access this feature.',
-                              //name of main category
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.actHubGreen.withOpacity(0.35),
+                              child: Center(
+                                child: AutoSizeText(
+                                  'Sgined in first to access this feature.',
+                                  //name of main category
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.actHubGreen.withOpacity(0.35),
+                                  ),
+                                  maxLines: 1,
+                                ),
                               ),
-                              maxLines: 1,
                             ),
                           ),
                           Image.asset(
@@ -127,15 +175,17 @@ class _ManagementPageState extends State<ManagementPage> {
                           Padding(
                             padding:  EdgeInsets.only(top: allHeight(context)*0.01),
                             child: Container(
-                              width: allWidth(context)*0.766,
+                              width: allWidth(context),
                               height: allHeight(context)*0.059,
-                              child: AutoSizeText(
-                                "you haven't signed in yet. please sign in\n to manage your activity in application.",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: Palette.actHubGreen.withOpacity(0.50),
+                              child: Center(
+                                child: AutoSizeText(
+                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Palette.actHubGreen.withOpacity(0.50),
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
                               ),
                             ),
                           ),
@@ -180,60 +230,81 @@ class _ManagementPageState extends State<ManagementPage> {
       backgroundColor: Palette.scaffold,
       appBar:AppBar(
         centerTitle: false,
-        toolbarHeight: allHeight(context)*0.074,
         elevation: 0,
-        backgroundColor: Palette.white,
+        toolbarHeight: allHeight(context) * 0.06,
+        backgroundColor: Palette.scaffold,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: allHeight(context)*0.05,
-              width: allWidth(context)*0.23,
+              height: allHeight(context) * 0.03,
+              width: allHeight(context) * 0.4,
               child: AutoSizeText(
-                'Saved', // name of activity
+                'User',
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.visible,
                 style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     color: Palette.orange),
-                maxLines: 1,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: Container(
-                height: allHeight(context)*0.024,
-                width: allWidth(context)*0.13,
-                child:AutoSizeText(
-                  'activites', //name of main category
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Palette.actHubGreen.withOpacity(0.35),
-                  ),
+              padding: EdgeInsets.only(
+                  left: allHeight(context) * 0.035),
+              child: AutoSizeText(
+                'Activity Page',
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.visible,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Palette.actHubGreen.withOpacity(0.35),
                 ),
               ),
             )
           ],
         ),
         actions: [
+          isGuest
+              ?
           Padding(
-            padding: const EdgeInsets.only(right: 52.0, top: 10.5),
+            padding: EdgeInsets.only(
+                right:    allHeight(context) * 0.053,
+                top: allHeight(context) * 0.01),
+            child: CircleAvatar(
+              radius: allWidth(context) * 0.0603,
+              backgroundImage:
+              AssetImage("Images/gusetProfilepic.png"),
+              backgroundColor: Palette.white,
+            ),
+          )
+              : Padding(
+            padding: EdgeInsets.only(
+                right:  allHeight(context) * 0.053,
+                top: allHeight(context) * 0.01),
             child: Stack(
               children: [
                 CircleAvatar(
-                  radius: 25,
+                  radius: allHeight(context) * 0.03,
                   backgroundImage: NetworkImage(
                       'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                 ),
                 Positioned(
-                    top: 35,
+                    top: allHeight(context) * 0.032,
                     left: 0,
                     child: Container(
-                      height: 15,
-                      width: 15,
+                      height:
+                      allHeight(context) * 0.018,
+                      width:
+                      allHeight(context) * 0.018,
                       decoration: BoxDecoration(
                           color: Palette.online,
                           shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Palette.white)),
+                          border: Border.all(
+                              width:
+                              allHeight(context) *
+                                  0.003,
+                              color: Palette.white)),
                     ))
               ],
             ),
@@ -241,7 +312,7 @@ class _ManagementPageState extends State<ManagementPage> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(allWidth(context)*0.01),
+        padding: EdgeInsets.all(allWidth(context)*0.025),
         child: Center(
           child: Container(
             height: allHeight(context),
@@ -276,7 +347,7 @@ class _ManagementPageState extends State<ManagementPage> {
       },
       child: Center(
         child: Padding(
-          padding: EdgeInsets.only(top: allHeight(context)*0.01),
+          padding: EdgeInsets.only(top: allHeight(context)*0.015),
           child: Container(
             height: allHeight(context) * 0.1,
             width: allWidth(context) * 0.85,
@@ -293,34 +364,38 @@ class _ManagementPageState extends State<ManagementPage> {
                         fit: BoxFit.cover,
                       )),
                 ),
-                Container(
-                  height: allHeight(context)*0.027,
-                  width: allWidth(context)*0.227,
-                  child: Text(
-                    'Hiking Tour',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                            blurRadius: 10,
-                            color: Colors.black.withOpacity(0.35),
-                            offset: Offset(5, 5))
-                      ],
-                    ),
-                  ),
-                ),
+
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left:allWidth(context)*0.02),
                       child: SvgPicture.asset(
                         'Images/Like.svg',
                         height: allHeight(context)*0.027,
                         color: Palette.orange,
                       ),
-                      // color: Colors.pink,
+
+                    ),
+                    Container(
+                      height: allHeight(context)*0.07,
+                      width: allWidth(context)*0.7,
+                      alignment: Alignment.center,
+                      child: AutoSizeText(
+                        'Hiking Tour',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(0.35),
+                                offset: Offset(5, 5))
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -334,72 +409,89 @@ class _ManagementPageState extends State<ManagementPage> {
   Widget serviceProviderPage(){
     return Scaffold(
       backgroundColor: Palette.scaffold,
-      appBar:AppBar(
-        centerTitle: false,
-        toolbarHeight: allHeight(context)*0.074,
-        elevation: 0,
-        backgroundColor: Palette.scaffold,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: allHeight(context)*0.05,
-              width: allWidth(context)*0.23,
-              child: AutoSizeText(
-                'Guide',
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.visible,// name of activity
-                style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Palette.orange),
-                maxLines: 1,
-              ),
+      appBar:  AppBar(
+      centerTitle: false,
+      elevation: 0,
+      toolbarHeight: allHeight(context) * 0.06,
+      backgroundColor: Palette.scaffold,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: allHeight(context) * 0.03,
+            width: allHeight(context) * 0.4,
+            child: AutoSizeText(
+              'Guide',
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.visible,
+              style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Palette.orange),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: Container(
-                height: allHeight(context)*0.024,
-                width: allWidth(context)*0.4,
-                child:AutoSizeText(
-                  'Management Page',
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.visible,//name of main category
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Palette.actHubGreen.withOpacity(0.35),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-        actions: [
+          ),
           Padding(
-            padding: const EdgeInsets.only(right: 52.0, top: 10.5),
-            child: Stack(
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1599834562135-b6fc90e642ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFuJTIwZmFjZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-                ),
-                Positioned(
-                    top: 35,
-                    left: 0,
-                    child: Container(
-                      height: 15,
-                      width: 15,
-                      decoration: BoxDecoration(
-                          color: Palette.online,
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Palette.white)),
-                    ))
-              ],
+            padding: EdgeInsets.only(
+                left: allHeight(context) * 0.035),
+            child: AutoSizeText(
+              'Your Management',
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.visible,
+              style: TextStyle(
+                fontSize: 14,
+                color: Palette.actHubGreen.withOpacity(0.35),
+              ),
             ),
           )
         ],
       ),
+      actions: [
+        isGuest
+            ?
+        Padding(
+          padding: EdgeInsets.only(
+              right:    allHeight(context) * 0.053,
+              top: allHeight(context) * 0.01),
+          child: CircleAvatar(
+            radius: allWidth(context) * 0.0603,
+            backgroundImage:
+            AssetImage("Images/gusetProfilepic.png"),
+            backgroundColor: Palette.white,
+          ),
+        )
+            : Padding(
+          padding: EdgeInsets.only(
+              right:  allHeight(context) * 0.053,
+              top: allHeight(context) * 0.01),
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: allHeight(context) * 0.03,
+                backgroundImage: NetworkImage(
+                    'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+              ),
+              Positioned(
+                  top: allHeight(context) * 0.032,
+                  left: 0,
+                  child: Container(
+                    height:
+                    allHeight(context) * 0.018,
+                    width:
+                    allHeight(context) * 0.018,
+                    decoration: BoxDecoration(
+                        color: Palette.online,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            width:
+                            allHeight(context) *
+                                0.003,
+                            color: Palette.white)),
+                  ))
+            ],
+          ),
+        )
+      ],
+    ),
       body: Padding(
         padding: EdgeInsets.only(left: allWidth(context)*0.018, top: allHeight(context)*0.05),
         child: SingleChildScrollView(
