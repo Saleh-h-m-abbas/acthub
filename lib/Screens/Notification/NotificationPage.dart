@@ -192,12 +192,13 @@ class _NotificationPageState extends State<NotificationPage> {
                                       Padding(
                                         padding:  EdgeInsets.all(allHeight(context)*0.01,),
                                         child: Container(
-                                          height: allHeight(context)*0.07,
-                                          width:allHeight(context)*0.35,
+                                          height: allHeight(context)*0.15,
+                                          width:allWidth(context)*0.6,
                                           child: Center(
                                             child: AutoSizeText(
                                               'You Have some trips near you , check them now! ',
                                               textAlign: TextAlign.start,
+                                              maxLines: 3,
                                               overflow: TextOverflow.visible,
                                               style: TextStyle(
                                                 fontSize: 15,

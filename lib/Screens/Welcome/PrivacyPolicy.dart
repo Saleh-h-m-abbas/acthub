@@ -51,18 +51,22 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Palette.lightOrange,
-                    fontWeight: FontWeight.bold,fontSize: 30),
+                    fontWeight: FontWeight.bold,fontSize: 30,
+                  fontFamily: "Arial_Rounded_MT"
+                ),
               ),
             ),
           ),
           Container(
             height: MediaQuery.of(context).size.height*0.5,
-            width: MediaQuery.of(context).size.width*0.85,
+            width: MediaQuery.of(context).size.width,
 
             child: AutoSizeText(
               Gettext,
               textAlign: TextAlign.center,
-              style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+              style: TextStyle(wordSpacing: 0.1,fontSize: 20,
+                fontFamily: "Segoe UI"
+              ),
               overflow: TextOverflow.visible,
             ),
 
@@ -70,7 +74,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           // contain text widget to get privacy policy text from firebase
           SafeArea(
             child: Container(
-                height: MediaQuery.of(context).size.height*0.06,
+                height: MediaQuery.of(context).size.height*0.04,
                 width: MediaQuery.of(context).size.width*0.4,
                 child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)),
           ), //contain ACTHUB text picture

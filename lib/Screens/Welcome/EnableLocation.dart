@@ -73,7 +73,7 @@ class _EnableLocationState extends State<EnableLocation> {
 
                     ), // contain enable location picture
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                      height: MediaQuery.of(context).size.height * 0.15,
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.0125,
@@ -81,7 +81,9 @@ class _EnableLocationState extends State<EnableLocation> {
                       child: AutoSizeText(
                         Gettext,
                         textAlign: TextAlign.center,
-                        style: TextStyle(wordSpacing: 0.1, fontSize: 20),
+                        style: TextStyle(wordSpacing: 0.1, fontSize: 20,
+                          fontFamily: "Segoe UI",
+                        ),
                         overflow: TextOverflow.visible,
                       ),
                     ),
@@ -99,6 +101,7 @@ class _EnableLocationState extends State<EnableLocation> {
                                   fontSize: 20,
                                   color: Palette.actHubGreen,
                                   fontWeight: FontWeight.bold,
+                                  fontFamily: "Segoe UI"
                                 )),
                           ),
                           onPressed: () {

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:ActivityPage.id,
+      initialRoute:PrivacyPolicyProfile.id,
       routes: {
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         NotificationPage.id: (context) => NotificationPage(),
         SelectLanguage.id:(context) => SelectLanguage(),
         AboutProfile.id:(context)=>AboutProfile(),
-        PrivacyPolicyProfile.id:(context)=>PrivacyPolicy()
+        PrivacyPolicyProfile.id:(context)=>PrivacyPolicyProfile()
       },
     );
   }

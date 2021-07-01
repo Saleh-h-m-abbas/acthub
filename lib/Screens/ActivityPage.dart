@@ -537,7 +537,7 @@ class _ActivityPageState extends State<ActivityPage> {
     return Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
-        centerTitle: false,
+        centerTitle: true,
         leading: Container(
           height: allWidth(context) * 0.05,
           width: allWidth(context) * 0.05,
@@ -568,18 +568,20 @@ class _ActivityPageState extends State<ActivityPage> {
                 overflow: TextOverflow.visible,
                 style: TextStyle(
                     fontSize: 36,
+                    fontFamily: "Arial_Rounded_MT",
                     fontWeight: FontWeight.bold,
                     color: Palette.orange),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: allWidth(context) * 0.08),
+              padding: EdgeInsets.only(left: allWidth(context) * 0.05),
               child: AutoSizeText(
                 'Outdoor Activity',
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.visible,
                 style: TextStyle(
                   fontSize: 14,
+                  fontFamily: "Arial_Rounded_MT",
                   color: Palette.actHubGreen.withOpacity(0.35),
                 ),
               ),

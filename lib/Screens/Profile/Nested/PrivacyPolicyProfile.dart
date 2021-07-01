@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
 //to get condition text from firebase
-
 double allHeight(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
   MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
@@ -23,7 +22,7 @@ class PrivacyPolicyProfile extends StatefulWidget {
 class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
         centerTitle: true,
@@ -60,12 +59,13 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
         width: allWidth(context),
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: allHeight(context)*0.04,),
+              SizedBox(height: allHeight(context)*0.01,),
               Container(
                 alignment: Alignment.center,
                 height: allHeight(context)*0.7,
-                width: allWidth(context)*0.7,
+                width: allWidth(context)*0.85,
                 child: AutoSizeText(
                   Gettext,
                   textAlign: TextAlign.center,
@@ -75,7 +75,7 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
               ),
               SizedBox(height: allHeight(context)*0.05,),
               SafeArea(child: Container(
-                  height: allHeight(context)*0.06,
+                  height: allHeight(context)*0.05,
                   width: allWidth(context)*0.4,
                   child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
             ],
@@ -111,7 +111,6 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
           ),
         ),
       ),
-    ),
     );
   }
 }

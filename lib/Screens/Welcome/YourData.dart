@@ -59,11 +59,12 @@ class _YourDataState extends State<YourData> {
               style: TextStyle(
                   color: Palette.lightOrange,
                   fontWeight: FontWeight.bold,
+                  fontFamily: "Arial_Rounded_MT",
                   fontSize: 30),
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.1,
+            height: MediaQuery.of(context).size.height * 0.15,
             width: MediaQuery.of(context).size.width * 0.9,
             alignment: Alignment.topCenter,
             child: new AutoSizeText.rich(
@@ -103,7 +104,7 @@ class _YourDataState extends State<YourData> {
               ),
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
-              style: TextStyle(fontSize: 25),
+              style: TextStyle(fontSize: 25,fontFamily: "Segoe UI"),
             ),
           ),
           Container(
@@ -120,6 +121,7 @@ class _YourDataState extends State<YourData> {
                         fontSize: 20,
                         color: Palette.actHubGreen,
                         fontWeight: FontWeight.bold,
+                        fontFamily: "Segoe UI"
                       )),
                 ),
                 onPressed: () async {
