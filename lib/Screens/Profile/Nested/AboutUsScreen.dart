@@ -9,71 +9,62 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:Palette.scaffold,
+      appBar:  AppBar(
+        centerTitle: true,
+        toolbarHeight: MediaQuery.of(context).size.height*0.1,
+        backgroundColor: Palette.scaffold,
+        elevation: 0,
+        title: AutoSizeText(
+          'About Us',
+          textAlign: TextAlign.start,
+          overflow: TextOverflow.visible,
+          style: TextStyle(
+            color: Palette.orange,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
+        leading:  Container(
+          height: MediaQuery.of(context).size.height* 0.05,
+          width:  MediaQuery.of(context).size.width* 0.15,
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+                color: Palette.actHubGreen,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+        ),
+      ) ,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Stack(
-            children: [
-              Image.asset(
-                'Images/HeaderLogoA.png',
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                height:MediaQuery.of(context).size.height*0.26,
-              ),
-              Positioned(
-                top:MediaQuery.of(context).size.height*0.07,
-                child: Container(
-                  height: MediaQuery.of(context).size.width*0.1,
-                  width:MediaQuery.of(context).size.width*0.1,
 
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios,size: 30,),
-                      onPressed: () => Navigator.pop(context),
-
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
           Container(
-            height: MediaQuery.of(context).size.height*0.05,
-            width: MediaQuery.of(context).size.width*0.55,
-            child: Container(
-              height: MediaQuery.of(context).size.height*0.6,
-              width: MediaQuery.of(context).size.width*0.5,
-              padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
-              ),
-              child: Center(
-                child: AutoSizeText(
-                  'About Us',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Palette.lightOrange,
-                      fontWeight: FontWeight.bold,fontSize: 30),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height*0.5,
+            height: MediaQuery.of(context).size.height*0.75,
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.0125,
-                horizontal: MediaQuery.of(context).size.width*0.05  ),
+            padding: EdgeInsets.only(bottom:MediaQuery.of(context).size.height*0.0125,
+               top: MediaQuery.of(context).size.height*0.025,
+               left: MediaQuery.of(context).size.width*0.05 ,
+                right: MediaQuery.of(context).size.width*0.05),
 
-            child: AutoSizeText(
-              Gettext,
-              textAlign: TextAlign.center,
-              style: TextStyle(wordSpacing: 0.1,fontSize: 20),
-              overflow: TextOverflow.visible,
+            child: SingleChildScrollView(
+              child: AutoSizeText(
+                Gettext+Gettext,
+                textAlign: TextAlign.left,
+                style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+                overflow: TextOverflow.visible,
+              ),
             ),
 
           ),//Contain Column for two texts, expanded for actHub image
           // contain text widget to get privacy policy text from firebase
           Container(
-              height: MediaQuery.of(context).size.height*0.06,
+              height: MediaQuery.of(context).size.height*0.07,
               width: MediaQuery.of(context).size.width*0.4,
               child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
         ],
@@ -81,3 +72,4 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 }
+

@@ -38,7 +38,7 @@ class _AddActivityState extends State<AddActivity> {
                   color: Palette.orange),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 32.0),
+              padding:  EdgeInsets.only(left: allHeight*0.04),
               child: AutoSizeText(
                 'We are together',
                 style: TextStyle(
@@ -62,11 +62,10 @@ class _AddActivityState extends State<AddActivity> {
               ),
               onPressed: () => Navigator.pop(context),
             ),
+
           ),
         ),
-
         backgroundColor: Palette.scaffold,
-
         toolbarHeight: allHeight*0.1,
       ),
       body: sPAdd(context),
@@ -92,21 +91,21 @@ class _AddActivityState extends State<AddActivity> {
             alignment: Alignment.bottomCenter,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom:15 ),
+                padding: EdgeInsets.only(bottom:allHeight*0.035),
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                   elevation: 5,
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding:  EdgeInsets.all(allHeight*0.02),
                     child: Container(
                       height: allHeight*1.8,
                       width: allWidth*0.8,
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
                         color: Palette.white,
                         borderRadius: BorderRadius.all(
-                          Radius.circular(20),
+                          Radius.circular(allHeight*0.03),
                         ),
                       ),
 
@@ -142,10 +141,10 @@ class _AddActivityState extends State<AddActivity> {
                                 child: Container(
                                     height: allHeight*0.06,
                                     width: allWidth*0.8,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       color: Palette.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(allHeight*0.03),
                                       ),
                                     ),
                                     child:TextField(
@@ -215,29 +214,28 @@ class _AddActivityState extends State<AddActivity> {
                                 child: Container(
                                     height: allHeight*0.12,
                                     width: allWidth*0.8,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       color: Palette.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(allHeight*0.03),
                                       ),
                                     ),
                                     child:TextField(
-                                      cursorWidth: 2,
+                                      cursorWidth: allWidth*0.01,
                                       cursorHeight:
                                       allHeight * 0.03,
                                       cursorColor: Colors.black,
                                       decoration: InputDecoration(
-
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(color: Colors.white),
                                           borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
+                                            Radius.circular(allHeight*0.03),
                                           ),
                                         ),
                                         //to put border color white when the textfiled not clicked
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
+                                            Radius.circular(allHeight*0.03),
                                           ),
                                           borderSide: BorderSide(color: Colors.white),
                                         ),
@@ -282,14 +280,14 @@ class _AddActivityState extends State<AddActivity> {
                                   child: Container(
                                       height: allHeight*0.06,
                                       width: allWidth*0.4,
-                                      decoration: const BoxDecoration(
+                                      decoration:  BoxDecoration(
                                         color: Palette.white,
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
+                                          Radius.circular(allHeight*0.03),
                                         ),
                                       ),
                                       child:TextField(
-                                        cursorWidth: 2,
+                                        cursorWidth: allHeight*0.01,
                                         cursorHeight:
                                         allHeight * 0.03,
                                         cursorColor: Colors.black,
@@ -313,8 +311,8 @@ class _AddActivityState extends State<AddActivity> {
                                               fontSize: 19,
                                             ),
                                             suffixIcon: Padding(
-                                              padding: const EdgeInsets.only(top:10.0,left: 15),
-                                              child: Text(  '\$',
+                                              padding: EdgeInsets.only(top:allHeight*0.012,left: allHeight*0.01),
+                                              child: AutoSizeText(  '\$',
                                                 style: TextStyle(
                                                     color: Palette.orange,
                                                     fontSize: 25
@@ -357,7 +355,7 @@ class _AddActivityState extends State<AddActivity> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left:12.0),
+                                        padding: EdgeInsets.only(left:allHeight*0.015),
                                         child: Text('Start Date'),
                                       ),
                                       Card(
@@ -368,11 +366,11 @@ class _AddActivityState extends State<AddActivity> {
                                         elevation: 5,
                                         child: Container(
                                           height: allHeight*0.06,
-                                          width: allWidth*0.38,
-                                          decoration: const BoxDecoration(
+                                          width: allWidth*0.37,
+                                          decoration: BoxDecoration(
                                             color: Palette.white,
                                             borderRadius: BorderRadius.all(
-                                              Radius.circular(20),
+                                              Radius.circular(allHeight*0.025),
                                             ),
                                           ),
                                           child:FlatButton(
@@ -395,7 +393,7 @@ class _AddActivityState extends State<AddActivity> {
                                                         ),
                                                       ),
                                                       WidgetSpan(
-                                                        child: SizedBox(width: 10),
+                                                        child: SizedBox(width: allHeight*0.01),
                                                       ),
 
                                                     ],
@@ -411,7 +409,7 @@ class _AddActivityState extends State<AddActivity> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left:12.0),
+                                        padding: EdgeInsets.only(left:allHeight*0.015),
                                         child: Text('End Date'),
                                       ),
                                       Card(
@@ -422,11 +420,11 @@ class _AddActivityState extends State<AddActivity> {
                                         elevation: 5,
                                         child: Container(
                                           height: allHeight*0.06,
-                                          width: allWidth*0.38,
-                                          decoration: const BoxDecoration(
+                                          width: allWidth*0.36,
+                                          decoration:  BoxDecoration(
                                             color: Palette.white,
                                             borderRadius: BorderRadius.all(
-                                              Radius.circular(20),
+                                              Radius.circular(allHeight*0.03),
                                             ),
                                           ),
                                           child:FlatButton(
@@ -449,7 +447,7 @@ class _AddActivityState extends State<AddActivity> {
                                                         ),
                                                       ),
                                                       WidgetSpan(
-                                                        child: SizedBox(width: 10),
+                                                        child: SizedBox(width: allHeight*0.01),
                                                       ),
 
                                                     ],
@@ -516,10 +514,10 @@ class _AddActivityState extends State<AddActivity> {
                                 child: Container(
                                     height: allHeight*0.06,
                                     width: allWidth*0.56,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       color: Palette.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(allHeight*0.03),
                                       ),
                                     ),
                                     child:Center(child: AutoSizeText('Palestine,Ramallah',
@@ -563,10 +561,10 @@ class _AddActivityState extends State<AddActivity> {
                                 child: Container(
                                     height: allHeight*0.3,
                                     width: allWidth*0.7,
-                                    decoration: const BoxDecoration(
+                                    decoration:  BoxDecoration(
                                       color: Palette.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(allHeight*0.03),
                                       ),
                                     ),
                                     child:Center(child:
@@ -605,10 +603,10 @@ class _AddActivityState extends State<AddActivity> {
                                 child: Container(
                                     height: allHeight*0.3,
                                     width: allWidth*0.7,
-                                    decoration: const BoxDecoration(
+                                    decoration:BoxDecoration(
                                       color: Palette.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(allHeight*0.03),
                                       ),
                                     ),
                                     child:Center(child:
@@ -634,16 +632,16 @@ class _AddActivityState extends State<AddActivity> {
               Positioned(
                 bottom: -8,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom:8.0),
+                  padding: EdgeInsets.only(bottom:allHeight*0.01),
                   child: GestureDetector(
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(allHeight*0.01),
                       ),
                       elevation: 5,
                       child: Container(
-                        height: 60,
-                        width: 140,
+                        height: allHeight*0.08,
+                        width: allHeight*0.2,
                         decoration: BoxDecoration(
 
                           shape: BoxShape.rectangle,
@@ -745,7 +743,7 @@ class _AddActivityState extends State<AddActivity> {
                                       ),
                                     ),
                                     child:TextField(
-                                      cursorWidth: 2,
+                                      cursorWidth: allHeight*0.01,
                                       cursorHeight:
                                       allHeight * 0.03,
                                       cursorColor: Colors.black,
@@ -818,7 +816,7 @@ class _AddActivityState extends State<AddActivity> {
                                       ),
                                     ),
                                     child:TextField(
-                                      cursorWidth: 2,
+                                      cursorWidth: allHeight*0.01,
                                       cursorHeight:
                                       allHeight * 0.03,
                                       cursorColor: Colors.black,
@@ -1004,7 +1002,7 @@ class _AddActivityState extends State<AddActivity> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 16),
+          SizedBox(height: allHeight*0.01),
           Container(
             height: allHeight*0.06,
             width: allWidth*0.8,
@@ -1020,21 +1018,21 @@ class _AddActivityState extends State<AddActivity> {
                     children: [
                       Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(allHeight*0.03),
                         ),
                         shadowColor: isPressed?Palette.orange:Palette.actHubGreen.withOpacity(0.33),
                         elevation: 5,
                         child: Container(
                             height: allHeight*0.06,
                             width: allWidth*0.3,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Palette.white,
                               borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                                Radius.circular(allHeight*0.03),
                               ),
                             ),
                             child:Center(child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding:  EdgeInsets.all(allHeight*0.003),
                               child: AutoSizeText('Hiking',
                                 style: TextStyle(
                                     color: Palette.actHubGreen,

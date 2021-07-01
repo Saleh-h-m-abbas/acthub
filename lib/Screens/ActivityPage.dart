@@ -65,9 +65,7 @@ class _ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: pageLayout(context),
-    );
+    return pageLayout(context);
   }
 
   Widget textCardForPortraitLayout(BuildContext context) {
