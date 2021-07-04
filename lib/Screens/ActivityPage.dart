@@ -616,10 +616,7 @@ class _ActivityPageState extends State<ActivityPage> {
         child: CarouselSlider.builder(
             itemCount: 3,
             itemBuilder: (BuildContext context, int section, int index) {
-              return Padding(
-                padding: EdgeInsets.all(allWidth(context) * 0.02),
-                child: textCardForPortraitLayout(context),
-              );
+              return textCardForPortraitLayout(context);
             },
             options: CarouselOptions(
               height: allHeight(context) * 0.9,

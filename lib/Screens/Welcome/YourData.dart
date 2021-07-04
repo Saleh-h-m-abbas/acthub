@@ -62,11 +62,11 @@ class _YourDataState extends State<YourData> {
                   fontSize: 30),
             ),
           ),
-          SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width * 0.9,
-              alignment: Alignment.topCenter,
+          Container(
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width * 0.9,
+            alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
               child: new AutoSizeText.rich(
                 TextSpan(
                   children: [
@@ -104,7 +104,7 @@ class _YourDataState extends State<YourData> {
                 ),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.visible,
-                style: TextStyle(fontSize: 25),
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ),
