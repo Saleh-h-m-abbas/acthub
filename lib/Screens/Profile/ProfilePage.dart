@@ -260,6 +260,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onTap: () {
         Navigator.push(
             newContext, MaterialPageRoute(builder: (newContext) => route));
+
       },
       child: Card(
         shape: RoundedRectangleBorder(
