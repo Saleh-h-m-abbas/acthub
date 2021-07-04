@@ -121,7 +121,6 @@ class _LogInPageState extends State<LogInPage> {
           labelStyle: TextStyle(
             color: Colors.black,
             fontSize: MediaQuery.of(context).size.height * 0.025,
-            fontFamily: "Segoe UI"
           ), //to set the color of hint black
         ), //decorat input text
       ),
@@ -146,7 +145,6 @@ class _LogInPageState extends State<LogInPage> {
               style: TextStyle(
                 fontSize: 19,
                 color: Colors.white,
-                fontFamily: "Segoe UI"
                 //fontWeight: FontWeight.bold,
               )),
         ), //to style the text of buttons

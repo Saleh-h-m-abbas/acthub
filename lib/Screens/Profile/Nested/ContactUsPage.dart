@@ -57,31 +57,42 @@ class _ContactUsPageState extends State<ContactUsPage> {
         toolbarHeight: allHeight(context) * 0.1,
         elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //contain privacy picture
-          SingleChildScrollView(
+      body: Center(
+        child: Container(
+          height: allHeight(context),
+          width: allWidth(context),
+          child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
               children: [
-                cardDesign('Images/messenger.png', 'ActHub'),
-                SizedBox(height: allHeight(context)*0.01,),
-                cardDesign('Images/IconInstagram.png', 'ActHub'),
-                SizedBox(height: allHeight(context)*0.01,),
-                cardDesign('Images/IconGmail.png', 'ActHub@gmaile.com'),
-                SizedBox(height: allHeight(context)*0.01,),
-                cardDesign('Images/IconWhatsApp.png', '+970599845646'),
-                SizedBox(height: allHeight(context)*0.01,),
-                cardDesign('Images/call.png', '+970599845646'),
+                //contain privacy picture
+                Container(
+                  height: allHeight(context)*0.8,
+                  width: allWidth(context),
+                  child: Column(
+                    children: [
+                      cardDesign('Images/messenger.png', 'ActHub'),
+                      SizedBox(height: allHeight(context)*0.01,),
+                      cardDesign('Images/IconInstagram.png', 'ActHub'),
+                      SizedBox(height: allHeight(context)*0.01,),
+                      cardDesign('Images/IconGmail.png', 'ActHub@gmaile.com'),
+                      SizedBox(height: allHeight(context)*0.01,),
+                      cardDesign('Images/IconWhatsApp.png', '+970599845646'),
+                      SizedBox(height: allHeight(context)*0.01,),
+                      cardDesign('Images/call.png', '+970599845646'),
+                    ],
+                  ),
+                ),
+                // contain text widget to get privacy policy text from firebase
+                SafeArea(child: Container(
+                    height: allHeight(context)*0.06,
+                    width: allWidth(context)*0.4,
+                    child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
               ],
             ),
           ),
-          // contain text widget to get privacy policy text from firebase
-          SafeArea(child: Container(
-              height: allHeight(context)*0.06,
-              width: allWidth(context)*0.4,
-              child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
-        ],
+        ),
       ),
     );
   }

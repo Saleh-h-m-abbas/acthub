@@ -23,7 +23,7 @@ class AboutProfile extends StatefulWidget {
 class _AboutProfileState extends State<AboutProfile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(child: Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
         centerTitle: true,
@@ -111,6 +111,7 @@ class _AboutProfileState extends State<AboutProfile> {
           ),
         ),
       ),
+    ),
     );
   }
 }

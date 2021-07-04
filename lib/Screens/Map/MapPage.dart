@@ -14,6 +14,16 @@ class MapPage extends StatefulWidget {
 }
 
 bool showCard = false;
+bool isGuest =false;
+
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+}
 
 class _MapPageState extends State<MapPage> {
   bool showSearchBar = true;
@@ -57,7 +67,7 @@ class _MapPageState extends State<MapPage> {
         child: MaterialApp(
           home: Scaffold(
             resizeToAvoidBottomInset: false,
-            backgroundColor: Palette.scaffold,
+
             body: LayoutBuilder(
                 builder: (context, constraints) {
                   return Stack(
@@ -82,149 +92,88 @@ class _MapPageState extends State<MapPage> {
                         child: Column(
                           children: [
                             Container(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.15,
-
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding:
-                                    EdgeInsets.only(left: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width * 0.02, top: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width > 500 ? MediaQuery
-                                        .of(context)
-                                        .size
-                                        .height * 0.004 : MediaQuery
-                                        .of(context)
-                                        .size
-                                        .height * 0.025),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center,
-                                      children: [
-                                        Container(
-                                          child: AutoSizeText(
-                                            'Discover',
-                                            textAlign: TextAlign.start,
-                                            overflow: TextOverflow.visible,
-                                            style: TextStyle(
-                                                shadows: [
-                                                  Shadow(
-                                                      blurRadius: 15,
-                                                      color:
-                                                      Colors.black.withOpacity(
-                                                          0.35),
-                                                      offset: Offset(5, 5))
-                                                ],
-                                                fontSize: 36,
-                                                fontWeight: FontWeight.bold,
-                                                color: Palette.orange),
-                                          ),
-                                          height: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width > 500 ? MediaQuery
-                                              .of(context)
-                                              .size
-                                              .height * 0.06 : MediaQuery
-                                              .of(context)
-                                              .size
-                                              .height * 0.05,
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width * 0.4,
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .width > 500 ? MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .width * 0.03 : MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .width * 0.15),
-                                            child: Container(
-                                              height: MediaQuery
-                                                  .of(context)
-                                                  .size
-                                                  .width > 500 ? MediaQuery
-                                                  .of(context)
-                                                  .size
-                                                  .height * 0.05 : MediaQuery
-                                                  .of(context)
-                                                  .size
-                                                  .height * 0.03,
-                                              width: MediaQuery
-                                                  .of(context)
-                                                  .size
-                                                  .width * 0.2,
-
-                                              child: AutoSizeText(
-                                                'Near You',
-                                                textAlign: TextAlign.start,
-                                                overflow: TextOverflow.visible,
-                                                style: TextStyle(
-                                                  shadows: [
-                                                    Shadow(
-                                                        blurRadius: 10,
-                                                        color: Colors.black
-                                                            .withOpacity(0.35),
-                                                        offset: Offset(5, 5))
-                                                  ],
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Palette.orange,
-                                                ),
-                                              ),
-                                            )),
-                                      ],
+                              width: allWidth(context),
+                              child: AppBar(
+                                centerTitle: false,
+                                elevation: 0,
+                                toolbarHeight: allHeight(context) * 0.06,
+                          backgroundColor: Colors.white.withOpacity(0.00),
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: allHeight(context) * 0.03,
+                                      width: allHeight(context) * 0.7,
+                                      child: AutoSizeText(
+                                        'Discover',
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                            color: Palette.orange),
+                                      ),
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allHeight(context) * 0.05),
+                                      child: AutoSizeText(
+                                        'Near You',
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.visible,
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Palette.orange
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                actions: [
+                                  isGuest
+                                      ?
                                   Padding(
-
-                                  padding: EdgeInsets.only(
-                                    right:  MediaQuery.of(context).size.width>500? MediaQuery.of(context).size.width*0.015:MediaQuery.of(context).size.width*0.05,),
+                                    padding: EdgeInsets.only(
+                                        right:    allHeight(context) * 0.053,
+                                        top: allHeight(context) * 0.01),
+                                    child: CircleAvatar(
+                                      radius: allWidth(context) * 0.0603,
+                                      backgroundImage:
+                                      AssetImage("Images/gusetProfilepic.png"),
+                                      backgroundColor: Palette.white,
+                                    ),
+                                  )
+                                      : Padding(
+                                    padding: EdgeInsets.only(
+                                        right:  allHeight(context) * 0.053,
+                                        top: allHeight(context) * 0.01),
                                     child: Stack(
-                                      alignment:Alignment.bottomLeft,
                                       children: [
                                         CircleAvatar(
-                                          radius:    MediaQuery.of(context).size.width>500
-                                              ?
-                                          MediaQuery.of(context).size.width*0.03:
-                                          MediaQuery.of(context).size.width*0.06,
-                                          backgroundImage: NetworkImage('https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'
-                                          ),
+                                          radius: allHeight(context) * 0.03,
+                                          backgroundImage: NetworkImage(
+                                              'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                                         ),
                                         Positioned(
-                                          right: MediaQuery.of(context).size.width>500? MediaQuery.of(context).size.width*0.015:MediaQuery.of(context).size.width*0.05,
-                                          child: Container(
-                                            height: MediaQuery.of(context).size.width>500
-                                                ?MediaQuery.of(context).size.width*0.017:MediaQuery.of(context).size.width*0.03,
-                                            width:  MediaQuery.of(context).size.width>500?MediaQuery.of(context).size.width*0.07:MediaQuery.of(context).size.width*0.09,
-                                            decoration: BoxDecoration(
-                                                color: Palette.online,
-                                                shape: BoxShape.circle,
-                                                border: Border.all(width: 2.0, color: Palette.white)),
-                                          ),
-                                        ),
+                                            top: allHeight(context) * 0.032,
+                                            left: 0,
+                                            child: Container(
+                                              height:
+                                              allHeight(context) * 0.018,
+                                              width:
+                                              allHeight(context) * 0.018,
+                                              decoration: BoxDecoration(
+                                                  color: Palette.online,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                      width:
+                                                      allHeight(context) *
+                                                          0.003,
+                                                      color: Palette.white)),
+                                            ))
                                       ],
                                     ),
-                                  ),
+                                  )
                                 ],
                               ),
                             ),

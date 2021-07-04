@@ -26,27 +26,27 @@ List<Widget> slider(BuildContext context) {
   return imgList
       .map(
         (item) => allWidth(context) > 500
-            ? Container(
-                width: allWidth(context) * 0.83,
-                height: allHeight(context) * 0.4,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(17.0)),
-                    child: Image.network(
-                      item,
-                      fit: BoxFit.fill,
-                    )),
-              )
-            : Container(
-                width: allWidth(context) * 0.83,
-                height: allHeight(context) * 0.5,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(17.0)),
-                    child: Image.network(
-                      item,
-                      fit: BoxFit.fill,
-                    )),
-              ),
-      )
+        ? Container(
+      width: allWidth(context) * 0.83,
+      height: allHeight(context) * 0.4,
+      child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(17.0)),
+          child: Image.network(
+            item,
+            fit: BoxFit.fill,
+          )),
+    )
+        : Container(
+      width: allWidth(context) * 0.83,
+      height: allHeight(context) * 0.5,
+      child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(17.0)),
+          child: Image.network(
+            item,
+            fit: BoxFit.fill,
+          )),
+    ),
+  )
       .toList();
 }
 
@@ -65,9 +65,7 @@ class _ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: pageLayout(context),
-    );
+    return pageLayout(context);
   }
 
   Widget textCardForPortraitLayout(BuildContext context) {
@@ -81,7 +79,7 @@ class _ActivityPageState extends State<ActivityPage> {
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(allHeight(context) * 0.02),
+                  BorderRadius.circular(allHeight(context) * 0.02),
                 ),
                 elevation: 5,
                 child: Container(
@@ -90,7 +88,7 @@ class _ActivityPageState extends State<ActivityPage> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                          BorderRadius.circular(allHeight(context) * 0.02)),
+                      BorderRadius.circular(allHeight(context) * 0.02)),
                   child: Padding(
                     padding: EdgeInsets.only(
                         top: allHeight(context) * 0.047,
@@ -236,7 +234,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                       left: allWidth(context) * 0.02),
                                   child: Container(
                                     height: allHeight(context) * 0.03,
-                                    width: allWidth(context) * 0.22,
+                                    width: allWidth(context) * 0.25,
                                     child: AutoSizeText(
                                       '+02 2815291',
                                       style: TextStyle(
@@ -264,7 +262,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                       left: allWidth(context) * 0.02),
                                   child: Container(
                                     height: allHeight(context) * 0.03,
-                                    width: allWidth(context) * 0.22,
+                                    width: allWidth(context) * 0.25,
                                     child: AutoSizeText(
                                       '+02 2815291',
                                       style: TextStyle(
@@ -332,8 +330,8 @@ class _ActivityPageState extends State<ActivityPage> {
   }
 
   Widget imageCardForPortraitLayout(
-    BuildContext context,
-  ) {
+      BuildContext context,
+      ) {
     return Container(
       width: allWidth(context) * 0.83,
       height: allHeight(context) * 0.5,
@@ -498,8 +496,8 @@ class _ActivityPageState extends State<ActivityPage> {
     );
   }
 
-  GestureDetector reportDesign(BuildContext context) {
-    return GestureDetector(
+  InkWell reportDesign(BuildContext context) {
+    return InkWell(
       child: Container(
         width: allWidth(context) * 0.12,
         child: Row(
@@ -520,20 +518,20 @@ class _ActivityPageState extends State<ActivityPage> {
                   ),
                   shape: BoxShape.circle,
                   color:
-                      _current == index ? Palette.actHubGreen : Palette.white),
+                  _current == index ? Palette.actHubGreen : Palette.white),
             );
           }).toList(),
         ),
       ),
       onTap: () {
-  showPopup();
+        showPopup();
       },
     );
   }
 
   Widget pageLayout(
-    BuildContext context,
-  ) {
+      BuildContext context,
+      ) {
     return Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
@@ -556,122 +554,103 @@ class _ActivityPageState extends State<ActivityPage> {
         elevation: 0,
         toolbarHeight: allHeight(context) * 0.06,
         backgroundColor: Palette.scaffold,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: allHeight(context) * 0.03,
-              width: allWidth(context) * 0.2,
-              child: AutoSizeText(
-                'Hiking',
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.visible,
-                style: TextStyle(
-                    fontSize: 36,
-                    fontFamily: "Arial_Rounded_MT",
-                    fontWeight: FontWeight.bold,
-                    color: Palette.orange),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: allWidth(context) * 0.05),
-              child: AutoSizeText(
-                'Outdoor Activity',
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.visible,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Arial_Rounded_MT",
-                  color: Palette.actHubGreen.withOpacity(0.35),
-                ),
-              ),
-            )
-          ],
+        title: Container(
+          height: allHeight(context) * 0.03,
+          width: allWidth(context) * 0.2,
+          child: AutoSizeText(
+            'Hiking',
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.visible,
+            style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Palette.orange),
+          ),
         ),
         actions: [
           isGuest
               ? Padding(
-                  padding: EdgeInsets.only(
-                      right: allWidth(context) * 0.1,
-                      top: allHeight(context) * 0.01),
-                  child: CircleAvatar(
-                    radius: allWidth(context) * 0.0603,
-                    backgroundImage: AssetImage("Images/gusetProfilepic.png"),
-                    backgroundColor: Palette.white,
-                  ),
-                )
+            padding: EdgeInsets.only(
+                right: allWidth(context) * 0.1,
+                top: allHeight(context) * 0.01),
+            child: CircleAvatar(
+              radius: allWidth(context) * 0.0603,
+              backgroundImage: AssetImage("Images/gusetProfilepic.png"),
+              backgroundColor: Palette.white,
+            ),
+          )
               : Padding(
-                  padding: EdgeInsets.only(
-                      right: allWidth(context) * 0.1,
-                      top: allHeight(context) * 0.01),
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: allWidth(context) * 0.05,
-                        backgroundImage: NetworkImage(
-                            'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                      ),
-                      Positioned(
-                          top: allHeight(context) * 0.032,
-                          left: 0,
-                          child: Container(
-                            height: allHeight(context) * 0.018,
-                            width: allWidth(context) * 0.034,
-                            decoration: BoxDecoration(
-                                color: Palette.online,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    width: allWidth(context) * 0.0045,
-                                    color: Palette.white)),
-                          ))
-                    ],
-                  ),
-                )
+            padding: EdgeInsets.only(
+                right: allWidth(context) * 0.1,
+                top: allHeight(context) * 0.01),
+            child: Stack(
+              children: [
+                CircleAvatar(
+                  radius: allWidth(context) * 0.05,
+                  backgroundImage: NetworkImage(
+                      'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                ),
+                Positioned(
+                    top: allHeight(context) * 0.032,
+                    left: 0,
+                    child: Container(
+                      height: allHeight(context) * 0.018,
+                      width: allWidth(context) * 0.034,
+                      decoration: BoxDecoration(
+                          color: Palette.online,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              width: allWidth(context) * 0.0045,
+                              color: Palette.white)),
+                    ))
+              ],
+            ),
+          )
         ],
       ),
       body: allHeight(context) >
-              MediaQuery.of(context).size.width
+          MediaQuery.of(context).size.width
           ? Container(
-              height: allHeight(context),
-              width: allWidth(context),
-              child: CarouselSlider.builder(
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int section, int index) {
-                    return Padding(
-                      padding: EdgeInsets.all(allWidth(context) * 0.02),
-                      child: textCardForPortraitLayout(context),
-                    );
-                  },
-                  options: CarouselOptions(
-                    height: allHeight(context) * 0.9,
-                    viewportFraction: 1.0,
-                    enlargeCenterPage: true,
-                    // autoPlay: false,
-                  )),
-            )
+        height: allHeight(context),
+        width: allWidth(context),
+        child: CarouselSlider.builder(
+            itemCount: 3,
+            itemBuilder: (BuildContext context, int section, int index) {
+              return Padding(
+                padding: EdgeInsets.all(allWidth(context) * 0.02),
+                child: textCardForPortraitLayout(context),
+              );
+            },
+            options: CarouselOptions(
+              height: allHeight(context) * 0.9,
+              viewportFraction: 1.0,
+              enlargeCenterPage: true,
+              // autoPlay: false,
+            )),
+      )
           : SingleChildScrollView(
-              child: Center(
-                child: Container(
+        child: Center(
+          child: Container(
+            height: allHeight(context) * 0.9,
+            width: allWidth(context),
+            child: CarouselSlider.builder(
+                itemCount: 3,
+                itemBuilder:
+                    (BuildContext context, int section, int index) {
+                  return Padding(
+                    padding: EdgeInsets.all(allWidth(context) * 0.02),
+                    child: textCardForPortraitLayout(context),
+                  );
+                },
+                options: CarouselOptions(
                   height: allHeight(context) * 0.9,
-                  width: allWidth(context),
-                  child: CarouselSlider.builder(
-                      itemCount: 3,
-                      itemBuilder:
-                          (BuildContext context, int section, int index) {
-                        return Padding(
-                          padding: EdgeInsets.all(allWidth(context) * 0.02),
-                          child: textCardForPortraitLayout(context),
-                        );
-                      },
-                      options: CarouselOptions(
-                        height: allHeight(context) * 0.9,
-                        viewportFraction: 1.0,
-                        enlargeCenterPage: true,
-                        // autoPlay: false,
-                      )),
-                ),
-              ),
-            ),
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: true,
+                  // autoPlay: false,
+                )),
+          ),
+        ),
+      ),
     );
   }
   showPopup(){
@@ -760,7 +739,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                                   child: Center(
                                                     child: Padding(
                                                       padding: EdgeInsets.all(
-                                                         allHeight(context) *
+                                                          allHeight(context) *
                                                               0.007),
                                                       child: AutoSizeText("it's Spam",
                                                           style: TextStyle(
@@ -796,18 +775,18 @@ class _ActivityPageState extends State<ActivityPage> {
                                                               SizedBox(
                                                                   height:allHeight(context) *
                                                                       0.02),
-                                                           Container(
-                                                             height:allHeight(context)*0.04,
-                                                               width:allWidth(context)*0.8,
-                                                               child: AutoSizeText('Thanks For Letting Us Know',
-                                                               textAlign: TextAlign.center,
-                                                               overflow: TextOverflow.visible,
-                                                                 maxLines: 1,
-                                                                 style: TextStyle(
-                                                                   fontSize: 23,
-                                                                   color: Colors.black,
-                                                                 ),
-                                                               )),
+                                                              Container(
+                                                                  height:allHeight(context)*0.04,
+                                                                  width:allWidth(context)*0.8,
+                                                                  child: AutoSizeText('Thanks For Letting Us Know',
+                                                                    textAlign: TextAlign.center,
+                                                                    overflow: TextOverflow.visible,
+                                                                    maxLines: 1,
+                                                                    style: TextStyle(
+                                                                      fontSize: 23,
+                                                                      color: Colors.black,
+                                                                    ),
+                                                                  )),
                                                               Container(
                                                                   height:allHeight(context)*0.06,
                                                                   width:allWidth(context)*0.65,

@@ -21,8 +21,9 @@ double allHeight(BuildContext context){
 }
 double allWidth(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
-  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width*0.85;
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
 }
+
 class _ManagementPageState extends State<ManagementPage> {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _ManagementPageState extends State<ManagementPage> {
           return new Future.value(false);
         },
         child: MaterialApp(
-          home: serviceProviderPage()
+          home: userPage()
         ));
   }
   Widget guestPage() {
@@ -374,7 +375,7 @@ class _ManagementPageState extends State<ManagementPage> {
                         height: allHeight(context)*0.027,
                         color: Palette.orange,
                       ),
-                      // color: Colors.pink,
+
                     ),
                     Container(
                       height: allHeight(context)*0.07,

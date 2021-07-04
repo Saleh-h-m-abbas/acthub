@@ -59,52 +59,53 @@ class _YourDataState extends State<YourData> {
               style: TextStyle(
                   color: Palette.lightOrange,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Arial_Rounded_MT",
                   fontSize: 30),
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.15,
-            width: MediaQuery.of(context).size.width * 0.9,
-            alignment: Alignment.topCenter,
-            child: new AutoSizeText.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: Gettext,
-                    style: new TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '\nTerms And Conditions',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TermsAndConditions()));
-                      },
-                  ),
-                  TextSpan(
-                    text: ' And ',
-                    style: new TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: 'PrivacyPolicy',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PrivacyPolicy()));
-                      },
-                  )
-                ],
+          SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.9,
+              alignment: Alignment.topCenter,
+              child: new AutoSizeText.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: Gettext,
+                      style: new TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                      text: '\nTerms And Conditions',
+                      style: TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TermsAndConditions()));
+                        },
+                    ),
+                    TextSpan(
+                      text: ' And ',
+                      style: new TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                      text: 'PrivacyPolicy',
+                      style: TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyPolicy()));
+                        },
+                    )
+                  ],
+                ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                style: TextStyle(fontSize: 25),
               ),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              style: TextStyle(fontSize: 25,fontFamily: "Segoe UI"),
             ),
           ),
           Container(
@@ -121,7 +122,6 @@ class _YourDataState extends State<YourData> {
                         fontSize: 20,
                         color: Palette.actHubGreen,
                         fontWeight: FontWeight.bold,
-                        fontFamily: "Segoe UI"
                       )),
                 ),
                 onPressed: () async {
@@ -134,7 +134,8 @@ class _YourDataState extends State<YourData> {
                   // foreground
                 )),
           ),
-          SafeArea(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5.0),
             child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
                 width: MediaQuery.of(context).size.width * 0.4,

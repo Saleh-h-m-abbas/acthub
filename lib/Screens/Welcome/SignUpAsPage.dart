@@ -107,8 +107,7 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
                           'as service provider, you have the right to add your services and offers about your trip, and you can get offer from us for long terms ',
                           style: TextStyle(
                             color: Colors.black,
-                           fontSize:30,
-                            fontFamily: "Segoe UI"
+                            fontSize: 15,
                           ),
                           textAlign: TextAlign.center,
                           minFontSize: 8,
@@ -138,7 +137,6 @@ class _SignUpAsPageState extends State<SignUpAsPage> {
                         style: TextStyle(
                             fontSize:25,
                             fontWeight: FontWeight.bold,
-                            fontFamily: "Segoe UI",
                             color: Palette.white),
                       ),
                     ),

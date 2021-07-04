@@ -16,7 +16,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isUser=true; // make it true to show the user form
+    bool isUser=false; // make it true to show the user form
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -50,7 +50,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               ),
             ],
           ),
-          UserForm(context),
+          Payment_Info(context),
           SizedBox(
             height: MediaQuery.of(context).size.height *0.025,
           ),
@@ -76,7 +76,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                           style: TextStyle(
                               fontSize: MediaQuery.of(context).size.width *0.056,
                               fontWeight: FontWeight.bold,
-                              fontFamily: "Segoe UI",
                               color: Palette.white)),
                     ),
                   )),
@@ -130,13 +129,13 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                   labelStyle: TextStyle(
-                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'FULL NAME ',
                                   floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
                                        color: Colors.black,
-                                      fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                      fontSize: MediaQuery.of(context).size.width*0.03),
 
                                 ),
                               ),
@@ -149,14 +148,13 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                               child: TextFormField(
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
-                                  labelStyle: TextStyle(
-                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'EMAIL ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
                                       color: Colors.black,
-                                      fontFamily: "Segoe UI",
                                       fontSize: MediaQuery.of(context).size.width*0.03),
                                 ),
 
@@ -170,14 +168,13 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                               child: TextFormField(
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
-                                  labelStyle: TextStyle(
-                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'PASSWORD ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
                                       color: Colors.black,
-                                      fontFamily: "Segoe UI",
                                       fontSize: MediaQuery.of(context).size.width*0.03),
                                 ),
                               ),
@@ -191,13 +188,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration: InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'BIRTHDAY ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
                                       color: Colors.black,
-                                      fontFamily: "Segoe UI",
                                       fontSize: MediaQuery.of(context).size.width*0.03),
                                 ),
                               ),
@@ -210,13 +206,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                               child: TextFormField(
                                 cursorColor: Colors.black,
                                 decoration:  InputDecoration(
-                                  labelStyle: TextStyle(
-                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'COUNTRY ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
-                                      fontFamily: "Segoe UI",
                                       color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width*0.03),
                                 ),
@@ -230,13 +225,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                               child: TextFormField(
                                 cursorColor: Colors.black,
                                 decoration:  InputDecoration(
-                                  labelStyle: TextStyle(
-                                      color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03,fontFamily: "Segoe UI"),
+                                    labelStyle: TextStyle(
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                   hintText: 'What do people call you?',
                                   labelText: 'STATE ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                   hintStyle:  TextStyle(
-                                      fontFamily: "Segoe UI",
                                       color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width*0.03),
                                 ),
@@ -261,8 +255,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               style: TextStyle(
                   color: Palette.actHubGreen,
                   fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width*0.065,
-              fontFamily: "Segoe UI"),
+                  fontSize: MediaQuery.of(context).size.width*0.065),
 
             ),
           ),
@@ -289,9 +282,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                       style: TextStyle(
                           fontSize:MediaQuery.of(context).size.width*0.065,
                           fontWeight: FontWeight.bold,
-                          color: Palette.white,
-                        fontFamily: "Segoe UI"
-                      ),
+                          color: Palette.white),
                     ),
                   ),
                 ),
@@ -340,7 +331,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'COMPANY NAME ',
@@ -358,7 +348,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'EMAIL ',
@@ -376,7 +365,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'PASSWORD ',
@@ -393,7 +381,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration: InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'BIRTHDAY ',
@@ -410,7 +397,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:  InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'COUNTRY ',
@@ -427,7 +413,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:  InputDecoration(
                                     labelStyle: TextStyle(
-                                        fontFamily: "Segoe UI",
                                         color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'STATE ',
@@ -452,7 +437,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
             child: AutoSizeText(
               'Company Information',
               style: TextStyle(
-                  fontFamily: "Segoe UI",
                   color: Palette.actHubGreen,
                   fontWeight: FontWeight.bold,
                   fontSize: MediaQuery.of(context).size.width*0.065),
@@ -480,7 +464,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                     child: AutoSizeText(
                       "Service Provider",
                       style: TextStyle(
-                          fontFamily: "Segoe UI",
                           fontSize:MediaQuery.of(context).size.width*0.065,
                           fontWeight: FontWeight.bold,
                           color: Palette.white),
@@ -531,7 +514,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.035,fontFamily: "Segoe UI"),
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'CREDIT NUMBER ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never
@@ -548,7 +531,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.035,fontFamily: "Segoe UI"),
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'NAME ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never
@@ -565,7 +548,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration:InputDecoration(
                                     labelStyle: TextStyle(
-                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.035,fontFamily: "Segoe UI"),
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'CVV ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never
@@ -581,7 +564,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                                 cursorColor: Colors.black,
                                 decoration: InputDecoration(
                                     labelStyle: TextStyle(
-                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.035,fontFamily: "Segoe UI"),
+                                        color: Colors.black, fontSize: MediaQuery.of(context).size.width*0.03),
                                     hintText: 'What do people call you?',
                                     labelText: 'DATE ',
                                     floatingLabelBehavior: FloatingLabelBehavior.never
@@ -608,7 +591,6 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
               style: TextStyle(
                   color: Palette.actHubGreen,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Segoe UI",
                   fontSize: MediaQuery.of(context).size.width*0.065),
 
             ),
@@ -636,9 +618,7 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                       style: TextStyle(
                           fontSize:MediaQuery.of(context).size.width*0.065,
                           fontWeight: FontWeight.bold,
-                          fontFamily: "Segoe UI",
-                          color: Palette.white,
-                      ),
+                          color: Palette.white),
                     ),
                   ),
                 ),

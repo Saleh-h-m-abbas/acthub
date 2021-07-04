@@ -15,11 +15,11 @@ class AboutUsScreen extends StatelessWidget {
   //to get condition text from firebase
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Palette.scaffold,
-      appBar: AppBar(
+    return Scaffold(
+      backgroundColor:Palette.scaffold,
+      appBar:  AppBar(
         centerTitle: true,
-        toolbarHeight: allHeight(context)*0.1,
+        toolbarHeight: MediaQuery.of(context).size.height*0.1,
         backgroundColor: Palette.scaffold,
         elevation: 0,
         title: AutoSizeText(
@@ -33,8 +33,8 @@ class AboutUsScreen extends StatelessWidget {
           ),
         ),
         leading:  Container(
-          height: allWidth(context) * 0.05,
-          width: allWidth(context) * 0.15,
+          height: MediaQuery.of(context).size.height* 0.05,
+          width:  MediaQuery.of(context).size.width* 0.15,
           child: FittedBox(
             fit: BoxFit.fill,
             child: IconButton(
@@ -48,24 +48,49 @@ class AboutUsScreen extends StatelessWidget {
           ),
         ),
       ) ,
-      body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Container(
-        width: allWidth(context),
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: allHeight(context)*0.04,),
-              Container(
-                alignment: Alignment.center,
-                height: allHeight(context)*0.7,
-                width: allWidth(context)*0.7,
+      body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            Container(
+              height: allHeight(context)*0.76,
+              width: allWidth(context)*0.75,
+              child: SingleChildScrollView(
                 child: AutoSizeText(
                   Gettext,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(wordSpacing: 0.1,fontSize: 20),
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(wordSpacing: 0.06,fontSize: 20),
                   overflow: TextOverflow.visible,
                 ),
               ),
-              SizedBox(height: allHeight(context)*0.05,),
+            ),
+
+            SafeArea(child: Container(
+                height: allHeight(context)*0.06,
+                width: allWidth(context)*0.4,
+                child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
+          ],
+        ),
+      ):SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              Container(
+                height: allHeight(context)*0.76,
+                width: allWidth(context)*0.6,
+                child: SingleChildScrollView(
+                  child: AutoSizeText(
+                    Gettext,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(wordSpacing: 0.06,fontSize: 20),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+              ),
+
               SafeArea(child: Container(
                   height: allHeight(context)*0.06,
                   width: allWidth(context)*0.4,
@@ -73,36 +98,8 @@ class AboutUsScreen extends StatelessWidget {
             ],
           ),
         ),
-      ):SingleChildScrollView(
-        child: Center(
-          child: Container(
-            width: allWidth(context),
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(height: allHeight(context)*0.04,),
-                  Container(
-                    alignment: Alignment.center,
-                    height: allHeight(context)*0.7,
-                    width: allWidth(context)*0.7,
-                    child: AutoSizeText(
-                      Gettext,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(wordSpacing: 0.1,fontSize: 20),
-                      overflow: TextOverflow.visible,
-                    ),
-                  ),
-                  SizedBox(height: allHeight(context)*0.05,),
-                  SafeArea(child: Container(
-                      height: allHeight(context)*0.06,
-                      width: allWidth(context)*0.4,
-                      child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
-                ],
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
 }
+

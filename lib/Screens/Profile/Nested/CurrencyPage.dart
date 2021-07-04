@@ -1,4 +1,3 @@
-
 import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:currency_picker/currency_picker.dart';
@@ -131,8 +130,8 @@ class _CurrencyPageState extends State<CurrencyPage> {
                     child: Container(
                       height: allHeight(context)*0.07,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(allHeight(context)*0.02),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(allHeight(context)*0.02),
                       ),
                       child: Center(
                         child: AutoSizeText('USD',

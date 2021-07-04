@@ -51,9 +51,7 @@ class TermsAndConditions extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Palette.lightOrange,
-                        fontWeight: FontWeight.bold,fontSize: 30,
-                      fontFamily: "Arial_Rounded_MT"
-                    ),
+                        fontWeight: FontWeight.bold,fontSize: 30),
                   ),
                 ),
               ),
@@ -67,9 +65,7 @@ class TermsAndConditions extends StatelessWidget {
               child: AutoSizeText(
                 Gettext,
                 textAlign: TextAlign.center,
-                style: TextStyle(wordSpacing: 0.1,fontSize: 20,
-                  fontFamily: "Segoe UI"
-                ),
+                style: TextStyle(wordSpacing: 0.1,fontSize: 20),
                 overflow: TextOverflow.visible,
               ),
 

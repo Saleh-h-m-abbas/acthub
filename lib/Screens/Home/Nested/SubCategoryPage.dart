@@ -408,7 +408,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                         )
                       ],
                       fontWeight: FontWeight.bold,
-                      color: Colors.pink,
+                      color: Colors.white,
                       fontSize: 20),
                 ),
 

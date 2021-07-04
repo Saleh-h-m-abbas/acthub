@@ -221,6 +221,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
     ):SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           Center(
             child: Hero(
@@ -329,66 +330,66 @@ class _SelectLanguageState extends State<SelectLanguage> {
   }
 
   Widget buildRadios() => Theme(
-        data: Theme.of(context).copyWith(
-          unselectedWidgetColor: unselectedColor,
-        ),
-        child: Column(
-          children: Translations.languages.map((String data) {
-            final selected = this.selectedValue == data;
-            final color = selected ? selectedColor : unselectedColor;
-            print(selected);
-            return Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: GestureDetector(
-                  onTap: () async {
-                    print(data);
-                    setState(() {
-                      this.selectedValue = data;
-                      print(selectedValue);
-                    });
-                    toLanguageCode = Translations.getLanguageCode(selectedValue);
-                    print(toLanguageCode);
-                    final SharedPreferences prefs = await _prefs;
-                    prefs.setString("ToLanguage", toLanguageCode);
-                    print(prefs.getString("ToLanguage"));
-                  },
-                  child: Stack(
+    data: Theme.of(context).copyWith(
+      unselectedWidgetColor: unselectedColor,
+    ),
+    child: Column(
+      children: Translations.languages.map((String data) {
+        final selected = this.selectedValue == data;
+        final color = selected ? selectedColor : unselectedColor;
+        print(selected);
+        return Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: GestureDetector(
+              onTap: () async {
+                print(data);
+                setState(() {
+                  this.selectedValue = data;
+                  print(selectedValue);
+                });
+                toLanguageCode = Translations.getLanguageCode(selectedValue);
+                print(toLanguageCode);
+                final SharedPreferences prefs = await _prefs;
+                prefs.setString("ToLanguage", toLanguageCode);
+                print(prefs.getString("ToLanguage"));
+              },
+              child: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Container(
                     alignment: Alignment.center,
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.center,
-                        width: 370.0,
-                        height: 45.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.16),
-                              offset: Offset(0, 3.0),
-                              blurRadius: 6.0,
-                            ),
-                          ],
+                    width: 370.0,
+                    height: 45.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 6.0,
                         ),
-                        child: Text(
-                          data,
-                          style: TextStyle(
-                            fontFamily: 'Segoe UI',
-                            fontSize: 16.0,
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
+                      ],
+                    ),
+                    child: Text(
+                      data,
+                      style: TextStyle(
+                        fontFamily: 'Segoe UI',
+                        fontSize: 16.0,
+                        color: Colors.black,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  )),
-            );
-          }).toList(),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              )),
+        );
+      }).toList(),
 
 
-        ),
-      );
+    ),
+  );
 }

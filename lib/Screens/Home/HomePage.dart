@@ -441,18 +441,18 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
+          width: allWidth(context),
           child: AppBar(
             centerTitle: false,
             elevation: 0,
-            toolbarHeight: MediaQuery.of(context).size.height * 0.06,
+            toolbarHeight: allHeight(context) * 0.06,
             backgroundColor: Palette.scaffold,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                  width: MediaQuery.of(context).size.width * 0.2,
+                  height: allHeight(context) * 0.03,
+                  width: allHeight(context) * 0.4,
                   child: AutoSizeText(
                     'Home',
                     textAlign: TextAlign.start,
@@ -465,13 +465,13 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.08),
+                      left: allHeight(context) * 0.035),
                   child: AutoSizeText(
                     'Have a nice day',
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.visible,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Palette.actHubGreen.withOpacity(0.35),
                     ),
                   ),
@@ -480,48 +480,49 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: [
               isGuest
-                  ? Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.1,
-                          top: MediaQuery.of(context).size.height * 0.01),
-                      child: CircleAvatar(
-                        radius: MediaQuery.of(context).size.width * 0.0603,
-                        backgroundImage:
-                            AssetImage("Images/gusetProfilepic.png"),
-                        backgroundColor: Palette.white,
-                      ),
-                    )
+                  ?
+              Padding(
+                padding: EdgeInsets.only(
+                    right:    allHeight(context) * 0.053,
+                    top: allHeight(context) * 0.01),
+                child: CircleAvatar(
+                  radius: allWidth(context) * 0.0603,
+                  backgroundImage:
+                  AssetImage("Images/gusetProfilepic.png"),
+                  backgroundColor: Palette.white,
+                ),
+              )
                   : Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.1,
-                          top: MediaQuery.of(context).size.height * 0.01),
-                      child: Stack(
-                        children: [
-                          CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.05,
-                            backgroundImage: NetworkImage(
-                                'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                          ),
-                          Positioned(
-                              top: MediaQuery.of(context).size.height * 0.032,
-                              left: 0,
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.018,
-                                width:
-                                    MediaQuery.of(context).size.width * 0.034,
-                                decoration: BoxDecoration(
-                                    color: Palette.online,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.0045,
-                                        color: Palette.white)),
-                              ))
-                        ],
-                      ),
-                    )
+                padding: EdgeInsets.only(
+                    right:  allHeight(context) * 0.053,
+                    top: allHeight(context) * 0.01),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: allHeight(context) * 0.03,
+                      backgroundImage: NetworkImage(
+                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                    ),
+                    Positioned(
+                        top: allHeight(context) * 0.032,
+                        left: 0,
+                        child: Container(
+                          height:
+                          allHeight(context) * 0.018,
+                          width:
+                          allHeight(context) * 0.018,
+                          decoration: BoxDecoration(
+                              color: Palette.online,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  width:
+                                  allHeight(context) *
+                                      0.003,
+                                  color: Palette.white)),
+                        ))
+                  ],
+                ),
+              )
             ],
           ),
         ),
