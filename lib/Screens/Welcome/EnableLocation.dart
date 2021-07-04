@@ -1,4 +1,3 @@
-import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/Welcome/YourData.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -99,13 +98,7 @@ class _EnableLocationState extends State<EnableLocation> {
                             padding: EdgeInsets.all(
                               MediaQuery.of(context).size.height * 0.009,
                             ),
-                            child: AutoSizeText('Enable Location',
-                                overflow: TextOverflow.visible,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Palette.actHubGreen,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                            child: Text('Enable Location'),
                           ),
                           onPressed: () {
                             getLocation();

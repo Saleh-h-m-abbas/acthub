@@ -25,6 +25,12 @@ class _AddActivityState extends State<AddActivity> {
       backgroundColor:Palette.scaffold,
       appBar: AppBar(
         elevation: 0,
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Palette.actHubGreen,
+            ),
+            onPressed: () => Navigator.pop(context)),
 
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

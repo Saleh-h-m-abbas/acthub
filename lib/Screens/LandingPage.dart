@@ -65,10 +65,9 @@ class _LandingPageState extends State<LandingPage> {
                     height: MediaQuery.of(context).size.height,
                     child: Stack(
                       children: [
-                        Image.asset('Images/LandingPage2.png',
-                            fit: BoxFit.fitWidth),
-                        Image.asset('Images/LandingPage1.png',
-                            fit: BoxFit.fitWidth),
+                        Image.asset('Images/203.png', fit: BoxFit.fitWidth),
+                        // Image.asset('Images/LandingPage1.png',
+                        //     fit: BoxFit.fitWidth),
                       ],
                     ),
                   )
