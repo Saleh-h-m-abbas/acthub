@@ -3,9 +3,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 double allHeight(BuildContext context) {
-  return  MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+  return MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
       ? MediaQuery.of(context).size.height
       : MediaQuery.of(context).size.width;
 }
@@ -26,32 +27,33 @@ List<Widget> slider(BuildContext context) {
   return imgList
       .map(
         (item) => allWidth(context) > 500
-        ? Container(
-      width: allWidth(context) * 0.83,
-      height: allHeight(context) * 0.4,
-      child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(17.0)),
-          child: Image.network(
-            item,
-            fit: BoxFit.fill,
-          )),
-    )
-        : Container(
-      width: allWidth(context) * 0.83,
-      height: allHeight(context) * 0.5,
-      child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(17.0)),
-          child: Image.network(
-            item,
-            fit: BoxFit.fill,
-          )),
-    ),
-  )
+            ? Container(
+                width: allWidth(context) * 0.83,
+                height: allHeight(context) * 0.4,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(17.0)),
+                    child: Image.network(
+                      item,
+                      fit: BoxFit.fill,
+                    )),
+              )
+            : Container(
+                width: allWidth(context) * 0.83,
+                height: allHeight(context) * 0.5,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(17.0)),
+                    child: Image.network(
+                      item,
+                      fit: BoxFit.fill,
+                    )),
+              ),
+      )
       .toList();
 }
 
 class ActivityPage extends StatefulWidget {
-  static const String id = "ActivityPages";
+  const ActivityPage({Key key}) : super(key: key);
+  static const String id = 'ActivityPage';
 
   @override
   _ActivityPageState createState() => _ActivityPageState();
@@ -79,7 +81,7 @@ class _ActivityPageState extends State<ActivityPage> {
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius:
-                  BorderRadius.circular(allHeight(context) * 0.02),
+                      BorderRadius.circular(allHeight(context) * 0.02),
                 ),
                 elevation: 5,
                 child: Container(
@@ -88,7 +90,7 @@ class _ActivityPageState extends State<ActivityPage> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                      BorderRadius.circular(allHeight(context) * 0.02)),
+                          BorderRadius.circular(allHeight(context) * 0.02)),
                   child: Padding(
                     padding: EdgeInsets.only(
                         top: allHeight(context) * 0.047,
@@ -328,10 +330,9 @@ class _ActivityPageState extends State<ActivityPage> {
       ],
     );
   }
-
   Widget imageCardForPortraitLayout(
-      BuildContext context,
-      ) {
+    BuildContext context,
+  ) {
     return Container(
       width: allWidth(context) * 0.83,
       height: allHeight(context) * 0.5,
@@ -495,7 +496,6 @@ class _ActivityPageState extends State<ActivityPage> {
       ),
     );
   }
-
   InkWell reportDesign(BuildContext context) {
     return InkWell(
       child: Container(
@@ -518,20 +518,255 @@ class _ActivityPageState extends State<ActivityPage> {
                   ),
                   shape: BoxShape.circle,
                   color:
-                  _current == index ? Palette.actHubGreen : Palette.white),
+                      _current == index ? Palette.actHubGreen : Palette.white),
             );
           }).toList(),
         ),
       ),
       onTap: () {
-        showPopup();
+        showAlertOne(context);
+
+        // showPopup();
       },
     );
   }
 
+  Future<bool> showAlertOne(BuildContext context) {
+    return Alert(
+        context: context,
+        title: "",
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              'Images/alert1.png',
+              height: allHeight(context) * 0.2,
+            ),
+            SizedBox(height: allHeight(context) * 0.01),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: Palette.actHubGreen,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0x29000000),
+                      offset: Offset(0, 3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    showAlertTwo(context);
+                  },
+                  child: AutoSizeText('Report',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Palette.white)),
+                ),
+                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: Palette.actHubGreen,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0x29000000),
+                      offset: Offset(0, 3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: TextButton(
+                  onPressed: null,
+                  child: AutoSizeText('Share',
+                      style: TextStyle(fontSize: 20, color: Palette.white)),
+                ),
+                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+              ),
+            ),
+            SizedBox(height: allHeight(context) * 0.01),
+          ],
+        ),
+        buttons: []).show();
+  }
+
+  Future<bool> showAlertTwo(BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Report",
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              'Images/alert2.png',
+              height: allHeight(context) * 0.15,
+            ),
+            SizedBox(height: allHeight(context) * 0.01),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: Palette.actHubGreen,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0x29000000),
+                      offset: Offset(0, 3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: TextButton(
+                  onPressed: (){
+                    Alert(
+                        context: context,
+                        title: "Report",
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Image.asset(
+                              'Images/alert3.png',
+                              height:
+                              allHeight(context) *
+                                  0.15,
+                            ),
+                            SizedBox(height: allHeight(context) * 0.01),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Palette.actHubGreen,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0x29000000),
+                                      offset: Offset(0, 3),
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
+                                child: TextButton(
+                                  onPressed: null,
+                                  child:  AutoSizeText(
+                                    'Thanks For Letting Us Know',
+                                    textAlign:
+                                    TextAlign.center,
+                                    overflow: TextOverflow
+                                        .visible,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Palette.actHubGreen,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0x29000000),
+                                      offset: Offset(0, 3),
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
+                                child: TextButton(
+                                  onPressed: null,
+                                  child: AutoSizeText(
+                                    'Your feedback is important in helping\nus keep the ActHub community safe.',
+                                    textAlign:
+                                    TextAlign.center,
+                                    overflow: TextOverflow
+                                        .visible,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+                              ),
+                            ),
+                            SizedBox(height: allHeight(context) * 0.01),
+                          ],
+                        ),
+                        buttons: []).show();
+
+                  },
+                  child: AutoSizeText("it's Spam",
+                      style: TextStyle(fontSize: 20, color: Palette.white)),
+                ),
+                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: Palette.actHubGreen,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0x29000000),
+                      offset: Offset(0, 3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: TextButton(
+                  onPressed: null,
+                  child: AutoSizeText('Hate speech or Symbols',
+                      style: TextStyle(fontSize: 20, color: Palette.white)),
+                ),
+                // RaisedButton.icon(onPressed: null, icon: null, label: null); ,
+              ),
+            ),
+            SizedBox(height: allHeight(context) * 0.01),
+          ],
+        ),
+        buttons: []).show();
+  }
+
   Widget pageLayout(
-      BuildContext context,
-      ) {
+    BuildContext context,
+  ) {
     return Scaffold(
       backgroundColor: Palette.scaffold,
       appBar: AppBar(
@@ -570,410 +805,83 @@ class _ActivityPageState extends State<ActivityPage> {
         actions: [
           isGuest
               ? Padding(
-            padding: EdgeInsets.only(
-                right: allWidth(context) * 0.1,
-                top: allHeight(context) * 0.01),
-            child: CircleAvatar(
-              radius: allWidth(context) * 0.0603,
-              backgroundImage: AssetImage("Images/gusetProfilepic.png"),
-              backgroundColor: Palette.white,
-            ),
-          )
+                  padding: EdgeInsets.only(
+                      right: allWidth(context) * 0.1,
+                      top: allHeight(context) * 0.01),
+                  child: CircleAvatar(
+                    radius: allWidth(context) * 0.0603,
+                    backgroundImage: AssetImage("Images/gusetProfilepic.png"),
+                    backgroundColor: Palette.white,
+                  ),
+                )
               : Padding(
-            padding: EdgeInsets.only(
-                right: allWidth(context) * 0.1,
-                top: allHeight(context) * 0.01),
-            child: Stack(
-              children: [
-                CircleAvatar(
-                  radius: allWidth(context) * 0.05,
-                  backgroundImage: NetworkImage(
-                      'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                ),
-                Positioned(
-                    top: allHeight(context) * 0.032,
-                    left: 0,
-                    child: Container(
-                      height: allHeight(context) * 0.018,
-                      width: allWidth(context) * 0.034,
-                      decoration: BoxDecoration(
-                          color: Palette.online,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              width: allWidth(context) * 0.0045,
-                              color: Palette.white)),
-                    ))
-              ],
-            ),
-          )
+                  padding: EdgeInsets.only(
+                      right: allWidth(context) * 0.1,
+                      top: allHeight(context) * 0.01),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: allWidth(context) * 0.05,
+                        backgroundImage: NetworkImage(
+                            'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                      ),
+                      Positioned(
+                          top: allHeight(context) * 0.032,
+                          left: 0,
+                          child: Container(
+                            height: allHeight(context) * 0.018,
+                            width: allWidth(context) * 0.034,
+                            decoration: BoxDecoration(
+                                color: Palette.online,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    width: allWidth(context) * 0.0045,
+                                    color: Palette.white)),
+                          ))
+                    ],
+                  ),
+                )
         ],
       ),
-      body: allHeight(context) >
-          MediaQuery.of(context).size.width
+      body: allHeight(context) > MediaQuery.of(context).size.width
           ? Container(
-        height: allHeight(context),
-        width: allWidth(context),
-        child: CarouselSlider.builder(
-            itemCount: 3,
-            itemBuilder: (BuildContext context, int section, int index) {
-              return textCardForPortraitLayout(context);
-            },
-            options: CarouselOptions(
-              height: allHeight(context) * 0.9,
-              viewportFraction: 1.0,
-              enlargeCenterPage: true,
-              // autoPlay: false,
-            )),
-      )
+              height: allHeight(context),
+              width: allWidth(context),
+              child: CarouselSlider.builder(
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int section, int index) {
+                    return textCardForPortraitLayout(context);
+                  },
+                  options: CarouselOptions(
+                    height: allHeight(context) * 0.9,
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: true,
+                    // autoPlay: false,
+                  )),
+            )
           : SingleChildScrollView(
-        child: Center(
-          child: Container(
-            height: allHeight(context) * 0.9,
-            width: allWidth(context),
-            child: CarouselSlider.builder(
-                itemCount: 3,
-                itemBuilder:
-                    (BuildContext context, int section, int index) {
-                  return Padding(
-                    padding: EdgeInsets.all(allWidth(context) * 0.02),
-                    child: textCardForPortraitLayout(context),
-                  );
-                },
-                options: CarouselOptions(
+              child: Center(
+                child: Container(
                   height: allHeight(context) * 0.9,
-                  viewportFraction: 1.0,
-                  enlargeCenterPage: true,
-                  // autoPlay: false,
-                )),
-          ),
-        ),
-      ),
-    );
-  }
-  showPopup(){
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: Form(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset('Images/alert1.png',height: allHeight(context)*0.2,),
-                    SizedBox(height: allHeight(context) * 0.01),
-                    GestureDetector(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 10,
-                        child: Container(
-                            width: allWidth(context) * 0.73,
-                            height: allHeight(context) * 0.04,
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    allHeight(context) * 0.007),
-                                child: AutoSizeText('Report',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Palette.white)),
-                              ),
-                            )),
-                      ),
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                content: Form(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          height: allHeight(context) * 0.03,
-                                          width: allWidth(context) * 0.2,
-                                          child: AutoSizeText(
-                                            'Report',
-                                            textAlign: TextAlign.start,
-                                            overflow: TextOverflow.visible,
-                                            style: TextStyle(
-                                                fontSize: 36,
-                                                fontWeight: FontWeight.bold,
-                                                color: Palette.orange),
-                                          ),
-                                        ),
-                                        Image.asset('Images/alert2.png',height: allHeight(context)*0.15,),
-                                        SizedBox(
-                                            height: allHeight(context) *
-                                                0.02),
-                                        GestureDetector(
-                                            child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(8),
-                                              ),
-                                              elevation: 10,
-                                              child: Container(
-                                                  width:
-                                                  allWidth(context)*
-                                                      0.73,
-                                                  height:
-                                                  allHeight(context) *
-                                                      0.04,
-                                                  decoration: const BoxDecoration(
-                                                    color: Palette.actHubGreen,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(8),
-                                                    ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Padding(
-                                                      padding: EdgeInsets.all(
-                                                          allHeight(context) *
-                                                              0.007),
-                                                      child: AutoSizeText("it's Spam",
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              color: Palette.white)),
-                                                    ),
-                                                  )),
-                                            ),
-                                            onTap: () {
-
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext context) {
-                                                    return AlertDialog(
-                                                      content: Form(
-                                                          child: Column(
-                                                            mainAxisSize: MainAxisSize.min,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Container(
-                                                                height: allHeight(context) * 0.03,
-                                                                width: allWidth(context) * 0.2,
-                                                                child: AutoSizeText(
-                                                                  'Report',
-                                                                  textAlign: TextAlign.start,
-                                                                  overflow: TextOverflow.visible,
-                                                                  style: TextStyle(
-                                                                      fontSize: 36,
-                                                                      color: Palette.orange),
-                                                                ),
-                                                              ),
-                                                              Image.asset('Images/alert3.png',height: allHeight(context)*0.15,),
-                                                              SizedBox(
-                                                                  height:allHeight(context) *
-                                                                      0.02),
-                                                              Container(
-                                                                  height:allHeight(context)*0.04,
-                                                                  width:allWidth(context)*0.8,
-                                                                  child: AutoSizeText('Thanks For Letting Us Know',
-                                                                    textAlign: TextAlign.center,
-                                                                    overflow: TextOverflow.visible,
-                                                                    maxLines: 1,
-                                                                    style: TextStyle(
-                                                                      fontSize: 23,
-                                                                      color: Colors.black,
-                                                                    ),
-                                                                  )),
-                                                              Container(
-                                                                  height:allHeight(context)*0.06,
-                                                                  width:allWidth(context)*0.65,
-                                                                  child: AutoSizeText('Your feedback is important in helping\nus keep the ActHub community safe.',
-                                                                    textAlign: TextAlign.center,
-                                                                    overflow: TextOverflow.visible,
-                                                                    maxLines: 2,
-                                                                    style: TextStyle(
-                                                                      fontSize: 18,
-                                                                      color: Colors.black,
-                                                                    ),
-                                                                  )),
-                                                              SizedBox(
-                                                                  height: allHeight(context) *
-                                                                      0.01),
-                                                              GestureDetector(
-                                                                child: Card(
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                    BorderRadius.circular(8),
-                                                                  ),
-                                                                  elevation: 10,
-                                                                  child: Container(
-                                                                      width: allWidth(context) *
-                                                                          0.73,
-                                                                      height: allHeight(context) *
-                                                                          0.04,
-                                                                      decoration:
-                                                                      const BoxDecoration(
-                                                                        color: Palette.actHubGreen,
-                                                                        borderRadius:
-                                                                        BorderRadius.all(
-                                                                          Radius.circular(8),
-                                                                        ),
-                                                                      ),
-                                                                      child: Center(
-                                                                        child: Padding(
-                                                                          padding: EdgeInsets.all(
-                                                                              allHeight(context) *
-                                                                                  0.007),
-                                                                          child: AutoSizeText(
-                                                                              'Cancel',
-                                                                              style: TextStyle(
-                                                                                  fontSize: 20,
-                                                                                  color: Palette
-                                                                                      .white)),
-                                                                        ),
-                                                                      )),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          )),
-                                                    );
-                                                  });
-
-                                            }),
-                                        SizedBox(
-                                            height: allHeight(context) *
-                                                0.01),
-                                        GestureDetector(
-                                          child: Card(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8),
-                                            ),
-                                            elevation: 10,
-                                            child: Container(
-                                                width: allWidth(context)*
-                                                    0.73,
-                                                height:
-                                                allHeight(context) *
-                                                    0.04,
-                                                decoration: const BoxDecoration(
-                                                  color: Palette.actHubGreen,
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(8),
-                                                  ),
-                                                ),
-                                                child: Center(
-                                                  child: Padding(
-                                                    padding: EdgeInsets.all(
-                                                        allHeight(context) *
-                                                            0.007),
-                                                    child: AutoSizeText('Hate speech or Symbols',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color: Palette.white)),
-                                                  ),
-                                                )),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            height: allHeight(context) *
-                                                0.01),
-                                        GestureDetector(
-                                          child: Card(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8),
-                                            ),
-                                            elevation: 10,
-                                            child: Container(
-                                                width: allWidth(context)*
-                                                    0.73,
-                                                height:
-                                                allHeight(context) *
-                                                    0.04,
-                                                decoration: const BoxDecoration(
-                                                  color: Palette.actHubGreen,
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(8),
-                                                  ),
-                                                ),
-                                                child: Center(
-                                                  child: Padding(
-                                                    padding: EdgeInsets.all(
-                                                        allHeight(context) *
-                                                            0.007),
-                                                    child: AutoSizeText('Cancel',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color: Palette.white)),
-                                                  ),
-                                                )),
-                                          ),
-                                        ),
-                                      ],
-                                    )),
-                              );
-                            });
-
+                  width: allWidth(context),
+                  child: CarouselSlider.builder(
+                      itemCount: 3,
+                      itemBuilder:
+                          (BuildContext context, int section, int index) {
+                        return Padding(
+                          padding: EdgeInsets.all(allWidth(context) * 0.02),
+                          child: textCardForPortraitLayout(context),
+                        );
                       },
-                    ),
-                    SizedBox(height: allHeight(context) * 0.01),
-                    GestureDetector(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 10,
-                        child: Container(
-                            width: allWidth(context)* 0.73,
-                            height: allHeight(context) * 0.04,
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    allHeight(context) * 0.007),
-                                child: AutoSizeText('Share',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Palette.white)),
-                              ),
-                            )),
-                      ),
-                    ),
-                    SizedBox(height: allHeight(context) * 0.01),
-                    GestureDetector(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 10,
-                        child: Container(
-                            width: allWidth(context)* 0.73,
-                            height: allHeight(context) * 0.04,
-                            decoration: const BoxDecoration(
-                              color: Palette.actHubGreen,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    allHeight(context) * 0.007),
-                                child: AutoSizeText('Cancel',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Palette.white)),
-                              ),
-                            )),
-                      ),
-                    ),
-                  ],
-                )),
-          );
-        });
+                      options: CarouselOptions(
+                        height: allHeight(context) * 0.9,
+                        viewportFraction: 1.0,
+                        enlargeCenterPage: true,
+                        // autoPlay: false,
+                      )),
+                ),
+              ),
+            ),
+    );
   }
 }

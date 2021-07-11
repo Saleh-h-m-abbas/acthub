@@ -1,8 +1,9 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
+import 'package:acthub/Screens/Welcome/LogInPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
@@ -16,163 +17,380 @@ class _SignInState extends State<SignIn> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   void _showButtonPressDialog(BuildContext context, String provider) {
-    Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text('$provider Button Pressed!'),
-          backgroundColor: Colors.black26,
-          duration: Duration(milliseconds: 400),
-        ));
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('$provider Button Pressed!'),
+      backgroundColor: Colors.black26,
+      duration: Duration(milliseconds: 400),
+    ));
   }
 
+
+  @override
+  void initState() {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.scaffold,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(
-            'Images/HeaderLogo1.png',
-            height: MediaQuery.of(context).size.height*0.35,
-            width:MediaQuery.of(context).size.width ,
-            fit: BoxFit.fill,
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height*0.07,
-            width: MediaQuery.of(context).size.width*0.55,
-            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.025,
+      backgroundColor: Palette.white,
+      body: ListView(children: [
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              'Images/HeaderLogo1.png',
+              height: MediaQuery.of(context).size.height * 0.35,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.fill,
             ),
-            child: AutoSizeText(
-              "Welcome To",
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color:Color(0xff566357).withOpacity(0.8)),
-
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.025,
             ),
-          ),
-          Container(
-              height:MediaQuery.of(context).size.height*0.06,
-              child: Image.asset('Images/finalLogoo.png',fit: BoxFit.contain,),),
-          Container(
-            height: MediaQuery.of(context).size.height*0.05,
-            width: MediaQuery.of(context).size.width*0.6,
-            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
+            Container(
+              height: MediaQuery.of(context).size.height * 0.06,
+              child: Image.asset(
+                'Images/finalLogoo.png',
+                fit: BoxFit.contain,
+              ),
             ),
-            child: AutoSizeText(
-              "Login for full enjoyable experience.",
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              maxLines: 1,
-              style: TextStyle(color:Colors.black,fontSize: 18),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.025,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            height:MediaQuery.of(context).size.height*0.05,
-            child: SignInButton(
-              Buttons.Google,
-              onPressed: () {
-                _showButtonPressDialog(context, 'Google');
-              },
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.015,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            height:MediaQuery.of(context).size.height*0.05,
-            child: SignInButton(
-
-              Buttons.Apple,
-              onPressed: () {
-                _showButtonPressDialog(context, 'Apple');
-              },
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.015,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            height:MediaQuery.of(context).size.height*0.05,
-            child: SignInButton(
-              Buttons.FacebookNew,
-
-              onPressed: () {
-                _showButtonPressDialog(context, 'FacebookNew');
-              },
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.015,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            height:MediaQuery.of(context).size.height*0.05,
-            child: SignInButtonBuilder(
-              text: 'Sign in By Email',
-
-              icon: Icons.email,
-              onPressed: () {
-                _showButtonPressDialog(context, 'Email');
-              },
-              backgroundColor: Colors.orange[300],
-              width: 220.0,
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.015,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                    width:MediaQuery.of(context).size.width*0.38,
-                    child: Divider(color: Palette.actHubGreen,thickness: 1,)),
-                AutoSizeText(
-                  'Or',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.visible,
-                  style: TextStyle(
-                    fontFamily: 'Segoe UI',
-                    fontSize: 16.0,
-                    color: Palette.actHubGreen,
-                  ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.05,
+              width: MediaQuery.of(context).size.width * 0.6,
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.015,
+              ),
+              child: AutoSizeText(
+                "Login for full enjoyable experience.",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                maxLines: 1,
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 25,
+                  color: const Color(0xff4d4f5c),
+                  //fontWeight: FontWeight.w900,
                 ),
-                Container(
-                    width:MediaQuery.of(context).size.width*0.38,
-                    child: Divider(color: Palette.actHubGreen,thickness: 1,)),
-              ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.015,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.85,
-            height:MediaQuery.of(context).size.height*0.05,
-            child: SignInButtonBuilder(
-              text: 'Join Us As A Guest',
-              onPressed: () async {
-                final SharedPreferences prefs = await _prefs;
-                prefs.setBool("Guest", true);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NavigationPage()));
-              },
-
-              backgroundColor: Palette.actHubGreen.withOpacity(0.42),
-
-
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.025,
             ),
-          ),
-        ],
-      ),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: GestureDetector(
+                  onTap: () {
+                    _showButtonPressDialog(context, 'Google');
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        width: 370.0,
+                        height: 45.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 16.0,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Positioned(
+                        left: 16.0,
+                        child: Image.asset("Images/google.png",
+                            width: 20, height: 20),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 0.0),
+              child: GestureDetector(
+                onTap: () {
+                  _showButtonPressDialog(context, 'Apple');
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      width: 370.0,
+                      height: 45.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'Sign in with Apple',
+                        style: TextStyle(
+                          fontFamily: 'Segoe UI',
+                          fontSize: 16.0,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Positioned(
+                      left: 16.0,
+                      child: Image.asset("Images/apple.png",
+                          width: 18, height: 18),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        width: 370.0,
+                        height: 45.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Color(0xff3C79E6),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'Sign in with Facebook',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Positioned(
+                        left: 16.0,
+                        child: Image.asset("Images/facebook.png",
+                            width: 20, height: 20),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        width: 370.0,
+                        height: 45.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Color(0xFF1DA1F2),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'Sign in with Twitter',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Positioned(
+                        left: 16.0,
+                        child: Image.asset("Images/Twitter.png",
+                            width: 20, height: 20),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LogInPage()),
+                  );
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      width: 368.0,
+                      height: 45.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Color(0xff475EEE),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'SignIn',
+                        style: TextStyle(
+                          fontFamily: 'Segoe UI',
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.95,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.38,
+                      child: Divider(
+                        color: Palette.actHubGreen,
+                        thickness: 1,
+                      )),
+                  AutoSizeText(
+                    'Or',
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      fontFamily: 'Segoe UI',
+                      fontSize: 16.0,
+                      color: Palette.actHubGreen,
+                    ),
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.38,
+                      child: Divider(
+                        color: Palette.actHubGreen,
+                        thickness: 1,
+                      )),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    final SharedPreferences prefs = await _prefs;
+                    prefs.setBool("Guest", true);
+                    SetStringSharedPreferance("4");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NavigationPage()));
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        width: 370.0,
+                        height: 45.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Color(0xff566357).withOpacity(0.42),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'Join us as a Guest ',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ), SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+
+          ],
+        ),
+      ]),
     );
+  }
+
+  Future<void> SetStringSharedPreferance(String Type) {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.setString("UserType", Type);
+      })();
+    });
   }
 }

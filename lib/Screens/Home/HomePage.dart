@@ -1,27 +1,32 @@
 import 'dart:async';
-
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Classes/ShimmerAnimation.dart';
 import 'package:acthub/Screens/ActivityPage.dart';
 import 'package:acthub/Screens/Home/Nested/SearchPage.dart';
 import 'package:acthub/Screens/Home/Nested/SubCategoryPage.dart';
+import 'package:acthub/Screens/Welcome/SignIn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Management/ManagementPage.dart';
-double allHeight(BuildContext context){
-  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
-  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width*0.85  ;
-}
-double allWidth(BuildContext context){
-  return MediaQuery.of(context).size.height >MediaQuery.of(context).size.width?
-  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width;
+
+double allHeight(BuildContext context) {
+  return MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+      ? MediaQuery.of(context).size.height
+      : MediaQuery.of(context).size.width * 0.85;
 }
 
+double allWidth(BuildContext context) {
+  return MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
+      ? MediaQuery.of(context).size.width
+      : MediaQuery.of(context).size.width;
+}
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -32,15 +37,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var dataAvailable = false;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  String UserType;
+
+  getStringSharedPreferance() {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.getString("UserType");
+        UserType = prefs.getString("UserType");
+        print(UserType);
+      })();
+    });
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    Timer(Duration(seconds: 0), () => {getStringSharedPreferance()});
     dataAvailable = false;
   }
 
-  bool isGuest = false;
   bool isLandScape = false;
 
   @override
@@ -69,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     // return dataAvailable
   }
 
-  Widget CetegoryWidget(BuildContext context, String Category, String Url,
+  Widget categoryWidget(BuildContext context, String category, String url,
       {void Function() onTap}) {
     return GestureDetector(
       onTap: onTap,
@@ -87,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             height: MediaQuery.of(context).size.height * 0.05,
             child: Center(
               child: AutoSizeText(
-                Category,
+                category,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.visible,
                 maxLines: 1,
@@ -99,27 +116,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           boxFit: BoxFit.fill,
-          image: AssetImage(Url),
+          image: AssetImage(url),
         ),
       ),
     );
   }
 
-  GFImageOverlay CetegoryWidget1(BuildContext context) {
-    return GFImageOverlay(
-      width: MediaQuery.of(context).size.width * 0.22,
-      height: MediaQuery.of(context).size.height * 0.5,
-      padding: EdgeInsets.all(20.0),
-      borderRadius: BorderRadius.circular(10),
-      colorFilter:
-          new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
-    );
-  }
-
-  Widget Adv_example_card(BuildContext context) {
+  Widget advExampleCard(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       elevation: 5,
       child: Container(
@@ -136,13 +142,1031 @@ class _HomePageState extends State<HomePage> {
                 'https://res.cloudinary.com/wnotw/images/c_limit,w_1536,q_auto:eco,f_auto/v1599167759/lbge2rxuxi5z0wowkkjh/popeyes-rebrand',
               )),
           borderRadius: BorderRadius.all(
-            Radius.circular(20),
+            Radius.circular(10),
           ),
         ),
       ),
     );
   }
 
+  Widget portraitLayout(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: allWidth(context),
+          child: AppBar(
+            centerTitle: false,
+            elevation: 0,
+            toolbarHeight: allHeight(context) * 0.06,
+            backgroundColor: Palette.scaffold,
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: allHeight(context) * 0.03,
+                  width: allHeight(context) * 0.4,
+                  child: AutoSizeText(
+                    'Home',
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.orange),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: allHeight(context) * 0.035),
+                  child: AutoSizeText(
+                    'Have a nice day',
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Palette.actHubGreen.withOpacity(0.35),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            actions: [
+              UserType == "4"
+                  ? Padding(
+                      padding: EdgeInsets.only(
+                          right: allHeight(context) * 0.053,
+                          top: allHeight(context) * 0.01),
+                      child: CircleAvatar(
+                        radius: allWidth(context) * 0.0603,
+                        backgroundImage:
+                            AssetImage("Images/gusetProfilepic.png"),
+                        backgroundColor: Palette.white,
+                      ),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(
+                          right: allHeight(context) * 0.053,
+                          top: allHeight(context) * 0.01),
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            radius: allHeight(context) * 0.03,
+                            backgroundImage: NetworkImage(
+                                'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
+                          ),
+                          Positioned(
+                              top: allHeight(context) * 0.032,
+                              left: 0,
+                              child: Container(
+                                height: allHeight(context) * 0.018,
+                                width: allHeight(context) * 0.018,
+                                decoration: BoxDecoration(
+                                    color: Palette.online,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        width: allHeight(context) * 0.003,
+                                        color: Palette.white)),
+                              ))
+                        ],
+                      ),
+                    )
+            ],
+          ),
+        ),
+        Expanded(
+            flex: 15,
+            child: Container(
+                child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.01,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width,
+                  child: CarouselSlider.builder(
+                    itemCount: 3,
+                    itemBuilder:
+                        (BuildContext context, int section, int index) {
+                      return advExampleCard(context);
+                    },
+                    options: CarouselOptions(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      viewportFraction: 1.0,
+                      disableCenter: false,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      // autoPlay: false,
+                    ),
+                  ),
+                ),
+                //the second list view
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.0193,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.0193),
+                    children: [
+                      categoryWidget(context, "Outdoor", "Images/outDoor.jpg",
+                          onTap: () {
+                        UserType =="4"?Alert(
+                            context: context,
+                            title: "",
+                            content: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: allWidth(context) * 0.05,
+                                      top: allHeight(context) * 0.02),
+                                  child: Container(
+                                    height: allHeight(context) * 0.05,
+                                    width: allWidth(context) * 0.3,
+                                    child: AutoSizeText(
+                                      'Welcome',
+                                      style: TextStyle(
+                                          fontSize: 36,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orange),
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: allHeight(context) * 0.01,
+                                      ),
+                                      Container(
+                                        width: allWidth(context),
+                                        child: Container(
+                                          height: allHeight(context) * 0.05,
+                                          width: allWidth(context),
+                                          child: Center(
+                                            child: AutoSizeText(
+                                              'Signed in first to access this feature.',
+                                              //name of main category
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color:
+                                                Palette.actHubGreen.withOpacity(0.35),
+                                              ),
+                                              maxLines: 1,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Image.asset(
+                                        'Images/human.png',
+                                        height: allHeight(context) * 0.45,
+                                      ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.only(top: allHeight(context) * 0.01),
+                                        child: Container(
+                                          width: allWidth(context),
+                                          height: allHeight(context) * 0.059,
+                                          child: Center(
+                                            child: AutoSizeText(
+                                              "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                                color:
+                                                Palette.actHubGreen.withOpacity(0.50),
+                                              ),
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: allHeight(context) * 0.05,
+                                            left: allWidth(context) * 0.01,
+                                            right: allWidth(context) * 0.01),
+                                        child: Container(
+                                          width: allWidth(context) * 0.766,
+                                          height: allHeight(context) * 0.054,
+                                          child: ElevatedButton(
+                                              child: AutoSizeText(
+                                                'Sign in',
+                                                style: TextStyle(
+                                                  fontSize: 19,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                maxLines: 1,
+                                              ), //to style the text of buttons
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Palette.blue // background
+                                                // foreground
+                                              ), //to set the color of buttons
+                                              onPressed: () {
+                                                Navigator.pushNamed(context, SignIn.id);
+                                              }),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+
+                              ],
+                            ),
+                            buttons: []).show():
+                        setState(() {
+                          Navigator.pushNamed(context, SubCategoryPage.id);
+                        });
+                      }),
+                      categoryWidget(context, "Culture", "Images/culture.jpg",
+                          onTap: () {
+                            UserType =="4"?Alert(
+                                context: context,
+                                title: "",
+                                content: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allWidth(context) * 0.05,
+                                          top: allHeight(context) * 0.02),
+                                      child: Container(
+                                        height: allHeight(context) * 0.05,
+                                        width: allWidth(context) * 0.3,
+                                        child: AutoSizeText(
+                                          'Welcome',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: allHeight(context) * 0.01,
+                                          ),
+                                          Container(
+                                            width: allWidth(context),
+                                            child: Container(
+                                              height: allHeight(context) * 0.05,
+                                              width: allWidth(context),
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  'Signed in first to access this feature.',
+                                                  //name of main category
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.35),
+                                                  ),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'Images/human.png',
+                                            height: allHeight(context) * 0.45,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context),
+                                              height: allHeight(context) * 0.059,
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                                  style: TextStyle(
+                                                    fontSize: 25,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.50),
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: allHeight(context) * 0.05,
+                                                left: allWidth(context) * 0.01,
+                                                right: allWidth(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context) * 0.766,
+                                              height: allHeight(context) * 0.054,
+                                              child: ElevatedButton(
+                                                  child: AutoSizeText(
+                                                    'Sign in',
+                                                    style: TextStyle(
+                                                      fontSize: 19,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ), //to style the text of buttons
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Palette.blue // background
+                                                    // foreground
+                                                  ), //to set the color of buttons
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, SignIn.id);
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                                buttons: []).show():
+                            setState(() {
+                              Navigator.pushNamed(context, SubCategoryPage.id);
+                            });
+                          }),
+                      categoryWidget(
+                          context, "Education", "Images/education.jpg",
+                          onTap: () {
+                            UserType =="4"?Alert(
+                                context: context,
+                                title: "",
+                                content: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allWidth(context) * 0.05,
+                                          top: allHeight(context) * 0.02),
+                                      child: Container(
+                                        height: allHeight(context) * 0.05,
+                                        width: allWidth(context) * 0.3,
+                                        child: AutoSizeText(
+                                          'Welcome',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: allHeight(context) * 0.01,
+                                          ),
+                                          Container(
+                                            width: allWidth(context),
+                                            child: Container(
+                                              height: allHeight(context) * 0.05,
+                                              width: allWidth(context),
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  'Signed in first to access this feature.',
+                                                  //name of main category
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.35),
+                                                  ),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'Images/human.png',
+                                            height: allHeight(context) * 0.45,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context),
+                                              height: allHeight(context) * 0.059,
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                                  style: TextStyle(
+                                                    fontSize: 25,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.50),
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: allHeight(context) * 0.05,
+                                                left: allWidth(context) * 0.01,
+                                                right: allWidth(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context) * 0.766,
+                                              height: allHeight(context) * 0.054,
+                                              child: ElevatedButton(
+                                                  child: AutoSizeText(
+                                                    'Sign in',
+                                                    style: TextStyle(
+                                                      fontSize: 19,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ), //to style the text of buttons
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Palette.blue // background
+                                                    // foreground
+                                                  ), //to set the color of buttons
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, SignIn.id);
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                                buttons: []).show():
+                            setState(() {
+                              Navigator.pushNamed(context, SubCategoryPage.id);
+                            });
+                          }),
+                      categoryWidget(context, "Wellness", "Images/wellness.jpg",
+                          onTap: () {
+                            UserType =="4"?Alert(
+                                context: context,
+                                title: "",
+                                content: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allWidth(context) * 0.05,
+                                          top: allHeight(context) * 0.02),
+                                      child: Container(
+                                        height: allHeight(context) * 0.05,
+                                        width: allWidth(context) * 0.3,
+                                        child: AutoSizeText(
+                                          'Welcome',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: allHeight(context) * 0.01,
+                                          ),
+                                          Container(
+                                            width: allWidth(context),
+                                            child: Container(
+                                              height: allHeight(context) * 0.05,
+                                              width: allWidth(context),
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  'Signed in first to access this feature.',
+                                                  //name of main category
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.35),
+                                                  ),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'Images/human.png',
+                                            height: allHeight(context) * 0.45,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context),
+                                              height: allHeight(context) * 0.059,
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                                  style: TextStyle(
+                                                    fontSize: 25,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.50),
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: allHeight(context) * 0.05,
+                                                left: allWidth(context) * 0.01,
+                                                right: allWidth(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context) * 0.766,
+                                              height: allHeight(context) * 0.054,
+                                              child: ElevatedButton(
+                                                  child: AutoSizeText(
+                                                    'Sign in',
+                                                    style: TextStyle(
+                                                      fontSize: 19,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ), //to style the text of buttons
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Palette.blue // background
+                                                    // foreground
+                                                  ), //to set the color of buttons
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, SignIn.id);
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                                buttons: []).show():
+                            setState(() {
+                              Navigator.pushNamed(context, SubCategoryPage.id);
+                            });
+                          }),
+                      categoryWidget(
+                          context, "Gastronomy", "Images/gastronomy.jpg",
+                          onTap: () {
+                            UserType =="4"?Alert(
+                                context: context,
+                                title: "",
+                                content: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allWidth(context) * 0.05,
+                                          top: allHeight(context) * 0.02),
+                                      child: Container(
+                                        height: allHeight(context) * 0.05,
+                                        width: allWidth(context) * 0.3,
+                                        child: AutoSizeText(
+                                          'Welcome',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: allHeight(context) * 0.01,
+                                          ),
+                                          Container(
+                                            width: allWidth(context),
+                                            child: Container(
+                                              height: allHeight(context) * 0.05,
+                                              width: allWidth(context),
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  'Signed in first to access this feature.',
+                                                  //name of main category
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.35),
+                                                  ),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'Images/human.png',
+                                            height: allHeight(context) * 0.45,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context),
+                                              height: allHeight(context) * 0.059,
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                                  style: TextStyle(
+                                                    fontSize: 25,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.50),
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: allHeight(context) * 0.05,
+                                                left: allWidth(context) * 0.01,
+                                                right: allWidth(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context) * 0.766,
+                                              height: allHeight(context) * 0.054,
+                                              child: ElevatedButton(
+                                                  child: AutoSizeText(
+                                                    'Sign in',
+                                                    style: TextStyle(
+                                                      fontSize: 19,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ), //to style the text of buttons
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Palette.blue // background
+                                                    // foreground
+                                                  ), //to set the color of buttons
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, SignIn.id);
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                                buttons: []).show():
+                            setState(() {
+                              Navigator.pushNamed(context, SubCategoryPage.id);
+                            });
+                          }),
+                      categoryWidget(
+                          context, "Online", "Images/online-study.jpg",
+                          onTap: () {
+                            UserType =="4"?Alert(
+                                context: context,
+                                title: "",
+                                content: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: allWidth(context) * 0.05,
+                                          top: allHeight(context) * 0.02),
+                                      child: Container(
+                                        height: allHeight(context) * 0.05,
+                                        width: allWidth(context) * 0.3,
+                                        child: AutoSizeText(
+                                          'Welcome',
+                                          style: TextStyle(
+                                              fontSize: 36,
+                                              fontWeight: FontWeight.bold,
+                                              color: Palette.orange),
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: allHeight(context) * 0.01,
+                                          ),
+                                          Container(
+                                            width: allWidth(context),
+                                            child: Container(
+                                              height: allHeight(context) * 0.05,
+                                              width: allWidth(context),
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  'Signed in first to access this feature.',
+                                                  //name of main category
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.35),
+                                                  ),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'Images/human.png',
+                                            height: allHeight(context) * 0.45,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context),
+                                              height: allHeight(context) * 0.059,
+                                              child: Center(
+                                                child: AutoSizeText(
+                                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                                  style: TextStyle(
+                                                    fontSize: 25,
+                                                    color:
+                                                    Palette.actHubGreen.withOpacity(0.50),
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: allHeight(context) * 0.05,
+                                                left: allWidth(context) * 0.01,
+                                                right: allWidth(context) * 0.01),
+                                            child: Container(
+                                              width: allWidth(context) * 0.766,
+                                              height: allHeight(context) * 0.054,
+                                              child: ElevatedButton(
+                                                  child: AutoSizeText(
+                                                    'Sign in',
+                                                    style: TextStyle(
+                                                      fontSize: 19,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ), //to style the text of buttons
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Palette.blue // background
+                                                    // foreground
+                                                  ), //to set the color of buttons
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, SignIn.id);
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                                buttons: []).show():
+                            setState(() {
+                              Navigator.pushNamed(context, SubCategoryPage.id);
+                            });
+                          }),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.015,
+                ),
+                // the search bar
+                Hero(
+                  tag: 'search',
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    elevation: 10,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      height: allHeight(context) * 0.06,
+                      width: allWidth(context) * 0.87,
+                      child: TextField(
+                        cursorWidth: 2,
+                        cursorHeight: allHeight(context) * 0.03,
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.search_rounded,
+                            color: Palette.orange,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30),
+                            ),
+                          ),
+                          //to put border color white when the textfiled not clicked
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30),
+                            ),
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          //to set border color grey when the textfiled clicked
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 19,
+                          ), //to set the color of hint black
+                        ), //decorat input text
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.01,
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        UserType=="4"
+                            ? Alert(
+                            context: context,
+                            title: "",
+                            content: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: allWidth(context) * 0.05,
+                                      top: allHeight(context) * 0.02),
+                                  child: Container(
+                                    height: allHeight(context) * 0.05,
+                                    width: allWidth(context) * 0.3,
+                                    child: AutoSizeText(
+                                      'Welcome',
+                                      style: TextStyle(
+                                          fontSize: 36,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orange),
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: allHeight(context) * 0.01,
+                                      ),
+                                      Container(
+                                        width: allWidth(context),
+                                        child: Container(
+                                          height: allHeight(context) * 0.05,
+                                          width: allWidth(context),
+                                          child: Center(
+                                            child: AutoSizeText(
+                                              'Signed in first to access this feature.',
+                                              //name of main category
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color:
+                                                Palette.actHubGreen.withOpacity(0.35),
+                                              ),
+                                              maxLines: 1,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Image.asset(
+                                        'Images/human.png',
+                                        height: allHeight(context) * 0.45,
+                                      ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.only(top: allHeight(context) * 0.01),
+                                        child: Container(
+                                          width: allWidth(context),
+                                          height: allHeight(context) * 0.059,
+                                          child: Center(
+                                            child: AutoSizeText(
+                                              "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                                color:
+                                                Palette.actHubGreen.withOpacity(0.50),
+                                              ),
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: allHeight(context) * 0.05,
+                                            left: allWidth(context) * 0.01,
+                                            right: allWidth(context) * 0.01),
+                                        child: Container(
+                                          width: allWidth(context) * 0.766,
+                                          height: allHeight(context) * 0.054,
+                                          child: ElevatedButton(
+                                              child: AutoSizeText(
+                                                'Sign in',
+                                                style: TextStyle(
+                                                  fontSize: 19,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                maxLines: 1,
+                                              ), //to style the text of buttons
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Palette.blue // background
+                                                // foreground
+                                              ), //to set the color of buttons
+                                              onPressed: () {
+                                                Navigator.pushNamed(context, SignIn.id);
+                                              }),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+
+                              ],
+                            ),
+                            buttons: []).show()
+                            : Navigator.pushNamed(context, ActivityPage.id);
+                      });
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height -
+                          (MediaQuery.of(context).size.height * 0.51 +
+                              MediaQuery.of(context).size.width * 0.25),
+                      child: StaggeredGridView.countBuilder(
+                        scrollDirection: Axis.horizontal,
+                        crossAxisCount: 4,
+                        itemCount: 13,
+                        itemBuilder: (BuildContext context, int index) => Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: GFImageOverlay(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height -
+                                (MediaQuery.of(context).size.height * 0.51 +
+                                    MediaQuery.of(context).size.width * 0.25),
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: AutoSizeText(
+                              '  ',
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.visible,
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.white),
+                            ),
+                            boxFit: BoxFit.fitHeight,
+                            image: NetworkImage(
+                                "https://www.travelanddestinations.com/wp-content/uploads/2020/12/Cappadocia-landscape-and-balloons.jpg"),
+                          ),
+                        ),
+                        staggeredTileBuilder: (int index) => index % 3 == 0
+                            ? StaggeredTile.count(4, 2.5)
+                            : StaggeredTile.count(2, 3),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ))),
+      ],
+    );
+  }
+
+//--------------------------------------------------------------
   Widget landscapeLayout(BuildContext context) {
     return Container(
         child: Row(
@@ -195,7 +1219,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   actions: [
-                    isGuest
+                    UserType=="4"
                         ? Padding(
                             padding: EdgeInsets.only(
                                 right: MediaQuery.of(context).size.width * 0.01,
@@ -261,31 +1285,31 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.0193),
                     children: [
-                      CetegoryWidget(context, "Outdoor", "Images/outDoor.jpg",
+                      categoryWidget(context, "Outdoor", "Images/outDoor.jpg",
                           onTap: () {
                         setState(() {
                           Navigator.pushNamed(context, SubCategoryPage.id);
                         });
                       }),
-                      CetegoryWidget(context, "Culture", "Images/culture.jpg",
+                      categoryWidget(context, "Culture", "Images/culture.jpg",
                           onTap: () {
                         Navigator.pushNamed(context, SubCategoryPage.id);
                       }),
-                      CetegoryWidget(
+                      categoryWidget(
                           context, "Education", "Images/education.jpg",
                           onTap: () {
                         Navigator.pushNamed(context, SubCategoryPage.id);
                       }),
-                      CetegoryWidget(context, "Wellness", "Images/wellness.jpg",
+                      categoryWidget(context, "Wellness", "Images/wellness.jpg",
                           onTap: () {
                         Navigator.pushNamed(context, SubCategoryPage.id);
                       }),
-                      CetegoryWidget(
+                      categoryWidget(
                           context, "Gastronomy", "Images/gastronomy.jpg",
                           onTap: () {
                         Navigator.pushNamed(context, SubCategoryPage.id);
                       }),
-                      CetegoryWidget(
+                      categoryWidget(
                           context, "Online", "Images/online-study.jpg",
                           onTap: () {
                         Navigator.pushNamed(context, SubCategoryPage.id);
@@ -310,7 +1334,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: 3,
                     itemBuilder:
                         (BuildContext context, int section, int index) {
-                      return Adv_example_card(context);
+                      return advExampleCard(context);
                     },
                     options: CarouselOptions(
                       height: MediaQuery.of(context).size.height * 0.4,
@@ -332,22 +1356,21 @@ class _HomePageState extends State<HomePage> {
                   tag: 'search',
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     elevation: 10,
                     child: Container(
                       decoration: const BoxDecoration(
                         color: Palette.white,
                         borderRadius: BorderRadius.all(
-                          Radius.circular(30),
+                          Radius.circular(10),
                         ),
                       ),
-                      height:allHeight(context) * 0.06,
+                      height: allHeight(context) * 0.06,
                       width: allWidth(context) * 0.87,
                       child: TextField(
                         cursorWidth: 2,
-                        cursorHeight:
-                        allHeight(context) * 0.03,
+                        cursorHeight: allHeight(context) * 0.03,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
@@ -357,13 +1380,13 @@ class _HomePageState extends State<HomePage> {
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(30),
+                              Radius.circular(10),
                             ),
                           ),
                           //to put border color white when the textfiled not clicked
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(30),
+                              Radius.circular(10),
                             ),
                             borderSide: BorderSide(color: Colors.white),
                           ),
@@ -372,7 +1395,10 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 19,
                           ), //to set the color of hint black
-                        ), //decorat input text
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, SearchPage.id);
+                        }, //decorat input text
                       ),
                     ),
                   ),
@@ -384,7 +1410,7 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        isGuest
+                        UserType=="4"
                             ? Navigator.pushNamed(context, ManagementPage.id)
                             : Navigator.pushNamed(context, ActivityPage.id);
                       });
@@ -400,13 +1426,13 @@ class _HomePageState extends State<HomePage> {
                         itemCount: 13,
                         itemBuilder: (BuildContext context, int index) => Card(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
+                              borderRadius: BorderRadius.circular(10.0)),
                           child: GFImageOverlay(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height -
                                 (MediaQuery.of(context).size.height * 0.51 +
                                     MediaQuery.of(context).size.width * 0.25),
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             child: AutoSizeText(
                               '  ',
                               textAlign: TextAlign.center,
@@ -435,283 +1461,6 @@ class _HomePageState extends State<HomePage> {
       ],
     ));
   }
-
-  Widget portraitLayout(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: allWidth(context),
-          child: AppBar(
-            centerTitle: false,
-            elevation: 0,
-            toolbarHeight: allHeight(context) * 0.06,
-            backgroundColor: Palette.scaffold,
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: allHeight(context) * 0.03,
-                  width: allHeight(context) * 0.4,
-                  child: AutoSizeText(
-                    'Home',
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Palette.orange),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: allHeight(context) * 0.035),
-                  child: AutoSizeText(
-                    'Have a nice day',
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Palette.actHubGreen.withOpacity(0.35),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            actions: [
-              isGuest
-                  ?
-              Padding(
-                padding: EdgeInsets.only(
-                    right:    allHeight(context) * 0.053,
-                    top: allHeight(context) * 0.01),
-                child: CircleAvatar(
-                  radius: allWidth(context) * 0.0603,
-                  backgroundImage:
-                  AssetImage("Images/gusetProfilepic.png"),
-                  backgroundColor: Palette.white,
-                ),
-              )
-                  : Padding(
-                padding: EdgeInsets.only(
-                    right:  allHeight(context) * 0.053,
-                    top: allHeight(context) * 0.01),
-                child: Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: allHeight(context) * 0.03,
-                      backgroundImage: NetworkImage(
-                          'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
-                    ),
-                    Positioned(
-                        top: allHeight(context) * 0.032,
-                        left: 0,
-                        child: Container(
-                          height:
-                          allHeight(context) * 0.018,
-                          width:
-                          allHeight(context) * 0.018,
-                          decoration: BoxDecoration(
-                              color: Palette.online,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  width:
-                                  allHeight(context) *
-                                      0.003,
-                                  color: Palette.white)),
-                        ))
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-        Expanded(
-            flex: 15,
-            child: Container(
-                child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.01,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.width,
-                  child: CarouselSlider.builder(
-                    itemCount: 3,
-                    itemBuilder:
-                        (BuildContext context, int section, int index) {
-                      return Adv_example_card(context);
-                    },
-                    options: CarouselOptions(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      viewportFraction: 1.0,
-                      disableCenter: false,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      // autoPlay: false,
-                    ),
-                  ),
-                ),
-                //the second list view
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.0193,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.0193),
-                    children: [
-                      CetegoryWidget(context, "Outdoor", "Images/outDoor.jpg",
-                          onTap: () {
-                        setState(() {
-                          Navigator.pushNamed(context, SubCategoryPage.id);
-                        });
-                      }),
-                      CetegoryWidget(context, "Culture", "Images/culture.jpg",
-                          onTap: () {
-                        Navigator.pushNamed(context, SubCategoryPage.id);
-                      }),
-                      CetegoryWidget(
-                          context, "Education", "Images/education.jpg",
-                          onTap: () {
-                        Navigator.pushNamed(context, SubCategoryPage.id);
-                      }),
-                      CetegoryWidget(context, "Wellness", "Images/wellness.jpg",
-                          onTap: () {
-                        Navigator.pushNamed(context, SubCategoryPage.id);
-                      }),
-                      CetegoryWidget(
-                          context, "Gastronomy", "Images/gastronomy.jpg",
-                          onTap: () {
-                        Navigator.pushNamed(context, SubCategoryPage.id);
-                      }),
-                      CetegoryWidget(
-                          context, "Online", "Images/online-study.jpg",
-                          onTap: () {
-                        Navigator.pushNamed(context, SubCategoryPage.id);
-                      }),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.015,
-                ),
-                // the search bar
-                Hero(
-                  tag: 'search',
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    elevation: 10,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Palette.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
-                      ),
-                      height:allHeight(context) * 0.06,
-                      width: allWidth(context) * 0.87,
-                      child: TextField(
-                        cursorWidth: 2,
-                        cursorHeight:
-                        allHeight(context) * 0.03,
-                        cursorColor: Colors.black,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.search_rounded,
-                            color: Palette.orange,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                          ),
-                          //to put border color white when the textfiled not clicked
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          //to set border color grey when the textfiled clicked
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 19,
-                          ), //to set the color of hint black
-                        ), //decorat input text
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.01,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.01,
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isGuest
-                            ? Navigator.pushNamed(context, ManagementPage.id)
-                            : Navigator.pushNamed(context, ActivityPage.id);
-                      });
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height -
-                          (MediaQuery.of(context).size.height * 0.51 +
-                              MediaQuery.of(context).size.width * 0.25),
-                      child: StaggeredGridView.countBuilder(
-                        scrollDirection: Axis.horizontal,
-                        crossAxisCount: 4,
-                        itemCount: 13,
-                        itemBuilder: (BuildContext context, int index) => Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: GFImageOverlay(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height -
-                                (MediaQuery.of(context).size.height * 0.51 +
-                                    MediaQuery.of(context).size.width * 0.25),
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: AutoSizeText(
-                              '  ',
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.white),
-                            ),
-                            boxFit: BoxFit.fitHeight,
-                            image: NetworkImage(
-                                "https://www.travelanddestinations.com/wp-content/uploads/2020/12/Cappadocia-landscape-and-balloons.jpg"),
-                          ),
-                        ),
-                        staggeredTileBuilder: (int index) => index % 3 == 0
-                            ? StaggeredTile.count(4, 2.5)
-                            : StaggeredTile.count(2, 3),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ))),
-      ],
-    );
-  }
-
   Widget landscapeLayout2(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
@@ -758,7 +1507,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: [
-              isGuest
+              UserType=="4"
                   ? Padding(
                       padding: EdgeInsets.only(
                           right: MediaQuery.of(context).size.width * 0.1,
@@ -815,10 +1564,10 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             children: [
-              Adv_example_card(context),
-              Adv_example_card(context),
-              Adv_example_card(context),
-              Adv_example_card(context),
+              advExampleCard(context),
+              advExampleCard(context),
+              advExampleCard(context),
+              advExampleCard(context),
             ],
           ),
         ),
@@ -837,42 +1586,42 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 children: [
-                  CetegoryWidget(context, "Outdoor", "Images/outdoor.png",
+                  categoryWidget(context, "Outdoor", "Images/outdoor.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
                   SizedBox(
                     width: 5,
                   ),
-                  CetegoryWidget(context, "Culturetrr", "Images/culture.png",
+                  categoryWidget(context, "Culturetrr", "Images/culture.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
                   SizedBox(
                     width: 5,
                   ),
-                  CetegoryWidget(context, "Outdoor", "Images/education.png",
+                  categoryWidget(context, "Outdoor", "Images/education.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
                   SizedBox(
                     width: 5,
                   ),
-                  CetegoryWidget(context, "Culture", "Images/well.png",
+                  categoryWidget(context, "Culture", "Images/well.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
                   SizedBox(
                     width: 5,
                   ),
-                  CetegoryWidget(context, "Outdoor", "Images/outdoor.png",
+                  categoryWidget(context, "Outdoor", "Images/outdoor.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
                   SizedBox(
                     width: 5,
                   ),
-                  CetegoryWidget(context, "Culture", "Images/culture.png",
+                  categoryWidget(context, "Culture", "Images/culture.png",
                       onTap: () {
                     Navigator.pushNamed(context, SubCategoryPage.id);
                   }),
@@ -899,12 +1648,11 @@ class _HomePageState extends State<HomePage> {
                   Radius.circular(30),
                 ),
               ),
-              height:allHeight(context) * 0.06,
+              height: allHeight(context) * 0.06,
               width: allWidth(context) * 0.87,
               child: TextField(
                 cursorWidth: 2,
-                cursorHeight:
-                allHeight(context) * 0.03,
+                cursorHeight: allHeight(context) * 0.03,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   prefixIcon: Icon(

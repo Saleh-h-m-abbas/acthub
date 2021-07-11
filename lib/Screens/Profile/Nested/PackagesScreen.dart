@@ -61,7 +61,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: allHeight(context)*0.712,
+            height: allHeight(context)*0.69,
             width: allWidth(context),
             child:CarouselSlider.builder(
                 itemCount: 3,
@@ -128,7 +128,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
       ) ,
     );
   }
-  Widget packageDesign(BuildContext context,String packageURL,String price, String Access, String checkURL, String falseURL, String PackageType,Color PackageTypeColor,Color buttonColor){
+  Widget packageDesign(BuildContext context,String packageURL,String price, String access, String checkURL, String falseURL, String packageType,Color packageTypeColor,Color buttonColor){
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(allHeight(context)*0.02),
@@ -163,14 +163,14 @@ class _PackagesScreenState extends State<PackagesScreen> {
                       child: Align(
                         alignment: Alignment.center,
                         child: AutoSizeText(
-                          PackageType,
+                          packageType,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.visible,
                           style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               fontFamily: "Segoe UI",
-                              color: PackageTypeColor
+                              color: packageTypeColor
                           ),
                         ),
                       ),
@@ -212,7 +212,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     style: TextStyle(
                       fontSize: 20,
                       fontFamily: "Segoe UI",
-                      color: PackageTypeColor,
+                      color: packageTypeColor,
                       //fontWeight: FontWeight.bold,
                     )),
                 style: ElevatedButton.styleFrom(
@@ -238,7 +238,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: allWidth(context)*0.27),
                       child: AutoSizeText(
-                        Access,
+                        access,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.visible,
                         style: TextStyle(
@@ -269,7 +269,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: allWidth(context)*0.28),
                       child: AutoSizeText(
-                        Access,
+                        access,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.visible,
                         style: TextStyle(
@@ -300,7 +300,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: allWidth(context)*0.28),
                       child: AutoSizeText(
-                        Access,
+                        access,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.visible,
                         style: TextStyle(
@@ -331,7 +331,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: allWidth(context)*0.28),
                       child: AutoSizeText(
-                        Access,
+                        access,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.visible,
                         style: TextStyle(
@@ -362,7 +362,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: allWidth(context)*0.28),
                       child: AutoSizeText(
-                        Access,
+                        access,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.visible,
                         style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/Welcome/SignIn.dart';
+import 'package:acthub/Screens/Welcome/SignUpAsPage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -64,11 +65,12 @@ class _LogInPageState extends State<LogInPage> {
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).size.height * 0.01,
                       top: MediaQuery.of(context).size.height * 0.04),
-                  child: buttons('Login', Palette.actHubGreen, () {}),
+                  child:
+                  buttons('Login', Palette.actHubGreen, () {}),
                 ),
                 buttons("Don't have an account?", Palette.orange, () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
+                      MaterialPageRoute(builder: (context) => SignUpAsPage()));
                 }),
               ],
             ),

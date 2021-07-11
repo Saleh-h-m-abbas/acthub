@@ -2,7 +2,7 @@ import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. '; //to get privacy text from firebase
+String getText = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. '; //to get privacy text from firebase
 //to get condition text from firebase
 
 double allHeight(BuildContext context){
@@ -31,7 +31,7 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
         backgroundColor: Palette.scaffold,
         elevation: 0,
         title: AutoSizeText(
-          ' Our Privacy Policy',
+          'Our Privacy Policy',
           textAlign: TextAlign.start,
           overflow: TextOverflow.visible,
           style: TextStyle(
@@ -60,14 +60,13 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             Container(
               height: allHeight(context)*0.76,
-              width: allWidth(context)*0.75,
+              width: allWidth(context)*0.9,
               child: SingleChildScrollView(
                 child: AutoSizeText(
-                  Gettext,
-                  textAlign: TextAlign.justify,
+                  getText,
+                  textAlign: TextAlign.center,
                   style: TextStyle(wordSpacing: 0.06,fontSize: 20),
                   overflow: TextOverflow.visible,
                 ),
@@ -85,13 +84,12 @@ class _PrivacyPolicyProfileState extends State<PrivacyPolicyProfile> {
     child: Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-
           Container(
             height: allHeight(context)*0.76,
-            width: allWidth(context)*0.6,
+            width: allWidth(context)*0.9,
             child: SingleChildScrollView(
               child: AutoSizeText(
-                Gettext,
+                getText,
                 textAlign: TextAlign.justify,
                 style: TextStyle(wordSpacing: 0.06,fontSize: 20),
                 overflow: TextOverflow.visible,

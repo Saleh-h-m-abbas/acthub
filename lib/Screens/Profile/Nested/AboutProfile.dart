@@ -2,7 +2,7 @@ import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
+String getText = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
 //to get condition text from firebase
 
 double allHeight(BuildContext context){
@@ -56,10 +56,11 @@ class _AboutProfileState extends State<AboutProfile> {
           ),
         ),
       ) ,
-      body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Container(
+      body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+      Container(
         width: allWidth(context),
         child: Center(
-          child: Column(
+          child: ListView(
             children: [
               SizedBox(height: allHeight(context)*0.04,),
               Container(
@@ -67,7 +68,7 @@ class _AboutProfileState extends State<AboutProfile> {
                 height: allHeight(context)*0.7,
                 width: allWidth(context)*0.7,
                 child: AutoSizeText(
-                  Gettext,
+                  getText,
                   textAlign: TextAlign.center,
                   style: TextStyle(wordSpacing: 0.1,fontSize: 20),
                   overflow: TextOverflow.visible,
@@ -81,8 +82,11 @@ class _AboutProfileState extends State<AboutProfile> {
             ],
           ),
         ),
-      ):SingleChildScrollView(
-        child: Center(
+      )
+          :
+      ListView(
+        children:[
+          Center(
           child: Container(
             width: allWidth(context),
             child: Center(
@@ -94,7 +98,7 @@ class _AboutProfileState extends State<AboutProfile> {
                     height: allHeight(context)*0.7,
                     width: allWidth(context)*0.7,
                     child: AutoSizeText(
-                      Gettext,
+                      getText,
                       textAlign: TextAlign.center,
                       style: TextStyle(wordSpacing: 0.1,fontSize: 20),
                       overflow: TextOverflow.visible,
@@ -109,7 +113,7 @@ class _AboutProfileState extends State<AboutProfile> {
               ),
             ),
           ),
-        ),
+        ),]
       ),
     ),
     );

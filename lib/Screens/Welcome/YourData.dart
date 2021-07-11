@@ -15,7 +15,7 @@ class YourData extends StatefulWidget {
 }
 
 class _YourDataState extends State<YourData> {
-  String Gettext =
+  String getText =
       'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our '; //to get Data Text from firebase
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
@@ -71,7 +71,7 @@ class _YourDataState extends State<YourData> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: Gettext,
+                      text: getText,
                       style: new TextStyle(color: Colors.black),
                     ),
                     TextSpan(

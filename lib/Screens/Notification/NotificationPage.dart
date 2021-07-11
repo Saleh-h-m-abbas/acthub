@@ -1,6 +1,7 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class NotificationPage extends StatefulWidget {
   static const String id = 'NotificationPage';
 
@@ -18,9 +19,28 @@ double allWidth(BuildContext context){
 
 
 class _NotificationPageState extends State<NotificationPage> {
-  @override
-  bool isGuest=false;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  String UserType;
 
+  getStringSharedPreferance() {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.getString("UserType");
+        UserType =prefs.getString("UserType");
+        print(UserType);
+      })();
+    });
+  }
+
+@override
+  void initState() {
+  getStringSharedPreferance();
+  super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
 
     return WillPopScope(
@@ -31,9 +51,9 @@ class _NotificationPageState extends State<NotificationPage> {
             home: Scaffold(
               backgroundColor: Palette.scaffold,
               body:Column(
-
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                      Container(
                     width: allWidth(context),
                     child: AppBar(
                       centerTitle: false,
@@ -72,11 +92,11 @@ class _NotificationPageState extends State<NotificationPage> {
                         ],
                       ),
                       actions: [
-                        isGuest
+                        UserType=="4"
                             ?
                         Padding(
                           padding: EdgeInsets.only(
-                              right:    allHeight(context) * 0.053,
+                              right:allHeight(context) * 0.053,
                               top: allHeight(context) * 0.01),
                           child: CircleAvatar(
                             radius: allWidth(context) * 0.0603,
@@ -119,13 +139,9 @@ class _NotificationPageState extends State<NotificationPage> {
                       ],
                     ),
                   ),
-
-                  Container(
+                      Container(
                     width: allWidth(context)*0.9,
-                    height: MediaQuery.of(context).size.height>=
-                        MediaQuery.of(context).size.width?
-                    MediaQuery.of(context).size.height*0.85-MediaQuery.of(context).padding.top
-                        :MediaQuery.of(context).size.height*0.7-MediaQuery.of(context).padding.top,
+                    height: allHeight(context)*0.76,
                     child: ListView.builder(
                       itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
@@ -133,18 +149,6 @@ class _NotificationPageState extends State<NotificationPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              index==0? Padding(
-                                padding: EdgeInsets.only(left:allHeight(context)*0.01),
-                                child: AutoSizeText(
-                                  'Have a nice day',
-                                  textAlign: TextAlign.start,
-                                  overflow: TextOverflow.visible,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Palette.actHubGreen.withOpacity(0.35),
-                                  ),
-                                ),
-                              ):Container(),
                               Padding(
                                 padding: EdgeInsets.only(bottom:allHeight(context)*0.01),
                                 child: Card(
@@ -159,8 +163,7 @@ class _NotificationPageState extends State<NotificationPage> {
                                         borderRadius: BorderRadius.circular(allHeight(context)*0.02)),
                                     child:Row(
                                       children: [
-                                        SizedBox(width: allHeight(context)*0.01,)
-                                        ,
+                                        SizedBox(width: allHeight(context)*0.01,),
                                         index.isEven?
                                         Card(
                                           elevation:5,
@@ -218,9 +221,7 @@ class _NotificationPageState extends State<NotificationPage> {
                           );
                       },
                     ),
-                  )
-
-
+                  ),
                 ],
               ),
             )

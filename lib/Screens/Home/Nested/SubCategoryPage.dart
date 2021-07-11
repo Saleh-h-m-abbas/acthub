@@ -1,11 +1,11 @@
+import 'dart:async';
+
 import 'package:acthub/Classes/Palette.dart';
+import 'package:acthub/Screens/Welcome/SignIn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:getwidget/components/image/gf_image_overlay.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 double allHeight(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
   MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
@@ -21,7 +21,28 @@ class SubCategoryPage extends StatefulWidget {
   _SubCategoryPageState createState() => _SubCategoryPageState();
 }
 class _SubCategoryPageState extends State<SubCategoryPage> {
-  bool isGuest = false;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  String UserType;
+
+  getStringSharedPreferance() {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.getString("UserType");
+        UserType = prefs.getString("UserType");
+      })();
+    });
+  }
+
+  void initState() {
+    Timer(Duration(seconds: 0), () => {getStringSharedPreferance()});
+    (() async {
+      await getStringSharedPreferance();
+      print(UserType);
+    })();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -30,6 +51,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
             child: Scaffold(
               backgroundColor: Palette.scaffold,
               appBar: AppBar(
+                leading: BackButton(color: Colors.black,),
                 centerTitle: false,
                 elevation: 0,
                 toolbarHeight: allHeight(context) * 0.06,
@@ -66,7 +88,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                   ],
                 ),
                 actions: [
-                  isGuest
+                  UserType=="4"
                       ?
                   Padding(
                     padding: EdgeInsets.only(
@@ -112,7 +134,10 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                   )
                 ],
               ),
-              body: MediaQuery.of(context).size.width>500?SingleChildScrollView(
+              body:  (UserType=="4") ?
+              guestPage()
+                  :  MediaQuery.of(context).size.width>500?
+              SingleChildScrollView(
                 child: Column(
                   children: [
                     Padding(
@@ -121,7 +146,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                         height: MediaQuery.of(context).size.height * 0.66,
                         width: MediaQuery.of(context).size.width,
 
-                        child: Main_Category_Card(
+                        child: mainCategoryCard(
                             context,
                             "Hiking Tour",
                             "Unlock your full potential with our hiking tour." +
@@ -135,8 +160,8 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Sub_Category_Card(context, 'Hiking'),
-                            Sub_Category_Card(context, 'Hiking'),
+                            subCategoryCard(context, 'Hiking'),
+                            subCategoryCard(context, 'Hiking'),
                           ],
                         ),
 
@@ -145,7 +170,9 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
 
                   ],
                 ),
-              ):Column(
+              )
+                  :
+              Column(
                 children: [
                   Padding(
                     padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.007),
@@ -153,7 +180,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                       height: MediaQuery.of(context).size.height * 0.37,
                       width: MediaQuery.of(context).size.width,
 
-                      child: Main_Category_Card(
+                      child: mainCategoryCard(
                           context,
                           "Hiking Tour",
                           "Unlock your full potential with our hiking tour." +
@@ -167,22 +194,22 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Sub_Category_Card(context, 'Hiking'),
-                          Sub_Category_Card(context, 'Hiking'),
+                          subCategoryCard(context, 'Hiking'),
+                          subCategoryCard(context, 'Hiking'),
                         ],
                       ),
 
                     ),
                   ),
-
                 ],
-              ),
+              )
+
             ),
           );
         }
     );
   }
-  Widget Main_Category_Card(
+  Widget mainCategoryCard(
       BuildContext context, String category, String description) {
     return  MediaQuery.of(context).size.width>500?
     CarouselSlider.builder(
@@ -366,7 +393,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
         }
     );
   }
-  Widget Sub_Category_Card(BuildContext context, String subCategory) {
+  Widget subCategoryCard(BuildContext context, String subCategory) {
     return MediaQuery.of(context).size.width>500?Container(
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.2,
@@ -653,4 +680,137 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
       ),
     );
   }
+
+  Widget guestPage() {
+    return Scaffold(
+      backgroundColor: Palette.scaffold,
+      body: Padding(
+        padding: EdgeInsets.only(
+            top: allHeight(context) * 0.01,
+            left: allWidth(context) * 0.01,
+            bottom: allWidth(context) * 0.01,
+            right: allWidth(context) * 0.01),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(allWidth(context) * 0.05),
+              ),
+              child: Container(
+                height: allHeight(context) * 0.78,
+                width: allWidth(context),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                    BorderRadius.circular(allWidth(context) * 0.05)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: allWidth(context) * 0.05,
+                          top: allHeight(context) * 0.02),
+                      child: Container(
+                        height: allHeight(context) * 0.05,
+                        width: allWidth(context) * 0.3,
+                        child: AutoSizeText(
+                          'Welcome',
+                          style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                              color: Palette.orange),
+                          maxLines: 1,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: allHeight(context) * 0.01,
+                          ),
+                          Container(
+                            width: allWidth(context),
+                            child: Container(
+                              height: allHeight(context) * 0.05,
+                              width: allWidth(context),
+                              child: Center(
+                                child: AutoSizeText(
+                                  'Signed in first to access this feature.',
+                                  //name of main category
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                    Palette.actHubGreen.withOpacity(0.35),
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Image.asset(
+                            'Images/human.png',
+                            height: allHeight(context) * 0.45,
+                          ),
+                          Padding(
+                            padding:
+                            EdgeInsets.only(top: allHeight(context) * 0.01),
+                            child: Container(
+                              width: allWidth(context),
+                              height: allHeight(context) * 0.059,
+                              child: Center(
+                                child: AutoSizeText(
+                                  "you haven't signed in yet. please sign in\n to manage your activity in application.",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color:
+                                    Palette.actHubGreen.withOpacity(0.50),
+                                  ),
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: allHeight(context) * 0.05,
+                                left: allWidth(context) * 0.01,
+                                right: allWidth(context) * 0.01),
+                            child: Container(
+                              width: allWidth(context) * 0.766,
+                              height: allHeight(context) * 0.054,
+                              child: ElevatedButton(
+                                  child: AutoSizeText(
+                                    'Sign in',
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: 1,
+                                  ), //to style the text of buttons
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Palette.blue // background
+                                    // foreground
+                                  ), //to set the color of buttons
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, SignIn.id);
+                                  }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }

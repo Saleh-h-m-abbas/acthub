@@ -4,6 +4,7 @@ import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
 import 'package:acthub/Screens/Profile/Nested/EditProfileScreen.dart';
+import 'package:acthub/Screens/Profile/Nested/PrivacyPolicyProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/SelectLanguage.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
 import 'package:acthub/Screens/Welcome/PrivacyPolicy.dart';
@@ -27,14 +28,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Widget CardTestList(BuildContext context1, var index) {
+   cardTestList(BuildContext context1, var index) {
     if (index == 0) {
       return buttonCard(
           context1, "Billing", "Images/billing.png", BillingPage());
     }
     if (index == 1) {
       return infoCard(context1,
-          imape_Path:
+          imapePath:
           'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg');
     }
     if (index == 2) {
@@ -58,20 +59,17 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     if (index == 7) {
       return horizontalButton(context1, "Privacy Policy",
-          "Images/privacy_policy.png", PrivacyPolicy());
+          "Images/privacy_policy.png", PrivacyPolicyProfile());
     }
     if (index == 8) {
       return horizontalButton(
           context1, "About Us", "Images/LogoOV.png", AboutUsScreen());
     }
     if (index == 9) {
-      return horizontalButton1(
-          context1, "Logout", "Images/LogoG.png", LogInPage());
-    }
-    if (index == 10) {
-      return horizontalButton1(
+      return horizontalButton(
           context1, "Logout", "Images/logout.png", LogInPage());
     }
+
   }
 
   bool isGuest = true;
@@ -113,25 +111,24 @@ class _ProfilePageState extends State<ProfilePage> {
   profileUi(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height,
+        height: 800,
         child: Expanded(
           child: StaggeredGridView.countBuilder(
             scrollDirection: Axis.vertical,
             crossAxisCount: 4,
             itemCount: 12,
             itemBuilder: (BuildContext context, int index) =>
-                CardTestList(context, index),
+                cardTestList(context, index),
             staggeredTileBuilder: (int index) => new StaggeredTile.count(
-                2,
-                index == 0
-                    ? 1.5
+                (index == 9) ? 4 :2,
+                index == 0 ? 1.5
                     : index == 1
                     ? 3
                     : index == 2
                     ? 1.5
                     : (index == 3 || index == 4)
                     ? 1.5
-                    : 0.8),
+                    : 0.8 ),
             mainAxisSpacing: 4.0,
             crossAxisSpacing: 4.0,
           ),
@@ -140,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget infoCard(BuildContext context, {String text, String imape_Path}) {
+  Widget infoCard(BuildContext context, {String text, String imapePath}) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Card(
@@ -166,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         radius: MediaQuery.of(context).size.width > 500
                             ? MediaQuery.of(context).size.width * 0.08
                             : MediaQuery.of(context).size.width * 0.08,
-                        backgroundImage: NetworkImage(imape_Path),
+                        backgroundImage: NetworkImage(imapePath),
                       ),
                     ),
                     Container(
@@ -192,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buttonCard(
-      BuildContext Context, String text, String image_Path, dynamic route) {
+      BuildContext context, String text, String imagePath, dynamic route) {
     return GestureDetector(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -216,7 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                image_Path,
+                imagePath,
                 height: MediaQuery.of(context).size.height * 0.05,
                 width: MediaQuery.of(context).size.width * 0.1,
               ),
@@ -245,82 +242,12 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       onTap: () {
-        Navigator.push(Context, MaterialPageRoute(builder: (Context) => route));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => route));
       },
     );
   }
 
   horizontalButton(
-      BuildContext newContext,
-      String text,
-      String image_Path,
-      dynamic route,
-      ) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            newContext, MaterialPageRoute(builder: (newContext) => route));
-
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        elevation: 5,
-        child: Container(
-          height: MediaQuery.of(context).size.width > 500
-              ? MediaQuery.of(context).size.width * 0.1
-              : MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width > 500
-              ? MediaQuery.of(context).size.height * 0.5
-              : MediaQuery.of(context).size.width * 0.5,
-          decoration: const BoxDecoration(
-            color: Palette.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(17),
-            ),
-          ),
-          child: Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.0193),
-                  child: Image.asset(
-                    image_Path,
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.0193),
-                  child: Expanded(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: AutoSizeText(
-                        text,
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.visible,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Palette.actHubGrey,
-                            fontSize: 15),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  horizontalButton1(
       BuildContext newContext,
       String text,
       String imagePath,
@@ -330,6 +257,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onTap: () {
         Navigator.push(
             newContext, MaterialPageRoute(builder: (newContext) => route));
+
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -388,4 +316,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
+
 }

@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:html_unescape/html_unescape.dart';
 import 'package:http/http.dart' as http;
-import 'package:translator/translator.dart';
 
 class TranslationApi {
   static final _apiKey = 'AIzaSyCEMMEGURnq9hrJIirGYfHq2uNCO4EpuSY';
 
   static Future<String> translate(String message, String toLanguageCode) async {
     final response = await http.post(
-        Uri.parse('https://translation.googleapis.com/language/translate/v2?target=$toLanguageCode&key=$_apiKey&q=$message'),
+      Uri.parse(
+          'https://translation.googleapis.com/language/translate/v2?target=$toLanguageCode&key=$_apiKey&q=$message'),
     );
 
     if (response.statusCode == 200) {
@@ -21,17 +21,5 @@ class TranslationApi {
     } else {
       throw Exception();
     }
-
-  }
-
-  static Future<String> translate2(
-      String message, String fromLanguageCode, String toLanguageCode) async {
-    final translation = await GoogleTranslator().translate(
-      message,
-      from: fromLanguageCode,
-      to: toLanguageCode,
-    );
-
-    return translation.text;
   }
 }
