@@ -12,6 +12,7 @@ import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
 import 'package:acthub/Screens/Profile/Nested/PackagesScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/PrivacyPolicyProfile.dart';
+import 'package:acthub/Screens/Profile/Nested/RateAppPage.dart';
 import 'package:acthub/Screens/Profile/Nested/SelectLanguage.dart';
 import 'package:acthub/Screens/Welcome/EnableLocation.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
@@ -21,26 +22,25 @@ import 'package:acthub/Screens/Welcome/SignUpAsPage.dart';
 import 'package:acthub/Screens/Welcome/SignUpFormPage.dart';
 import 'package:acthub/Screens/Welcome/TermsAndConditions.dart';
 import 'package:acthub/Screens/Welcome/YourData.dart';
+import 'package:acthub/Screens/Profile/ProfilePageTest.dart';
 import 'package:flutter/material.dart';
 import 'Screens/ActivityPage.dart';
 import 'Screens/Management/Nested/AddActivity.dart';
 import 'Screens/Profile/Nested/AboutUsScreen.dart';
 import 'Screens/Profile/Nested/ContactUsPage.dart';
 import 'Screens/Profile/Nested/EditProfileScreen.dart';
-import 'Screens/Profile/ProfilePage.dart';
 
 void main() {
   runApp(MyApp());
 }
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:NavigationPage.id,
-
+      initialRoute: SignIn.id,
       routes: {
+        ProfilePageTest.id:(context)=>ProfilePageTest(),
         LandingPage.id: (context) => LandingPage(),
         EnableLocation.id: (context) => EnableLocation(),
         PrivacyPolicy.id: (context) => PrivacyPolicy(),
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         SearchPage.id: (context) => SearchPage(),
         SubCategoryPage.id: (context) => SubCategoryPage(),
         ActivityPage.id: (context) => ActivityPage(),
-        ProfilePage.id: (context) => ProfilePage(),
+        //ProfilePage.id: (context) => ProfilePage(),
         PackagesScreen.id: (context) => PackagesScreen(),
         ContactUsPage.id: (context) => ContactUsPage(),
         AboutUsScreen.id: (context) => AboutUsScreen(),
@@ -69,7 +69,9 @@ class MyApp extends StatelessWidget {
         NotificationPage.id: (context) => NotificationPage(),
         SelectLanguage.id:(context) => SelectLanguage(),
         AboutProfile.id:(context)=>AboutProfile(),
-        PrivacyPolicyProfile.id:(context)=>PrivacyPolicy()
+        PrivacyPolicyProfile.id:(context)=>PrivacyPolicyProfile(),
+        AddActivity.id:(context)=>AddActivity(),
+        RateAppPage.id:(context)=>RateAppPage(),
       },
     );
   }

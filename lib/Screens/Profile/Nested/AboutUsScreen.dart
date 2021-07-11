@@ -1,9 +1,17 @@
 import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+double allHeight(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
+}
+double allWidth(BuildContext context){
+  return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
+  MediaQuery.of(context).size.width:MediaQuery.of(context).size.width*0.85;
+}
 class AboutUsScreen extends StatelessWidget {
   static const String id = 'AboutUsScreen';
-  String Gettext = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
+  String getText = 'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read ourWe collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve  your experience and  show ads that are relevant to you .for more information please  read our We collect information on how and when you use our app. this allows us, and our trustedthird parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our'; //to get privacy text from firebase
   //to get condition text from firebase
   @override
   Widget build(BuildContext context) {
@@ -40,34 +48,56 @@ class AboutUsScreen extends StatelessWidget {
           ),
         ),
       ) ,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+      body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
 
-          Container(
-            height: MediaQuery.of(context).size.height*0.75,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.only(bottom:MediaQuery.of(context).size.height*0.0125,
-               top: MediaQuery.of(context).size.height*0.025,
-               left: MediaQuery.of(context).size.width*0.05 ,
-                right: MediaQuery.of(context).size.width*0.05),
-
-            child: SingleChildScrollView(
-              child: AutoSizeText(
-                Gettext+Gettext,
-                textAlign: TextAlign.left,
-                style: TextStyle(wordSpacing: 0.1,fontSize: 20),
-                overflow: TextOverflow.visible,
+            Container(
+              height: allHeight(context)*0.76,
+              width: allWidth(context)*0.79,
+              child: SingleChildScrollView(
+                child: AutoSizeText(
+                  getText,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(wordSpacing: 0.06,fontSize: 20),
+                  overflow: TextOverflow.visible,
+                ),
               ),
             ),
 
-          ),//Contain Column for two texts, expanded for actHub image
-          // contain text widget to get privacy policy text from firebase
-          Container(
-              height: MediaQuery.of(context).size.height*0.07,
-              width: MediaQuery.of(context).size.width*0.4,
-              child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), //contain ACTHUB text picture
-        ],
+            SafeArea(child: Container(
+                height: allHeight(context)*0.06,
+                width: allWidth(context)*0.4,
+                child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
+          ],
+        ),
+      ):SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              Container(
+                height: allHeight(context)*0.76,
+                width: allWidth(context)*0.6,
+                child: SingleChildScrollView(
+                  child: AutoSizeText(
+                    getText,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(wordSpacing: 0.06,fontSize: 20),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+              ),
+
+              SafeArea(child: Container(
+                  height: allHeight(context)*0.06,
+                  width: allWidth(context)*0.4,
+                  child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
+            ],
+          ),
+        ),
       ),
     );
   }

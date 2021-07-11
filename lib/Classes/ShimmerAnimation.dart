@@ -32,12 +32,14 @@ class ShimmerAnimation {
                     Padding(
                       padding: EdgeInsets.only(left: 10, right: 5),
                       child: Container(
+                        child: Image (image :AssetImage("Images/ActHubG.png")),
                         width: MediaQuery.of(context).size.width * 0.7,
                         height: MediaQuery.of(context).size.height * 0.22,
                         color: Palette.actHubGreen.withOpacity(0.35),
                       ),
                     ),
                     Container(
+                      child: Image (image :AssetImage("Images/ActHubG.png")),
                       width: MediaQuery.of(context).size.width * 0.25,
                       height: MediaQuery.of(context).size.height * 0.22,
                       color: Palette.actHubGreen.withOpacity(0.35),
@@ -119,6 +121,7 @@ class ShimmerAnimation {
                     crossAxisCount: 4,
                     itemCount: 13,
                     itemBuilder: (BuildContext context, int index) => Card(
+                      child: Image (image :AssetImage("Images/ActHubG.png")),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
                       elevation: 5,
@@ -140,12 +143,12 @@ class ShimmerAnimation {
 
   GFImageOverlay categoryWidget1(BuildContext context) {
     return GFImageOverlay(
+      image: AssetImage("Images/ActHubG.png"),
       width: MediaQuery.of(context).size.width * 0.22,
       height: MediaQuery.of(context).size.height * 0.5,
       padding: EdgeInsets.all(20.0),
       borderRadius: BorderRadius.circular(10),
-      colorFilter:
-          new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key key}) : super(key: key);
   static const String id = 'EditProfileScreen';
@@ -277,5 +277,4 @@ mainAxisAlignment: MainAxisAlignment.center,
 
     );
   }
-
 }

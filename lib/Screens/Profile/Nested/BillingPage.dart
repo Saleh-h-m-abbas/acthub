@@ -187,7 +187,7 @@ class _BillingPageState extends State<BillingPage> {
         ),
       ),);
   }
-  Widget packageDesign(BuildContext context,String packageURL,String price, String Access, String checkURL, String falseURL, String PackageType,Color PackageTypeColor,Color buttonColor){
+  Widget packageDesign(BuildContext context,String packageURL,String price, String access, String checkURL, String falseURL, String packageType,Color packageTypeColor,Color buttonColor){
     return Stack(
       children: [
         Card(
@@ -242,7 +242,7 @@ class _BillingPageState extends State<BillingPage> {
                               Padding(
                                 padding: EdgeInsets.only(left: allWidth(context)*0.27),
                                 child: AutoSizeText(
-                                  Access,
+                                  access,
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.visible,
                                   style: TextStyle(
@@ -273,7 +273,7 @@ class _BillingPageState extends State<BillingPage> {
                             Padding(
                               padding: EdgeInsets.only(left: allWidth(context)*0.28),
                               child: AutoSizeText(
-                                Access,
+                                access,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.visible,
                                 style: TextStyle(
@@ -303,7 +303,7 @@ class _BillingPageState extends State<BillingPage> {
                             Padding(
                               padding: EdgeInsets.only(left: allWidth(context)*0.28),
                               child: AutoSizeText(
-                                Access,
+                                access,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.visible,
                                 style: TextStyle(
@@ -333,7 +333,7 @@ class _BillingPageState extends State<BillingPage> {
                             Padding(
                               padding: EdgeInsets.only(left: allWidth(context)*0.28),
                               child: AutoSizeText(
-                                Access,
+                                access,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.visible,
                                 style: TextStyle(
@@ -363,7 +363,7 @@ class _BillingPageState extends State<BillingPage> {
                             Padding(
                               padding: EdgeInsets.only(left: allWidth(context)*0.28),
                               child: AutoSizeText(
-                                Access,
+                                access,
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.visible,
                                 style: TextStyle(
@@ -398,13 +398,13 @@ class _BillingPageState extends State<BillingPage> {
               child: Align(
                 alignment: Alignment.center,
                 child: AutoSizeText(
-                  PackageType,
+                  packageType,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.visible,
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: PackageTypeColor
+                      color: packageTypeColor
                   ),
                 ),
               ),

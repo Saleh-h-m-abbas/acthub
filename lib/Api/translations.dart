@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Translations {
   static final languages = <String>[
     'Afrikaans',

@@ -58,17 +58,10 @@ class _ContactUsPageState extends State<ContactUsPage> {
         elevation: 0,
       ),
       body: Center(
-        child: Container(
-          height: allHeight(context),
-          width: allWidth(context),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+        child: ListView(
               children: [
-                //contain privacy picture
                 Container(
-                  height: allHeight(context)*0.8,
+                  height: allHeight(context)*0.75,
                   width: allWidth(context),
                   child: Column(
                     children: [
@@ -91,8 +84,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     child: Image.asset('Images/ActHubOLogo.png',fit: BoxFit.contain,)), )
               ],
             ),
-          ),
-        ),
+
+
       ),
     );
   }

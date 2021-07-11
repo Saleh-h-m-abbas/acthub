@@ -15,7 +15,7 @@ class YourData extends StatefulWidget {
 }
 
 class _YourDataState extends State<YourData> {
-  String Gettext =
+  String getText =
       'We collect information on how and when you use our app. this allows us, and our trusted third parties, to personalize what you see, improve your experience and  show ads that are relevant to you .for more information please  read our '; //to get Data Text from firebase
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
@@ -66,44 +66,46 @@ class _YourDataState extends State<YourData> {
             height: MediaQuery.of(context).size.height * 0.1,
             width: MediaQuery.of(context).size.width * 0.9,
             alignment: Alignment.topCenter,
-            child: new AutoSizeText.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: Gettext,
-                    style: new TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: '\nTerms And Conditions',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TermsAndConditions()));
-                      },
-                  ),
-                  TextSpan(
-                    text: ' And ',
-                    style: new TextStyle(color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: 'PrivacyPolicy',
-                    style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PrivacyPolicy()));
-                      },
-                  )
-                ],
+            child: SingleChildScrollView(
+              child: new AutoSizeText.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: getText,
+                      style: new TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                      text: '\nTerms And Conditions',
+                      style: TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TermsAndConditions()));
+                        },
+                    ),
+                    TextSpan(
+                      text: ' And ',
+                      style: new TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                      text: 'PrivacyPolicy',
+                      style: TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyPolicy()));
+                        },
+                    )
+                  ],
+                ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                style: TextStyle(fontSize: 18),
               ),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              style: TextStyle(fontSize: 25),
             ),
           ),
           Container(
@@ -132,7 +134,8 @@ class _YourDataState extends State<YourData> {
                   // foreground
                 )),
           ),
-          SafeArea(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5.0),
             child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
                 width: MediaQuery.of(context).size.width * 0.4,

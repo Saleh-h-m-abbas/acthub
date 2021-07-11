@@ -19,7 +19,7 @@ class EnableLocation extends StatefulWidget {
 }
 
 class _EnableLocationState extends State<EnableLocation> {
-  String Gettext =
+  String getText =
       'ActHub gets your location for you to get better experience while using the app , however you can adjust your , location settings at any time.'; //variable to get location text from firebase
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
@@ -79,7 +79,7 @@ class _EnableLocationState extends State<EnableLocation> {
                           vertical: MediaQuery.of(context).size.height * 0.0125,
                           horizontal: MediaQuery.of(context).size.width * 0.1),
                       child: AutoSizeText(
-                        Gettext,
+                        getText,
                         textAlign: TextAlign.center,
                         style: TextStyle(wordSpacing: 0.1, fontSize: 20),
                         overflow: TextOverflow.visible,

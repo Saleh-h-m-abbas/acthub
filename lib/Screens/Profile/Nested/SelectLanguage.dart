@@ -2,10 +2,8 @@ import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/search_bar/gf_search_bar.dart';
-import 'package:group_radio_button/group_radio_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:smart_select/smart_select.dart';
+
 double allHeight(BuildContext context){
   return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?
   MediaQuery.of(context).size.height:MediaQuery.of(context).size.width;
@@ -24,12 +22,11 @@ class SelectLanguage extends StatefulWidget {
 }
 
 class _SelectLanguageState extends State<SelectLanguage> {
-  String _verticalGroupValue = "English";
+
   var toLanguageCode;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  static const values = <String>['Flutter', 'Dart', 'Firebase'];
-  String selectedValue = values.first;
+  String selectedValue = Translations.languages.first;
 
   final selectedColor = Colors.red;
   final unselectedColor = Colors.black;
@@ -71,68 +68,30 @@ class _SelectLanguageState extends State<SelectLanguage> {
         ),
       ),
       body: languageDesign(context),
-      // body: SingleChildScrollView(
-      //   child: Column(
-      //     children: <Widget>[
-      //       const SizedBox(height: 7),
-      //       const Divider(indent: 20),
-      //       Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           GFSearchBar(
-      //             searchList: Translations.languages,
-      //             searchQueryBuilder: (query, list) {
-      //               return list
-      //                   .where((item) =>
-      //                   item.toLowerCase().contains(query.toLowerCase()))
-      //                   .toList();
-      //             },
-      //             overlaySearchListItemBuilder: (item) {
-      //               return Container(
-      //                 padding: const EdgeInsets.all(8),
-      //                 child: Text(
-      //                   item,
-      //                   style: const TextStyle(fontSize: 18),
-      //                 ),
-      //               );
-      //             },
-      //             onItemSelected: (item) {
-      //               setState(() {
-      //                 print('$item');
-      //               });
-      //             },
-      //           ),
-      //           buildRadios(),
-      //         ],
-      //       ),
-      //       const SizedBox(height: 7),
-      //     ],
-      //   ),
-      // ),
     );
   }
   Widget languageDesign(BuildContext context){
     Color shadow = Palette.actHubGreen.withOpacity(0.33);
-    return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?ListView(
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Center(
           child: Hero(
             tag: 'search',
             child: Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(12.0),
               ),
               elevation: 10,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Palette.white,
                   borderRadius: BorderRadius.all(
-                    Radius.circular(30),
+                    Radius.circular(10),
                   ),
                 ),
                 height:allHeight(context) * 0.06,
-                width: allWidth(context) * 0.87,
+                width: allWidth(context) * 0.95,
                 child: Center(
                   child: TextField(
                     cursorWidth: 2,
@@ -170,46 +129,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
             ),
           ),
         ),
-        Container(
-          width: allWidth(context)*0.9,
-          height: allHeight(context)*0.68,
-          child: ListView.builder(itemCount:10,itemBuilder: (BuildContext context, int index){
-            return Padding(
-              padding:EdgeInsets.only(top: 15.0),
-              child: GestureDetector(
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                  ),
-                  elevation: 5,
-                  shadowColor: shadow,
-                  child: Container(
-                    height: allHeight(context)*0.07,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                    ),
-                    child: Center(
-                      child: AutoSizeText('English',
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.visible,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Segoe UI",
-
-                        ),
-
-                      ),
-                    ),
-
-                  ),
-                ),
-              ),
-            );
-          }),
-        ),
+        buildRadios(),
         SafeArea(child: Container(
             height: allHeight(context) * 0.1,
             width:allWidth(context) * 0.4,
@@ -218,114 +138,72 @@ class _SelectLanguageState extends State<SelectLanguage> {
               fit: BoxFit.contain,
             )),),
       ],
-    ):SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-        children: [
-          Center(
-            child: Hero(
-              tag: 'search',
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                elevation: 10,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Palette.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
+    ):ListView(
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Center(
+          child: Hero(
+            tag: 'search',
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 10,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Palette.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
-                  height:allHeight(context) * 0.06,
-                  width: allWidth(context) * 0.87,
-                  child: Center(
-                    child: TextField(
-                      cursorWidth: 2,
-                      cursorHeight:
-                      allHeight(context) * 0.03,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          color: Palette.actHubGreen.withOpacity(0.33),
-                          size:allHeight(context)*0.03,
+                ),
+                height:allHeight(context) * 0.06,
+                width: allWidth(context),
+                child: Center(
+                  child: TextField(
+                    cursorWidth: 2,
+                    cursorHeight:
+                    allHeight(context) * 0.03,
+                    cursorColor: Colors.black,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.search_rounded,
+                        color: Palette.actHubGreen.withOpacity(0.33),
+                        size:allHeight(context)*0.03,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
+                      ),
+                      //to put border color white when the textfiled not clicked
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
                         ),
-                        //to put border color white when the textfiled not clicked
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
-                          ),
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        //to set border color grey when the textfiled clicked
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                        ), //to set the color of hint black
-                      ), //decorat input text
-                    ),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      //to set border color grey when the textfiled clicked
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 19,
+                      ), //to set the color of hint black
+                    ), //decorat input text
                   ),
                 ),
               ),
             ),
           ),
-          Container(
-            width: allWidth(context)*0.9,
-            height: allHeight(context)*0.7,
-            child: ListView.builder(itemCount:10,itemBuilder: (BuildContext context, int index){
-              return Padding(
-                padding:EdgeInsets.only(top: 15.0),
-                child: GestureDetector(
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                    ),
-                    elevation: 5,
-                    shadowColor: shadow,
-                    child: Container(
-                      height: allHeight(context)*0.07,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(allHeight(context)*0.02),
-                      ),
-                      child: Center(
-                        child: AutoSizeText('English',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.visible,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Segoe UI",
-
-                          ),
-
-                        ),
-                      ),
-
-                    ),
-                  ),
-                ),
-              );
-            }),
-          ),
-          SafeArea(child: Container(
-              height: allHeight(context) * 0.1,
-              width:allWidth(context) * 0.4,
-              child: Image.asset(
-                'Images/ActHubOLogo.png',
-                fit: BoxFit.contain,
-              )),),
-        ],
-      ),
+        ),
+        buildRadios(),
+        SafeArea(child: Container(
+            height: allHeight(context) * 0.1,
+            width:allWidth(context) * 0.4,
+            child: Image.asset(
+              'Images/ActHubOLogo.png',
+              fit: BoxFit.contain,
+            )),),
+      ],
     );
   }
 
@@ -376,7 +254,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
                         fontSize: 16.0,
-                        color: Colors.black,
+                        color: color,
                       ),
                       textAlign: TextAlign.center,
                     ),
