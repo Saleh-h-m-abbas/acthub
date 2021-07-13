@@ -18,7 +18,7 @@ class _TranslationWidgetState extends State<TranslationWidget> {
   String translation;
   @override
   Widget build(BuildContext context) {
-    final toLanguageCode = Translations.getLanguageCode(widget.toLanguage);
+    final toLanguageCode = Translations.getLanguageCode("Arabic");
     return FutureBuilder(
       future: TranslationApi.translate(widget.message, toLanguageCode),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -39,25 +39,19 @@ class _TranslationWidgetState extends State<TranslationWidget> {
     );
   }
 
-  MessageWidget(translatedMessage) {
-    String translatedMessage;
-    String Data;
-    // @override
-    // Widget build(BuildContext context) {
-    // }
-
-    TranslationWidget(
-        message: translatedMessage,
-        builder: (newText) {
-          setState(() {
-            Data = newText;
-          });
-          return Text(Data);
-          // return Text(
-          //   newText,
-          //   style: TextStyle(color: Colors.black),
-          // );
-        });
-    // return Data;
-  }
+  // MessageWidget(String translatedMessage) {
+  //   String Data;
+  //   TranslationWidget(
+  //       message: translatedMessage,
+  //       builder: (newText) {
+  //         setState(() {
+  //           Data = newText;
+  //         });
+  //         return Text(
+  //           newText,
+  //           style: TextStyle(color: Colors.black),
+  //         );
+  //       });
+  //    return Data;
+  // }
 }

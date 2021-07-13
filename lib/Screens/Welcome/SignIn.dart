@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:acthub/Api/translation_widget.dart';
+
 class SignIn extends StatefulWidget {
   static const String id = 'SignIn';
 
@@ -14,6 +16,26 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  messageWidget(translatedMessage) {
+    String data="hi";
+    TranslationWidget(
+        message: translatedMessage,
+        builder: (newText) {
+          setState(() {
+            data = newText;
+            print(newText);
+           print("-----------");
+            print(data);
+          });
+          return Text(
+            newText,
+            style: TextStyle(color: Colors.black),
+          );
+        });
+     //print(data);
+     return data;
+  }
 
   void _showButtonPressDialog(BuildContext context, String provider) {
     Scaffold.of(context).showSnackBar(
@@ -37,6 +59,18 @@ class _SignInState extends State<SignIn> {
             width:MediaQuery.of(context).size.width ,
             fit: BoxFit.fill,
           ),
+
+          Text(messageWidget("hi")),
+
+        TranslationWidget(
+            message: "hi",
+            builder: (newText) {
+              return Text(
+                newText,
+                style: TextStyle(color: Colors.black),
+              );
+            }),
+
           Container(
             height: MediaQuery.of(context).size.height*0.07,
             width: MediaQuery.of(context).size.width*0.55,
@@ -59,7 +93,7 @@ class _SignInState extends State<SignIn> {
             padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.015,
             ),
             child: AutoSizeText(
-              "Login for full enjoyable experience.",
+              messageWidget("Login for full enjoyable experience."),
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
               maxLines: 1,
