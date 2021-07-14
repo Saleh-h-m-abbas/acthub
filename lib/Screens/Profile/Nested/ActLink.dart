@@ -78,7 +78,7 @@ class _ActLinkState extends State<ActLink> {
 
                         ListTileSwitch(
                           value: _value,
-                          leading:  Image.asset('Images/facebookIcon.png',fit: BoxFit.contain,),
+                          leading:  Image.asset('Images/FacebookIcon.png',fit: BoxFit.contain,),
                           onChanged: (value) {
                             setState(() {
                               _value = value;
@@ -98,7 +98,7 @@ class _ActLinkState extends State<ActLink> {
                         ),
                         ListTileSwitch(
                             value: _value,
-                            leading:   Image.asset('Images/twitterIcon.png',fit: BoxFit.contain,),
+                            leading:   Image.asset('Images/Twitters.png',fit: BoxFit.contain,),
                             onChanged: (value) {
                               setState(() {
                                 _value = value;

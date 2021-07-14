@@ -4,6 +4,7 @@ import 'package:acthub/Screens/Profile/Nested/AboutUsScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/ActLink.dart';
 import 'package:acthub/Screens/Profile/Nested/BillingPage.dart';
 import 'package:acthub/Screens/Profile/Nested/ContactUsPage.dart';
+import 'package:acthub/Screens/Profile/Nested/CurrencyPage.dart';
 import 'package:acthub/Screens/Profile/Nested/EditProfileScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/PrivacyPolicyProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/RateAppPage.dart';
@@ -13,6 +14,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Nested/Terms.dart';
 
 double allWidth(BuildContext context) {
   return MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
@@ -26,7 +29,7 @@ double allHeight(BuildContext context) {
       : MediaQuery.of(context).size.width;
 }
 
-class   ProfilePageTest extends StatefulWidget {
+class ProfilePageTest extends StatefulWidget {
   static const String id = 'ProfilePageTest';
   @override
   _ProfilePageTestState createState() => _ProfilePageTestState();
@@ -35,13 +38,14 @@ class   ProfilePageTest extends StatefulWidget {
 class _ProfilePageTestState extends State<ProfilePageTest> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String UserType;
+  String defultLanguage;
 
   getStringSharedPreferance() {
     setState(() {
       (() async {
         final SharedPreferences prefs = await _prefs;
-        prefs.getString("UserType");
         UserType = prefs.getString("UserType");
+        defultLanguage= prefs.getString("Language");
       })();
     });
   }
@@ -49,8 +53,6 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
   void initState() {
     Timer(Duration(seconds: 0), () => {getStringSharedPreferance()});
     (() async {
-      await getStringSharedPreferance();
-      print(UserType);
     })();
     super.initState();
   }
@@ -69,7 +71,8 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
             backgroundColor: Palette.scaffold,
             title: Container(
               width: MediaQuery.of(context).size.width * 0.25,
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.08,
+              alignment: Alignment.bottomCenter,
               child: AutoSizeText(
                 'Profile',
                 style: TextStyle(
@@ -113,21 +116,21 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                   buttonCard(
                       context,
                       "Rate this App",
-                      'Images/star.png',
+                      'Images/rate.png',
                       RateAppPage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
                   buttonCard(
                       context,
                       "Language",
-                      'Images/language.png',
+                      'Images/Languages.png',
                       SelectLanguage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
                   buttonCard(
                       context,
                       "Contact Us",
-                      'Images/contact.png',
+                      'Images/contacts.png',
                       ContactUsPage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
@@ -166,9 +169,10 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                         ),
                       ),
                       Positioned(
-                        left: MediaQuery.of(context).size.width * 0.095,
+                        left: MediaQuery.of(context).size.width * 0.12,
+                        top: MediaQuery.of(context).size.width * 0.02,
                         child: Stack(
-                          alignment: Alignment.bottomLeft,
+
                           children: [
                             Card(
                               shape: RoundedRectangleBorder(
@@ -181,25 +185,29 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                               ),
                               elevation: 10,
                               child: CircleAvatar(
-                                radius: MediaQuery.of(context).size.width > 500
+                                radius: allWidth(context)>allHeight(context)
                                     ? MediaQuery.of(context).size.width * 0.1
-                                    : MediaQuery.of(context).size.width * 0.12,
+                                    : MediaQuery.of(context).size.width * 0.1,
                                 backgroundImage: NetworkImage(
                                     'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                               ),
                             ),
-                            Container(
-                              height: MediaQuery.of(context).size.width > 500
-                                  ? MediaQuery.of(context).size.width * 0.05
-                                  : MediaQuery.of(context).size.width * 0.06,
-                              width: MediaQuery.of(context).size.width > 500
-                                  ? MediaQuery.of(context).size.width * 0.07
-                                  : MediaQuery.of(context).size.width * 0.09,
-                              decoration: BoxDecoration(
-                                  color: Palette.online,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      width: 2.0, color: Palette.white)),
+                            Positioned(
+                              top: MediaQuery.of(context).size.width * 0.165,
+                              left: MediaQuery.of(context).size.width * 0.015,
+                              child: Container(
+                                height: allWidth(context)>allHeight(context)
+                                    ? MediaQuery.of(context).size.width * 0.05
+                                    : MediaQuery.of(context).size.width * 0.04,
+                                width: MediaQuery.of(context).size.width > 500
+                                    ? MediaQuery.of(context).size.width * 0.07
+                                    : MediaQuery.of(context).size.width * 0.05,
+                                decoration: BoxDecoration(
+                                    color: Palette.online,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        width: 2.0, color: Palette.white)),
+                              ),
                             )
                           ],
                         ),
@@ -229,12 +237,12 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                                       style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
-                                          color: Palette.orange),
+                                          color: Palette.profileIconsColor),
                                     ),
                                     TextSpan(
                                       text: 'Giovani',
                                       style: TextStyle(
-                                          color: Palette.orange, fontSize: 16),
+                                          color: Palette.profileIconsColor, fontSize: 16),
                                     )
                                   ]),
                                   overflow: TextOverflow.visible,
@@ -242,17 +250,18 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(
-                                MediaQuery.of(context).size.width * 0.02,
+                              padding: EdgeInsets.only(
+                                left:MediaQuery.of(context).size.width * 0.015,
                               ),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
+
                                 child: AutoSizeText(
                                   'Country :  Palestine \n'
                                   'City :         Ramallah\n'
                                   'Age :        25 years old \n',
                                   style: TextStyle(
-                                    color: Palette.orange,
+                                    color: Palette.actHubGreen.withOpacity(0.73),
                                     fontSize: 20,
                                   ),
                                   maxLines: 6,
@@ -275,32 +284,60 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
               ),
             ],
           ),
-          horizontalButton(context,
-              image_Path: 'Images/privacy_policy.png',
-              width: MediaQuery.of(context).size.width * .92,
-              height: MediaQuery.of(context).size.height * 0.1,
-              text: 'Privacy Policy',
-              route: PrivacyPolicyProfile.id,
-              gap: MediaQuery.of(context).size.width * 0.18),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               horizontalButton(context,
-                  image_Path: 'Images/edit.png',
+                  image_Path: 'Images/Profile.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
                   text: 'Edit Profile',
                   route: EditProfileScreen.id,
-                  gap: MediaQuery.of(context).size.width * 0.1),
+                  gap: MediaQuery.of(context).size.width * 0.08),
               horizontalButton(context,
-                  image_Path: 'Images/logout.png',
+                  image_Path: 'Images/currencyEx.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
-                  text: 'Logout',
-                  route: SignIn.id,
-                  gap: MediaQuery.of(context).size.width * 0.1),
+                  text: 'Currency',
+                  route: CurrencyPage.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              horizontalButton(context,
+                  image_Path: 'Images/Privacy.png',
+                  width: MediaQuery.of(context).size.width * .46,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  text: 'Privacy Policy',
+                  route: PrivacyPolicyProfile.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
+              horizontalButton(context,
+                  image_Path: 'Images/condition.png',
+                  width: MediaQuery.of(context).size.width * .46,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  text: 'Terms & Condition',
+                  route: Terms.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
+            ],
+          ),
+          //(0XFFDE9D)
+
+          horizontalButton(context,
+              image_Path: 'Images/LogOuts.png',
+              width: MediaQuery.of(context).size.width * .92,
+              height: MediaQuery.of(context).size.height * 0.1,
+              text: 'Log Out',
+              route: SignIn.id,
+              gap: MediaQuery.of(context).size.width * 0.18),
+          // horizontalButton(context,
+          //     image_Path: 'Images/privacy_policy.png',
+          //     width: MediaQuery.of(context).size.width * .92,
+          //     height: MediaQuery.of(context).size.height * 0.1,
+          //     text: 'Privacy Policy',
+          //     route: PrivacyPolicyProfile.id,
+          //     gap: MediaQuery.of(context).size.width * 0.18),
         ],
       ),
     );
@@ -318,25 +355,25 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
                   buttonCard(
                       context,
                       "Billing",
-                      'Images/billing.png',
+                      'Images/Money.png',
                       BillingPage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
                   buttonCard(
                       context,
                       "Language",
-                      'Images/language.png',
+                      'Images/Languages.png',
                       SelectLanguage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
                   buttonCard(
                       context,
                       "Contact Us",
-                      'Images/contact.png',
+                      'Images/contacts.png',
                       ContactUsPage.id,
                       MediaQuery.of(context).size.height * 0.16,
                       MediaQuery.of(context).size.width * 0.45),
@@ -347,13 +384,13 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                   Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.37,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         width: MediaQuery.of(context).size.width * 0.45,
                         child: Column(
                           children: [
                             SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.03),
+                                MediaQuery.of(context).size.height * 0.06),
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -367,7 +404,7 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                                   ),
                                 ),
                                 height:
-                                    MediaQuery.of(context).size.height * 0.33,
+                                MediaQuery.of(context).size.height * 0.33,
                                 width: MediaQuery.of(context).size.width * 0.45,
                               ),
                             ),
@@ -375,40 +412,45 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                         ),
                       ),
                       Positioned(
-                        left: MediaQuery.of(context).size.width * 0.095,
+                        left: MediaQuery.of(context).size.width * 0.12,
+                        top: MediaQuery.of(context).size.width * 0.02,
                         child: Stack(
-                          alignment: Alignment.bottomLeft,
+
                           children: [
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     MediaQuery.of(context).size.width > 500
                                         ? MediaQuery.of(context).size.width *
-                                            0.1
+                                        0.1
                                         : MediaQuery.of(context).size.width *
-                                            0.12),
+                                        0.12),
                               ),
                               elevation: 10,
                               child: CircleAvatar(
-                                radius: MediaQuery.of(context).size.width > 500
+                                radius: allWidth(context)>allHeight(context)
                                     ? MediaQuery.of(context).size.width * 0.1
-                                    : MediaQuery.of(context).size.width * 0.12,
+                                    : MediaQuery.of(context).size.width * 0.1,
                                 backgroundImage: NetworkImage(
                                     'https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg'),
                               ),
                             ),
-                            Container(
-                              height: MediaQuery.of(context).size.width > 500
-                                  ? MediaQuery.of(context).size.width * 0.05
-                                  : MediaQuery.of(context).size.width * 0.06,
-                              width: MediaQuery.of(context).size.width > 500
-                                  ? MediaQuery.of(context).size.width * 0.07
-                                  : MediaQuery.of(context).size.width * 0.09,
-                              decoration: BoxDecoration(
-                                  color: Palette.online,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      width: 2.0, color: Palette.white)),
+                            Positioned(
+                              top: MediaQuery.of(context).size.width * 0.165,
+                              left: MediaQuery.of(context).size.width * 0.015,
+                              child: Container(
+                                height: allWidth(context)>allHeight(context)
+                                    ? MediaQuery.of(context).size.width * 0.05
+                                    : MediaQuery.of(context).size.width * 0.04,
+                                width: MediaQuery.of(context).size.width > 500
+                                    ? MediaQuery.of(context).size.width * 0.07
+                                    : MediaQuery.of(context).size.width * 0.05,
+                                decoration: BoxDecoration(
+                                    color: Palette.online,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        width: 2.0, color: Palette.white)),
+                              ),
                             )
                           ],
                         ),
@@ -430,7 +472,7 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.04,
+                                MediaQuery.of(context).size.height * 0.04,
                                 child: AutoSizeText.rich(
                                   TextSpan(children: [
                                     TextSpan(
@@ -438,12 +480,12 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                                       style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
-                                          color: Palette.orange),
+                                          color: Palette.profileIconsColor),
                                     ),
                                     TextSpan(
                                       text: 'Giovani',
                                       style: TextStyle(
-                                          color: Palette.orange, fontSize: 16),
+                                          color: Palette.profileIconsColor, fontSize: 16),
                                     )
                                   ]),
                                   overflow: TextOverflow.visible,
@@ -451,18 +493,19 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(
-                                MediaQuery.of(context).size.width * 0.02,
+                              padding: EdgeInsets.only(
+                                left:MediaQuery.of(context).size.width * 0.015,
                               ),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
+
                                 child: AutoSizeText(
-                                  'Country :      Palestine \n'
-                                  'City :             Ramallah\n'
-                                  'Company :    Sky \n',
+                                  'Country :  Palestine \n'
+                                      'City :         Ramallah\n'
+                                      'Age :        25 years old \n',
                                   style: TextStyle(
-                                    color: Palette.orange,
-                                    fontSize: 16,
+                                    color: Palette.actHubGreen.withOpacity(0.73),
+                                    fontSize: 20,
                                   ),
                                   maxLines: 6,
                                 ),
@@ -488,40 +531,75 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               horizontalButton(context,
-                  image_Path: 'Images/privacy_policy.png',
+                  image_Path: 'Images/Profile.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
-                  text: 'Privacy Policy',
-                  route: PrivacyPolicyProfile.id,
-                  gap: MediaQuery.of(context).size.width * 0.1),
+                  text: 'Edit Profile',
+                  route: EditProfileScreen.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
               horizontalButton(context,
-                  image_Path: 'Images/link.png',
+                  image_Path: 'Images/currencyEx.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
-                  text: 'Act Link',
-                  gap: MediaQuery.of(context).size.width * 0.1,
-                  route: ActLink.id),
+                  text: 'Currency',
+                  route: CurrencyPage.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               horizontalButton(context,
-                  image_Path: 'Images/edit.png',
+                  image_Path: 'Images/Privacy.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
-                  text: 'Edit Profile',
-                  route: EditProfileScreen.id,
-                  gap: MediaQuery.of(context).size.width * 0.1),
+                  text: 'Privacy Policy',
+                  route: PrivacyPolicyProfile.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
               horizontalButton(context,
-                  image_Path: 'Images/logout.png',
+                  image_Path: 'Images/condition.png',
                   width: MediaQuery.of(context).size.width * .46,
                   height: MediaQuery.of(context).size.height * 0.1,
-                  text: 'Logout',
-                  route: SignIn.id,
-                  gap: MediaQuery.of(context).size.width * 0.1),
+                  text: 'Terms & Condition',
+                  route: Terms.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              horizontalButton(context,
+                  image_Path: 'Images/rate.png',
+                  width: MediaQuery.of(context).size.width * .46,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  text: 'Rate This App',
+                  route: RateAppPage.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
+              horizontalButton(context,
+                  image_Path: 'Images/Links.png',
+                  width: MediaQuery.of(context).size.width * .46,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  text: 'ActLink',
+                  route: ActLink.id,
+                  gap: MediaQuery.of(context).size.width * 0.08),
+            ],
+          ),
+          //(0XFFDE9D)
+
+          horizontalButton(context,
+              image_Path: 'Images/LogOuts.png',
+              width: MediaQuery.of(context).size.width * .92,
+              height: MediaQuery.of(context).size.height * 0.1,
+              text: 'Log Out',
+              route: SignIn.id,
+              gap: MediaQuery.of(context).size.width * 0.18),
+          // horizontalButton(context,
+          //     image_Path: 'Images/privacy_policy.png',
+          //     width: MediaQuery.of(context).size.width * .92,
+          //     height: MediaQuery.of(context).size.height * 0.1,
+          //     text: 'Privacy Policy',
+          //     route: PrivacyPolicyProfile.id,
+          //     gap: MediaQuery.of(context).size.width * 0.18),
         ],
       ),
     );
@@ -724,7 +802,7 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
 
   }
 
-  buttonCard(BuildContext context, String text, String image_Path, String route,
+  buttonCard(BuildContext context, String text, String imagePath, String route,
       double height, double width) {
     return GestureDetector(
       child: Padding(
@@ -752,7 +830,7 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(image_Path),
+                    Image.asset(imagePath,height: allHeight(context)*0.045,),
                     AutoSizeText(
                       '$text',
                       style: TextStyle(
@@ -800,10 +878,11 @@ class _ProfilePageTestState extends State<ProfilePageTest> {
           child: ListTile(
             leading: Image.asset(
               image_Path,
-              height: 40,
+                height: allHeight(context)*0.045,
             ),
             title: AutoSizeText(
               text,
+
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Palette.actHubGrey,

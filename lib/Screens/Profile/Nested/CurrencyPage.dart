@@ -28,11 +28,12 @@ class _CurrencyPageState extends State<CurrencyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Palette
+      .scaffold,
       appBar:  AppBar(
         centerTitle: true,
         toolbarHeight: allHeight(context)*0.08,
-        backgroundColor: Palette.white,
+        backgroundColor: Palette.scaffold,
         elevation: 0,
         title: AutoSizeText(
           'Currency',
@@ -45,8 +46,20 @@ class _CurrencyPageState extends State<CurrencyPage> {
             fontSize: 25,
           ),
         ),
-        leading: BackButton(
-            color: Colors.black
+        leading:  Container(
+          height: MediaQuery.of(context).size.width * 0.05,
+          width: MediaQuery.of(context).size.width * 0.15,
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+                color: Palette.actHubGreen,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
         ),
       ),
       body: MediaQuery.of(context).size.height>MediaQuery.of(context).size.width?Column(
@@ -108,7 +121,7 @@ class _CurrencyPageState extends State<CurrencyPage> {
           ),
           Container(
             width: allWidth(context)*0.9,
-            height: allHeight(context)*0.65,
+            height: allHeight(context)*0.74,
             child:
             Center(
               child: ListView(

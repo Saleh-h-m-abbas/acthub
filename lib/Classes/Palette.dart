@@ -10,6 +10,7 @@ class Palette {
   static const Color actHubGrey = Color(0xff707070);
   static const Color blue = Color(0xff475EEE);
   static const Color lightOrange= Color(0xffF9A559);
-  static const Color social= Color(0xffFB9D49);
+  static const Color social= Color(0xfffb9d49);
+  static const Color profileIconsColor = Color(0xffffd98e);
 
 }

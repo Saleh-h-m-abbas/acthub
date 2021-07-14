@@ -37,40 +37,42 @@ class _SearchPageState extends State<SearchPage> {
                   Container(
                     width: allWidth(context),
                     child: AppBar(
-                      centerTitle: false,
+                      centerTitle: true,
                       elevation: 0,
                       toolbarHeight: allHeight(context) * 0.06,
                       backgroundColor: Palette.scaffold,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: allHeight(context) * 0.03,
-                            width: allHeight(context) * 0.4,
-                            child: AutoSizeText(
-                              'Search',
-                              textAlign: TextAlign.start,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.orange),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: allHeight(context) * 0.035),
-                            child: AutoSizeText(
-                              'Have a nice day',
-                              textAlign: TextAlign.start,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Palette.actHubGreen.withOpacity(0.35),
+                      leading:Padding(
+                        padding: EdgeInsets.only(bottom:allHeight(context)*0.008),
+                        child: Container(
+                          height:allWidth(context)*0.05,
+                          width:MediaQuery.of(context).size.width*0.1,
+
+                          child: Padding(
+                            padding:  EdgeInsets.only(top:allWidth(context) > 500?allWidth(context)*0.0204 :allWidth(context)*0.0604 ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: IconButton(
+                                icon: Icon(Icons.arrow_back_ios,color: Palette.actHubGreen,),
+                                onPressed: () => Navigator.pop(context),
+
                               ),
                             ),
-                          )
-                        ],
+                          ),
+                        ),
+                      ),
+                      title: Container(
+                        height: allHeight(context) * 0.05,
+                        width: allHeight(context) * 0.15,
+                        alignment: Alignment.bottomLeft,
+                        child: AutoSizeText(
+                          'Search',
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.visible,
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Palette.orange),
+                        ),
                       ),
                       actions: [
                         isGuest
@@ -174,10 +176,62 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                   ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    elevation: 10,
+                    child: Container(
+                      height: allHeight(context)*0.5,
+                      width: allWidth(context) * 0.87,
+                      decoration: const BoxDecoration(
+                        color: Palette.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset("Images/price.png",),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
           ),
         ));
   }
+  Widget priceBarFilter() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Price (for 1 night)',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                color: Colors.grey,
+                fontSize: MediaQuery.of(context).size.width > 360 ? 18 : 16,
+                fontWeight: FontWeight.normal),
+          ),
+        ),
+        // RangeSliderView(
+        //   values: _values,
+        //   onChangeRangeValues: (RangeValues values) {
+        //     _values = values;
+        //   },
+        // ),
+
+      ],
+    );
+  }
 }
+

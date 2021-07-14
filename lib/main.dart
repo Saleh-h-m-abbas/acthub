@@ -14,6 +14,7 @@ import 'package:acthub/Screens/Profile/Nested/PackagesScreen.dart';
 import 'package:acthub/Screens/Profile/Nested/PrivacyPolicyProfile.dart';
 import 'package:acthub/Screens/Profile/Nested/RateAppPage.dart';
 import 'package:acthub/Screens/Profile/Nested/SelectLanguage.dart';
+import 'package:acthub/Screens/Profile/Nested/Terms.dart';
 import 'package:acthub/Screens/Welcome/EnableLocation.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
 import 'package:acthub/Screens/Welcome/PrivacyPolicy.dart';
@@ -35,12 +36,10 @@ void main() {
 }
 class MyApp extends StatelessWidget{
   @override
-
-
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LandingPage.id,
+      initialRoute: SearchPage.id,
       routes: {
         ProfilePageTest.id:(context)=>ProfilePageTest(),
         LandingPage.id: (context) => LandingPage(),
@@ -74,6 +73,7 @@ class MyApp extends StatelessWidget{
         PrivacyPolicyProfile.id:(context)=>PrivacyPolicyProfile(),
         AddActivity.id:(context)=>AddActivity(),
         RateAppPage.id:(context)=>RateAppPage(),
+        Terms.id:(context)=>Terms(),
       },
     );
   }

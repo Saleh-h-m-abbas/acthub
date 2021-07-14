@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'dart:io';
+import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:acthub/Screens/Welcome/EnableLocation.dart';
 import 'package:acthub/Screens/Welcome/SignIn.dart';
@@ -10,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LandingPage extends StatefulWidget {
   static const String id = 'LandingPage';
-
   @override
   _LandingPageState createState() => _LandingPageState();
 }
@@ -18,6 +18,9 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String routePage = EnableLocation.id;
+  String defaultLocale;
+  String defultLanguage;
+
   landingPageMethod() async {
     final SharedPreferences prefs = await _prefs;
     if (prefs.getBool('NotFirstTime') != null &&
@@ -35,10 +38,63 @@ class _LandingPageState extends State<LandingPage> {
     Timer(Duration(seconds: 1), () => Navigator.pushNamed(context, routePage));
   }
 
+  Future<void> SetStringSharedPreferance(String language)  {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.setString("Language", language);
+      })();
+    });
+  }
+  getStringSharedPreferance() {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        defultLanguage= prefs.getString("Language");
+      })();
+    });
+  }
+
+
+  checkDeviceLanguage() {
+    Locale _locale;
+    defaultLocale = Platform.localeName;
+    print(_locale);
+    print(defaultLocale);
+    var arr = defaultLocale.split("_");
+    print(arr[0]);
+    String device_lang=arr[0];
+    print(device_lang);
+   // final toLanguageCode = Translations.getLanguageCode(device_lang);
+   // print(toLanguageCode);
+    final languageFromCode = Translations.getLanguageFromCode(device_lang);
+    print(languageFromCode);
+
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        defultLanguage= prefs.getString("Language");
+        print("defultLanguage");
+        print(defultLanguage);
+      })();
+    });
+    print(defultLanguage != languageFromCode);
+    (() async {
+      if (defultLanguage != languageFromCode){
+      await SetStringSharedPreferance(defultLanguage);}
+      else
+      await SetStringSharedPreferance(languageFromCode);
+    })();
+
+  }
+
+
+
   @override
   void initState() {
     super.initState();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
+    checkDeviceLanguage();
     landingPageMethod();
   }
 

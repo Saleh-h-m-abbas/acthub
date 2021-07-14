@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:acthub/Api/translations.dart';
 import 'package:acthub/Classes/Palette.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -22,14 +23,44 @@ class SelectLanguage extends StatefulWidget {
 }
 
 class _SelectLanguageState extends State<SelectLanguage> {
-
-  var toLanguageCode;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
-  String selectedValue = Translations.languages.first;
-
+  var toLanguageCode;
+  var toLanguageWord;
+  String defultLanguage;
+  String selectedValue;
   final selectedColor = Colors.red;
   final unselectedColor = Colors.black;
+
+
+  Future<void> SetStringSharedPreferance(String shared,String languagecode)  {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        prefs.setString(shared, languagecode);
+      })();
+    });
+  }
+  getStringSharedPreferance() {
+    setState(() {
+      (() async {
+        final SharedPreferences prefs = await _prefs;
+        defultLanguage= prefs.getString("Language");
+        print(defultLanguage);
+        selectedValue = Translations.languages.reduce((value, element) => defultLanguage );
+      })();
+    });
+  }
+  void initState() {
+    Timer(Duration(seconds: 0), () => {getStringSharedPreferance()});
+    (() async {
+      selectedValue = Translations.languages.reduce((value, element) => defultLanguage );
+    })();
+    super.initState();
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +237,6 @@ class _SelectLanguageState extends State<SelectLanguage> {
       ],
     );
   }
-
   Widget buildRadios() => Theme(
     data: Theme.of(context).copyWith(
       unselectedWidgetColor: unselectedColor,
@@ -215,21 +245,20 @@ class _SelectLanguageState extends State<SelectLanguage> {
       children: Translations.languages.map((String data) {
         final selected = this.selectedValue == data;
         final color = selected ? selectedColor : unselectedColor;
-        print(selected);
         return Padding(
           padding: const EdgeInsets.all(5.0),
           child: GestureDetector(
               onTap: () async {
-                print(data);
                 setState(() {
                   this.selectedValue = data;
-                  print(selectedValue);
+                  toLanguageCode = Translations.getLanguageCode(selectedValue);
+                  toLanguageWord = selectedValue;
+                (() async {
+                  await SetStringSharedPreferance("LanguageCode",toLanguageCode);
+                  await SetStringSharedPreferance("Language",toLanguageWord);
+                })();
                 });
-                toLanguageCode = Translations.getLanguageCode(selectedValue);
-                print(toLanguageCode);
-                final SharedPreferences prefs = await _prefs;
-                prefs.setString("ToLanguage", toLanguageCode);
-                print(prefs.getString("ToLanguage"));
+
               },
               child: Stack(
                 alignment: Alignment.center,

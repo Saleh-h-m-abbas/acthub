@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:acthub/Api/translation_widget.dart';
 import 'package:acthub/Classes/Palette.dart';
 import 'package:acthub/Screens/NavigationPage.dart';
 import 'package:acthub/Screens/Welcome/LogInPage.dart';
@@ -24,12 +27,13 @@ class _SignInState extends State<SignIn> {
     ));
   }
 
-
   @override
   void initState() {
+    Timer(Duration(seconds: 0), () => {});
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,24 +59,26 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.05,
-              width: MediaQuery.of(context).size.width * 0.6,
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.015,
-              ),
-              child: AutoSizeText(
-                "Login for full enjoyable experience.",
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.visible,
-                maxLines: 1,
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 25,
-                  color: const Color(0xff4d4f5c),
-                  //fontWeight: FontWeight.w900,
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.width * 0.6,
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.015,
                 ),
-              ),
-            ),
+                child: TranslationWidget(
+                  message: "Login for full enjoyable experience.",
+                  builder: (translatedMessage) => AutoSizeText(
+                    translatedMessage,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.visible,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: 'Avenir',
+                      fontSize: 25,
+                      color: const Color(0xff4d4f5c),
+                      //fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                )),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.025,
             ),
@@ -100,15 +106,22 @@ class _SignInState extends State<SignIn> {
                             ),
                           ],
                         ),
-                        child: Text(
-                          'Sign in with Google',
-                          style: TextStyle(
-                            fontFamily: 'Segoe UI',
-                            fontSize: 16.0,
-                            color: Colors.black,
+                        child:
+                        TranslationWidget(
+                          message: "Sign in with Google",
+                          builder: (translatedMessage) => AutoSizeText(
+                            translatedMessage,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.visible,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontFamily: 'Avenir',
+                              fontSize: 16,
+                              color: Colors.black,
+                              //fontWeight: FontWeight.w900,
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                        )
                       ),
                       Positioned(
                         left: 16.0,
@@ -145,15 +158,17 @@ class _SignInState extends State<SignIn> {
                           ),
                         ],
                       ),
-                      child: Text(
-                        'Sign in with Apple',
+                      child:   TranslationWidget(
+                        message: "Sign in with Apple",
+                        builder: (translatedMessage) =>  Text(
+                          translatedMessage,
                         style: TextStyle(
                           fontFamily: 'Segoe UI',
                           fontSize: 16.0,
                           color: Colors.black,
                         ),
                         textAlign: TextAlign.center,
-                      ),
+                      ),)
                     ),
                     Positioned(
                       left: 16.0,
@@ -189,15 +204,17 @@ class _SignInState extends State<SignIn> {
                             ),
                           ],
                         ),
-                        child: Text(
-                          'Sign in with Facebook',
+                        child:   TranslationWidget(
+                          message: "Sign in with Facebook",
+                          builder: (translatedMessage) =>  Text(
+                            translatedMessage,
                           style: TextStyle(
                             fontFamily: 'Segoe UI',
                             fontSize: 16.0,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ),)
                       ),
                       Positioned(
                         left: 16.0,
@@ -232,15 +249,17 @@ class _SignInState extends State<SignIn> {
                             ),
                           ],
                         ),
-                        child: Text(
-                          'Sign in with Twitter',
+                        child:    TranslationWidget(
+                          message: "Sign in with Twitter",
+                          builder: (translatedMessage) => Text(
+                            translatedMessage,
                           style: TextStyle(
                             fontFamily: 'Segoe UI',
                             fontSize: 16.0,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ),)
                       ),
                       Positioned(
                         left: 16.0,
@@ -280,15 +299,17 @@ class _SignInState extends State<SignIn> {
                           ),
                         ],
                       ),
-                      child: Text(
-                        'SignIn',
+                      child:    TranslationWidget(
+                        message: "SignIn",
+                        builder: (translatedMessage) => Text(
+                          translatedMessage,
                         style: TextStyle(
                           fontFamily: 'Segoe UI',
                           fontSize: 16.0,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
-                      ),
+                      ),)
                     ),
                   ],
                 ),
@@ -308,8 +329,11 @@ class _SignInState extends State<SignIn> {
                         color: Palette.actHubGreen,
                         thickness: 1,
                       )),
-                  AutoSizeText(
-                    'Or',
+
+                  TranslationWidget(
+                    message: "Or",
+                    builder: (translatedMessage) => AutoSizeText(
+                      translatedMessage,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.visible,
                     style: TextStyle(
@@ -317,7 +341,8 @@ class _SignInState extends State<SignIn> {
                       fontSize: 16.0,
                       color: Palette.actHubGreen,
                     ),
-                  ),
+                  ),),
+
                   Container(
                       width: MediaQuery.of(context).size.width * 0.38,
                       child: Divider(
@@ -360,25 +385,27 @@ class _SignInState extends State<SignIn> {
                             ),
                           ],
                         ),
-                        child: Text(
-                          'Join us as a Guest ',
+                        child:   TranslationWidget(
+                          message: "Join us as a Guest",
+                          builder: (translatedMessage) =>  Text(
+                            translatedMessage,
                           style: TextStyle(
                             fontFamily: 'Segoe UI',
                             fontSize: 16.0,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ),)
                       ),
                     ],
                   ),
                 )),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.015,
-            ), SizedBox(
+            ),
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.015,
             ),
-
           ],
         ),
       ]),

@@ -25,26 +25,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       home: Scaffold(
         backgroundColor: Palette.scaffold,
         appBar: AppBar(
-          centerTitle: false,
-          toolbarHeight: 60,
-          elevation: 0,
+          centerTitle: true,
+          toolbarHeight: allHeight(context)*0.08,
           backgroundColor: Palette.scaffold,
-          title: Text(
+          elevation: 0,
+          title: AutoSizeText(
             'Edit Profile',
+            textAlign: TextAlign.start,
+            overflow: TextOverflow.visible,
             style: TextStyle(
-                fontSize: 36, fontWeight: FontWeight.bold, color: Palette.orange),
+              color: Palette.orange,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Arial_Rounded_MT",
+              fontSize: 25,
+            ),
           ),
-
           leading:  Container(
-            height: allWidth(context)*0.1,
-            width:allWidth(context)*0.1,
-
+            height: MediaQuery.of(context).size.width * 0.05,
+            width: MediaQuery.of(context).size.width * 0.15,
             child: FittedBox(
               fit: BoxFit.fill,
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios,size: 30,color: Palette.actHubGreen.withOpacity(0.33),),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 15,
+                  color: Palette.actHubGreen,
+                ),
                 onPressed: () => Navigator.pop(context),
-
               ),
             ),
           ),
